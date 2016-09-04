@@ -16,7 +16,6 @@ Revision History:
 from unittest import TestCase
 from BlackScholes import normcdf
 from BlackScholes import BlackScholes
-import random
 
 class BlackScholesTests(TestCase):
 
