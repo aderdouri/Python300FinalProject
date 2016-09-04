@@ -26,6 +26,7 @@ class BlackScholesTests(TestCase):
         self.assertEqual(round(normcdf(0), 2), 0.5)
         self.assertEqual(round(normcdf(1.64), 2), 0.95)
         self.assertEqual(round(normcdf(2.33), 2), 0.99)
+        self.assertEqual(round(normcdf(1.24), 2), 0.89)
 
     def test_01_BS(self):
         """
@@ -46,4 +47,4 @@ class BlackScholesTests(TestCase):
 
         self.assertEqual(round(BS.d2(), 3), -0.183)
         self.assertEqual(round(normcdf(BS.d2()), 3), 0.428)
-        self.assertEqual(round(BS.getPrice(), 3), 0.417)
+        self.assertEqual(round(BS.getPrice(), 3), 0.417)

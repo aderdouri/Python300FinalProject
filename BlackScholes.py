@@ -14,6 +14,8 @@ Revision History:
 
 import math
 
+#Use stats.norm.cdf
+
 def normcdf(x):
     """
     Calculate cumulative normal distribution
