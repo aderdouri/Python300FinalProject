@@ -1,0 +1,1200 @@
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\addtolength{\voffset}{-15mm}
+\usepackage{inputenc}
+\usepackage{a4wide}
+\usepackage[T1]{fontenc}	
+\usepackage[french, english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{float}
+\usepackage{moreverb}
+\usepackage{listings}
+\usepackage{sidecap}
+\usepackage{setspace}
+\usepackage{dsfont}
+\singlespacing
+\usepackage{textcomp}
+\usepackage{color,hyperref}
+\usepackage{caption}
+\usepackage{algorithmic}
+\usepackage{amsmath}
+\setlength\parindent{0pt}
+\numberwithin{equation}{subsection}
+\linespread{1.2}
+\def\blurb{%
+	\textbf{\Large} \\}
+\def\clap#1{\hbox to 0pt{\hss #1\hss}}%
+\def\ligne#1{%
+	\hbox to \hsize{%
+		\vbox{\centering #1}}}%
+\def\haut#1#2#3{%
+	\hbox to \hsize{%
+		\rlap{\vtop{\raggedright #1}}%
+		\hss
+		\clap{\vtop{\centering #2}}%
+		\hss
+		\llap{\vtop{\raggedleft #3}}}}%
+\def\bas#1#2#3{%
+	\hbox to \hsize{%
+		\rlap{\vbox{\raggedright #1}}%
+		\hss
+		\clap{\vbox{\centering #2}}%
+		\hss
+		\llap{\vbox{\raggedleft #3}}}}%                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+\begin{document}
+	\thispagestyle{empty}\vbox to .9\vsize{%
+		\vss
+		\vbox to 1\vsize{%
+			\haut{}{\blurb}{}
+			\ligne{
+				\Large \textbf{
+					\vspace{4em}
+					\textsc{Certificate in Quantitative Finance}\\ 
+					\vspace{4em} 
+					Final Project\\ 
+					\vspace{4em} 
+					\textsc{} \\ LIBOR and OIS Rates - Market Volatility\\
+					And\\
+					CVA Calculation for An Interest Rate Swap
+				} 
+				\vspace{4em} 		
+			}
+			\ligne{%
+				\begin{tabular}{l}
+					Abderrazak \textsc{DERDOURI}   \\ 
+					\href{mailto:abderrazak.derdouri@gmail.com}{abderrazak.derdouri@gmail.com}
+				\end{tabular}}
+				\vspace{1em}
+				\ligne{24 Jully 2017} 
+			}%
+			\vss
+		}
+%\textsf
+%{
+	\newpage
+	\tableofcontents
+	\newpage
+\section{Introduction}
+This work is two parts, the first part will focus on the calibration and pricing of interest rate derivatives in the framework of the Libor Market Model(LMM), the second part will consider the Credit Valuation Adjustment calculation (CVA) for an Interest Rate Swap (IRS).
+This document is organized as follows, in section 2 we introduce the mathematical and financial foundations
+behind the basic theory of interest rate derivatives. In section 3 we give a rather rigorous introduction to the Libor
+Market Model and show how to calibrate the model to a real data set. In section 4 we use the model
+to price a basic cap and swaption contract. We conclude in section 5. 
+All major results are visualized and the intermediate calculations are saved in a Pandas Data Frame. The programming language used is Python.
+%\newpage
+\section{Foundations of Mathematical Finance and Stochastic Calculus}
+This section presents the necessary foundations to understand the mathematical, financial and computational aspects behind the Libor Market Model. In the first subsection we start with simple interest rate necessities and go on the financial derivatives which are necessary to understand correctly calibrate and use the model for pricing. The subsection 2 starts with the most important aspects in stochastic calculus which is the key step to understand and work with stochastic differential equations. One additional topic in this section is the no-arbitrage Pricing which are a prerequisite to understand modern option pricing theory. The final subsection in this section gives an overview about the computational aspects which are important to build the Libor Market Model.
+\subsection{Interest Rates and Derivatives}
+This section is about the basic definitions which will be used through the whole study. All definitions are similar to the definitions of standard term structure modeling and interest rate derivatives textbooks (Brigo and Mercurio [2006]).\\
+In the section below we consider a set of increasing maturities:
+\begin{eqnarray*}
+T_0, T_1,...,T_N. \  t=T_0, j=1,...N.
+\end{eqnarray*}
+\subsubsection{Money market account}
+We start with the evolution of a simple money market account \(B(t)\) over time where we use the definition of the instantaneous short rate \(r(t)\). Under the short rate one can understand the interest rate under which the money accrues when reinvested continuously. It is important to note that the short rate is a theoretical concept and cannot be directly observed at the market.\\	
+We start with \(B(t)=1\). The differential equation for the evolution is:
+\begin{eqnarray*}
+	dB(t) = r_{t}B(t)dt
+\end{eqnarray*}	
+where one solution for this differential equation is
+\begin{eqnarray}
+B(T) = \exp\bigg\{\int_{t}^{T}r_s ds\bigg\}
+\end{eqnarray}
+%	
+\subsubsection{Zero Coupon Bond}
+A Zero Coupon Bond or just Zero Bond has no intermediate payments and guarantees its holder one unit of amount at time \(T_j\). The natural boundaries when interest rates are positive are \(P(t, T_j)<1\) and arbitrage would be possible if not \(P(t, T_j)>0\) as zero cots at \(t\) would produce 1 income in \(T_j\).
+\begin{eqnarray}
+	P(t, T_j) =  \frac{B(t)}{B(T_j)}
+\end{eqnarray}	
+if we use (2.1.1) from the instantaneous short rate, this formula leads to the stochastic Zero Coupon Bond:
+\begin{eqnarray}
+D(t, T_j) = \exp\bigg\{-\int_{t}^{T}r_s ds\bigg\}
+\end{eqnarray}	
+Under a suitable probability measure, the expectation of the stochastic discount factors (Stochastic Zero Coupon Bonds) are the Zero Coupon Bonds (deterministic discount factors).
+\subsubsection{Forward Zero Bond}
+A theoretical Forward Zero Bond ca be interpreted as the amount which has to be invested in \(T_{j-1}\) to be one unit of currency in \(T_{j}\).
+\begin{eqnarray}
+	P(t, T_{j-1}, T_j) = \frac{P(t, T_j)}{P(t, T_{j-1})}
+\end{eqnarray}	
+\subsubsection{Spot Interest Rate}
+The spot rate or LIBOR rate is the constant interest rate which has to be applied to an amount which has to be invested at time \(t\) to get one unit at time \(T_j\). It is defined in simple compounding convention as:
+\begin{eqnarray}
+L(t, T_j) = \frac{1}{\delta}\bigg(\frac{1}{P(t, T_j)}-1\bigg)
+\end{eqnarray}	
+where \(\delta\) is a year fraction for typically \(\frac{3}{12}, \frac{6}{12}\) or \(\frac{9}{12}\). The LIBOR rate is not explicitly modeled in the LMM, instead the forward Libor rate is modeled which is defined below. 
+\subsubsection{Forward Rate}
+The theoretical definition of a forward rate is an interest rate which is set today for borrowing or lending for a certain period in the future.
+\begin{eqnarray}
+	F(t, T_{j-1}, T_j) = \frac{1}{T_j-T_{j-1}}\bigg(\frac{P(t, T_{j-1})}{P(t, T_j)}-1\bigg)
+\end{eqnarray}
+\subsubsection{Forward Libor Rate}	
+\begin{eqnarray}
+\delta_{j} L(t, T_{j-1}, T_j) = \frac{P(t, T_{j-1})}{P(t, T_j)}-1 = \frac{P(t, T_{j-1})-P(t, T_{j})}{P(t, T_{j})}
+\end{eqnarray}
+Typically the fixed \(\delta\) for a forward Libor Rate is \(3\) or \(6\) months, this market convention is also used blow for the Libor Market Model. The above definition is also the definition of a FRA (Forward Rate Agreement), which is a traded instrument in financial markets.
+\subsubsection{Swap Rate}
+A product which can be replicated out of FRAs, which are traded contracts on forward rates, is an interest rate swap. In an Interest Rate Swap two parties exchange differently indexed payments, which is in its standard (plain vanilla) form a fixed interest rate against a floating interest rate (e.g Libor rate) payment, at a specified future time instant. The fixed payer pays a prespecified amount \(N\delta_{j}K\) at each instant \(T_j\) where \(j \in [\alpha,...,\beta]\), \(N\) is the notional amount, \(\delta_j\) is the increment (a year fraction) between \(T_{j-1}\) and \(T_j\). The floating rate pays, an index tied interest rate, where the index is a Libor rate, of \(N\delta_{j}L(T_{j-1}, T_j)\) at the dates \(T_{\alpha+1},...,T_{\beta}\). The reset dates, which are the dates where the next floating rate is fixed , are \(T_{\alpha},...,T_{\beta-1}\). As we have already stated above, the swap is a portfolio of forward rate agreements and hence can be valued
+\begin{eqnarray*}
+N \sum_{j=\alpha+1}^{\beta} \delta_{j} P(t, T_j) (K - F(t, T_{j-1}, T_j))
+\end{eqnarray*}
+for a fixed rate receiver and for the payer we would just have to change the signs in the brackets.
+To find the fixed swap rate at the contract start we have to set the two sides of the contract to zero and solve for \(K=S_{\alpha, \beta}(t)\):
+\begin{eqnarray*}
+	N \sum_{j=\alpha+1}^{\beta} \delta_{j} P(t, T_j) \bigg(K - \frac{1}{\delta_j} \bigg(\frac{P(t, T_{j-1}-P(t, T_{j})}{P(t, T_{j}}\bigg) \bigg) &=& 0 \\
+	N \sum_{j=\alpha+1}^{\beta} \bigg[\delta_{j} P(t, T_j) K - P(t, T_{j-1}) + P(t, T_{j} \bigg] &=& 0 \\
+	\Rightarrow K \sum_{j=\alpha+1}^{\beta} \delta_{j} P(t, T_j) &=& P(t, T_{\alpha}) - P(t, T_{\beta})
+\end{eqnarray*}
+\begin{eqnarray}
+S_{\alpha, \beta}(t) = K = \frac{P(t, T_{\alpha}) - P(t, T_{\beta})}{\sum_{j=\alpha+1}^{\beta} \delta_{j} P(t, T_j)}
+\end{eqnarray}
+The swap rate is equal to the forward rate if we take just one time period into consideration. As the swap rate is needed in terms of forward rates for the simulations, some algebraic manipulation of the previous expression has to be done. We start by dividing the numerator and denominirator by \(P(t, T_{\alpha})\):
+\begin{eqnarray*}
+S_{\alpha, \beta}(t) &=& \frac{1- \frac{P(t, T_{\beta})}{P(t, T_{\alpha})}}{\sum_{j=\alpha+1}^{\beta} \delta_{j} \frac{P(t, T_j)}{P(t, T_{\alpha})}} \\
+&=& \frac{1- \frac{P(t, T_{\beta})}{P(t, T_{\alpha})} \displaystyle \prod_{i=\alpha+1}^{\beta-1}{\frac{P(t, T_i)}{P(t, T_{i-1})}}}{\sum_{j=\alpha+1}^{\beta} \delta_{j} \frac{P(t, T_j)}{P(t, T_{\alpha})} \displaystyle \prod_{\alpha=i+1}^{j-1}{\frac{P(t, T_i)}{P(t, T_{i-1})}} }  \\
+&=& \frac{1-\Pi_{i=\alpha+1}^{\beta-1}{\frac{P(t, T_i)}{P(t, T_{i-1})}}}{\sum_{j=\alpha + 1}^{\beta} \delta_j \displaystyle \prod_{\alpha=i+1}^{j}{\frac{P(t, T_i)}{P(t, T_{i-1})}}}
+\end{eqnarray*}
+we use (2.1.7) to get:
+%\setcounter{equation}{0}
+\begin{eqnarray}
+S_{\alpha, \beta}(t) &=& \frac{1-\displaystyle \prod_{i=\alpha+1}^{\beta-1}{\frac{1}{1+\delta_i L(t, T_{i-1}, T_i)}}}{\sum_{j=\alpha + 1}^{\beta} \delta_j \displaystyle\prod_{i=\alpha+1}^{j}{\frac{1}{1 + \delta_{i} L(t, T_{i-1}, T_i)}}}
+\end{eqnarray}
+\subsubsection{Caplets/Floorlets}
+A caplet is defined as an call option on a forward (Libor) rate. A cap with a quoted tenor \(T_{j}-t\) and strike \(K\) is the sum of all caplets \(c_i\) on the forward Libor rates until tenor \(T_{j}-T_{j-1}\), all with strike \(K\) and the caplet volatility for the forward libor rate \(L(t, T_{j-1}, T_{j})\) is \(\sigma_{j}\). The general payoff formula for caplets is:
+\begin{eqnarray*}
+X_j = \delta_{j} \max[L(t, T_{j-1}, T_j)-K]^{+}
+\end{eqnarray*}
+where \([]^+\) is defined as the functional form \([x]+ := \max(0, x)\) and the Black for caplets at time \(t\) is given by (the superscript B identifies the caplet as Black style quotation)
+\begin{eqnarray}
+c_j^{B} = \delta_{j} P(t, T_{j}) [L(t, T_{j-1}, T_j)N(d_1) -K N(d_2)]
+\end{eqnarray}
+where we have 
+\begin{eqnarray}
+	d_1 = \frac{\ln\bigg[\frac{L(t, T_{j-1}, T_j)}{K}\bigg]+\frac{\sigma_j^2(T_j-t)}{2}}{\sigma_j\sqrt{T_j-t}}
+\end{eqnarray}
+\begin{eqnarray}
+	d_2 = \frac{\ln\bigg[\frac{L(t, T_{j-1}, T_j)}{K}\bigg]-\frac{\sigma_j^2(T_j-t)}{2}}{\sigma_j\sqrt{T_j-t}}
+\end{eqnarray}
+The function for a cap is
+\begin{eqnarray}
+	cap = \sum_{j=1}^{N} c_{j}(\sigma_{j}^{B})
+\end{eqnarray}
+
+In financial markets the quotation is cap \(\sum_{j=1}^{N} c_{j}(\sigma_{j}^{B})\) as there is non explicit quotation for caplet volatilities, which would be spot or forward volatilities, but just for cap volatilities which are flat for each tenor. Therefore the quoted cap volatilities have to be "bootstrapped" to get out the caplet volatilities for each tenor. It is also market practice in option trading that the quotation for caps/floors is in implied Black volatility and not in monetary terms as one would expect.
+Black's Formula is a modification of the Black-Scholes-Merton stochastic differential equation and its origin lies in pricing derivatives contracts for commodities but it is far more frequently used in pricing interest rate derivatives. Its important for Libor Market Model lies in the fact it is consistent with the Black Formula which is a very nice characteristic for calibration. The pricing with the Black Formula implies that the forward (libor) rate is log-normally distributed at expiry under the risk neutral measure. Another assumption is that the risk neutral rate is not stochastic.\\
+A floor is like a cap where the signs in the payoff function is changed. It is a put option on the on the forward (libor) rate and like the cap is a sum of caplets, the floor is a sum of floorlets. The general payoff formula for floorlets is \(X_i=\delta_{j}[K - L(t, T_{j-1}, T_{j})]^{+}\).\\
+One of the conclusions of put call parity relationship is that selling a cap and buying a floor is equivalent to a receiver swap with fixed rate equal to the strike rate K. Prices of caps are not influenced by correlations of the underlying forward (libor) rates, which is opposite to swaptions contracts, where the correlations of forward log-returns do matter.
+\subsubsection{Swaptions}
+Similar to a cap on forward rates, swaptions are options on swap rates. Payer swaptions provides the right to enter into a payer swap at a specific future point in time and receiver swaps provide the right to enter into a receiver swap at a specific future point in time.
+The swap tenor is from \(T_{\alpha}\) till \(T_{\beta}\) and the payoff of a payer swaption at time \(t\) is (where t <=\(T_{\alpha}\)):
+\begin{eqnarray*}
+	&=& N P(t, T_{\alpha}) \bigg[ \sum_{j=\alpha+1}^{\beta} P(T_{\alpha}, T_{j}) \delta_{j} [L(T_{\alpha}, T_{j-1}, T_{j})-K] \bigg]^{+}\\
+	&=& N P(t, T_{\alpha}) \bigg[ \sum_{j=\alpha+1}^{\beta} P(T_{\alpha}, T_{j}) \delta_{j} \frac{1}{\delta_{j}} \frac{P(T_{\alpha}, T_{j-1})-P(T_{\alpha}, T_j)}{P(T_{\alpha}, T_j)} -K\sum_{j=\alpha+1}^{\beta} \delta_{j} P(t_{\alpha}, T_j) \bigg]^{+} \\	
+	&=& N P(t, T_{\alpha}) \bigg[\sum_{j=\alpha+1}^{\beta} P(T_{\alpha}, T_{j-1}) - P(T_{\alpha}, T_{j}) - K\sum_{j=\alpha+1}^{\beta} \delta_{j} P(T_{\alpha}, T_j)  \bigg]^{+} \\		
+	&=& N P(t, T_{\alpha}) \bigg[ \sum_{j=\alpha+1}^{\beta} P(T_{\alpha}, T_{\alpha}) - P(T_{\alpha}, T_{\beta})\frac{\sum_{j=\alpha+1}^{\beta} \delta_{j} P(T_{\alpha}, T_{j})}{\sum_{j=\alpha+1}^{\beta} \delta_{j} P(T_{\alpha}, T_{j})} ) - K \sum_{j=\alpha+1}^{\beta} \delta_{j} P(T_{\alpha}, T_j) \bigg]^{+} \\	
+	&=& N P(t, T_{\alpha}) \bigg[ S_{\alpha, \beta}(T_{\alpha}) \sum_{j=\alpha+1}^{\beta} \delta_{j} P(T_{\alpha}, T_{j}) -K\sum_{j=\alpha+1}^{\beta} \delta_{j} P(T_{\alpha}, T_{j}) \bigg]^{+} \\
+	&=& N P(t, T_{\alpha}) \sum_{j=\alpha+1}^{\beta} \delta_{j} P(T_{\alpha}, T_j) \big[S_{\alpha, \beta}(T_{\alpha})-K\big]^{+}
+\end{eqnarray*}
+With this last equation we can see that we don't have, as in the cap/floor case an instrument which can be broken down further. If the option is executed at the expiry date, the swap rate has to be paid for the tenor of the swap, there is no optionality any more. This fact also shows, that generally a payer swaption has to be less expensive than a corresponding cap contract. This can be shown by the following equation, where, on the left side of the inequality, the summation of discount factors cannot be taken out of \([]^{+}\).
+\begin{eqnarray*}
+	\bigg[ \sum_{j=\alpha+1}^{\beta} \delta_{j} P(T_{\alpha}, T_{j}) \big[L(T_{\alpha}, T_{j-1}, T_{j})-K\big] \bigg]^{+} \leq  \sum_{j=\alpha+1}^{\beta} \delta_{j} P(T_{\alpha}, T_{j}) \delta_{j} \big[L(T_{\alpha}, T_{j-1}, T_{j})-K \big]^{+}
+\end{eqnarray*}
+The Black quotation is also market practice for swaption contracts and they are calculated in a very similar way compared to caps/floors:
+\begin{eqnarray}
+	\text{swaption}_{\alpha, \beta}^{B}(t) = PVBP\big[S_{\alpha, \beta}(0)N(d_1) -K N(d_2)\Big]^{+}
+\end{eqnarray}
+where PVBP is the present value of a basis point which is also the denominator in 2.1.8:
+\begin{eqnarray*}
+	PVBP_{\beta} = P(0, T_{\beta}) \sum_{j=\alpha+1}^{\beta} \delta_{j} P(T_{\alpha}, T_{j})
+\end{eqnarray*}
+In general it cannot be assumed that both, forward rates and swap rates, are lognormal distribution, as the swap rate measure cannot be expressed linearly in terms of the forward rate measure, which is also true for the opposite direction. It is market practice to ignore as inconsistencies are small.
+\subsection{Stochastic Calculus and No-Arbitrage Pricing}
+In the theory of financial derivatives pricing the no-arbitrage theory is the major building block which was also the first step in deriving the famous Black-Scholes Option pricing formula. Using no-arbitrage theory the continuous time evolution of a financial instrument is modeled as a stochastic process and as a Stochastic Differential Equation (SDE).\\ 
+As we need the stochastic process or SDE to be driftless, we use the martingale measure which is a very important concept in modeling financial assets.\\
+Additionally wee need to understand theorems like Girsanov's theorem to change the numeraire and therefore the drift of a stochastic process or SDE to get to an equivalent martingale measure (EMM).\\
+The SDE is stated via the application of It\^{o} Calculus.\\
+We define a probability space \((\Omega, \mathcal{F}, \mathbb{P})\) where the elements of the \(\sigma\) -algebra \(\mathcal{F}\) are the events on the sample space \(\Omega\) with the probability measure \(P\), where \(\mathbb{P}(\Omega)=1\). As we don't know the future interest rates or in the case of the LMM the future libor forward rates, we need a stochastic process to model the future. We use the Wiener process (or the Brownian Motion Process), which is driven by independent standard normal random variables, for modeling the stochastic part which represents the uncertainty in our model.
+\subsubsection{Brownian Motion}		
+We define the \(n\)-dimensional continuous process \(W^{n}(t): t\geq s\geq 0\) on our probability space \((\Omega, \mathcal{F}, \mathbb{P})\) where \(W^n(0) \geq 0\), the stochastic increments \(W^{n}(s+t)-W^{n}(s)\) are independent of the history of \(\mathcal{F}_s^{n}\), the increment \(W^{n}(s+t)-W^{n}(s) \sim \mathcal{N}(0, t)\) distributed under the measure \(\mathbb{P}\). The Filtration \(\mathcal{F}_s^n\) consists of all information up to \(W^n(s)\). with this property the process \(W^{n}(s)\) is called adapted to the filtration \(\mathcal{F}_s^n\).
+\subsubsection{Stochastic Process and Stochastic Differential Equations}
+Let \(X\) be a \(n\)-dimensional continuous process with \(X(t): t \geq 0\) then we get this integral equation
+\begin{eqnarray*}
+	X(t) = X(0) + \int_{0}^{t} \mu(s)ds + \int_{0}^{t} \sigma(s) dW(s)
+\end{eqnarray*}	
+where \(\mu(t)\) is a drift vector, \(dW(t)\) is vector of brownian motions with \(n\)-dimensions and \(\sigma(t)\) is a \(n\times n\) matrix of volatilities (or diffusion coefficients). Where \(X\) has the differential form:
+\begin{eqnarray*}
+	dX(t) = \mu(t)dt + \sigma(t) dW(t)
+\end{eqnarray*}	
+If \(\mu\) and \(\sigma\) are deterministic functions and \(X(t)\) depend just on \(W(t)\), the differential is called a Stochastic Differential Equation (SDE).
+\subsubsection{Martingale and Equivalent Martingale Measure}
+A stochastic process \(M(t)\) is a martingale under a filtration \(F_t\) if and only if \(E[M(t)] < \infty \  \forall t\) and the following relation must hold \(\forall s \leq t\)
+\begin{eqnarray*}
+	E[M(t)|\mathcal{F}_s] = M(s)
+\end{eqnarray*}
+This condition is very important as it says that the future value \(M\) given the information available today, equals the present value M. We have already stated in the introduction of this section that this driftlessness of the stochastic process is needed but not always observed. Therefore we need the concept of change of measure to get from a drift including probability measure \(\mathbb{P}\) to an equivalent driftless (martingale) measure \(\mathbb{Q}\) to apply martingale theory.\\
+We use the same probability space \((\Omega, \mathcal{F}, \mathbb{P})\) as stated above to express a measure \(Q\) which is equivalent to the measure \(\mathbb{P}\). It needs to fulfill the following derivative.
+\begin{eqnarray*}
+	\mathbb{P}(A) > 0 \iff \mathbb{Q}(A) > 0 \ \forall A \in \Omega 
+\end{eqnarray*}
+which is equivalent to
+\begin{eqnarray*}
+	\mathbb{P}(A) = 0 \iff \mathbb{Q}(A) = 0 \ \forall A \in \Omega 
+\end{eqnarray*}
+\subsubsection{Change of Measure}
+To get from one measure to another we use the Radon-Nikodym Theorem. We use a nonnegative random variable \(Z\) with \(E^{\mathbb{P}}[Z]=1\) then we can define a probability measure \(\mathbb{Q}\) which is equivalent to the measure \(\mathbb{P}\). Under the filtration \(\mathcal{F}_t\) where \(t \in [0, T]\) we get in this case a process where \(Z(t)\) is the Radon-Nikodym derivative.
+\begin{eqnarray*}
+d\mathbb{Q} = Z(T)d\mathbb{P} \ \text{on fixed} \  F_T \ \text{generates a process}\\
+\Rightarrow Z(t) = E^{\mathbb{P}_t}\Big[\frac{d\mathbb{Q}}{d\mathbb{P}}\Big] \iff \frac{1}{Z(t)} = \frac{d\mathbb{Q}}{d\mathbb{P}} \ \text{on} \ \mathcal{F}_t
+\end{eqnarray*}
+\subsubsection{Girsanov Theorem}
+When we change from a martingale process on one measure to an equivalent measure, the new process is generally not martingale under the new measure. The Girsanov Theorem tells us how we can change the drift of a process to get the new process martingale under the new measure. We do not subtract or add the drift of the process to get it to zero, rather we assign new probabilities to each event of the distribution. This concept is very important for the Libor Market Model to get all forward rate processes martingale under the terminal measure.\\
+We have \(W^\mathbb{P}\) which is a \(n\)-dimensional standard Brownian Motion, \(\phi\) which is a an arbitrary \(n\)-dimensional adapted process vector and the process \(Z(t)\) as from the change of measure definition above. Since \(Z(t)\) is a nonnegative martingale process we write \(Z\) as: 
+\begin{eqnarray*}
+	dZ(t)  = \varphi(t) Z(t) dW^\mathbb{P}(t) \ \text{with} \ Z(0) = 1 \\
+	\Rightarrow	Z(t)  = \exp\bigg(\int_{0}^{T} \varphi(s)dW^\mathbb{P}(s) - \frac{1}{2} \int_{0}^{t} \|\varphi(s)\|^2 ds\bigg)
+\end{eqnarray*}
+Using the theory from Definition 2.2.4:
+\begin{eqnarray}
+W^\mathbb{P}(t) = W^\mathbb{P}(t) - \int_{0}^{t} \varphi(s)ds
+\end{eqnarray}
+We have assumed above that \(\phi\) is a process such that \(E^\mathbb{P}[Z(T)]=1\) or equivalently that the likelihood ration \(Z\) is a martingale. A sufficient condition to guarantee that \(Z\) is a true martingale is the "Novikov condition":
+\begin{eqnarray}
+	E^P\bigg[\exp\bigg(\frac{1}{2} \int_{0}^{T} \|\varphi(s)\|^2 ds\bigg)\bigg] < \infty
+\end{eqnarray}
+The outcome of the applications of Girsanov's Theorem is that the diffusion term stays unchanged and the drift, we use \(\mu\) for the drift under the measure \(P\), it is changed to a new drift \(\mu + \sigma \phi\) under \(\mathbb{Q}\). A very short example of the the application of the Girsanov Theorem on the process \(X\) where \(W\) is a Wiener process under the respective measure:
+\begin{eqnarray*}
+	dX(t) &=& \mu(t) + \sigma(t) dW^{\mathbb{P}}(t) \\
+	 &=& \ \text{then we use 2.2.1} \\
+	 &=& \mu(t) dt + \sigma(t)[dW^{\mathbb{Q}} + \varphi(t)dt] \\
+	 &=& [\mu(t) dt + \sigma(t)\phi(t)]dt + \sigma(t) dW^{\mathbb{Q}}(t)
+\end{eqnarray*}
+\subsubsection{General (Martingale) Pricing Formula}		
+The First Fundamental Theorem of Asset Pricing stats that a financial model is arbitrage free if there exist a (local) martingale measure \(\mathbb{Q}^N\) which is equivalent to the risk neutral measure \(\mathbb{Q}\) for the numeraire \(N\). Assume \(X\) is a price process of a financial asset and \(N\) is the price of the numeraire under the EMM \(\mathbb{Q}^N\).
+\begin{eqnarray}
+	\frac{X(t)}{N(t)} = E^{\mathbb{Q}^N}\bigg[\frac{X(t)}{N(t)}| \mathcal{F}_t\bigg]
+\end{eqnarray}
+The important conclusion of this equation is that we get an arbitrage free martingale pricing formula for the price process \(Y(t, X)\) of any price process \(X\), where set \(M(t)=\frac{X(t)}{N(t)}\):
+\begin{eqnarray}
+	Y(t, X) = N(t) E^{\mathbb{Q}^{N}} [M(T)]
+\end{eqnarray}
+\subsubsection{Change of Numeraire Technique}
+The numeraire is the unit measure in which the worth of a financial instrument is measured (e.g currency, discount bonds, ...). The risk neutral valuation theory uses the "risk-free" bank account as its natural numeraire. In arbitrage free markets technique we consider two different numeraire \(N^1\) and \(N^2\) on equivalent martingale measures \(\mathbb{Q}^{N^1}\) and \(\mathbb{Q}^{N^2}\). Since the price of one asset has to be independent of the numeraire, we get the following equality:
+\begin{eqnarray*}
+	N^{1}(t) E^{\mathbb{Q}^{N^1}} \bigg[\frac{X(T)}{N^1(T)}|\mathcal{F}_t\bigg] &=& N^{2}(t) E^{\mathbb{Q}^{N^2}} \bigg[\frac{X(T)}{N^2(T)}|\mathcal{F}_t\bigg]
+\end{eqnarray*}	
+we set \(M(T) = \frac{X(T)}{N^1(T)}\) to get :
+\begin{eqnarray*}
+	 E^{\mathbb{Q}^{N^1}}[M(T)|\mathcal{F}_t]  &=& \frac{N^2(t)}{N^1(t)} E^{\mathbb{Q}^{N^2}} \bigg[\frac{X(T)N^1(T)}{N^1(T)N^2(T)}|\mathcal{F}_t\bigg] \\
+	 &=& E^{\mathbb{Q}^{N^2}} \bigg[M(T) \frac{N^1(T)N^2(t)}{N^1(t)N^2(T)}|\mathcal{F}_t\bigg]
+\end{eqnarray*}
+From this equation we see that the expectation of the martingale \(M\) under \(\mathbb{Q}^{N^1}\) is equal to the expectation of the martingale \(M\) multiplied with the Radon Nikodym Derivative or likelihood ratio under \(\mathbb{Q}^{N^2}\). Therefore the Radon Nikodym Derivative that transfer the equivalent measures \(\mathbb{Q}^{N^2}\) to \(Q^{N^1}\) is:
+\begin{eqnarray}
+	\frac{\mathbb{Q}^{N^1}}{\mathbb{Q}^{N^2}} = \frac{N^1(T) N^2(t)}{N^1(t) N^2(T)}
+\end{eqnarray}
+\subsubsection{Forward measure}		
+With the definition that each asset divided by a numeraire is martingale under the the measure associated with that numeraire, we have \(P(t, T_i)\) and \(P(t, T_j)\) with their respective measures \(Q^{T_i}\) and \(\mathbb{Q}^{T_j}\). We use the Radon Nikodym and numeraire theory from above to get:
+\begin{eqnarray*}
+	E^{Q^{T_i}}\bigg[\frac{d\mathbb{Q}^{T_j}}{d\mathbb{Q}^{T_i}}\bigg] &=& \frac{P(t, T_j) P(0, T_i)}{P(0, T_j) P(t, T_j)} \\
+	&=& \frac{P(0, T_i)}{P(0, T_j)} \displaystyle \prod_{k=i+1}^{j} \frac{P(t, T_{k})}{P(t, T_{k-1})}
+\end{eqnarray*}
+If we use the forward rates as function of Zero Bonds from 1.6 and reformulate the function above we get:
+\begin{eqnarray}
+E^{^{T_i}} \bigg[\frac{d\mathbb{Q}^{T_j}}{d\mathbb{Q}^{T_i}} \bigg] = \frac{P(0, T_i)}{P(0, T_j)} \prod_{k=i+1}^{j} \frac{1}{1+\delta_{k-1, k} F(t, T_{k-1}, T_{k})}
+\end{eqnarray}
+\subsubsection{It\^{o} Lemma}		
+We assume a vector of processes \(X\) following a SDE which we also used in Definition 2.2.2. As a next step we assume a stochastic process \(Y(t)= f(t, X(t))\) on the \(L^2-\)space which means that the random variables have finite second moment (twice integrable). It\^{o} Theorem provides us a similar application like the chain rule in normal calculus to find the differential but it differs due to the term accounting for quadratic covariance 
+\(d(Xi, X_j)\). To shorten notation we write \(f\) for \(f(t, X(t))\).
+\begin{eqnarray}
+	df = \frac{\partial f}{\partial t} + \sum_{i=1}^{n} \frac{\partial f}{\partial x_i} dX_i + \frac{1}{2} \sum_{i, j=1}^{n} \frac{\partial^2 f}{\partial x_i x_j} dX_i dX_j
+\end{eqnarray}
+where we use the following formal calculation table:
+\begin{displaymath}
+\left\{\begin{array}{lll}
+(dt)^2 = 0 \\
+dt\ dW = 0 \\
+(dW)^2 = dt
+\end{array} \right.
+\end{displaymath}
+A useful special case of (2.2.7) is the product formula:
+\begin{eqnarray*}
+	dX^{1}(t)X^{2}(t) = X^{1}(t)dX^{2}(t) + dX^{1}(t)X^{2}(t) + [dX^{1}dX^{2}](t)
+\end{eqnarray*}
+\subsection{Monte Carlo Simulation and Computational Aspects}
+\subsubsection{Monte Carlo Methods}
+Valuation of complex derivatives by Monte Carlo Simulations involves modeling stochastic paths which should describe the evolution of an interest rate, asset price or other factor which is necessary for the valuation of the derivative. In the case of this work, Monte Carlo Integration is necessary to model the evolution of forward rates which is formalized by a stochastic differential equation.\\
+The underlying principals of Monte Carlo Simulation are the law of large numbers, which is the necessary that the estimate converges to the correct value and the central limit theorem which allows us to draw conclusions about the error of the estimate. If for examples an asset price is simulated \(n\) times via Monte Carlo Simulation and with the price of each simulated path a payoff \(P\) is calculated we get \(n\) realizations of this payoff \(P\). For this realized payoffs we want to calculate the expectation of the payoff, which is the best estimate for the correct \(P\). This can be accomplished by \(\frac{1}{n}\sum_{i=1}^{n} P_i = E(P) = \bar{P}\) where \(n\) is a sufficiently large number and index \(i \in 1,...,n\).\\
+The crucial point for the efficiency of the Monte Carlo algorithm is to find a trade-off between speed, which is accomplished in taking a lower number for \(n\) and accuracy, which is accomplished in choosing higher values for \(n\). To analyze the cost of speed, the calculation of variance of the Monte Carlo estimate is helpful:
+\begin{eqnarray*}
+	Var[P] = Var\bigg[\frac{1}{n}\sum_{i=1}^{n}\bigg] = \frac{1}{n^2}\sum_{i=1}^{n}Var[P_i] = \frac{1}{n^2} n\sigma^2 = \frac{\sigma^2}{n}
+\end{eqnarray*}
+where \(\sigma^2\) is the variance of \(P\) which is estimated \(\sigma = \sqrt{\sigma^2} \simeq s_p = \sqrt{\frac{1}{n-1}\sum_{i=1}^{n}(P_i-\bar{P})^2}\).
+As the solution of the last calculation shows, the standard error reduces with the square root of the number of simulations \(s_p \frac{1}{\sqrt{n}}\). We have a convergence rate of \(\mathcal{O}(n^{-\frac{1}{2}})\) which leads to the conclusion that to reach a gain in accuracy of a factor 10 we need to increase the number of simulations by 100. The square root convergence stays true for problems with increasing dimensionality, which is the beautiful side of Monte Carlo Simulation.
+\subsubsection{Random Numbers}		
+The quality of the result out of a Monte Carlo Simulation depends heavily on the quality of the random numbers which are a major input for generating simulations. In the general Monte Carlo application, random numbers are treated as really random to be able to apply theory from statistics and probability theory. Modern pseudo random number generators are already very good in mimicking real randomness. In modern Mathematical software different random number generators are available, which generate random numbers with deterministic algorithms.\\
+This random numbers generators produce a finite sequence of uniformly distributed numbers \(U_1, U_2,...,\) between \(0\) and \(1\). The important property of the generated random numbers is that they are mutually independent, which means that they are uncorrelated with each other and that \(U_i\) should not be predictable from \(U_1,...,U_{i-1}\). Another important factor of a random number, is the ability to generate a series of random number fast.\\
+For most of the applications, the uniformly distributed numbers are transformed into others distributions. Especially in Financial Engineering a lot of simulated require sampling from the standard normal distribution, which is also true for this work.\\
+The notation for a normal distributed random variable with mean \(\mu\) and variance \(\sigma^2\) is \(X \sim N(\mu, \sigma^2)\). To get normal distributed random variable from simulated standard normal distributed variables, just the following transformation is needed
+\(X_i = \mu + \sigma Z_i\).
+
+
+\subsection{The Libor Market Model}
+\subsubsection{Libor Market Model}
+\(L_i\) is a martingale, as stated in Definition 2.2.8, under the \(T_{j}\) forward measure \(\mathbb{Q}^{T_i}\), where we use the shorthand notation \(L_{j}\) for \(L(t, T_{j-1}, T_{j})\), \(j=1,...,N\). We assume that the differential of \(L_{j}\) follows the following driftless SDE:
+\begin{eqnarray}
+	dL_{j}(t) = \sigma_{j}(t) dL_{j}(t)dW^{j}(t) \ for t <= T_{j-1}
+\end{eqnarray}
+with \(W^{j}\) being a N-dimensional Standard Brownian Motion vector. In this case each \(L_{j}(t)\) would be modeled under its own measure \(\mathbb{Q}^{T_j}\), which is sufficient for modeling e.g caplets which are not dependent on other \(L_{j}\), this corresponds to Black's model. As a result the Black implied volatility which is used for the Black formula to calculate premiums, can be used to calibrate the model. The Black implied volatility quoted at the market is a root-mean-square of the instantaneous forward (libor) rates:
+\begin{eqnarray*}
+	\sigma_{j}^{2}(t, T^j)T^j = \int_{t}^{T^j} \|\sigma_{j}(s)\|^{2} ds
+\end{eqnarray*}
+The instantaneous correlations of the Brownian Motions are given by a \(N \times N\) matrix:
+\begin{eqnarray*}
+	dW(dW)^{T} = \rho dt
+\end{eqnarray*}
+As the forward (libor) rates are modeled under the \(T_{k}\) terminal measure we have to introduce a new dynamic, which includes a drift term. via Girsanov transformation to preserve the martingale property. The dynamics will be:
+\begin{eqnarray}
+	dL_{j}(t) = L_{j}(t)[\mu_{j}(t)dt + \sigma_{j} dW^{T_k}(t)] \ \text{for} \ t \leq T_{j-1}
+\end{eqnarray}
+By applying Girsanov theorem from Definition 2.2.5, we get the Girsanov kernel \(\frac{\delta_{j}L_{j}}{1+\delta_{j}L_{j}}\sigma_{j}(t)\)  which tells us the relation of Brownian Motion between two successive measures \(\mathbb{Q}^{T_j}\) and \(\mathbb{Q}^{T_{j-1}}\).
+\begin{eqnarray*}
+	dW^{T_j}(t) &=& \frac{\delta_{j}L_{j}}{1+\delta_{j}L_{j}}\sigma_{j}(t) + dW^{T_{j-1}}(t) \\
+	\Rightarrow dW^{T_{j-1}}(t) &=& -\frac{\delta_{j}L_{j}}{1+\delta_{j}L_{j}}\sigma_{j}(t) + dW^{T_{j}}(t)
+\end{eqnarray*}
+By induction we can apply this to any successive measure:
+\begin{eqnarray*}
+	dW^{T_{j-2}}(t) &=& -\frac{\delta_{j}L_{j-1}}{1+\delta_{j}L_{j}}\sigma_{j}(t) 
+	-\frac{\delta_{j-1}L_{j-1}}{1+\delta_{j-1}L_{j-1}}\sigma_{j-1}(t)
+	+ dW^{T_{j}}(t)\\
+	dW^{T_{j-3}}(t) &=& -\frac{\delta_{j}L_{j}}{1+\delta_{j}L_{j}}\sigma_{j}(t) 
+	-\frac{\delta_{j-1}L_{j-1}}{1+\delta_{j-1}L_{j-1}}\sigma_{j-1}(t)
+	-\frac{\delta_{j-2}L_{j-2}}{1+\delta_{j-2}L_{j-2}}\sigma_{j-2}(t)
+	+ dW^{T_{j}}(t)\\
+\end{eqnarray*}
+This can be generalized to:
+\begin{displaymath}
+dW^{T_j}(t) =
+\left\{\begin{array}{lll}
+dW^{T_{k}}(t) -\sum_{p=j+1}^{k} \frac{\delta_{p}L_{p}}{1+\delta_{p}L_{p}}\sigma_{p}(t) \ \text{for} \  j<k\\
+dW^{T_{k}}(t) \ \text{for} j = k \\
+dW^{T_{k}}(t) -\sum_{p=j+1}^{k} \frac{\delta_{j}L_{j}}{1+\delta_{p}L_{p}}\sigma_{p}(t)  \ \text{for} \  ><k
+\end{array} \right.
+\end{displaymath}
+The generalization can be plugged into equation 2.4.2 to get :
+\begin{displaymath}
+dL_{j}(t) =
+\left\{\begin{array}{lll}
+\sigma_j(t) L_j(t) dW^{T_{k}}(t) - L_j(t)\sum_{p=j+1}^{k} \frac{\delta_{p}L_{p}}{1+\delta_{p}L_{p}}\rho_{j, p}\sigma_{j}(t) \sigma_{p}(t) \ \text{for} \ j<k\\
+\sigma_j(t) L_j(t) dW^{T_{k}}(t) \ \text{for} \ j = k \\
+\sigma_j(t) L_j(t) dW^{T_{k}}(t) + L_j(t) \sum_{p=j+1}^{k} \frac{\delta_{p}L_{j}}{1+\delta_{p}L_{j}}\rho_{j, p}\sigma_{j}(t) \sigma_{p}(t) \ \text{for} \ j>k
+\end{array} \right.
+\end{displaymath}
+As there is non analytic solution for this complex SDE, we have to make use of a discretization scheme, take the logs to get the stronger convergence of the Milstien scheme and implement this into the programming software. The discretized dynamics of the LMM which are implemented in this work are: 
+\begin{eqnarray*}
+	\ln L_{j}(t_{i+1}) = \ln L_{j}(t_i) &-& \sum_{p=j+1}^{N} \frac{\delta_{p} \rho_{j, p}L_{p}} {1+\delta_{p}L_{p}} \int_{t_i}^{t_{i+1}}\sigma_{j}(s) \sigma_{p}(s) ds \\
+	&-& \frac{1}{2} \int_{t_i}^{t_{i+1}} \|\sigma_{j}(s)\|^2 ds \\
+	&+& \int_{t_i}^{t_{i+1}} \sigma_{j}(s) dW^{T_N}(s)
+\end{eqnarray*}
+\newpage
+We will use the following algorithm for the Monte Carlo simulations.
+\begin{algorithmic}
+	\FOR {$s=1$ to number of simulation paths}
+	\STATE \(dW(t) \sim \sqrt{\Delta t} N(0, \rho) \)
+	\FOR {$t=1$ to number of time steps}
+	\FOR {$j=1$ to $N$}
+	\STATE \(\ln L_j(t+\Delta t) = \ln L_j(t) - \sum_{p=j+1}^{N} \frac{\delta_{p} \rho_{j, p} L_p}{1 + \delta_{p}L_p} \sigma_{j}(t) \sigma_{p}(t) \Delta t - \frac{1}{2} \sigma_{j}^{2}(t) \Delta t + \sigma_{j}(t) dW(t) \)
+	\ENDFOR			
+	\ENDFOR	
+	\ENDFOR
+\end{algorithmic}
+
+\subsection{Sensitivities (Greeks) in the Libor Market Model}
+For risk Management and Traders it is necessary to know the sensitivities of a product, especially to hedge all or specific components of its risk. Very well known in option trading are the "Greeks", which are sensitivities of financial instruments, the most important ones are the so called delta, gamma and Vega sensitivities. As in this work interest rate derivatives are priced via a LMM. for explanation a cap is used. The delta are in this case the partial derivatives of the cap value with respect to each underlying, which are the forward libor rates  \(\Delta_j = \frac{\partial X}{\partial L_j}\). If the cap is delta hedged, very small changes in the value of the underlying should not change the value of the portfolio of the cap and its hedge. To replicate a financial instrument, option pricing theory states, that it have to be continuously hedged to get exactly the theoretical price of the financial instrument. Which leads us to the fact that the hedge has to be continuously rebalanced to perfectly hedge the value of the cap. This is in practice not possible, because of transaction costs and liquidity reasons, whereas a re-balancing every few hours or days is common practice. This large discretization steps leads to inaccurate hedges, as the change of underlying can be larger for larger discretization steps. To mitigate this inaccurateness, a lot of traders also consider the gamma sensitivity in their hedging process. Especially for risk management the gamma value is likely to be reported daily, as the change in the underlying value of unhedged instruments can vary largely. The gammas are the second partial derivatives of the cap value with respect to each forward libor rate. \(\Gamma_{j,i}=\frac{\partial^2 X}{\partial L_j L_i}\). As there are j gammas for each delta, which are in total a matrix of \(j^2\) gammas, just the diagonal gammas, where \(i=j\), are considered in risk management and trading, this reduces the number of gamma to \(j\) values \(\Gamma_{j}=\frac{\partial^2 X}{\partial L_j^2}\). One sensitivity which is of great interest to risk management and trading is the Vega, which is the partial derivatives of the cap value with respect to each forward volatility \(\kappa_j=\frac{\partial X}{\partial \sigma_{j}}\). It will be shown in chapter 4.1 that the forward (caplet) volatilities have to be calculated out of market model volatilities, for this reason it has to be decided if the sensitivities are calculated to the forward volatilities or to the market volatilities. The former one will be computationally more efficient, but not that straightforward to interpret, as the volatilities cannot be directly observed in the market. Alternative number two is easier to grasp but computationally much more costly, due to the new calibration of the volatility curve after each shift of the market volatility variable, a more detailed discussion see Glasserman [2004].\\
+A straightforward approach to derive the first partial derivative of a cap \(\frac{\partial X}{\partial L_j}\) and the second derivative \(\frac{\partial^2 X}{\partial L_j^2}\) is via finite difference:
+
+
+\begin{eqnarray*}
+	\frac{\partial X}{\partial L_j} &\simeq& \frac{X(L_J + h) - X(L_J)}{h} \\
+	&\simeq& \frac{X(L_{j} + h) - X(L_{j} - h)}{2h}
+\end{eqnarray*}	
+\begin{eqnarray*}
+	\frac{\partial X}{\partial \sigma_{j}} = \frac{X(\sigma_{j} + h) - X(\sigma_{j} - h)}{2h}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+	\frac{\partial^2 X}{\partial L_{j}^2}  &\simeq&  \frac{2X(L_{j} -2h) - X(L_{j-h} 2X (L_{j}) -X(L_{j} + h) + 2X(L_j + 2h)}{14h^2}
+\end{eqnarray*}
+One major shortfall of this method is the additional computation time, which is needed to generate the additional Monte Carlo sets. As we estimate for example all delta for a cap using finite difference method, \(N+1\) simulated paths per observation are needed. Where \(N\) is the additional path per perturbed \(L_j\) and the additional one is the original scenario.
+
+
+\section{Calibration of the Libor Market Model}
+\subsection{Model Volatility Calibration}
+In this part, two calibration possibilities for the LMM are presented, where the first is the direct calibration to market data and the second is a Rebonato's popular linear exponential parametric function. To calibrate the LMM directly to market data, the volatility curve has to be bootstrapped, as \(L_j\) is modeled and therefore each caplet on its own. The market provides just cap volatilities, therefore it is necessary to calculate the forward cap volatilities:
+
+\begin{eqnarray*}
+	\sigma_j^2T_{j-1} = \int_{t}^{T_{j-1}} \|\sigma_{j}(s)\|^2 ds
+\end{eqnarray*}
+
+\subsection{Calibration Algorithms to Caps and Floors}
+\subsubsection{Market Data}
+One of the goals of the paragraph is to present detailed algorithms and results of calibration to caps and Floors.
+All the market data is taken [2] (see References). We take into account following rates in EUR: the discount factors bootstrapped to form par interest rates (LIBOR's, FRA, IRS), at-the-money cap volatilities and swaption volatilities. Table bellow presents the discount factors and cap volatilities for a
+set of particular days.
+\vskip 0.4cm 		
+{
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		Tenor \(T_i\) & Date & Discount factor \(D(0, T_i)\) & Cap volatility \(\sigma^{cap}(T_0, T_i)\) \\		
+		\hline		
+		t=0	  &  21/01/2005 &  1	      &  N/A \\
+		\hline
+		\(T_0\)	  &  25/01/2005 &  0.9997685  &  N/A \\
+		\hline
+		\(T_{SN}\)  &  6/01/2005  &  0.9997107  &  N/A \\
+		\hline
+		\(T_{SW}\)  &  1/02/2005  &  0.9993636  &  N/A \\
+		\hline
+		\(T_{2W}\)  &  8/02/2005  &  0.9989588  &  N/A \\
+		\hline
+		\(T_{1M}\)  &  5/02/2005  &  0.9979767  &  N/A \\
+		\hline
+		\(T_{2M}\)  &  5/03/2005  &  0.9963442  &  N/A \\
+		\hline
+		\(T_{3M}\)  &  5/04/2005  &  0.9945224  &  N/A \\
+		\hline
+		\(T_{6M}\)  &  5/07/2005  &  0.9890361  &  N/A \\
+		\hline
+		\(T_{9M}\)  &  5/10/2005  &  0.9832707  &  N/A \\
+		\hline
+		\(T_{1Y}\)  &  5/01/2006  &  0.9772395  &  0.1641 \\
+		\hline
+		\(T_{2Y}\)  &  5/01/2007  &  0.9507588  &  0.2137 \\
+		\hline
+		\(T_{3Y}\)  &  5/01/2008  &  0.9217704  &  0.2235 \\
+		\hline
+		\(T_{4Y}\)  &  6/01/2009  &  0.8908955  &  0.2188 \\
+		\hline
+		\(T_{5Y}\)  &  5/01/2010  &  0.8589736  &  0.2127 \\
+		\hline
+		\(T_{6Y}\)  &  5/01/2011  &  0.8262486  &  0.2068 \\
+		\hline
+		\(T_{7Y}\)  &  5/01/2012  &  0.7928704  &  0.2012 \\
+		\hline
+		\(T_{8Y}\)  &  5/01/2013  &  0.7595743  &  0.1958 \\
+		\hline
+		\(T_{9Y}\)  &  7/01/2014  &  0.7261153  &  0.1905 \\
+		\hline
+		\(T_{10}Y\)  &  26/01/2015 &  0.694284   &  90.1859 \\
+		\hline
+		\(T_{12Y}\)  &  25/01/2017 &  0.634834   &  80.1806 \\
+		\hline
+		\(T_{15Y}\)  &  27/01/2020 &  0.552195   &  70.1699 \\
+		\hline
+		\(T{20Y}\)  &  27/01/2025 &  0.434558   &  30.1567 \\
+		\hline				 				
+	\end{tabular}
+}
+\vskip 0.4cm
+where \\
+\(D(0, T_i)\) - Discount factor for time period \(T_0 \div T_i\)\\
+\(\sigma^{cap}(T_0, T_i)\) - Market volatility of cap option starting at time \(T_0\) and maturing at \(T_i\).
+
+
+\newpage
+The various discount factors are bootstrapped from interbank deposits and FRA quotations
+for short term below one year and IRS prices for long term above one year.
+
+\subsubsection{Market data from 21 January 2005: swaption volatilities}
+\vskip 0.4cm 		
+{
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+		\hline
+		& \(1Y\) & \(2Y\) & \(3Y\) & \(4Y\) & \(5Y\) & \(6Y\) & \(7Y\) & \(8Y\) & \(9Y\) & \(10Y\) \\		
+		\hline		
+		\(T_{1Y}\) & 0.2270 & 0.2300 & 0.2210 & 0.2090 & 0.1960 & 0.1860 & 0.1760 & 0.1690 & 0.1630 & 0.1590 \\
+		\(T_{2Y}\) & 0.2240 & 0.2150 & 0.2050 & 0.1940 & 0.1830 & 0.1740 & 0.1670 & 0.1620 & 0.1580 & 0.1540 \\
+		\(T_{3Y}\) & 0.2090 & 0.2010 & 0.1900 & 0.1800 & 0.1700 & 0.1630 & 0.1580 & 0.1550 & 0.1520 & 0.1500 \\
+		\(T_{4Y}\) & 0.1950 & 0.1870 & 0.1770 & 0.1680 & 0.1600 & 0.1550 & 0.1510 & 0.1480 & 0.1470 & 0.1450 \\
+		\(T_{5Y}\) & 0.1820 & 0.1740 & 0.1650 & 0.1580 & 0.1510 & 0.1480 & 0.1450 & 0.1430 & 0.1420 & 0.1400 \\
+		\(T_{6Y}\) & 0.1746 & 0.1674 & 0.1590 & 0.1524 & 0.1462 & 0.1436 & 0.1410 & 0.1394 & 0.1384 & 0.1368 \\
+		\(T_{7Y}\) & 0.1672 & 0.1608 & 0.1530 & 0.1468 & 0.1414 & 0.1392 & 0.1370 & 0.1358 & 0.1348 & 0.1336 \\
+		\(T_{8Y}\) & 0.1598 & 0.1542 & 0.1470 & 0.1412 & 0.1366 & 0.1348 & 0.1330 & 0.1322 & 0.1312 & 0.1304 \\
+		\(T_{9Y}\) & 0.1524 & 0.1476 & 0.1410 & 0.1356 & 0.1318 & 0.1304 & 0.1290 & 0.1286 & 0.1276 & 0.1272 \\
+		\(T_{10Y}\)& 0.1450 & 0.1410 & 0.1350 & 0.1300 & 0.1270 & 0.1260 & 0.1250 & 0.1250 & 0.1240 & 0.1240 \\	
+		\hline				 				
+	\end{tabular}
+}
+\vskip 0.4cm
+
+\subsection{CALIBRATION TO CAPS}
+Calibration algorithms to caps are the simplest algorithms used in practice and do not
+require the use of optimization techniques. However, one should be careful and aware that
+such a calibration technique will definitely not be enough to solve the complicated pricing
+problems. Although the calibration is simple and almost straightforward it will be useful for
+later purposes to present it in a more detailed way. This is important because if one wants to
+obtain a good understanding of any calibration procedure for a LIBOR Market Model it is
+necessary to good understand how caps are quoted on the market and how to obtain caplet
+prices from cap quotes.
+The calibration of the LIBOR Market Model requires knowing how to price caps, and
+more precisely, caplets in particular cap. To start with we should remember, that market
+prices of caplets are valued using the standard Black formula.
+\subsubsection{Caplet value}
+It is a market practice to use analytic Black formula to price a caplet. We compute the caplet value taking real market data from 21 January 2005. The characteristics of the caplet is presented in Table 7.3:
+
+\vskip 0.2cm 		
+{
+\begin{center}
+		\begin{tabular}{ll}
+		\hline
+		Parameter          & Value \\
+		\hline
+		\(t=0\)            &  21-01-2005 \\
+		\(T_0\)            &  25-01-2005 \\
+		\(T_{j−1}\)        & 25-01-2006 \\
+		\(T_j\)            &  25-04-2006 \\
+		\(D(t, T_{j-1})\)  &  0.9774658 \\
+		\(D(t, T_{j})\)    &  0.9712884 \\
+		\(X\)  			   & 2.361\%  \\
+		\(\sigma^{caplet}_{j-1, j}\) & 20.15\% \\
+		\hline				 				
+	\end{tabular}
+\end{center}
+}
+\vskip 0.4cm
+
+Taking the data from Table 7.3 we have caplet value for unit value of currency EUR: \(0.000735475\).
+\textbf{Python Code:} Python -m unittest capletCapPricing.CapletCapPricingTests.test\_capletPricing
+\subsubsection{Cap value as a sum of caplet values}
+It is also a market practice to price a Cap as a sum of caplets. We take the following data to test the valuation of a Cap.
+
+\vskip 0.2cm 		
+{
+	\centering
+	\begin{tabular}{lllllllllll}
+		\hline
+		\(T_{j-1}\) & \(\delta_{j}\) & \(L(t, T_{i-1}, T_i)\) & \(D(t, T_i)\) & K & N & \(\sigma^{caplet}\) & CplPrice & \( \sigma^{cap} \) & CplPrice  \\		
+		\hline
+		0.5096 & 0.5167 & 0.010125 & 0.99642 & 0.02 & 1000000 & 0.5129 & 31.41673 & 44.68\% & 13.1419 \\
+		1.0000 & 0.4972 & 0.010796 & 0.99375 & 0.02 & 1000000 & 0.4874 & 170.9437 & 44.68\% & 122.8249 \\	
+		1.5068 & 0.5139 & 0.012189 & 0.99112 & 0.02 & 1000000 & 0.4658 & 461.1011 & 44.68\% & 414.2774 \\	
+		2.0055 & 0.5056 & 0.013995 & 0.98648 & 0.02 & 1000000 & 0.4339 & 860.0895 & 44.68\% & 908.7151 \\	
+		2.5041 & 0.5056 & 0.016210 & 0.98183 & 0.02 & 1000000 & 0.4339 & 1563.4819& 44.68\% & 1628.2157 \\	
+		\hline				 				
+		\textbf{Sum} &  &  &  &  &  &  & \textbf{3087.0330} & & \textbf{3087.1751} \\	
+		\hline				 				
+	\end{tabular}
+}
+\vskip 0.4cm
+
+Taking the data from Table 7.3 we obtain the values in Sum line of the above tabular.\\
+\textbf{Python Code:} Python -m unittest capletCapPricing.CapletCapPricingTests.test\_capletPricing
+
+The next step is to determine ATM strikes for cap options.
+
+\subsection{ATM strikes for caps}
+
+The forward rate swap rate was defined in (2.1.8) as the rate of fixed leg of IRS which makes the contract
+fair in the context of present time. For computational reasons our IRS contract has length
+\(T_{\alpha} \div T_{\beta}\).
+
+Payments from a cap covering the period \(T_{\alpha} \div T_{\beta}\) can be written: 
+
+\begin{equation*}
+\sum_{i=\alpha + 1}^{\beta} W_i = \sum_{i=\alpha + 1}^{\beta} N \big[ L(T_{i-1}, T_{i}, T_i) -K\big]^{+}
+\end{equation*}
+
+If strike price \(K\) in (2.1.8) equation is equal to forward swap rate \(S(t, T_{\alpha}, T_{\beta})\) the cap is
+said to be ATM. Let us move now to present an example presenting computations of ATM
+strikes for cap options.
+
+
+\textbf{Example 7.2 ATM strikes for caps}
+Let us compute ATM strikes for a series of caps maturing from one year up to 20 years. Having computed the discount factors (given in Table 3.2.2) we can determine the ATM cap strikes taking into consideration that the ATM cap options may be constructed in two ways:
+
+\begin{enumerate}
+	\item [1.] Cap starts at date \(T_0\), first reset rate is on \(T_{3M}\), first payment is on \(T_{6M}\) based on a 3-month
+	LIBOR resetting on \(T_{3M}\) and covering the period \(T3M \div T6M\). All the other caplet periods are based on similar three-monthly spaced intervals.
+	\item [2.] Cap starts at date \(T_0\), first reset rate is on T3M, first payment is on T6M based on a 3-month LIBOR resetting on T3M and covering the period \(T3M \div T6M\). The caplet periods up to and including 1 year are based on similar three-monthly spaced intervals. Above one year there is change of caplet interval from three-months to six-months. So the reset moment T1Y determines a 6-month LIBOR rate covering the period \(T_{1Y} \div T_{18M}\) which makes the caplet payment at \(T_{18M}\). All the other caplet periods are based on similar six-monthly spaced intervals.
+\end{enumerate}
+In this example we will use the first case.
+The column "ForwardRateSwap" from the preProcessedMarketData sheet in the marketDate.xlsx file presents the computations for ATM strikes for caps from 1 year up to 20 years.
+
+To obtain this computations, others preliminary computations were also done. The Python implementation is done in the file \(marketDataPreprocessing.py\) that we can run using : Python -m unittest marketDataPreprocessing.CapATMStrikeTests.testATMStrike
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{ForwardSwapRate.png}
+\end{figure}
+
+
+\subsubsection{Implementation and Python Code}
+We used a Pandas Data Frame to keep trace of intermediate calculation and saving purpose. I implemented this calculation in th program : \textbf{marketDataPreprocessing.py}. The output of this program is a Data Frame saved as an excel file "marketDataPreprocessing.xls" 
+Running the program with GIT terminal  : Python -m unittest marketDataPreprocessing.py\\
+\textbf{Please run this program before others programs mentionned in this paragraph because we will use the processed data to save time for the rest of the study.}
+
+\subsubsection{Stripping caplet volatilities from cap quotes}
+
+The market volatility of caplets will be derived from cap volatilities quotations, to do that
+we need to introduce a stripping algorithm.
+Let us start from a cap maturing in one year. Remembering that we have quarterly resets,
+so the effective date of the cap is \(T_s =T_{3M}\), and payments are made at times: \(T_{6M}, T_{9M}, T_{1Y}\).
+The volatility (precisely forward volatility) \(sigma^cap(t, T_{1Y})\) for a one year cap equals 16.41 \%.
+The strike price \(S(t, T_{3M}, T_{1Y})\) for this cap equals 2.301 \%. However we need to make
+some assumptions if we want to compute caplet volatilities for the periods shorter than
+one year. To obtain this we generate two additional caps covering the periods: \(T3M÷T6M\)
+and \(T3M÷T9M\). The strike prices (ATM) for these caps equals the appropriate forward
+swap rates \(S(t, T_{3M}, T_{1Y})\) with value 2.194\% and \(S(t, T_{3M}, T_{1Y})\) with value 2.245\%. These
+strike rates can be obtained directly from yield curve. However, we have no volatilities for
+periods shorter than one year. To obtain these values, we use constant extrapolation, so
+we assume that: 
+\begin{eqnarray*}
+\sigma^cap(t, T_{6M}) = \sigma^cap(t, T_{3M}) = \sigma^cap(t, T_{6MY}) 
+\end{eqnarray*}
+
+With this assumption we can
+compute 6-month caps using standard Black formula:
+
+\begin{eqnarray*}
+	cap(t, T_{6M}) = B(t, T_{6M}) \delta_{3M,6M} \big[ F(t, T_{3M}, T_{6M}) N(d_{1,6M}) - S(t, T_{3M}, T_{9M}N(d_{2,6M}) \big]
+\end{eqnarray*}
+
+
+Because the six month cap is built only from one caplet covering the period T3M÷T6M, the caplet volatility \(\sigma_{caplet}(t, T_{3M}, T_{6M})\) for the period \(T_{3
+	M} ÷T_{6M}\) is the same as the cap volatility \(\sigma_{cap}(t, T_{6M})\) for the cap maturing at T6M and equals 16.41 \%.
+
+
+where 
+\begin{eqnarray*}
+	d_{1,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) + \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+	d_{2,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) - \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
+\end{eqnarray*}
+
+
+Now we move to the next step, where we deal with the cap maturing at T9M. We compute value of this cap again using the standard Black formula:
+
+\begin{eqnarray*}
+	cap(t, T_{9M}) &=& B(t, T_{6M}) \delta_{3M,6M} \big[ F(t, T_{3M}, T_{6M}) N(d_{1,6M})- S(t, T_{3M}, T_{9M}N(d_{1,6M})   \\
+	&+& B(t, T_{6M}) \delta_{3M,6M} [ F(t, T_{3M}, T_{6M}) N(d_{1,6M}) - S(t, T_{3M}, T_{9M}N(d_{1,6M}) \big]
+\end{eqnarray*}
+
+
+where 
+\begin{eqnarray*}
+	d_{1,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) + \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+	d_{2,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) - \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
+\end{eqnarray*}
+Having the value of the cap maturing at \(T_{9M}\), we can compute the sum of the caplet values
+for the periods \(T_{3M} \div T_{6M}\) and \(T_{6M} \div T_{9M}\) in the following way:
+
+\begin{eqnarray*}
+	\text{caplet}(t, T_{3M}, T_{6M}) &=& D(t, T_{6M}) \delta_{3M,6M} \big[ F(t, T_{3M}, T_{6M}) N(d_{1,6M})
+	- S(t, T_{3M}, T_{9M}N(d_{2,6M}) \big]
+\end{eqnarray*}
+
+
+where 
+\begin{eqnarray*}
+	d_{1,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) + \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+	d_{2,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) - \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
+\end{eqnarray*}
+
+
+In this case we input \(\sigma_{caplet}(t, T_{3M}, T_{6M})\) as the value computed in the previous step
+of calibration (equaling 16.41 \%). Next we compute the caplet value for the second
+period:
+
+\begin{eqnarray*}
+	\text{caplet}(t, T_{6M}, T_{9M}) = D(t, T_{9M}) \delta_{6M,9M} \big[F(t, T_{6M}, T_{9M}) N(d_{1,9M} -  S(t, T_{3M}, T_{9M}N(d_{2,9M}) \big]
+\end{eqnarray*}
+
+where 
+\begin{eqnarray*}
+	d_{1,9M}&=&\frac{\ln\Big(\frac{F(t, T_{6M}, T_{9M})}{S(t, T_{3M}, T_{9M})}\Big) + \frac{\sigma^{cap}(t, T_{3M})^2 \delta_{t, 3M}}{2}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+	d_{2,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) - \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
+\end{eqnarray*}
+
+The final computation in this step of calculation is solving the equation with respect to
+
+\begin{eqnarray*}
+	\text{cap}(t, T_{9M}) = \text{caplet}(t, T_{3M}, T_{6M}) + \text{caplet}(t, T_{6M}, T_{9M})
+\end{eqnarray*}
+
+
+Next we will obtain the caplet volatilities in the same way. For the broken periods greater
+then one year (e.g. one year and three months) we will be obliged to interpolate (usually
+using the linear method) the market quotes for cap volatilities.
+Now we are able to write the complete algorithm for stripping caplet volatilities having
+market quotes for various cap volatilities which are ATM.
+
+
+\subsection*{Algorithm 7.1 Caplet volatilities stripping}
+
+\begin{enumerate}
+	\item [1.] Determine all resets and maturity dates of all caplets. We deduce them from the market
+	quotes of caps. Let us denote these moments (for 3-month intervals) as: 
+	\(T_s=T_{3M}, T_{6M}, T_{9M}, ...,T_{N}\)
+	\item [2.] Generate the artificial caps according to the determined resets and maturities
+	\begin{enumerate}
+		\item [a.] Compute the appropriate forward swap rates for ATM strikes of the caps for the
+		periods: \(T_s=T_{3M}, T_{6M}, T_{9M}, ...,T_{N}\)
+		\item [b.] Extrapolate using an interpolation method applied to observed market
+		cap volatilities for all generated caps to obtain volatilities:
+		\(\sigma_{cap}(t, T_{3M}, \sigma_{cap}(t, T_{9M},..., \sigma_{cap}(t, T_{N})\)
+	\end{enumerate}
+	\item [3.] The first caplet volatility will be equal the first cap volatility, so \(\sigma_{cap}(t, T_{6M} = \sigma_{cap}(t, T_{3M}, T_{9M})\)
+	4. Compute the market value for the cap whose maturity is longer by exactly one interval
+	then previous cap, so \(\sigma_{cap}(t, T_{6M} = \sigma_{cap}(t, T_{3M}, T_{9M})\).
+	\item [5.] Having computed the previous caplet volatility (for last interval) we compute the implied
+	caplet volatility for next interval solving the equation for the appropriate cap and sum of
+	appropriate caplets, so \(\sigma_{cap}(t, T_{6M} = \sigma_{cap}(t, T_{3M}, T_{9M})\).
+	\item [6.] Continue up to last cap reset. Increase the index in step (5).
+\end{enumerate}
+
+\subsubsection{Stripping caplet volatilities from cap quotes Python code}
+Executing the program \(capletVolatilityStripping.py\) give us the following table. 
+
+Table 7.5 presents cap volatilities for periods from one year up to 20 years. Only cap volatilities
+for full years are taken directly from the market. Caps before 1 year are extrapolated
+using one year volatility as a constant. Caps for broken periods above 1 year are linearly
+interpolated. Strikes for ATM caps are taken from Table 7.4.
+
+
+We can present our computations graphically:
+Figure 7.3 shows a typical pattern for cap volatilities and caplet volatilities as a function
+of maturity. In the case of cap volatility the maturity is the maturity of the cap, in the case
+of caplet volatility it is the maturity of the caplet. The cap volatilities are akin to cumulative
+averages of the caplet volatilities and therefore exhibit less variability. As indicated by
+Figure 7.3 we usually observe a hump in the volatilities. The peak of the hump is at about
+the 2 to 3 year point. There is no general agreement on the reason for the existence of
+the hump.
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{CapCapletVol.png}
+\end{figure}
+
+
+\subsection{Calibration Algorithms to caps Based on Optimization Techniques}
+This part is dedicated to parametric calibration to caps. We will use caplet volatilities derived from the last paragraph and based on that constitue some appropriate parametric functions of caplet volatilities. Next we define optimizations functions minimizing differences between theoritical and market caplet prices.
+
+
+\subsubsection{Parametric calibration to cap prices}
+The purpose of this part is to describe a detailed algorithm allowing a calibration of the LIBOR Market Model paraametric calibration to caps.
+
+\subsubsection*{Step 1}
+Derivation of caplet prices from cap prices was done in the previous section.
+The table below presents the quarterly caplet volatilities \(\sigma_{cpl}(T_{0}, T_{i-3M}, T_{i})\) for
+different maturities. All maturities are expressed using day count fractions using Act/360
+base convention.
+
+\subsubsection*{Step 2}
+Having the caplet volatilities \(\sigma_{caplet}(T_{0}, T_{i-3M}, T_{i})\) we need to multiply the time to maturities
+(expresses as day count fractions) by the squared implied caplet volatility. Our results are
+presented in Table 9.15.
+
+\subsubsection*{Step 3}
+We need to find parameters \(v_1, v_2, v_3, v_4\) using optimization algorithms. First let us define
+the set of functions:
+
+\begin{eqnarray*}
+	f(T_i - t) = \mathrel{\bigg|} v_1 + \bigg[v_2 + v3 \frac{T_i-t}{360}\bigg] e^{-v_4 \frac{T_i-t}{360}} \mathrel{\bigg|}
+\end{eqnarray*}
+for \(T_i = T_{3M}, T_{9M},..., T_{10Y}\) respectively.
+
+Having that we will compute integrals of \(f(T_i - t)^2\) as:
+
+\begin{eqnarray*}
+	I(T_i - t)^2 = \int_{0}^{T_i} \mathrel{\bigg|} v_1 + \bigg[v_2 + v3 \frac{T_i-t}{360}\bigg] e^{-v_4 \frac{T_i-t}{360}} \mathrel{\Bigg|} dt
+	- \int_{0}^{T_{i-1}} \mathrel{\Bigg|} v_1 + \bigg[v_2 + v3 \frac{T_i-t}{360}\bigg] e^{-v_4 \frac{T_i-t}{360}} \mathrel{\bigg|} dt
+\end{eqnarray*}
+
+for \(T_i = T_{6M}, T_{9M},..., T_{10Y}\) respectively.\\
+Next let us define :
+
+\begin{eqnarray*}
+	f_{FO} = \sum_{T_i} I(T_i - t)^2
+\end{eqnarray*}
+
+Having that our minimization function will be:
+
+\begin{eqnarray*}
+	f_{min} = \sqrt{\sum_{T_i}\bigg(\frac{T_i-T_0}{360} \sigma^{caplet}(T_0, T_{i-3M}, T_i)^2 - [f_{FO}(T_i)]\bigg)^2}
+\end{eqnarray*}
+Running the optimization starting from initial values: \(v_1=0.1, v_2=0.1, v_3=0.1, v_4=0.1\) and 
+we obtain the values: \(v_1=0.112346, v_2=-0.441811, v_3=0.971559, v_4=1.223058, f_min=0.0436646\) 
+
+\textbf{Python code}: abcdInstantaneousVolatilityFitting.py
+
+presents the results of our computations.
+
+\subsubsection*{Step 4}
+Let us define the function
+\begin{eqnarray*}
+	\epsilon(T_i-T_0) = g_1 + g_2 \cos\bigg[g3\frac{g3 T_i-T_0}{360} \bigg]
+\end{eqnarray*}
+and let us define the correction factor 
+
+\begin{eqnarray*}
+	\text{corr}(T_i-T_0) = [1 + \epsilon(T_i-T_0)] I(T_i-t)^2
+\end{eqnarray*}
+
+and 
+\begin{eqnarray*}
+	f_{SO}(T_i) &=& \sum_{T_i} [1 + \epsilon(T_i-T_0)] I(T_i-t)^2 \\ 
+	&=& \sum_{T_i} \big\{ [1 + \epsilon(T_i-T_0)] I(T_i-t)^2 \big\} 
+\end{eqnarray*}
+
+Having that our minimization function will then be:
+
+\begin{eqnarray*}
+	f_{min} = \sqrt{\sum_{T_i}\bigg(\bigg[\frac{T_i-T_0}{360} \sigma^{caplet}(T_0, T_{i-3M}, T_i)^2 \bigg] - \bigg[\sum_{T_i} \big\{ [1 + \epsilon(T_i-T_0)] I(T_i-t)^2 \bigg] \big\}\bigg)^2}
+\end{eqnarray*}
+Running the optimization starting from initial values \(g1, g2, g3 = 0.1\), we obtain values \([g1, g, 2g3] = [-0.0008404  -0.00193876  0.30603882]\)
+
+\textbf{Python code}: g1g2g3InstantaneousVolatilityFitting.py
+
+\subsubsection*{Step 5}
+We define the function delta as follow:
+
+\begin{eqnarray*}
+	\Delta (T_i) = \frac{\frac{T_i-T_0}{360} \sigma^{caplet}(T_0, T_{i-3M}, T_i)}{f_{SO}(T_i)}-1
+\end{eqnarray*}
+
+Tables presents the results of our computations of step 5.
+
+
+I will not be able to go to the calibration scheme to swaption for time constraints.
+
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{payerSwaptionAndReceiverSwaption.png}
+\end{figure}
+
+
+\newpage
+Typically a large part of the day to day work of a quantitative analyst is to implement a model and integrate this into the pricing environment. Understanding the model and writing its complete set of dynamics is certainly one part of the job, but an arguably equally important and rewarding step is coding it. The readers of this book will come from many backgrounds, some very mathematically oriented and others perhaps have a computer science background, and so by providing the reader with the equations and code examples, both communities will be able to take something from the book. Python (see, e.g., Martelli 2006) is widely used in banking, often as a language for interfacing data feeds to a system or as an API to the pricing/risk library developed in C++. The advantages of providing examples in Python are multifold. It is easy to read for someone who already has some experience programming in other languages, offers object oriented structures, is open source, and has several excellent and well developed numerical libraries, notably SciPy and NumPy (see Jones et al. 2001–). Python also has the graphing capabilities comparable with R or Matlab, thanks to the matplotlib library (see Hunter 2007), which has been employed to produce most of the charts appearing in this book. Table 1.1   Python functions list
+
+\begin{enumerate}
+	\item 
+	\item LiteLibrary.py
+	\item capletVolatilityStripping.py
+	\item PreProcessedMarketData.xlsx
+	\item abcdInstantaneousVolatilityFitting.py
+	\item marketDataPreprocessing.py
+	\item g1g2g3InstantaneousVolatilityFitting.py	
+\end{enumerate}
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{Correlation_to_do.png}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{screen.png}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{MonteCarlo.png}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{receiverSwaptionStrikeLevel.png}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{payerSwaptionStrikeLevel.png}
+\end{figure}
+
+
+\newpage
+\section{Credit Adjustment Valuation (CVA) calculation for an Interest Rate Swap}
+Our aim in this part is to calculate the credit valuation adjustment (taken by counterparty A) to the price of an interest rate swap using credit spreads for Counterparty B.\\
+
+\subsection{Interest Rate Swap (IRS)}
+The most common type of swap is a "plain vanilla" interest rate swap. In this swap a
+company agrees to pay cash flows equal to interest at a predetermined fixed rate on a
+notional principal for a predetermined number of years. In return, it receives interest at
+a floating rate on the same notional principal for the same period of time.
+
+The floating rate in most interest rate swap agreements is the London Interbank Offered
+Rate (LIBOR). It is the rate of interest at which a bank is prepared to deposit money with other banks that have a AA credit rating. One-month, three-month, six-month, and 12-month LIBOR are quoted in all major currencies.
+
+\subsection{CVA Calculation}
+As stated by the Bank of International Settlements (Basel, Switzerland), during the financial crisis, roughly two-thirds of losses attributed to counterparty credit risk were due to CVA losses and only about one-third were due to actual defaults.
+Credit Valuation Adjustment (CVA) is a form of "adjustment" or "correction" that must be applied to the price of financial instruments to take into account Counterparty risk:
+\begin{eqnarray*}
+	\pi^{*}=\pi - CVA
+\end{eqnarray*}
+where :
+\begin{enumerate}
+	\item [a)] \(\pi^{*}\) \ \text{corrected price}
+	\item [b)] \(\pi\)  \ \text{price}
+	\item [c)] \(CVA\)  \ \text{correction}
+\end{enumerate}
+Credit Valuation Adjustment involves three components :
+\begin{enumerate}
+	\item [a)] Credit : involves credit risk, particularly default
+	\item [b)] Valuation : related to the value or price of the instrument
+	\item [c)] Adjustment : associated with a correction to the price of the instrument
+\end{enumerate}
+\subsubsection{Credit}
+In the case of a plain vanilla interest rate swap, the probability of default quantifies the likelihood of the counterparty "disappearing" (and thus not paying anymore).
+\subsubsection{Valuation}
+From the point of view of A, the value of the IRS is the sum of the expected cash-flows paid (fixed) and received
+(floating), and which cash-flows to consider depends on the valuation time.\\
+We note by \(V(t)\) the mark-to-market of the swap and by \(E(V_t) = \max(V(t), 0)\) the exposure.\\
+
+
+
+Our aim here is to calculate the net present value of this IRS, in particular a paying
+fixed-for-floating IRS. In this contract, the holder pays the fixed rate and receives the
+floating rate at regular intervals.
+
+The present value of the IRS is the sum of the discounted future payments of the IRS.
+Being a paying IRS, we pay the fixed rate K and we receive the future floating rate L.
+This rate is fixed (that is, determined) at the beginning of the period and it runs up to
+the maturity date (when the payment is made). \(DF_{i}\) stands for the respective discount
+factors. Each payment is multiplied by the notional and day count fraction \(\tau_{i}\).
+
+Second, we ought to select the mathematical model for the underlying. In the case
+of interest rates, we choose we select the LMM to solve these problems. 
+Third, we select the numerical method to be used and in this case, we choose the Monte Carlo method. This method will allow
+us to simulate the random behavior of the forward rates. Fourth, we construct the
+algorithm that will put together these calculations as a series of calculation steps,
+
+
+\begin{eqnarray*}
+	PV(Floating Leg) = \sum_{i=s+1}^{N} B(T_0, T_{i}) L(T_{i-1}, T_{i}, T_{i}) \delta_{i−1,i} 
+\end{eqnarray*}
+
+Analogously, the present value of the fixed leg is given by:
+
+\begin{eqnarray*}
+	PV(Fixed Leg) = \sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} 
+\end{eqnarray*}
+
+Assuming that the frequency of the floating payment is the same as the frequency of the
+fixed payments we can write:
+
+
+We will use Monte Carlo simulation in order to obtain multiple exposure profiles. The average exposure profile quantifies the average value of the losses as a function of time during the life of the instrument.
+
+\subsubsection{Adjustment}
+The adjustment is the third component of the CVA calculation. \\
+\noindent CVA is a monetary value representing the reduction in value of the instrument due to the default of the counterparty.
+\begin{eqnarray*}
+CVA = E[L]
+\end{eqnarray*}
+\begin{eqnarray*}
+L = \text{Amount lost} \ \times \text{Probability of default} \ \times \text{Discount Factor}
+\end{eqnarray*}
+L present value of probable loss. \\
+Amount lost: future value that could be lost\\
+Probability of default:  with some amount of probability\\
+Discount Factor: discounted to the present
+
+\noindent We express that as follow:
+\begin{eqnarray*}
+L(\tau)&=&(1-R)E(\tau) \times PD(\tau) \times DF(\tau)\\
+&=&(1-R)E(\tau) \times PD(\tau) \times DF(\tau)
+\end{eqnarray*}
+	
+\noindent in consequence:
+\begin{eqnarray*}
+CVA = E[(1-R)E(\tau) \times PD(\tau) \times DF(\tau)]
+\end{eqnarray*}
+And to compute the expectation we integrate:
+\begin{eqnarray*}
+CVA = \int_{0}^{T} E(1-R)E(\tau) \times DF(\tau) \times dPD(\tau)
+\end{eqnarray*}
+
+
+the present valued monetary adjustment
+averaged over the life of the instrument
+
+of the potential losses, considering exposure and recovery
+
+discounted to the present 
+
+considering the default probability of the counterparty
+
+\subsubsection{Credit Valuation Adjustment (CVA)}
+
+\begin{eqnarray*}
+CVA = \int_{0}^{T} (1-R) \times EE_{t} \times DF_{t}  \times  dPD_{t}
+\end{eqnarray*}
+where 
+\begin{eqnarray*}
+EE_{t} = E^{Q} \big[\max(MTM_{t},0)\big]
+\end{eqnarray*}
+and 
+\begin{eqnarray*}
+dPD_{t}&=&\Delta PD_{t}\\
+&=&PD(t_{i-1}, t_{i})\\
+&=&P(0, t_{i-1}) - P(0, t_{i})
+\end{eqnarray*}
+We will conduct the CVA calculation following steps from the CQF lecture on CVA.
+
+\subsubsection{STEP 1: Inputs of the contract}
+Plain vanilla IRS, pays fixed, receives floating, with semi-annual payments. Notional \(N\) is 1,000,000. 
+The fixed (swap) rate is 39 basis points, i.e. 0.39\% pa. The curve of US treasuries (US Treasury Yield curve) is today:
+
+\vskip 0.2cm 		
+{
+	\begin{center}
+	\begin{tabular}{|l|l|}
+		\hline
+		Tenor & Spot Rate \\		
+		\hline
+		6M	  &  0.04\%  \\
+		\hline
+		1Y	  &  0.25\%  \\  
+		\hline
+		1.5Y  &  0.32\%  \\
+		\hline
+		2Y	  &  0.40\%  \\
+		\hline
+		2.5Y  &  0.45\%  \\
+		\hline
+		3Y	  &  0.46\%  \\
+		\hline
+		3.5Y  &  0.48\%  \\
+		\hline
+		4Y	  &  0.49\%  \\
+		\hline
+		4.5Y  &  0.50\%  \\
+		\hline
+
+
+		5Y	  &  0.51\%  \\
+		\hline
+	\end{tabular}
+	\end{center}
+}
+\vskip 0.4cm
+
+
+\noindent The credit characteristics of the counterparty are:
+\(\lambda=3\%\) and the recovery rate \(R=40\%\). 
+\subsubsection{STEP 2: FORWARD RATES and DISCOUNT FACTORS}
+- Forward rates:  We will use the Libor Market Model for the simulation of the forward rates starting from initial forward rate today.
+\noindent Discount factors: Also we will start from initial spot rate, and recalculate the discount factor during Monte Carlo simulation
+\subsubsection{STEP 2.0: Default probabilities}
+\noindent Default probabilities are obtained using the formula:
+\begin{eqnarray*}
+	PD_{i}= \exp(\lambda T_{i-1})-\exp(\lambda T_{i}) \ \forall i =1,2,...,N
+\end{eqnarray*}
+
+\subsubsection{STEP 3: MARK TO MARKET PRICE OF THE SWAP}
+Each swap payment is given by the formula:
+\begin{eqnarray*}
+	N \times \Delta t \times DF_i \times (L_i - K) 
+\end{eqnarray*}
+where 
+\begin{enumerate}
+\item \(N\) : Notional
+\item \(\Delta t\): day count fraction
+\item \(DF_i\): discount factor
+\item \(L_i\): forward rate
+\item \(K\): swap rate 
+\end{enumerate}
+
+\noindent for the period \([T_0,...., T_{n-1}]\) we will calculate the \(MTM_i\) as follow:
+\begin{eqnarray*}
+	MTM(T_0) = \sum_{i=1}^{n} N \times \Delta t \times DF_i \times (L_i - K) 
+\end{eqnarray*}
+
+\noindent with 
+\begin{eqnarray*}
+	MTM(T_n) = 0
+\end{eqnarray*}
+
+\subsubsection{STEP 4: COMPUTE THE EXPOSURE}
+\begin{eqnarray*}
+	E(T_i) = \max(MTM(T_i), 0) \ \forall i = 1,2,...,n
+\end{eqnarray*}
+
+\subsubsection{STEP 5: COMPUTE THE CVA}
+The discretization form of the equation (4.2.8):
+\begin{eqnarray*}
+	CVA = \sum_{1=1}^{n} (1-R) E(\frac{T_{i-1}-T_i}{2}) \times DF(\frac{T_{i-1}-T_i}{2})  \times PD(\frac{T_{i-1}-T_i}{2})
+\end{eqnarray*}
+\subsubsection{Implementation}
+Running the code python in the file \textbf{unit\_test\_cva\_6M\_IRS.py} using the unittest module as follow:
+\textbf{Python -m unittest unit\_test\_cva\_6M\_IRS.py}, allows us to obtain the bellow results. Two cases are considered. The CVA calculation with an increasing term structure and a decreasing term structure.
+\subsubsection{CREDIT VALUE ADJUSTMENT INCESAING}
+In this case we will start from an increasing spot rate and an increasing initial forward. 
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{IncreasingTermStructure.png}
+\end{figure}
+
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{IncreasingTermStructureIRSExpectedExposureSim.png}	
+\end{figure}
+
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{IncreasingTermStructureExpectedExposure.png}
+\end{figure}
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{IncreasingTermStructureCVAPeriod.png}
+\end{figure}
+
+\textbf{CVA = 385.21}
+
+\subsection{CREDIT VALUE ADJUSTMENT DECREASING}
+In this case we will start from a decreasing spot rate and a decreasing initial forward.
+
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{DecreasingTermStructure.png}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{DecreasingTermStructureIRSExpectedExposureSim.png}
+\end{figure}
+
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{DecreasingTermStructureExpectedExposure.png}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{DecreasingTermStructureCVAPeriod.png}
+\end{figure}
+\textbf{CVA = 45.13}
+
+\section{Conclusion}
+We have considered the calibration and pricing of Interest rate derivatives in the LIBOR Market
+Model. We have presented the underlying theory and have conducted
+numerical experiments using a number of different variations of calibration algorithms. This study must be extended to consider the LMM within the multi-curve framework also consider simultaneous calibration to Caps and Swaptions to allow pricing of Bermudian Swaptions.
+
+\newpage
+{\small
+\begin{thebibliography}{99}
+	\bibitem{pa}  CQF lectures 
+	\bibitem{pa}  Dariusz Gatarek and Przemyslaw Bachert: 
+	\emph{The LIBOR Market Model in Practice} Jan 2007
+	\bibitem{pa} D. Brigo and F. Mercurio: 
+	\emph{Interest Rate Models - Theory and Practice With Smile, Inflation and Credit (Springer Finance 2006)}
+	\bibitem{pa} Riccardo Rebonato and Kenneth McKay: 
+	\emph{The SABR/LIBOR Market Model: Pricing, Calibration and Hedging for Complex Interest-Rate Derivatives} Feb 23, 2011	\bibitem{pa} Christian Crispoldi and Gerald Wigger:
+	\emph{SABR and SABR LIBOR Market Models in Practice: With Examples Implemented in Python (Applied Quantitative Finance)}, October 2015
+	\bibitem{pa} Alonso Pe\~{n}a Ph.D.:
+	\emph{Advanced Quantitative Finance with C++} Jun 25, 2014		 
+\end{thebibliography}
+}
+\end{document}

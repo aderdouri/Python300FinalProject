@@ -5,9 +5,10 @@ Version: 1
 Author: Abderrazak DERDOURI
 Subject: CQF Final Project
 
-Description: 
+Description: implement Black formula and interpolation methods
 
-Notes:
+Notes: AbderrazakDerdouriCQFFinalProject.pdf
+
 Revision History:
 """
 
@@ -18,6 +19,8 @@ import re
 #pip install xlrd
 from sys import exit
 from collections import OrderedDict
+from math import log, sqrt, exp
+from scipy import stats
 
 
 from scipy.optimize import root, fsolve
@@ -74,37 +77,31 @@ def year_fraction365(start_date, end_date):
     """Returns fraction in years between start_date and end_date, using Actual/365 convention"""
     return day_count(start_date, end_date) / 365.0
 
+def normcdf(d):
+    """
+    Returns cumulative distribution function for normal distribution
+    """
+    return stats.norm.cdf(d, 0.0, 1.0)
+
 def bsm_call_value(S0, K, T, r, sigma):
     """
-    Valuation of European call option in BSM model.
-    Analytical formula.
+    Valuation of European call option in BSM model. Analytical formula.
     Parameters
     ==========
-    S0 : float
-    initial stock/index level
-    K : float
-    strike price
-    T : float
-    maturity date (in year fractions)
-    r : float
-    constant risk-free short rate
-    sigma : float
-    volatility factor in diffusion term
+    S0 : initial stock/index level (float)
+    K : strike price (float)
+    T : maturity date (in year fractions) (float)
+    r : constant risk-free short rate
+    sigma : volatility factor in diffusion term (float)    
     Returns
     =======
-    value : float
-    present value of the European call option
+    value : present value of the European call option (float)    
     """
-    from math import log, sqrt, exp
-    from scipy import stats
-
     S0 = float(S0)
     d1 = (log(S0 / K) + (r + 0.5 * sigma ** 2) * T) / (sigma * sqrt(T))
     d2 = (log(S0 / K) + (r - 0.5 * sigma ** 2) * T) / (sigma * sqrt(T))
-    value = (S0 * stats.norm.cdf(d1, 0.0, 1.0) - K * exp(-r * T) * stats.norm.cdf(d2, 0.0, 1.0))
+    value = (S0 * normcdf(d1) - K * normcdf(d2))
 
-    # stats.norm.cdf —> cumulative distribution function
-    # for normal distribution
     return value
 
 def capletValue(DF_t_Ti, tau_i, L_t_Ti_1_Ti, K, Ti_1, r, sigma):
@@ -113,23 +110,48 @@ def capletValue(DF_t_Ti, tau_i, L_t_Ti_1_Ti, K, Ti_1, r, sigma):
     """
     return DF_t_Ti*tau_i*bsm_call_value(L_t_Ti_1_Ti, K, Ti_1, r, sigma)
 
+def blackCapletValue(DF_t_Ti, tau_i, L_t_Ti_1_Ti, K, Ti_1, sigma):
+    """
+    Black Analytic formula for pricing Caplet
+    """
+    return DF_t_Ti*tau_i*bsm_call_value(L_t_Ti_1_Ti, K, Ti_1, 0.0, sigma)
+
 def liborRate(DF1, DF2, delta):
     """
-    DF1 = B(T0, Tn-1), DF2 = B(T0, Tn)
-    delta = delta(n-1,n)
+    DF1 = D(T0, Tj-1), DF2 = D(T0, Tj)
+    delta = delta(j-1, j)
     """
     return (DF1/DF2-1)/delta
 
 def date_diff(row):
-    #print(row['PrevDate'], row['Date'])
-    #print(year_fraction(row['PrevDate'], row['Date']))
+    """
+    Returns diff in days
+    """
     return year_fraction(row['PrevDate'], row['Date'])
 
-
+'''
 def writeDataFrame(df):  
     # Create a Pandas Excel writer using XlsxWriter as the engine.
     writer = pd.ExcelWriter('PreProcessedMarketData.xlsx', engine='xlsxwriter')
     # Convert the dataframe to an XlsxWriter Excel object.
     df.to_excel(writer, sheet_name='PreProcessedMarketData')
+    # Close the Pandas Excel writer and output the Excel file.
+    writer.save()
+'''
+
+def writeDataFrame(newdf, newSheetName): 
+    """
+    Write a new Pandas DataFrame as new sheet to an existing xlsx file
+    """
+    df = pd.ExcelFile('marketData.xlsx')
+    sheetNames = df.sheet_names  # get all sheet names       
+    # Create a Pandas Excel writer using XlsxWriter as the engine.
+    writer = pd.ExcelWriter('marketData.xlsx', engine='xlsxwriter')
+    for sheetName in sheetNames:
+        dfSheet = df.parse(sheetName)  # read a specific sheet to DataFrame
+        dfSheet.to_excel(writer, sheet_name=sheetName)
+        
+    # Write each dataframe to a different worksheet.
+    newdf.to_excel(writer, sheet_name=newSheetName)
     # Close the Pandas Excel writer and output the Excel file.
     writer.save()

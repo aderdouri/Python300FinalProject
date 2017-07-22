@@ -5,9 +5,13 @@ Version: 1
 Author: Abderrazak DERDOURI
 Subject: CQF Final Project
 
-Description: 
+Description: preprocess input market data (Discount Factors and Cap volatility(
+             and calculate the At The Money Swap Rate for maturity up to 20 years
 
-Notes:
+Notes: AbderrazakDerdouriCQFFinalProject.pdf
+
+Run: Python -m unittest marketDataPreprocessing.CapATMStrikeTests.testATMStrike
+
 Revision History:
 """
 
@@ -15,23 +19,23 @@ import LiteLibrary
 import capletVolatilityStripping
 import pandas as pd
 import numpy as np
-from datetime import date
 import re
-#pip install xlrd
-from sys import exit
 from collections import OrderedDict
-
-
-from scipy.optimize import root, fsolve
+from unittest import TestCase
 import matplotlib.pyplot as plt
-import xlsxwriter
 
-def load_data():    
-    marketData = pd.read_excel('MarketData.xls', sheetname='MarketData', skiprows=1)
+def load_data():
+    """
+    Read market data described in paragraph 3.2.1
+    """
+    marketData = pd.read_excel('marketData.xlsx', sheetname='marketData', skiprows=0)
     marketData.columns = ['TenorTi', 'Date', 'DiscountFactor', 'CapVolatility']
     return marketData
 
 def updateDate(df):
+    """
+    update missing dates for interpolation purpose
+    """
     for index, row in df.iterrows():
         if (pd.isnull(row['Date'])):
             year, period = row['TenorTi'].split('Y')
@@ -47,14 +51,34 @@ def updateDate(df):
     return df
 
 
-def plot(df):
-    tenor = df['TenorTi']
-    CapVolatility    = df['CapVolatility']
-    CapletVolatility    = df['CapletVolatility']
-    plt.plot(tenor, CapVolatility)
-    plt.show()
-        
+def plotForwardSwapRate(df):
+    """
+    Plot the ATM Swap Rate
+    """
+    forwardSwapRate = df[['ForwardSwapRate']][8:] # start  from  T6M
+    index = forwardSwapRate.index
+    myRange = 8+np.linspace(1, 82, 10)
+    myRange[9] = 86
+    xticks = list(df['TenorTi'].iloc[myRange])
+
+    ax = forwardSwapRate.plot(title='Forward Rate Swap')
+    fig = ax.get_figure()
+    ax.set_xticks(8+np.linspace(1, 82, 10));
+    ax.set_xticklabels(xticks, rotation=45)
+    plt.savefig('ForwardSwapRate')
+    plt.show()        
+
+
 def preProcessMarketData():
+    """
+    Preliminary computations for futures calculations:
+    a) Start from the input market data
+    b) Complete missing dates to have a structure with a fraction year of 3M
+    c) Interpolate discount factors
+    d) Interploate cap volatilities
+    e) Calculate the Forward Rate Swap
+    f) Will be use for the Caplet Volatility Stripping
+    """
     marketData = load_data()
 
     data = OrderedDict()
@@ -209,21 +233,19 @@ def preProcessMarketData():
     df['DeltaT0Ti'] = df.apply(lambda row: LiteLibrary.year_fraction(dateT0, row['Date']), axis=1)
     df['DeltaT0Ti_365'] = df.apply(lambda row: LiteLibrary.year_fraction365(dateT0, row['Date']), axis=1)
 
-
-    df = capletVolatilityStripping.resolveForCapletVolatility(df)
-
-    df['SigmaCaplet^2*TimeToMaturity'] = df.apply(lambda row: np.power(row['CapletVolatility'], 2)*row['DeltaT0Ti'] , axis=1)
+    #df = capletVolatilityStripping.resolveForCapletVolatility(df)
+    #df['SigmaCaplet^2*TimeToMaturity'] = df.apply(lambda row: np.power(row['CapletVolatility'], 2)*row['DeltaT0Ti'] , axis=1)
 
     return df
 
-if __name__ == '__main__':
-    df = preProcessMarketData()
-    LiteLibrary.writeDataFrame(df)
-
-    tenor = df['TenorTi']
-    CapVolatility    = df['CapVolatility']
-    CapletVolatility    = df['CapletVolatility']
-    plt.plot(CapVolatility)
-    plt.plot(CapletVolatility)
-    plt.show()
-    
+class CapATMStrikeTests(TestCase):
+    def testATMStrike(self):
+        """
+        Save all preliminary computations 
+        to the preProcessedMarketData sheet in the marketData.xlsx file
+        """
+        print('ATM strikes for caps, preliminary computations')
+        df = preProcessMarketData()
+        LiteLibrary.writeDataFrame(df, 'preProcessMarketData')
+        print('See column ForwardSwapRate from the preProcessedMarketData sheet in the marketData.xlsx file.')
+        plotForwardSwapRate(df)
