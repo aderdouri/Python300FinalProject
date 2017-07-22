@@ -6,10 +6,13 @@ Author: Abderrazak DERDOURI
 Subject: CQF Final Project
 
 Description: 
+Run: Python -m unittest capletVolatilityStripping.py 
 
 Notes:
 Revision History:
 """
+
+import os
 
 import LiteLibrary
 from scipy.optimize import root, fsolve
@@ -66,10 +69,53 @@ class CapletVolatilityStrippingTests(TestCase):
         df = resolveForCapletVolatility(df)
         df['SigmaCaplet^2*TimeToMaturity'] = df.apply(lambda row: np.power(row['CapletVolatility'], 2)*row['DeltaT0Ti'] , axis=1)
 
-        CapVolatility    = df['CapVolatility']
-        CapletVolatility    = df['CapletVolatility']
-        plt.plot(CapVolatility)
-        plt.plot(CapletVolatility)
+
+        # STEP 10: OUTPUT RESULTS
+        #basepath = os.path.abspath('XXXX')
+        ax = df[['CapVolatility', 'CapletVolatility']].plot(title='Cap and caplet volatility from January 2005')
+        fig = ax.get_figure()
+        plt.savefig('CapCapletVol')
         plt.show()
 
+               
 
+        """
+        xx = np.arange(20)
+        ax = ax = df[['CapVolatility', 'CapletVolatility']].plot(title='Cap and caplet volatility from January 2005')
+        ax.set_xticks(xx)
+        plt.show()
+        #ax.set_xticklabels(df.C, rotation=90)
+
+        fig = plt.figure()
+        ax = fig.add_subplot(111)
+        N = len(data)
+        ind = np.arange(N)/2.0 # the x locations for the groups
+        indYears = tuple ( (str(e)+'Y' for e in ind) )
+        width = 0.35       # the width of the bars
+        ax  = plt.gca()
+        #ax.set_xlim([0.0, .0])
+        print(ind)
+
+        rects = ax.bar(ind, data, width, color='orange')	
+        plt.xticks(ind, indYears)
+        plt.plot(ind, data)
+        plt.title(title)
+        """
+
+    def test_PrintStrippedCapletVolatility(self):
+        return
+        print('test_PrintStrippedCapletVolatility')
+
+        df = marketDataPreprocessing.preProcessMarketData()
+        LiteLibrary.writeDataFrame(df)
+
+        df = resolveForCapletVolatility(df)
+        df['SigmaCaplet^2*TimeToMaturity'] = df.apply(lambda row: np.power(row['CapletVolatility'], 2)*row['DeltaT0Ti'] , axis=1)
+
+
+        # STEP 10: OUTPUT RESULTS
+        #basepath = os.path.abspath('XXXX')
+        ax = df[['CapVolatility', 'CapletVolatility']].plot(title='Cap and caplet volatility from January 2005')
+        fig = ax.get_figure()
+        plt.savefig('CapCapletVol')
+        plt.show()

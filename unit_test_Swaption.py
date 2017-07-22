@@ -234,80 +234,6 @@ def MCSimu(initialForwardVec, initialSigmaVec, corrMatrix, Notional, Strike, tau
     return payoff
     """
 
-def swaption(K, inForwardVec, corrMatrix, sigmaVec, dim):
-    """
-    Initializing
-    Generates a new object to simulate from the
-    multivariate normal distribution
-    """
-    # No of simulations
-    NRUNS = 1000
-    # No of steps per simulation
-    STEPS = 250
-    # Time step 
-    DELTA = 1.0 / STEPS
-    # P0 : Zero coupon bond for the desired time period
-    P0 = 0.9473
-    sum = 0
-
-    # Looping through NRUNS MC simulations
-    for run in range(0, NRUNS):
-        #print("run: {0}".format(run))
-        # Resets the forward vector
-        forwardVec = np.copy(inForwardVec)
-
-		# Looping through the time steps
-        for i in range(0, STEPS):
-            # Draws a new random vector
-            mean = [0, 0, 0, 0, 0]
-            sim = np.random.multivariate_normal(mean, corrMatrix, 1)[0]
-			# Simulating each rate under the Q^alpha forward measure
-            for j in range(0, dim):
-                forward = forwardVec[j]
-                sigma = sigmaVec[j]
-                temp = math.log(forward)
-                temp = temp - 0.5*sigma*sigma*DELTA
-                temp = temp + sigma*sim[j]*math.sqrt(DELTA)
-                temp2 = 0.0
-                for k in range(0, j+1):
-                    temp2 = temp2 + (corrMatrix[j, k]*sigmaVec[k]*forwardVec[k]) / (1 + forwardVec[k])
-
-                temp2 = DELTA*sigmaVec[j]
-                temp = temp + temp2
-                forwardVec[j] = math.exp(temp)
-
-		# Calculating the swap rate
-        #print(forwardVec)
-        temp = 0.0
-        swap = 0.0
-        temp2 = 1.0
-        for i in range(0, dim):
-            temp2 = 1.0
-            for j in range(0, i+1):
-                temp2 = 1.0 / (1.0 + forwardVec[j])
-            temp = temp + temp2
-        swap = (1.0 - temp2) / temp
-        """
-		Calculating the corresponding zero coupons
-		The first forward rate is "dead" and can be
-		considered as the LIBOR interest rate .
-		The first zero coupons must therefore be treated individually
-        """
-        zero = 1 / (1 + forwardVec[0])
-        zeroSum = zero
-        for i in range(1, dim):
-            zero = zero / (1 + forwardVec[i])
-            zeroSum = zeroSum + zero
-
-        swaption = 0
-        if (swap-K > 0):
-           swaption = (swap - K)*zeroSum
-        else:
-            swaption = 0
-        sum = sum + swaption
-
-    return P0*(sum / NRUNS)
-
 
 class Swaption_tests(TestCase):    
     def test_01_swaption(self): 
@@ -317,12 +243,22 @@ class Swaption_tests(TestCase):
         T0--->1Y--->2Y3M
         """
 	    #Manually defines the correlation matrix
+        """
         corrMatrix = np.matrix([
             [1.0000000, 0.6036069, 0.4837154, 0.3906583, 0.2847411],
             [0.6036069, 1.0000000, 0.5462708, 0.4847784, 0.3399323],
             [0.4837154, 0.5462708, 1.0000000, 0.4631405, 0.2109093],
             [0.3906583, 0.4847784, 0.4631405, 1.0000000, 0.2191104],
             [0.2847411, 0.3399323, 0.2109093, 0.2191104, 1.0000000]
+            ])
+        """
+
+        corrMatrix = np.matrix([
+            [1.0000000, 0.9875778, 0.9753099, 0.9512294, 0.9394130]
+            ,[0.9875778, 1.0000000, 0.9875778, 0.9631944, 0.9512294]
+            ,[0.9753099, 0.9875778, 1.0000000, 0.9753099, 0.9631944]
+            ,[0.9512294, 0.9631944, 0.9753099, 1.0000000, 0.9875778]
+            ,[0.9394130, 0.9512294, 0.9631944, 0.9875778, 1.0000000]
             ])
 
         df = pd.read_excel('PreProcessedMarketData.xlsx', sheetname='PreProcessedMarketData')      
@@ -408,6 +344,7 @@ class Swaption_tests(TestCase):
         T0--->1Y--->2Y3M
         """
 	    #Manually defines the correlation matrix
+        """
         corrMatrix = np.matrix([
             [1.0000000, 0.6036069, 0.4837154, 0.3906583, 0.2847411],
             [0.6036069, 1.0000000, 0.5462708, 0.4847784, 0.3399323],
@@ -415,6 +352,15 @@ class Swaption_tests(TestCase):
             [0.3906583, 0.4847784, 0.4631405, 1.0000000, 0.2191104],
             [0.2847411, 0.3399323, 0.2109093, 0.2191104, 1.0000000]
             ])
+        """
+        corrMatrix = np.matrix([
+            [1.0000000, 0.9875778, 0.9753099, 0.9512294, 0.9394130]
+            ,[0.9875778, 1.0000000, 0.9875778, 0.9631944, 0.9512294]
+            ,[0.9753099, 0.9875778, 1.0000000, 0.9753099, 0.9631944]
+            ,[0.9512294, 0.9631944, 0.9753099, 1.0000000, 0.9875778]
+            ,[0.9394130, 0.9512294, 0.9631944, 0.9875778, 1.0000000]
+            ])
+
 
         df = pd.read_excel('PreProcessedMarketData.xlsx', sheetname='PreProcessedMarketData')      
         start_idx = df[df['TenorTi']=='T1Y'].index[0]    
@@ -439,25 +385,30 @@ class Swaption_tests(TestCase):
             payoffPayerSwaptionList.append(payer)
             payoffReceiverSwaptionList.append(receiver)
 
+        
         plt.figure()
         plt.plot(Strikes, payoffPayerSwaptionList, label='Payer Swaption Payoff')
         plt.plot(Strikes, payoffReceiverSwaptionList, label='Receievr Swaption Payoff')
-
         #ax  = plt.gca()
         #ax.set_ylim([-0.012, 0.012])
         #plt.plot(Strikes, StrikeLevel, label='Strike Level')
         plt.legend()
         plt.show()       
+        return
         
-        """
-        Strikes = np.linspace(0.01, 0.05, 15)
-        payoffList = []        
-        for Strike in Strikes:
-            payoff = MCSimu(initialForwardVec, initialSigmaVec, corrMatrix, Notional, Strike, tau, Expiry, timeSteps, NBSIMUS)
-            payoffPayerSwaptionList.append(payoff)
-        """ 
+        # Plot receiver
+        print('payoffReceiverSwaptionList: {0}'.format(payoffReceiverSwaptionList))
+        StrikeLevel = np.linspace(-0.011, 0.011, 15)
+        plt.figure()
+        plt.plot(Strikes, payoffReceiverSwaptionList, label='Swaption Price')
+        ax  = plt.gca()
+        ax.set_ylim([-0.012, 0.012])
+        plt.plot(Strikes, StrikeLevel, label='Strike Level')
+        plt.legend()
+        plt.show()      
 
-        """
+        
+        # Plot Payer
         StrikeLevel = np.linspace(0.0145, -0.0145, 15)
         plt.figure()
         plt.plot(Strikes, payoffPayerSwaptionList, label='Swaption Price')
@@ -466,9 +417,8 @@ class Swaption_tests(TestCase):
         plt.plot(Strikes, StrikeLevel, label='Strike Level')
         plt.legend()
         plt.show()            
-        """
-
-
+        
+      
 
     def test_04_swaption(self):
         return
