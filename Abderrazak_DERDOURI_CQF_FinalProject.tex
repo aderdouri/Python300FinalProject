@@ -20,6 +20,7 @@
 %\usepackage[]{algorithm2e}
 \usepackage{algorithmic}
 \usepackage{amsmath}
+\setlength\parindent{0pt}
 \numberwithin{equation}{subsection}
 \linespread{1.2}
 \def\blurb{%
@@ -182,6 +183,88 @@ The function fora a cap is
 \begin{eqnarray}
 	cap = \sum_{j=1}^{N} c_{j}(\sigma_{j}^{B})
 \end{eqnarray}
+XXXXXXXXXXXXXXXXX
+TO integrate 
+
+The LIBOR rate covering the period \(T_{n−1}÷T_{n}\) resetting in \(T_{n−1}\) can be expressed from the
+perspective of today in terms of deterministic discount factors for periods \(t_n÷T_{n-1}\) and \(t_n÷T_{n}\)
+and year fraction \(\delta_{n−1,n}\). So we have:
+
+\begin{eqnarray*}
+	L(T_{n-1}, T_{n-1}, T_{n}) = F(T_{0}, T_{n-1}, T_{n}) = (\frac{B(T_0, T_{n-1})}{B(T_0, T_{n-1})} -)\frac{1}{\delta_{n−1,n}}
+\end{eqnarray*}
+where \(F(T_{0}, T_{n-1}, T_{n})\) is an interest rate determined at T0 covering the period  \(T_{n−1}÷T_{n}\).
+Having this we can now determine the caplet price for the period \(T_{n−1}÷T_{n}\) with payment at Tn and strike X in the following way:
+
+\begin{eqnarray*}
+	c(T_{0}, T_{n-1}, T_{n}, \sigma_{n-n, n}^{cpl}) = B(T_0, T_{n}) \delta_{n−1,n} [F(T_{0}, T_{n-1}, T_{n})N(d_1)-XN(d_2)]
+\end{eqnarray*}
+
+where 
+
+\begin{eqnarray*}
+	d_1&=&\frac{\log(\frac{S}{k})+(r-\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+	d_2&=&\frac{\log(\frac{S}{k})+(r-\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}
+\end{eqnarray*}
+
+and \(N()\) denotes standard normal distribution function and \(\sigma_{n-1, n}^{cpl}\) the market volatility of caplet
+covering the period \(T_{n−1}÷T_{n}\). This is a good moment to present an example of caplet pricing.
+
+XXXXXXXXXXXXXXXXXXXXXX
+
+YYYYYYYYYYYYYYYYYYYYYY
+\begin{eqnarray*}
+	PV(Floating Leg) = \sum_{i=s+1}^{N} B(T_0, T_{i}) L(T_{i-1}, T_{i}, T_{i}) \delta_{i−1,i} 
+\end{eqnarray*}
+
+Analogously, the present value of the fixed leg is given by:
+
+\begin{eqnarray*}
+	PV(Fixed Leg) = \sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} 
+\end{eqnarray*}
+
+Assuming that the frequency of the floating payment is the same as the frequency of the
+fixed payments we can write:
+
+
+
+\begin{displaymath}
+PV(Floating Leg) = PV(Fixed Leg) 
+\iff
+\sum_{i=s+1}^{N} B(T_0, T_{i}) L(T_{i-1}, T_{i}, T_{i}) \delta_{i−1,i} = \sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} 
+\end{displaymath}
+So the forward swap rate can be written as
+
+
+\begin{eqnarray*}
+	S(T_{0}, T_{s}, T_{N}) = \frac{\sum_{i=s+1}^{N} B(T_0, T_{i}) L(T_{i-1}, T_{i}, T_{i}) \delta_{i−1,i}}
+	{\sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} }  
+\end{eqnarray*}
+
+The LIBOR rate \(L(T_{i-1}, T_{i}, T_{i})\) in above equation can be changed to the forward
+LIBOR rate.
+
+\begin{eqnarray*}
+	S(T_{0}, T_{s}, T_{N}) &=& \frac{\sum_{i=s+1}^{N} B(T_0, T_{i}) (\frac{B(T_0, T_{i})}{B(T_0, T_{i})}-1) \delta_{i−1,i}}
+	{\sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} }  \\
+	&=&\frac{\sum_{i=s+1}^{N} B(T_0, T_{i}) (\frac{B(T_0, T_{i})}{B(T_0, T_{i})}-1) \delta_{i−1,i}}
+	{\sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} }  
+\end{eqnarray*}
+
+For practical reasons it is important that \(\delta_{i−1,i}\) denotes the year fraction of the fixed leg of
+given IRS. But in our particular case of calibration presented later we will use the same frequency for both the fixed and floating legs.
+The forward swap rate derived above will be used to constitute the definition of an at-the money (ATM) cap. We are saying that a particular cap is ATM if the strike price is equal to the forward swap rate. More precisely, let us consider a cap covering the period \(T_s÷T_n\). 
+Payments from that cap can be written:
+
+\begin{eqnarray*}
+	\sum_{i=s+1}^{N} W_i = \sum_{i=s+1}^{N} N (L(T_{0}, T_{s}, T_{N}) - X)^{+} \delta_{s−1, s}  
+\end{eqnarray*}
+
+YYYYYYYYYYYYYYYYYYYYYY
+
 In financial markets the quotation is cap \(\sum_{j=1}^{N} c_{j}(\sigma_{j}^{B})\) as there is non explicit quotation for caplet volatilities, which would be spot or forward volatilities, but just for cap volatilities which are flat for each tenor. Therefore the quoted cap volatilities have to be "bootstrapped" to get out the caplet volatilities for each tenor. It is also market practice in option trading that the quotation for caps/floors is in implied Black volatility and not in monetary terms as one would expect.
 Black's Formula or is a modification of the Black-Scholes-Merton stochastic differential equation and its origin lies in pricing derivatives contracts for commodities but it is far more frequently used in pricing interest rate derivatives. It is important for Libor Market Model lies in the fact it is consistent with the Black Formula which is a very nice characteristic for calibration. The pricing with the Black Formula implies that the forward (libor) rate is log-normally distributed at expiry under the risk neutral measure. Another assumption is that the risk neutral rate is not stochastic.\\
 This assumptions are not plausible and the derivation of caplets with the Black formula which makes this point clear is shown in the Appendix.\\
@@ -435,61 +518,77 @@ In this part, two calibration possibilities for the LMM are presented, where the
 To bootstrap cap vols it is needed to start either from the volatility curve itself or the cap prices themselves, where it is possible to back out the cap volatilities. The bootstrapping time step size was 6 months in this work. Market cap volatilities of the 13
 	
 \section*{LIBOR and OIS Rates - Market Volatility}
-\subsection{Market Data}
-One of the goals of the chapter is to present detailed algorithms and results of calibration.
-To do this we take into account one set of market data. All the market data is taken
-from 21 January 2005. We take into account following rates in EUR: the discount factors
-bootstrapped to form par interest rates (LIBOR’s, FRA, IRS), at-the-money cap volatilities
-and swaption volatilities. Table 7.1 presents the discount factors and cap volatilities for a
+
+\subsection{Calibration Algorithms to Caps and Floors}
+\subsubsection{Market Data}
+One of the goals of the paragraph is to present detailed algorithms and results of calibration to caps and Floors.
+All the market data is taken [2] (see References). We take into account following rates in EUR: the discount factors
+bootstrapped to form par interest rates (LIBOR’s, FRA, IRS), at-the-money cap volatilities and swaption volatilities. Table 7.1 presents the discount factors and cap volatilities for a
 set of particular days.
-\vskip 0.2cm 		
+\vskip 0.4cm 		
 {
 	\centering
 	\begin{tabular}{|l|l|l|l|}
 		\hline
-		\(Tenor T_i\) & \(Date\) & \(Discount factor B(0, T_i)\) & \(Cap volatility \sigma^{cap}(T_0, T_i)\) \\		
+		Tenor \(T_i\) & \(Date\) & Discount factor \(DF(0, T_i)\) & Cap volatility \(\sigma^{cap}(T_0, T_i)\) \\		
 		\hline		
-		t0	  &  21/01/2005 &  1	      &  \\ N/A
-		T0	  &  25/01/2005 &  0.9997685  &  \\ N/A
-		TSN2  &  6/01/2005  &  0.9997107  &  \\ N/A
-		TSW0  &  1/02/2005  &  0.9993636  &  \\ N/A
-		T2W0  &  8/02/2005  &  0.9989588  &  \\ N/A
-		T1M2  &  5/02/2005  &  0.9979767  &  \\ N/A
-		T2M2  &  5/03/2005  &  0.9963442  &  \\ N/A
-		T3M2  &  5/04/2005  &  0.9945224  &  \\ N/A
-		T6M2  &  5/07/2005  &  0.9890361  &  \\ N/A
-		T9M2  &  5/10/2005  &  0.9832707  &  \\ N/A
-		T1Y2  &  5/01/2006  &  0.9772395  &  0.1641 \\
-		T2Y2  &  5/01/2007  &  0.9507588  &  0.2137 \\
-		T3Y2  &  5/01/2008  &  0.9217704  &  0.2235 \\
-		T4Y2  &  6/01/2009  &  0.8908955  &  0.2188 \\
-		T5Y2  &  5/01/2010  &  0.8589736  &  0.2127 \\
-		T6Y2  &  5/01/2011  &  0.8262486  &  0.2068 \\
-		T7Y2  &  5/01/2012  &  0.7928704  &  0.2012 \\
-		T8Y2  &  5/01/2013  &  0.7595743  &  0.1958 \\
-		T9Y2  &  7/01/2014  &  0.7261153  &  0.1905 \\
-		T10Y  &  26/01/2015 &  0.694284   &  90.1859 \\
-		T12Y  &  25/01/2017 &  0.634834   &  80.1806 \\
-		T15Y  &  27/01/2020 &  0.552195   &  70.1699 \\
-		T20Y  &  27/01/2025 &  0.434558   &  30.1567 \\
+		t=0	  &  21/01/2005 &  1	      &  N/A \\
+		\hline
+		\(T_0\)	  &  25/01/2005 &  0.9997685  &  N/A \\
+		\hline
+		\(T_{SN}\)  &  6/01/2005  &  0.9997107  &  N/A \\
+		\hline
+		\(T_{SW}\)  &  1/02/2005  &  0.9993636  &  N/A \\
+		\hline
+		\(T_{2W}\)  &  8/02/2005  &  0.9989588  &  N/A \\
+		\hline
+		\(T_{1M}\)  &  5/02/2005  &  0.9979767  &  N/A \\
+		\hline
+		\(T_{2M}\)  &  5/03/2005  &  0.9963442  &  N/A \\
+		\hline
+		\(T_{3M}\)  &  5/04/2005  &  0.9945224  &  N/A \\
+		\hline
+		\(T_{6M}\)  &  5/07/2005  &  0.9890361  &  N/A \\
+		\hline
+		\(T_{9M}\)  &  5/10/2005  &  0.9832707  &  N/A \\
+		\hline
+		\(T_{1Y}\)  &  5/01/2006  &  0.9772395  &  0.1641 \\
+		\hline
+		\(T_{2Y}\)  &  5/01/2007  &  0.9507588  &  0.2137 \\
+		\hline
+		\(T_{3Y}\)  &  5/01/2008  &  0.9217704  &  0.2235 \\
+		\hline
+		\(T_{4Y}\)  &  6/01/2009  &  0.8908955  &  0.2188 \\
+		\hline
+		\(T_{5Y}\)  &  5/01/2010  &  0.8589736  &  0.2127 \\
+		\hline
+		\(T_{6Y}\)  &  5/01/2011  &  0.8262486  &  0.2068 \\
+		\hline
+		\(T_{7Y}\)  &  5/01/2012  &  0.7928704  &  0.2012 \\
+		\hline
+		\(T_{8Y}\)  &  5/01/2013  &  0.7595743  &  0.1958 \\
+		\hline
+		\(T_{9Y}\)  &  7/01/2014  &  0.7261153  &  0.1905 \\
+		\hline
+		\(T_{10}Y\)  &  26/01/2015 &  0.694284   &  90.1859 \\
+		\hline
+		\(T_{12Y}\)  &  25/01/2017 &  0.634834   &  80.1806 \\
+		\hline
+		\(T_{15Y}\)  &  27/01/2020 &  0.552195   &  70.1699 \\
+		\hline
+		\(T{20Y}\)  &  27/01/2025 &  0.434558   &  30.1567 \\
 		\hline				 				
 	\end{tabular}
 }
-\vskip 0.4cm\
-where \(B(0, T_i)\) - Discount factor for time period \(0÷Ti\)\\
-\(\sigma^{j}(T_0, T_i)\) – Market volatility of cap option starting at time \(T0\) and maturing at \(T_i\).
+\vskip 0.4cm
+where \\
+\(DF(0, T_i)\) - Discount factor for time period \(0÷T_i\)\\
+\(\sigma^{cap}(T_0, T_i)\) - Market volatility of cap option starting at time \(T0\) and maturing at \(T_i\).
 
+
+\newpage
 The various discount factors are bootstrapped from interbank deposits and FRA quotations
 for short term below one year and IRS prices for long term above one year.
-Some of the readers may not be familiar with nature of the cap mechanism. For that case
-it seems to be worth showing how to interpret the cap quotes.
-Below we present the nature of caps and how to determine resets and payments. Let us
-start from cap covering one period. Usual periods are semiannual, however on the market
-there are also caps with quarterly periods. Payments from a cap are illustrated in Figure 7.1.
-In Figure 7.1 t =0 means the pricing day (today). Date \(T1\) is the first reset date where
-LIBOR rate covering the period \(T1÷T2\) will be determined. The payment associated with
-this LIBOR rate occurs in date \(T2\) and equals \(W2\).
-
 \begin{eqnarray*}
 	W_2 = N(L(T_1, T_1, T_2)-X)^{+} \delta_{1,2}
 \end{eqnarray*}
@@ -500,6 +599,7 @@ In general we have :
 \(N\) is notional value of the cap, \(L(T_{n-1}, T_{n-1}, T_n)\) is the LIBOR rate resetting at \(T_{n−1}\)
 and covering the period \(T_{n−1}÷T_{n} \), X is the strike price of the cap, symbol \(()+\) denotes value from the brackets if greater than zero and zero otherwise and finally \(\delta_{n-1, n}\) denotes year fraction of period \(T_{n−1}÷T_n\)
 computed according to one of well defined day count basis, e.g. actual/360.
+
 It is very important that we consider at this stage cap contracts functioning in the described
 manner. If the payment W2 occurs at a different moment than T2 and the payoff function
 remains unchanged then we will have not a plain-vanilla instrument, but an exotic one.
@@ -511,6 +611,37 @@ Now we can move to swaptions to present the nature of these contracts. Table 7.2
 market quotations of at-the-money swaption volatilities. By the ‘at-the-money swaption
 volatility’ we mean such volatility for which strike price is equal to forward swap rate. The
 definition of the forward swap rate will be presented later in the chapter.
+
+\subsubsection{Market data from 21 January 2005: swaption volatilities}
+\vskip 0.4cm 		
+{
+	\centering
+	\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|}
+		\hline
+		& \(1Y\) & \(2Y\) & \(3Y\) & \(4Y\) & \(5Y\) & \(6Y\) & \(7Y\) & \(8Y\) & \(9Y\) & \(10Y\) \\		
+		\hline		
+		\(2Y\) & \(0.2270\) & \(0.2300\) & \(0.2210\) & \(0.2090\) & \(0.1960\) & \(0.1860\) & \(0.1760\) & \(0.1690\) & \(0.16\) & \(0.1590\) \\
+		\hline
+		\(3Y\) & \(1Y\) & \(2Y\) & \(3Y\) & \(4Y\) & \(5Y\) & \(6Y\) & \(7Y\) & \(8Y\) & \(9Y\) & \(10Y\) \\
+		\hline				 				
+		\(4Y\) & \(1Y\) & \(2Y\) & \(3Y\) & \(4Y\) & \(5Y\) & \(6Y\) & \(7Y\) & \(8Y\) & \(9Y\) & \(10Y\) \\
+		\hline				 				
+		\(5Y\) & \(1Y\) & \(2Y\) & \(3Y\) & \(4Y\) & \(5Y\) & \(6Y\) & \(7Y\) & \(8Y\) & \(9Y\) & \(10Y\) \\
+		\hline				 				
+		\(6Y\) & \(1Y\) & \(2Y\) & \(3Y\) & \(4Y\) & \(5Y\) & \(6Y\) & \(7Y\) & \(8Y\) & \(9Y\) & \(10Y\) \\
+		\hline				 				
+		\(7Y\) & \(1Y\) & \(2Y\) & \(3Y\) & \(4Y\) & \(5Y\) & \(6Y\) & \(7Y\) & \(8Y\) & \(9Y\) & \(10Y\) \\
+		\hline				 				
+		\(8Y\) & \(1Y\) & \(2Y\) & \(3Y\) & \(4Y\) & \(5Y\) & \(6Y\) & \(7Y\) & \(8Y\) & \(9Y\) & \(10Y\) \\
+		\hline				 				
+		\(9Y\) & \(1Y\) & \(2Y\) & \(3Y\) & \(4Y\) & \(5Y\) & \(6Y\) & \(7Y\) & \(8Y\) & \(9Y\) & \(10Y\) \\
+		\hline				 				
+		\(10Y\) & \(1Y\) & \(2Y\) & \(3Y\) & \(4Y\) & \(5Y\) & \(6Y\) & \(7Y\) & \(8Y\) & \(9Y\) & \(10Y\) \\
+		\hline				 				
+	\end{tabular}
+}
+\vskip 0.4cm
+
 \subsection{CALIBRATION TO CAPS}
 Calibration algorithms to caps are the simplest algorithms used in practice and do not
 require the use of optimization techniques. However, one should be careful and aware that
@@ -524,32 +655,6 @@ The calibration of the LIBOR Market Model requires knowing how to price caps, an
 more precisely, caplets in particular cap. To start with we should remember, that market
 prices of caplets are valued using the standard Black formula.
 \subsubsection{Caplet values}
-The LIBOR rate covering the period \(T_{n−1}÷T_{n}\) resetting in \(T_{n−1}\) can be expressed from the
-perspective of today in terms of deterministic discount factors for periods \(t_n÷T_{n-1}\) and \(t_n÷T_{n}\)
-and year fraction \(\delta_{n−1,n}\). So we have:
-
-\begin{eqnarray*}
-	L(T_{n-1}, T_{n-1}, T_{n}) = F(T_{0}, T_{n-1}, T_{n}) = (\frac{B(T_0, T_{n-1})}{B(T_0, T_{n-1})} -)\frac{1}{\delta_{n−1,n}}
-\end{eqnarray*}
-where \(F(T_{0}, T_{n-1}, T_{n})\) is an interest rate determined at T0 covering the period  \(T_{n−1}÷T_{n}\).
-Having this we can now determine the caplet price for the period \(T_{n−1}÷T_{n}\) with payment at Tn and strike X in the following way:
-
-\begin{eqnarray*}
-	c(T_{0}, T_{n-1}, T_{n}, \sigma_{n-n, n}^{cpl}) = B(T_0, T_{n}) \delta_{n−1,n} [F(T_{0}, T_{n-1}, T_{n})N(d_1)-XN(d_2)]
-\end{eqnarray*}
-
-where 
-
-\begin{eqnarray*}
-	d_1&=&\frac{\log(\frac{S}{k})+(r-\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}
-\end{eqnarray*}
-
-\begin{eqnarray*}
-	d_2&=&\frac{\log(\frac{S}{k})+(r-\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}
-\end{eqnarray*}
-
-and \(N()\) denotes standard normal distribution function and \(\sigma_{n-1, n}^{cpl}\) the market volatility of caplet
-covering the period \(T_{n−1}÷T_{n}\). This is a good moment to present an example of caplet pricing.
 
 Example 7.1 Caplet value
 
@@ -582,63 +687,18 @@ Taking the data from Table 7.3 we have caplet value for unit value of currency E
 The next step is to determine ATM strikes for cap options
 
 \subsection{ATM strikes for caps}
+
 Let us define the forward swap rate, the rate of fixed leg of IRS which makes the contract
 fair in the context of present time. For computational reasons our IRS contract has length
 \(Ts÷TN\). The present value of the floating leg is given by:
 
-\begin{eqnarray*}
-	PV(Floating Leg) = \sum_{i=s+1}^{N} B(T_0, T_{i}) L(T_{i-1}, T_{i}, T_{i}) \delta_{i−1,i} 
-\end{eqnarray*}
-
-Analogously, the present value of the fixed leg is given by:
-
-\begin{eqnarray*}
-	PV(Fixed Leg) = \sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} 
-\end{eqnarray*}
-
-Assuming that the frequency of the floating payment is the same as the frequency of the
-fixed payments we can write:
-
-
-
-\begin{displaymath}
-PV(Floating Leg) = PV(Fixed Leg) 
-\iff
-\sum_{i=s+1}^{N} B(T_0, T_{i}) L(T_{i-1}, T_{i}, T_{i}) \delta_{i−1,i} = \sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} 
-\end{displaymath}
-So the forward swap rate can be written as
-
-
-\begin{eqnarray*}
-	S(T_{0}, T_{s}, T_{N}) = \frac{\sum_{i=s+1}^{N} B(T_0, T_{i}) L(T_{i-1}, T_{i}, T_{i}) \delta_{i−1,i}}
-	{\sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} }  
-\end{eqnarray*}
-
-The LIBOR rate \(L(T_{i-1}, T_{i}, T_{i})\) in above equation can be changed to the forward
-LIBOR rate.
-
-\begin{eqnarray*}
-	S(T_{0}, T_{s}, T_{N}) &=& \frac{\sum_{i=s+1}^{N} B(T_0, T_{i}) (\frac{B(T_0, T_{i})}{B(T_0, T_{i})}-1) \delta_{i−1,i}}
-	{\sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} }  \\
-	&=&\frac{\sum_{i=s+1}^{N} B(T_0, T_{i}) (\frac{B(T_0, T_{i})}{B(T_0, T_{i})}-1) \delta_{i−1,i}}
-	{\sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} }  
-\end{eqnarray*}
-
-For practical reasons it is important that \(\delta_{i−1,i}\) denotes the year fraction of the fixed leg of
-given IRS. But in our particular case of calibration presented later we will use the same frequency for both the fixed and floating legs.
-The forward swap rate derived above will be used to constitute the definition of an at-the money (ATM) cap. We are saying that a particular cap is ATM if the strike price is equal to the forward swap rate. More precisely, let us consider a cap covering the period \(T_s÷T_n\). 
-Payments from that cap can be written:
-
-\begin{eqnarray*}
-	\sum_{i=s+1}^{N} W_i = \sum_{i=s+1}^{N} N (L(T_{0}, T_{s}, T_{N}) - X)^{+} \delta_{s−1, s}  
-\end{eqnarray*}
 
 If strike price X in above equation is equal to forward swap rate \(S(t, T_s, T_N)\) the cap is
 said to be ATM. Let us move now to present an example presenting computations of ATM
 strikes for cap options.
 
 
-Example 7.2 ATM strikes for caps
+\textbf{Example 7.2 ATM strikes for caps}
 Let us compute ATM strikes for a series of caps maturing from one year up to 20
 years. Having computed the discount factors (given in Table 7.1) we can determine the ATM cap strikes taking into consideration that the ATM cap options may be constructed in two ways:
 
@@ -651,11 +711,14 @@ years. Having computed the discount factors (given in Table 7.1) we can determin
 In this example we will use the first case.
 Table 7.4 shows the computations for ATM strikes for caps from 1 year up to 20 years.
 
+\subsubsection{Implementation and Python Code}
+We used a Pandas Data Frame to keep trace of intermediate calculation and saving purpose. I implemented this calculation in th program : \textbf{marketDataPreprocessing.py}. The output of this program is a Data Frame saved as an excel file "marketDataPreprocessing.xls" 
+Running the program with GIT terminal  : Python -m unittest marketDataPreprocessing.py\\
+\textbf{Please run this program before others programs mentionned in this paragraph because we will use the processed data to save time for the rest of the study.}
 
 \subsubsection{Stripping caplet volatilities from cap quotes}
 
-
-The market volatility of caplets will be derived from cap volatilities quotations; to do that
+The market volatility of caplets will be derived from cap volatilities quotations, to do that
 we need to introduce a stripping algorithm.
 Let us start from a cap maturing in one year. Remembering that we have quarterly resets,
 so the effective date of the cap is \(T_s =T_{3M}\), and payments are made at times: \(T_{6M}, T_{9M}, T_{1Y}\).
@@ -667,82 +730,89 @@ and \(T3M÷T9M\). The strike prices (ATM) for these caps equals the appropriate 
 swap rates \(S(t, T_{3M}, T_{1Y})\) with value 2.194\% and \(S(t, T_{3M}, T_{1Y})\) with value 2.245\%. These
 strike rates can be obtained directly from yield curve. However, we have no volatilities for
 periods shorter than one year. To obtain these values, we use constant extrapolation, so
-we assume that: \(sigma^cap(t, T_{6M}) = sigma^cap(t, T_{3M}) = sigma^cap(t, T_{6MY}) \). With this assumption we can
+we assume that: 
+\begin{eqnarray*}
+\sigma^cap(t, T_{6M}) = \sigma^cap(t, T_{3M}) = \sigma^cap(t, T_{6MY}) 
+\end{eqnarray*}
+
+With this assumption we can
 compute 6-month caps using standard Black formula:
 
-
 \begin{eqnarray*}
-	\sum_{i=s+1}^{N} W_i = \sum_{i=s+1}^{N} N (L(T_{0}, T_{s}, T_{N}) - X)^{+} \delta_{s−1, s}  
-\end{eqnarray*}
-
-where 
-\begin{eqnarray*}
-	d_1&=&\frac{\log(\frac{S}{k})+(r-\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}
-\end{eqnarray*}
-
-\begin{eqnarray*}
-	d_2&=&\frac{\log(\frac{S}{k})+(r-\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}
+	cap(t, T_{6M}) = B(t, T_{6M}) \delta_{3M,6M} \big[ F(t, T_{3M}, T_{6M}) N(d_{1,6M}) - S(t, T_{3M}, T_{9M}N(d_{2,6M}) \big]
 \end{eqnarray*}
 
 
 Because the six month cap is built only from one caplet covering the period T3M÷T6M, the caplet volatility \(\sigma_{caplet}(t, T_{3M}, T_{6M})\) for the period \(T_{3
 	M} ÷T_{6M}\) is the same as the cap volatility \(\sigma_{cap}(t, T_{6M})\) for the cap maturing at T6M and equals 16.41 \%.
 
+
+where 
+\begin{eqnarray*}
+	d_{1,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) + \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+	d_{2,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) - \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
+\end{eqnarray*}
+
+
 Now we move to the next step, where we deal with the cap maturing at T9M. We compute value of this cap again using the standard Black formula:
 
 \begin{eqnarray*}
-	cap(t, T_{9M}) = B(t, T_{6M}) \delta_{3M,6M} [ F(t, T_{3M}, T_{6M}) N(d_{1,6M})   
-	- S(t, T_{3M}, T_{9M}N(d_{1,6M}) + B(t, T_{6M}) \delta_{3M,6M} [ F(t, T_{3M}, T_{6M}) N(d_{1,6M}) 
-	- S(t, T_{3M}, T_{9M}N(d_{1,6M})
+	cap(t, T_{9M}) &=& B(t, T_{6M}) \delta_{3M,6M} \big[ F(t, T_{3M}, T_{6M}) N(d_{1,6M})- S(t, T_{3M}, T_{9M}N(d_{1,6M})   \\
+	&+& B(t, T_{6M}) \delta_{3M,6M} [ F(t, T_{3M}, T_{6M}) N(d_{1,6M}) - S(t, T_{3M}, T_{9M}N(d_{1,6M}) \big]
 \end{eqnarray*}
 
 
 where 
 \begin{eqnarray*}
-	d_1&=&\frac{\log(\frac{S}{k})+(r-\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}
+	d_{1,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) + \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
 \end{eqnarray*}
 
 \begin{eqnarray*}
-	d_2&=&\frac{\log(\frac{S}{k})+(r-\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}
+	d_{2,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) - \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
 \end{eqnarray*}
+Having the value of the cap maturing at \(T_{9M}\), we can compute the sum of the caplet values
+for the periods \(T_{3M} \div T_{6M}\) and \(T_{6M} \div T_{9M}\) in the following way:
 
-
-Having the value of the cap maturing at T9M, we can compute the sum of the caplet values
-for the periods \(T_{3M}÷T_{6M}\) and \(T_{6M}÷T_{9M}\) in the following way:
+\begin{eqnarray*}
+	\text{caplet}(t, T_{3M}, T_{6M}) &=& D(t, T_{6M}) \delta_{3M,6M} \big[ F(t, T_{3M}, T_{6M}) N(d_{1,6M})
+	- S(t, T_{3M}, T_{9M}N(d_{2,6M}) \big]
+\end{eqnarray*}
 
 
 where 
 \begin{eqnarray*}
-	d_1&=&\frac{\log(\frac{S}{k})+(r-\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}
+	d_{1,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) + \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
 \end{eqnarray*}
 
 \begin{eqnarray*}
-	d_2&=&\frac{\log(\frac{S}{k})+(r-\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}
+	d_{2,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) - \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
 \end{eqnarray*}
 
-In this case we input \(\sigma_{caplet}(t, T_{3M}, T_{6M}\) as the value computed in the previous step
+
+In this case we input \(\sigma_{caplet}(t, T_{3M}, T_{6M})\) as the value computed in the previous step
 of calibration (equaling 16.41 \%). Next we compute the caplet value for the second
 period:
 
 \begin{eqnarray*}
-	caplet(t, T_{3M}, T_{6M}) = B(t, T_{9M}) \delta_{6M,9M} [  F(t, T_{3M}, T_{6M}) N(d_{1,6M} -  S(t, T_{3M}, T_{9M}N(d_{1,6M}) ]
+	\text{caplet}(t, T_{6M}, T_{9M}) = D(t, T_{9M}) \delta_{6M,9M} \big[F(t, T_{6M}, T_{9M}) N(d_{1,9M} -  S(t, T_{3M}, T_{9M}N(d_{2,9M}) \big]
 \end{eqnarray*}
 
 where 
 \begin{eqnarray*}
-	d_1&=&\frac{\log(\frac{S}{k})+(r-\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}
+	d_{1,9M}&=&\frac{\ln\Big(\frac{F(t, T_{6M}, T_{9M})}{S(t, T_{3M}, T_{9M})}\Big) + \frac{\sigma^{cap}(t, T_{3M})^2 \delta_{t, 3M}}{2}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
 \end{eqnarray*}
-and 
 
-where 
 \begin{eqnarray*}
-	d_1&=&\frac{\log(\frac{S}{k})+(r-\frac{1}{2}\sigma^2)(T-t)}{\sigma\sqrt{(T-t)}}
+	d_{2,6M}&=&\frac{\ln\Big(\frac{F(t, T_{3M}, T_{6M})}{K}\Big) - \sigma^{cap}(t, T_{6M})^2\delta_{t, 3M}}{\sigma^{cap}(t, T_{6M})\sqrt{\delta_{t,3M}}}
 \end{eqnarray*}
 
 The final computation in this step of calculation is solving the equation with respect to
 
 \begin{eqnarray*}
-	cap(t, T_{9M}) = caplet(t, T_{3M}, T_{6M}) + caplet(t, T_{6M}, T_{9M})
+	\text{cap}(t, T_{9M}) = \text{caplet}(t, T_{3M}, T_{6M}) + \text{caplet}(t, T_{6M}, T_{9M})
 \end{eqnarray*}
 
 
@@ -776,14 +846,13 @@ market quotes for various cap volatilities which are ATM.
 	\item [6.] Continue up to last cap reset. Increase the index in step (5).
 \end{enumerate}
 
+\subsubsection{Stripping caplet volatilities from cap quotes Python code}
+Executing the program \(capletVolatilityStripping.py\) give us the following table. 
 
-We now present an example of the stripping algorithm using our work just completed.
-Example 7.3 Stripping caplet volatilities from cap quotes
 Table 7.5 presents cap volatilities for periods from one year up to 20 years. Only cap volatilities
 for full years are taken directly from the market. Caps before 1 year are extrapolated
 using one year volatility as a constant. Caps for broken periods above 1 year are linearly
 interpolated. Strikes for ATM caps are taken from Table 7.4.
-
 
 
 We can present our computations graphically:
@@ -795,10 +864,8 @@ Figure 7.3 we usually observe a hump in the volatilities. The peak of the hump i
 the 2 to 3 year point. There is no general agreement on the reason for the existence of
 the hump.
 
-
 \begin{figure}[H]
 	\includegraphics[width = \textwidth]{CapCapletVol.png}
-	\caption{Volatilité implicite: \(\mu_1=\mu_2=0.03, p=0.5, \sigma^2=0.04, \sigma_2^2=0.04 \ to \ 0.05\)}	
 \end{figure}
 
 
@@ -857,33 +924,30 @@ Running the optimization starting from initial values: \(v_1=0.1, v_2=0.1, v_3=0
 
 presents the results of our computations.
 
-\section{CVA Calculation for an Interest Rate Swap}
+\newpage
+\section{Credit Adjustment Valuation (CVA) calculation for an Interest Rate Swap}
 Our aim in this part is to calculate the credit valuation adjustment (taken by counterparty A) to the price of an interest rate swap using credit spreads for Counterparty B.\\
 
 \subsection{Interest Rate Swap (IRS)}
-The most common type of swap is a ‘‘plain vanilla’’ interest rate swap. In this swap a
+The most common type of swap is a "plain vanilla" interest rate swap. In this swap a
 company agrees to pay cash flows equal to interest at a predetermined fixed rate on a
 notional principal for a predetermined number of years. In return, it receives interest at
 a floating rate on the same notional principal for the same period of time.
 
-LIBOR
 The floating rate in most interest rate swap agreements is the London Interbank Offered
-Rate (LIBOR). We introduced this in Chapter 4. It is the rate of interest at which a bank
-is prepared to deposit money with other banks that have a AA credit rating. One-month,
-three-month, six-month, and 12-month LIBOR are quoted in all major currencies.
+Rate (LIBOR). It is the rate of interest at which a bank is prepared to deposit money with other banks that have a AA credit rating. One-month, three-month, six-month, and 12-month LIBOR are quoted in all major currencies.
 
 \subsection{CVA Calculation}
 As stated by the Bank of International Settlements (Basel, Switzerland), during the financial crisis, roughly two-thirds of losses attributed to counterparty credit risk were due to CVA losses and only about one-third were due to actual defaults.
-
-Credit Valuation Adjustment (CVA) is a form of "adjustment" or "correction" that must be applied to the price of financial instruments to take into account Counterparty risk.
+Credit Valuation Adjustment (CVA) is a form of "adjustment" or "correction" that must be applied to the price of financial instruments to take into account Counterparty risk:
 \begin{eqnarray}
 	\pi^{*}=\pi - CVA
 \end{eqnarray}
 where :
 \begin{enumerate}
-	\item [a)] \(\pi^{*}\) corrected price
-	\item [b)] \(\pi\) price
-	\item [c)] \(CVA\) correction
+	\item [a)] \(\pi^{*}\) \ \text{corrected price}
+	\item [b)] \(\pi\)  \ \text{price}
+	\item [c)] \(CVA\)  \ \text{correction}
 \end{enumerate}
 Credit Valuation Adjustment involves three components :
 \begin{enumerate}
@@ -891,50 +955,73 @@ Credit Valuation Adjustment involves three components :
 	\item [b)] Valuation : related to the value or price of the instrument
 	\item [c)] Adjustment : associated with a correction to the price of the instrument
 \end{enumerate}
-In the case of a plain vanilla interest rate swap, the probability of default quantifies the likelihood of the counterparty “disappearing” (and thus not paying anymore).
-What is the value (price) of interest rate swap?
-from the point of view of A, the value of the IRS is the sum of the expected cashflows paid (fixed) and received
-(floating). and which cashflows to consider depends on the valuation time
-We note by \(V(t)\) the mark-to-market of the swap and by \(E(V_t) = max(V(t), 0)\) the exposure.\\
+\subsubsection{Credit}
+In the case of a plain vanilla interest rate swap, the probability of default quantifies the likelihood of the counterparty "disappearing" (and thus not paying anymore).
+\subsubsection{Valuation}
+From the point of view of A, the value of the IRS is the sum of the expected cash-flows paid (fixed) and received
+(floating), and which cash-flows to consider depends on the valuation time.\\
+We note by \(V(t)\) the mark-to-market of the swap and by \(E(V_t) = \max(V(t), 0)\) the exposure.\\
 
-multiple exposure profiles (obtained via Monte Carlo simulation)
 
 
-the average exposure profile quantifies the average value of the losses as a function of time during the life of the instrument.
+Our aim here is to calculate the net present value of this IRS, in particular a paying
+fixed-for-floating IRS. In this contract, the holder pays the fixed rate and receives the
+floating rate at regular intervals.
+
+The present value of the IRS is the sum of the discounted future payments of the IRS.
+Being a paying IRS, we pay the fixed rate K and we receive the future floating rate L.
+This rate is fixed (that is, determined) at the beginning of the period and it runs up to
+the maturity date (when the payment is made). \(DF_{i}\) stands for the respective discount
+factors. Each payment is multiplied by the notional and day count fraction \(\tau_{i}\).
+
+Second, we ought to select the mathematical model for the underlying. In the case
+of interest rates, we choose we select the LMM to solve these problems. 
+Third, we select the numerical method to be used and in this case, we choose the Monte Carlo method. This method will allow
+us to simulate the random behavior of the forward rates. Fourth, we construct the
+algorithm that will put together these calculations as a series of calculation steps,
+
+
+\begin{eqnarray*}
+	PV(Floating Leg) = \sum_{i=s+1}^{N} B(T_0, T_{i}) L(T_{i-1}, T_{i}, T_{i}) \delta_{i−1,i} 
+\end{eqnarray*}
+
+Analogously, the present value of the fixed leg is given by:
+
+\begin{eqnarray*}
+	PV(Fixed Leg) = \sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} 
+\end{eqnarray*}
+
+Assuming that the frequency of the floating payment is the same as the frequency of the
+fixed payments we can write:
+
+
+We will use Monte Carlo simulation in order to obtain multiple exposure profiles. The average exposure profile quantifies the average value of the losses as a function of time during the life of the instrument.
 
 \subsubsection{Adjustment}
-The adjustment is the third component of the CVA calculatio 
-
-CVA is a monetary value representing the reduction in value of the instrument due to the default of the counterparty
+The adjustment is the third component of the CVA calculation. \\
+\noindent CVA is a monetary value representing the reduction in value of the instrument due to the default of the counterparty.
 \begin{eqnarray}
 CVA = E[L]
 \end{eqnarray}
-
-where 
-
-CVA is a monetary value representing the reduction in value of the instrument due to the default of the counterparty
 \begin{eqnarray}
 L = \text{Amount lost} \ \times \text{Probability of default} \ \times \text{Discount Factor}
 \end{eqnarray}
-where 
-
-L: present value of probable loss
-Amount lost: future value that could be lost
-Probability of default:  with some amount of probability
+L present value of probable loss. \\
+Amount lost: future value that could be lost\\
+Probability of default:  with some amount of probability\\
 Discount Factor: discounted to the present
 
-We express that as follow:
-
+\noindent We express that as follow:
 \begin{eqnarray}
 L(\tau)&=&(1-R)E(\tau) \times PD(\tau) \times DF(\tau)\\
 &=&(1-R)E(\tau) \times PD(\tau) \times DF(\tau)
 \end{eqnarray}
 	
-in consequence:
+\noindent in consequence:
 \begin{eqnarray}
 CVA = E[(1-R)E(\tau) \times PD(\tau) \times DF(\tau)]
 \end{eqnarray}
-And to compute the expectation we integrate
+And to compute the expectation we integrate:
 \begin{eqnarray}
 CVA = \int_{0}^{T} E(1-R)E(\tau) \times DF(\tau) \times dPD(\tau)
 \end{eqnarray}
@@ -966,108 +1053,140 @@ dPD_{t}&=&\Delta PD_{t}\\
 \end{eqnarray}
 We will conduct the CVA calculation following steps from the CQF lecture on CVA.
 
-\subsubsection{STEP 1: INPUTS of the contract}
-Plain vanilla IRS, pays fixed, receives floating, with quarterly payments. Notional is 1,000,000 USD. 
+\subsubsection{STEP 1: Inputs of the contract}
+Plain vanilla IRS, pays fixed, receives floating, with semi-annual payments. Notional \(N\) is 1,000,000. 
 The fixed (swap) rate is 39 basis points, i.e. 0.39\% pa. The curve of US treasuries (US Treasury Yield curve) is today:
-0.04\% at 3M, 0.25\% at 6M, 0.32\% at 9M and 0.40\% at 12M. The credit characteristics of the
-counterparty are:
+
+\vskip 0.2cm 		
+{
+	\centering
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		Tenor & Spot Rate \\		
+		\hline		
+		6M	  &  0.04\%  \\
+		\hline		
+		1Y	  &  0.25\%  \\  
+		\hline		
+		1.5Y  &  0.32\%  \\
+		\hline		
+		2Y	  &  0.40\%  \\
+		\hline		
+		2.5Y  &  0.45\%  \\
+		\hline		
+		3Y	  &  0.46\%  \\
+		\hline		
+		3.5Y  &  0.48\%  \\
+		\hline		
+		4Y	  &  0.49\%  \\
+		\hline		
+		4.5Y  &  0.50\%  \\
+		\hline		
+		5Y	  &  0.51\%  \\
+		\hline				 				
+	\end{tabular}
+}
+\vskip 0.4cm\
+
+\noindent The credit characteristics of the counterparty are:
 \(\lambda=3\%\) and the recovery rate \(R=40\%\). 
 \subsubsection{STEP 2: FORWARD RATES and DISCOUNT FACTORS}
-
-- Forward rates:  We will use the Libor Market Model for the simulation of the forward rates.
-- Discount factors:
-- Default probabilities:
+- Forward rates:  We will use the Libor Market Model for the simulation of the forward rates starting from initial forward rate today.
+\noindent Discount factors: Also we will start from initial spot rate, and recalculate the discount factor during Monte Carlo simulation
+\subsubsection{STEP 2.0: Default probabilities}
+\noindent Default probabilities are obtained using the formula:
 \begin{eqnarray*}
 	PD_{i}= \exp(\lambda T_{i-1})-\exp(\lambda T_{i}) \ \forall i =1,2,...,N
 \end{eqnarray*}
 
 \subsubsection{STEP 3: MARK TO MARKET PRICE OF THE SWAP}
-
-Each swap payment:
+Each swap payment is given by the formula:
 \begin{eqnarray*}
 	N \times \Delta t \times DF_i \times (L_i - K) 
 \end{eqnarray*}
 where 
-N : Notional\\
-\(\Delta t\): day count fraction
-\(DF_i t\): discount factor
-\(L_i\): forward rate
-\(K\): swap rate \\
+\begin{enumerate}
+\item \(N\) : Notional
+\item \(\Delta t\): day count fraction
+\item \(DF_i\): discount factor
+\item \(L_i\): forward rate
+\item \(K\): swap rate 
+\end{enumerate}
 
-for the period \([T_0,...., T_{n-1}]\) we will calculate the \(MTM_i\) as follow:
+\noindent for the period \([T_0,...., T_{n-1}]\) we will calculate the \(MTM_i\) as follow:
 \begin{eqnarray*}
 	MTM(T_0) = \sum_{i=1}^{n} N \times \Delta t \times DF_i \times (L_i - K) 
 \end{eqnarray*}
 
-with 
+\noindent with 
 \begin{eqnarray*}
 	MTM(T_n) = 0
 \end{eqnarray*}
 
 \subsubsection{STEP 4: COMPUTE THE EXPOSURE}
 \begin{eqnarray*}
-	E(T_i) = max(MTM(T_i), 0) \ \forall i = 1,2,...,n
+	E(T_i) = \max(MTM(T_i), 0) \ \forall i = 1,2,...,n
 \end{eqnarray*}
 
 \subsubsection{STEP 5: COMPUTE THE CVA}
-The discretization form of the equation XXXX:
-
+The discretization form of the equation (4.2.8):
 \begin{eqnarray*}
 	CVA = \sum_{1=1}^{n} (1-R) E(\frac{T_{i-1}-T_i}{2}) \times DF(\frac{T_{i-1}-T_i}{2})  \times PD(\frac{T_{i-1}-T_i}{2})
 \end{eqnarray*}
+\subsubsection{Implementation}
+Running the code python in the file \textbf{unit\_test\_cva\_6M\_IRS.py} using the unittest module as follow:
+\textbf{Python -m unittest unit\_test\_cva\_6M\_IRS.py}, allows us to obtain the bellow results. Two cases are considered. The CVA calculation with an increasing term structure and a decreasing term structure.
+\subsubsection{CREDIT VALUE ADJUSTMENT INCESAING}
+In this case we will start from an increasing spot rate and an increasing initial forward. 
 
-\newpage
-\subsubsection{FINAL RESULT}
-
-\subsection{CREDIT VALUE ADJUSTMENT INCESAING}
-
-SSSSSSSSSSSSSSSSSS\\
-xxxxxxxxx
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{Term_structure_01.png}
-	\caption{Volatilité implicite: \(\mu_1=\mu_2=0.03, p=0.5, \sigma^2=0.04, \sigma_2^2=0.04 \ to \ 0.05\)}	
+	\includegraphics[width = \textwidth]{IncreasingTermStructure.png}
 \end{figure}
 
 
-XXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{IRS_Exposure_01.png}
+	\includegraphics[width = \textwidth]{IncreasingTermStructureIRSExpectedExposureSim.png}	
 \end{figure}
 
-YYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
 
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{CVA_Period_01.png}
+	\includegraphics[width = \textwidth]{IncreasingTermStructureExpectedExposure.png}
+\end{figure}
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{IncreasingTermStructureCVAPeriod.png}
 \end{figure}
 
-zzzzzzzzzzzzzzzzzzzzzzzzz
+\textbf{CVA = 385.21}
 
 \subsection{CREDIT VALUE ADJUSTMENT DECREASING}
+In this case we will start from a decreasing spot rate and a decreasing initial forward.
 
-JE VEUX QUE MA FIGURE VIENS ICI
 
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{Term_structure_02.png}
+	\includegraphics[width = \textwidth]{DecreasingTermStructure.png}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{DecreasingTermStructureIRSExpectedExposureSim.png}
 \end{figure}
 
 
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{IRS_Exposure_02.png}
+	\includegraphics[width = \textwidth]{DecreasingTermStructureExpectedExposure.png}
 \end{figure}
 
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{CVA_Period_02.png}
+	\includegraphics[width = \textwidth]{DecreasingTermStructureCVAPeriod.png}
 \end{figure}
+\textbf{CVA = 45.13}
+
 
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{IncreasingExpectedExposure.png}
-\end{figure}
-
-\begin{figure}[H]
-	\includegraphics[width = \textwidth]{IncreasingCVAPeriod.png}
+	\includegraphics[width = \textwidth]{payerSwaptionAndReceiverSwaption.png}
 \end{figure}
 
 
+\newpage
 Typically a large part of the day to day work of a quantitative analyst is to implement a model and integrate this into the pricing environment. Understanding the model and writing its complete set of dynamics is certainly one part of the job, but an arguably equally important and rewarding step is coding it. The readers of this book will come from many backgrounds, some very mathematically oriented and others perhaps have a computer science background, and so by providing the reader with the equations and code examples, both communities will be able to take something from the book. Python (see, e.g., Martelli 2006) is widely used in banking, often as a language for interfacing data feeds to a system or as an API to the pricing/risk library developed in C++. The advantages of providing examples in Python are multifold. It is easy to read for someone who already has some experience programming in other languages, offers object oriented structures, is open source, and has several excellent and well developed numerical libraries, notably SciPy and NumPy (see Jones et al. 2001–). Python also has the graphing capabilities comparable with R or Matlab, thanks to the matplotlib library (see Hunter 2007), which has been employed to produce most of the charts appearing in this book. Table 1.1   Python functions list
 
 \begin{enumerate}
@@ -1079,67 +1198,6 @@ Typically a large part of the day to day work of a quantitative analyst is to im
 	\item marketDataPreprocessing.py
 	\item g1g2g3InstantaneousVolatilityFitting.py	
 \end{enumerate}
-
-\subsection{CVA for an Interest Rate Swap}
-In the implementation we will consider a swap described a follow: 
-\begin{enumerate}
-	\item Interest Rate Swap (plain vanilla) Contract duration 5Y year. 
-	\item Payments Libor every 6M. 
-	\item Notional 1 million EUR. 
-	\item Fixed rate 4\%. 
-	\item Floating rate EURIBOR6M. 
-	\item Flat term structure at 5\%. 
-	\item Volatility 15\%	
-\end{enumerate}
-The payoff function is: 
-payoff function, which in our case is as follows:
-\begin{eqnarray*}
-	PV = \sum_{i=0}^{N} Notional \times DF_{i} \times \tau_{i} \times (L_{i}-K)
-\end{eqnarray*}
-
-Our aim here is to calculate the net present value of this IRS, in particular a paying
-fixed-for-floating IRS. In this contract, the holder pays the fixed rate and receives the
-floating rate at regular intervals.
-
-The present value of the IRS is the sum of the discounted future payments of the IRS.
-Being a paying IRS, we pay the fixed rate K and we receive the future floating rate L.
-This rate is fixed (that is, determined) at the beginning of the period and it runs up to
-the maturity date (when the payment is made). \(DF_{i}\) stands for the respective discount
-factors. Each payment is multiplied by the notional and day count fraction \(\tau_{i}\).
-
-Second, we ought to select the mathematical model for the underlying. In the case
-of interest rates, we choose we select the LMM to solve these problems. 
-Third, we select the numerical method to be used and in this case, we choose the Monte Carlo method. This method will allow
-us to simulate the random behavior of the forward rates. Fourth, we construct the
-algorithm that will put together these calculations as a series of calculation steps,
-
-
-\begin{eqnarray*}
-	PV(Floating Leg) = \sum_{i=s+1}^{N} B(T_0, T_{i}) L(T_{i-1}, T_{i}, T_{i}) \delta_{i−1,i} 
-\end{eqnarray*}
-
-Analogously, the present value of the fixed leg is given by:
-
-\begin{eqnarray*}
-	PV(Fixed Leg) = \sum_{i=s+1}^{N} B(T_0, T_{i}) S(T_{0}, T_{s}, T_{N}) \delta_{i−1,i} 
-\end{eqnarray*}
-
-Assuming that the frequency of the floating payment is the same as the frequency of the
-fixed payments we can write:
-	
-STEP 1: READ INPUT PARAMETERS into a panda dataframe
-STEP 2: COMPUTE FORWARD RATES
-STEP 3: COMPUTE PROBABILITY OF DEFAULT
-STEP 4: COMPUTE PROBABILITY OF DEFAULT
-STEP 5: COMPUTE DISCOUNT FACTORS
-STEP 6: COMPUTE EFFECTIVE FUTURES VALUES RATES
-STEP 7: COMPUTE NUMERAIRE REBASED PAYMENT
-STEP 8: COMPUTE IRS MARKET TO MARKET EXPOSURES
-STEP 9: COMPUTE IRS PRESENT VALUES EXPOSURES
-STEP 10: COMPUTE THE CREDIT VALUES ADJUSTMENT FOR EACH PERIOD
-STEP 11: COMPUTE THE CVA 
-STEAP 10: OUTPUT RESULTS
-
 
 \begin{figure}[H]
 	\includegraphics[width = \textwidth]{Correlation_to_do.png}
