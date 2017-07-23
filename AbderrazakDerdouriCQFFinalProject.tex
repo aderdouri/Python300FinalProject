@@ -782,7 +782,7 @@ the 2 to 3 year point. There is no general agreement on the reason for the exist
 the hump.
 
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{CapCapletVol.png}
+	\includegraphics[width = \textwidth]{StrippedCapletVolatilies.png}
 \end{figure}
 
 
@@ -835,9 +835,28 @@ Having that our minimization function will be:
 Running the optimization starting from initial values: \(v_1=0.1, v_2=0.1, v_3=0.1, v_4=0.1\) and 
 we obtain the values: \(v_1=0.112346, v_2=-0.441811, v_3=0.971559, v_4=1.223058, f_min=0.0436646\) 
 
+\vskip 0.2cm 		
+{
+	\begin{center}
+		\begin{tabular}{lllll}
+			\hline
+			\(v_1\)   & \(v_2\)  & \(v_3\)  & \(v_4\)  & \(f_{min}\) \\
+			\hline
+			 0.112346 & -0.441811 & 0.971559 & 1.223058 & 0.0436646 \\			
+			\hline				 				
+		\end{tabular}
+	\end{center}
+}
+\vskip 0.4cm
+
+
 \textbf{Python code}: abcdInstantaneousVolatilityFitting.py
 
 presents the results of our computations.
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{ParametricCapletVolatiliy.png}
+\end{figure}
 
 \subsubsection*{Step 4}
 Let us define the function
@@ -863,6 +882,22 @@ Having that our minimization function will then be:
 \end{eqnarray*}
 Running the optimization starting from initial values \(g1, g2, g3 = 0.1\), we obtain values \([g1, g, 2g3] = [-0.0008404  -0.00193876  0.30603882]\)
 
+
+\vskip 0.2cm 		
+{
+	\begin{center}
+		\begin{tabular}{llll}
+			\hline
+			\(g_1\)   & \(g_2\)  & \(g_3\)  & \(f_{min}\) \\
+			\hline
+			-0.0008404  & -0.00193876  & 0.30603882 & 0.046424\\			
+			\hline				 				
+		\end{tabular}
+	\end{center}
+}
+\vskip 0.4cm
+
+
 \textbf{Python code}: g1g2g3InstantaneousVolatilityFitting.py
 
 \subsubsection*{Step 5}
@@ -874,13 +909,31 @@ We define the function delta as follow:
 
 Tables presents the results of our computations of step 5.
 
-
-I will not be able to go to the calibration scheme to swaption for time constraints.
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{ParametricCorrCapletVolatiliy.png}
+\end{figure}
 
 
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{payerSwaptionAndReceiverSwaption.png}
+	\includegraphics[width = \textwidth]{ParametricVSCorrCapletVolatiliy.png}
 \end{figure}
+
+
+
+Algorithm based on the Rebonato approach, resulted in some quite good results. The market and
+theoretical caplet volatilities are practically the same - all the differences are negligible as we can see from figure 1 and 2.
+
+I will not be able to go to the calibration scheme to swaption for time constraints.
+
+\subsection{Pricing of Caps and Swaption}
+\subsection{Monte Carlo Cap Price}
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{MoneCarloVSAnalyticCapPrice.png}
+\end{figure}
+
+
+\subsection{Monte Carlo Swaption Price}
 
 
 \newpage
@@ -897,23 +950,29 @@ Typically a large part of the day to day work of a quantitative analyst is to im
 \end{enumerate}
 
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{Correlation_to_do.png}
+	\includegraphics[width = \textwidth]{ExponentialParametricCorrelation.png}
+\end{figure}
+
+\begin{figure}[H]
+	\includegraphics[width = \textwidth]{ParametricCorrelation.png}
 \end{figure}
 
 \begin{figure}[H]
 	\includegraphics[width = \textwidth]{screen.png}
 \end{figure}
 
+
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{MonteCarlo.png}
+	\includegraphics[width = \textwidth]{ReceiverSwaptionPriceStrikeLevel.png}
 \end{figure}
 
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{receiverSwaptionStrikeLevel.png}
+	\includegraphics[width = \textwidth]{PayerSwaptionPriceStrikeLevel.png}
 \end{figure}
 
+
 \begin{figure}[H]
-	\includegraphics[width = \textwidth]{payerSwaptionStrikeLevel.png}
+	\includegraphics[width = \textwidth]{payerSwaptionAndReceiverSwaption.png}
 \end{figure}
 
 
@@ -1053,32 +1112,11 @@ The fixed (swap) rate is 39 basis points, i.e. 0.39\% pa. The curve of US treasu
 \vskip 0.2cm 		
 {
 	\begin{center}
-	\begin{tabular}{|l|l|}
+	\begin{tabular}{lllllllllll}
 		\hline
-		Tenor & Spot Rate \\		
+		Tenor & 6M & 1Y & 1.5Y & 2Y & 2.5Y & 3Y &  3.5Y &  4Y &  4.5Y & 5Y \\
 		\hline
-		6M	  &  0.04\%  \\
-		\hline
-		1Y	  &  0.25\%  \\  
-		\hline
-		1.5Y  &  0.32\%  \\
-		\hline
-		2Y	  &  0.40\%  \\
-		\hline
-		2.5Y  &  0.45\%  \\
-		\hline
-		3Y	  &  0.46\%  \\
-		\hline
-		3.5Y  &  0.48\%  \\
-		\hline
-		4Y	  &  0.49\%  \\
-		\hline
-		4.5Y  &  0.50\%  \\
-		\hline
-
-
-		5Y	  &  0.51\%  \\
-		\hline
+		Spot Rate & 0.04\% & 0.25\% & 0.32\% & 0.40\% & 0.45\% & 0.46\% & 0.48\% & 0.49\% & 0.50\%\ & 0.51\%  \\
 	\end{tabular}
 	\end{center}
 }
@@ -1093,7 +1131,7 @@ The fixed (swap) rate is 39 basis points, i.e. 0.39\% pa. The curve of US treasu
 \subsubsection{STEP 2.0: Default probabilities}
 \noindent Default probabilities are obtained using the formula:
 \begin{eqnarray*}
-	PD_{i}= \exp(\lambda T_{i-1})-\exp(\lambda T_{i}) \ \forall i =1,2,...,N
+	PD_{i}= \exp(\lambda T_{i-1})-\exp(\lambda T_{i}) \ \forall \ i =1,2,...,N
 \end{eqnarray*}
 
 \subsubsection{STEP 3: MARK TO MARKET PRICE OF THE SWAP}

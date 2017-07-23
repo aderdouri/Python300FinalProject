@@ -9,8 +9,8 @@ Description: In this module we test a basic pricing of caplet and cap using Blac
 
 Notes: AbderrazakDerdouriCQFFinalProject.pdf
 
-Run: Python -m unittest capletCapPricing.CapletCapPricingTests.test_capletPricing
-     Python -m unittest capletCapPricing.CapletCapPricingTests.test_capPricing
+Run: Python -m unittest capletCapPricing.CapletCapPricingTests.testCapletPricing
+     Python -m unittest capletCapPricing.CapletCapPricingTests.testCapPricing
 
 Revision History:
 """
@@ -20,7 +20,7 @@ import LiteLibrary
 from unittest import TestCase
 
 class CapletCapPricingTests(TestCase):
-    def test_capletPricing(self):
+    def testCapletPricing(self):
         """
         Caplet pricing using balck formula
         """
@@ -43,7 +43,7 @@ class CapletCapPricingTests(TestCase):
         capletPrice = LiteLibrary.blackCapletValue(D_T0_Tj, deltaTj_1Tj, F_T0_Tj_1_Tj, Strike, deltaT0_Tj_1, sigma_caplet)
         print('capletPrice: {0}'.format(capletPrice))
 
-    def test_capPricing(self):        
+    def testCapPricing(self):        
         """
         Cap pricing as a sum of caplets prices using balck formula
         """

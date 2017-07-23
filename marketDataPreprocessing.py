@@ -10,7 +10,7 @@ Description: preprocess input market data (Discount Factors and Cap volatility(
 
 Notes: AbderrazakDerdouriCQFFinalProject.pdf
 
-Run: Python -m unittest marketDataPreprocessing.CapATMStrikeTests.testATMStrike
+Run: python -m unittest marketDataPreprocessing.CapATMStrikeTests.testATMStrike
 
 Revision History:
 """
@@ -24,7 +24,7 @@ from collections import OrderedDict
 from unittest import TestCase
 import matplotlib.pyplot as plt
 
-def load_data():
+def load_marketData():
     """
     Read market data described in paragraph 3.2.1
     """
@@ -41,12 +41,12 @@ def updateDate(df):
             year, period = row['TenorTi'].split('Y')
             if (period in ['3M','6M','9M']):
                 prevDate = df[df['TenorTi']=='T'+year]['Date']
-                Date = LiteLibrary.getNextDate( pd.datetime(prevDate.dt.year, prevDate.dt.month, prevDate.dt.day), period)
+                Date = LiteLibrary.getNextDate(pd.datetime(prevDate.dt.year, prevDate.dt.month, prevDate.dt.day), period)
                 df.loc[index, 'Date'] = Date
             else:
                 year, period = row['TenorTi'].split('Y')
                 prevDate = df[df['TenorTi']=='T'+ str(int(year)-1)+'Y']['Date']
-                Date = LiteLibrary.getNextDate( pd.datetime(prevDate.dt.year, prevDate.dt.month, prevDate.dt.day), period)
+                Date = LiteLibrary.getNextDate(pd.datetime(prevDate.dt.year, prevDate.dt.month, prevDate.dt.day), period)
                 df.loc[index, 'Date'] = Date
     return df
 
@@ -56,14 +56,15 @@ def plotForwardSwapRate(df):
     Plot the ATM Swap Rate
     """
     forwardSwapRate = df[['ForwardSwapRate']][8:] # start  from  T6M
-    index = forwardSwapRate.index
     myRange = 8+np.linspace(1, 82, 10)
+    myRange[0] = 12
     myRange[9] = 86
-    xticks = list(df['TenorTi'].iloc[myRange])
+    myRange = np.append(8, myRange)
 
+    xticks = list(df['TenorTi'].iloc[myRange])
     ax = forwardSwapRate.plot(title='Forward Rate Swap')
     fig = ax.get_figure()
-    ax.set_xticks(8+np.linspace(1, 82, 10));
+    ax.set_xticks(myRange);
     ax.set_xticklabels(xticks, rotation=45)
     plt.savefig('ForwardSwapRate')
     plt.show()        
@@ -79,7 +80,7 @@ def preProcessMarketData():
     e) Calculate the Forward Rate Swap
     f) Will be use for the Caplet Volatility Stripping
     """
-    marketData = load_data()
+    marketData = load_marketData()
 
     data = OrderedDict()
     tenorList = ['t0','T0','TSN','TSW','T2W'
@@ -233,9 +234,6 @@ def preProcessMarketData():
     df['DeltaT0Ti'] = df.apply(lambda row: LiteLibrary.year_fraction(dateT0, row['Date']), axis=1)
     df['DeltaT0Ti_365'] = df.apply(lambda row: LiteLibrary.year_fraction365(dateT0, row['Date']), axis=1)
 
-    #df = capletVolatilityStripping.resolveForCapletVolatility(df)
-    #df['SigmaCaplet^2*TimeToMaturity'] = df.apply(lambda row: np.power(row['CapletVolatility'], 2)*row['DeltaT0Ti'] , axis=1)
-
     return df
 
 class CapATMStrikeTests(TestCase):
@@ -246,6 +244,6 @@ class CapATMStrikeTests(TestCase):
         """
         print('ATM strikes for caps, preliminary computations')
         df = preProcessMarketData()
-        LiteLibrary.writeDataFrame(df, 'preProcessMarketData')
+        LiteLibrary.writeDataFrame(df, 'preProcessedMarketData')
         print('See column ForwardSwapRate from the preProcessedMarketData sheet in the marketData.xlsx file.')
         plotForwardSwapRate(df)

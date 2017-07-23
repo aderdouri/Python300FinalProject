@@ -1,11 +1,11 @@
 """
 Date: Monday, 24 July 2017
-File name: 
+File name: LiteLibrary.py
 Version: 1 
 Author: Abderrazak DERDOURI
 Subject: CQF Final Project
 
-Description: implement Black formula and interpolation methods
+Description: Implement Black formula and interpolation methods
 
 Notes: AbderrazakDerdouriCQFFinalProject.pdf
 
@@ -16,12 +16,9 @@ import pandas as pd
 import numpy as np
 from datetime import date
 import re
-#pip install xlrd
-from sys import exit
 from collections import OrderedDict
 from math import log, sqrt, exp
 from scipy import stats
-
 
 from scipy.optimize import root, fsolve
 import matplotlib.pyplot as plt
@@ -42,6 +39,10 @@ def interpolateVol(sigma1, sigma2,  tau, tau1, tau2):
     return ( (tau2-tau).days/(tau2-tau1).days*sigma1 + (tau-tau1).days/(tau2-tau1).days*sigma2 )
 
 def getNextDate(Date, Period):
+    """
+    Add Period of 3M, 6M, 9M or xY to Date and return Date + Period
+    Skip Saturday and Sunday
+    """
     if (5==Date.weekday()):
         day += 2
     elif (6==Date.weekday()):
@@ -61,20 +62,32 @@ def getNextDate(Date, Period):
     return Date
 
 def day_count(start_date, end_date):
-    """Returns number of days between start_date and end_date, using Actual/360 convention"""
+    """
+    Returns number of days between start_date and end_date
+    using Actual/360 convention
+    """
     return (end_date - start_date).days
 
 def year_fraction365(start_date, end_date):
-    """Returns fraction in years between start_date and end_date, using Actual/365 convention"""
+    """
+    Returns fraction in years between start_date and end_date
+    using Actual/365 convention
+    """
     return day_count(start_date, end_date) / 365.0
 
 
 def year_fraction(start_date, end_date):
-    """Returns fraction in years between start_date and end_date, using Actual/360 convention"""
+    """
+    Returns fraction in years between start_date and end_date
+    using Actual/360 convention
+    """
     return day_count(start_date, end_date) / 360.0
 
 def year_fraction365(start_date, end_date):
-    """Returns fraction in years between start_date and end_date, using Actual/365 convention"""
+    """
+    Returns fraction in years between start_date and end_date
+    using Actual/365 convention
+    """
     return day_count(start_date, end_date) / 365.0
 
 def normcdf(d):
@@ -129,15 +142,6 @@ def date_diff(row):
     """
     return year_fraction(row['PrevDate'], row['Date'])
 
-'''
-def writeDataFrame(df):  
-    # Create a Pandas Excel writer using XlsxWriter as the engine.
-    writer = pd.ExcelWriter('PreProcessedMarketData.xlsx', engine='xlsxwriter')
-    # Convert the dataframe to an XlsxWriter Excel object.
-    df.to_excel(writer, sheet_name='PreProcessedMarketData')
-    # Close the Pandas Excel writer and output the Excel file.
-    writer.save()
-'''
 
 def writeDataFrame(newdf, newSheetName): 
     """
