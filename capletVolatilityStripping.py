@@ -9,11 +9,11 @@ Description: Perform caplet volatility stripping as decribed in paragraph (3.4.2
 
 Notes: AbderrazakDerdouriCQFFinalProject.pdf
 
-Run: python -m unittest capletVolatilityStripping.CapletVolatilityStrippingTests.testCapletVolatilityStripping
+Run: python -m unittest capletVolatilityStripping.CplVolStripTests.testCplVolStrip
 
 requirement : must be run after  
-             python -m unittest marketDataPreprocessing.CapATMStrikeTests.testATMStrike
-             to have preProcessedMarketData sheet already prepared
+             python -m unittest marketDataProcessing.CapATMStrikeTests.testATMStrike
+             to have processedMarketData sheet already prepared
 """
 
 import LiteLibrary
@@ -21,16 +21,16 @@ from scipy.optimize import root, fsolve
 from unittest import TestCase
 import numpy as np
 import pandas as pd
-import marketDataPreprocessing
+import marketDataProcessing
 import matplotlib.pyplot as plt
 
-def load_preProcessedMarketData():
+def load_processedMarketData():
     """
-    Load preProcessed market data (sheet preProcessedMarketData from marketData.xlsx file)
-    The output saved to the CapletVolatility in the same preProcessedMarketData sheet 
+    Load preProcessed market data (sheet processedMarketData from marketData.xlsx file)
+    The output saved to the CapletVolatility in the same processedMarketData sheet 
     """
-    preProcessedMarketData = pd.read_excel('marketData.xlsx', sheetname='preProcessedMarketData', skiprows=0)
-    return preProcessedMarketData
+    processedMarketData = pd.read_excel('marketData.xlsx', sheetname='processedMarketData', skiprows=0)
+    return processedMarketData
 
 def plotStrippedCapletVolatilities(df):
     """
@@ -86,7 +86,7 @@ def resolveForCapletVolatility(df):
                 """
                 sigma_cpl0 = 1.0
                 sigma_cpl = fsolve (func, sigma_cpl0)
-                print ('CapletVolatility: {0}'.format(sigma_cpl))
+                #print ('CapletVolatility: {0}'.format(sigma_cpl))
                 df['CapletVolatility'].iloc[idx] = sigma_cpl[0]
             else:
                 sigma_caplet = df['CapletVolatility'].iloc[idx]
@@ -94,18 +94,18 @@ def resolveForCapletVolatility(df):
         
     return df
 
-class CapletVolatilityStrippingTests(TestCase):
-    def testCapletVolatilityStripping(self):
+class CplVolStripTests(TestCase):
+    def testCplVolStrip(self):
         """
         Test caplet volatilities stripping algorithm 
         and call of resolveForCapletVolatility function
         """
         print('Caplet Volatility Stripping test')
 
-        df = load_preProcessedMarketData()
+        df = load_processedMarketData()
         df = resolveForCapletVolatility(df)
         df['SigmaCaplet2*TimeToMaturity'] = df.apply(lambda row: np.power(row['CapletVolatility'], 2)*row['DeltaT0Ti'] , axis=1)
 
-        LiteLibrary.writeDataFrame(df, 'preProcessedMarketData')
-        print('See column CapletVolatility from the preProcessedMarketData sheet in the marketData.xlsx file.')
+        LiteLibrary.writeDataFrame(df, 'processedMarketData')
+        print('See column CapletVolatility from the processedMarketData sheet in the marketData.xlsx file.')
         plotStrippedCapletVolatilities(df)                

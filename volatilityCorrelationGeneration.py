@@ -9,8 +9,10 @@ Description:
 
 Notes: AbderrazakDerdouriCQFFinalProject.pdf
 
-Run: python -m unittest volatilityCorrelationGeneration.VolatilityCorrelationGenerationTests.test01VolatilityCorrelationGeneration
-
+Run: python -m unittest volatilityCorrelationGeneration.VolCorrGenTests.test01VolCorrGen
+     python -m unittest volatilityCorrelationGeneration.VolCorrGenTests.test01VolCorrGen
+     python -m unittest volatilityCorrelationGeneration.VolCorrGenTests.test01VolCorrGen
+    
 Revision History:
 """
 
@@ -63,11 +65,11 @@ def generateParametricCorr(alpha, beta, rho_inf, maturity_grid):
     return corr_matrix
 
 
-class VolatilityCorrelationGenerationTests(TestCase):
-    def test01VolatilityCorrelationGeneration(self):
+class VolCorrGenTests(TestCase):
+    def test01VolCorrGen(self):
         print("Exponential Parametric Matrix Correlation")
 
-        df = pd.read_excel('marketData.xlsx', sheetname='preProcessedMarketData')      
+        df = pd.read_excel('marketData.xlsx', sheetname='processedMarketData')      
         start_idx = df[df['TenorTi']=='T1Y'].index[0]    
         end_idx = df[df['TenorTi']=='T2Y3M'].index[0]    
         
@@ -79,7 +81,7 @@ class VolatilityCorrelationGenerationTests(TestCase):
         corr_matrix = generateExponentialParametricCorr(beta, maturity_grid)
         print(corr_matrix)
 
-    def test02VolatilityCorrelationGeneration(self):
+    def test02VolCorrGen(self):
         """
         Demonstrates plotting a 3D surface colored with the coolwarm color map.
         The surface is made opaque by using antialiased=False.
@@ -122,7 +124,7 @@ class VolatilityCorrelationGenerationTests(TestCase):
         #plt.savefig('ExponentialParametricCorrelation')
         plt.show()   
 
-    def test03VolatilityCorrelationGeneration(self):        
+    def test03VolCorrGen(self):        
         fig = plt.figure()
         ax = fig.gca(projection='3d')
 
@@ -162,49 +164,5 @@ class VolatilityCorrelationGenerationTests(TestCase):
         ax.set_zlabel('Correlation')
         plt.title('Parametric Correlation')
         #plt.savefig('ParametricCorrelation')
-
         #plt.title('Forward-forward correlation matrix generated using the exponential')
-        plt.show()
-
-
-    def test04VolatilityCorrelationGeneration(self):
-        '''
-        Demonstrates the placement of text annotations on a 3D plot.
-
-        Functionality shown:
-        - Using the text function with three types of 'zdir' values: None,
-          an axis name (ex. 'x'), or a direction tuple (ex. (1, 1, 0)).
-        - Using the text function with the color keyword.
-        - Using the text2D function to place text on a fixed position on the ax object.
-        '''
-
-        fig = plt.figure()
-        ax = fig.gca(projection='3d')
-
-        # Demo 1: zdir
-        zdirs = (None, 'x', 'y', 'z', (1, 1, 0), (1, 1, 1))
-        xs = (1, 4, 4, 9, 4, 1)
-        ys = (2, 5, 8, 10, 1, 2)
-        zs = (10, 3, 8, 9, 1, 8)
-
-
-        for zdir, x, y, z in zip(zdirs, xs, ys, zs):
-            label = '(%d, %d, %d), dir=%s' % (x, y, z, zdir)
-            ax.text(x, y, z, label, zdir)
-
-        # Demo 2: color
-        ax.text(9, 0, 0, "red", color='red')
-
-        # Demo 3: text2D
-        # Placement 0, 0 would be the bottom left, 1, 1 would be the top right.
-        ax.text2D(0.05, 0.95, "2D Text", transform=ax.transAxes)
-
-        # Tweaking display region and labels
-        ax.set_xlim(0, 10)
-        ax.set_ylim(0, 10)
-        ax.set_zlim(0, 10)
-        ax.set_xlabel('X axis')
-        ax.set_ylabel('Y axis')
-        ax.set_zlabel('Z axis')
-
         plt.show()

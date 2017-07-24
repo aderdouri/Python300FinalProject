@@ -10,9 +10,7 @@ Description: Price a cap using MonteCarlo simulation
 
 Notes: AbderrazakDerdouriCQFFinalProject.pdf
 
-Run: python -m unittest monteCarloSwaptionPricing.MonteCarloSwaptionPricingTests.test01MonteCarloSwaptionPricing
-     python -m unittest monteCarloSwaptionPricing.MonteCarloSwaptionPricingTests.test02MonteCarloSwaptionPricing
-     python -m unittest monteCarloSwaptionPricing.MonteCarloSwaptionPricingTests.test03MonteCarloSwaptionPricing
+Run: python -m unittest monteCarloSwaptionPricing.MCSwaptionPricingTests.testMCSwaptionPricing
 
 Revision History:
 """
@@ -28,33 +26,10 @@ from math import log, sqrt, exp
 from scipy import stats
 
 
-def load_data(sheetname):    
-    cvaInputData = pd.read_excel('capData.xls', sheetname=sheetname, skiprows=1)
-    cvaInputData.columns = ['FixedRate', 'SpotRate', 'Tau', 'Maturity', 'Notional', 'Lambda', 'RecoveryRate']
-    return cvaInputData
-
-def date_diff(row):
-    return 1
-
-def year_fraction(start_date, end_date):
-    """Returns fraction in years between start_date and end_date, using Actual/360 convention"""
-    return day_count(start_date, end_date) / 360.0
-
-def calculateMtM(df):
-    for index, row in df.iterrows():
-        df.loc[index+1, 'MtM'] = df[1+index:5]['Payment'].sum()
-    return df
-
-def calculateExposureAverage(df):
-    nbElement = len(df.index)
-    for index in range(nbElement-1):
-        df.loc[index+1, 'ExposureAvg'] = (df.loc[index, 'Exposure'] + df.loc[1+index, 'Exposure'])/2.0
-        df.loc[index+2, 'DFAvg'] = (df.loc[index, 'DF'] + df.loc[1+index, 'DF'])/2.0
-        df.loc[index+1, 'PDAvg'] = df.loc[index, 'PD']
-
-    return df
-
 def monteCarloSimu(initialForwardVec, initialSigmaVec, corrMatrix, Notional, Strike, tau, Expiry, timeSteps, NBSIMUS, direction):
+    """
+    Monte Carlo simulations as described in paragraph 3.5.1
+    """
     K = Strike
     sigma = initialSigmaVec
     N = Expiry # number forward rates
@@ -148,6 +123,9 @@ def monteCarloSimu(initialForwardVec, initialSigmaVec, corrMatrix, Notional, Str
 
 
 def MCSimu(initialForwardVec, initialSigmaVec, corrMatrix, Notional, Strike, tau, Expiry, timeSteps, NBSIMUS):
+    """
+    Monte Carlo simulations as described in paragraph 3.5.1
+    """
     K = Strike
     sigma = initialSigmaVec
     N = Expiry # number forward rates
@@ -240,8 +218,8 @@ def MCSimu(initialForwardVec, initialSigmaVec, corrMatrix, Notional, Strike, tau
     return payoff
     """
 
-class MonteCarloSwaptionPricingTests(TestCase):    
-    def testMonteCarloSwaptionPricing(self):        
+class MCSwaptionPricingTests(TestCase):    
+    def testMCSwaptionPricing(self):        
         """
         Pricing of Swaption using Monte Carlo and volatilities from calibration
         """
@@ -268,7 +246,7 @@ class MonteCarloSwaptionPricingTests(TestCase):
             ])
 
 
-        df = pd.read_excel('marketData.xlsx', sheetname='preProcessedMarketData')      
+        df = pd.read_excel('marketData.xlsx', sheetname='processedMarketData')      
         start_idx = df[df['TenorTi']=='T1Y'].index[0]    
         end_idx = df[df['TenorTi']=='T2Y3M'].index[0]    
         
@@ -326,9 +304,10 @@ class MonteCarloSwaptionPricingTests(TestCase):
         plt.figure()
         plt.plot(Strikes, payoffPayerSwaptionList, label='Payer Swaption Payoff')
         plt.plot(Strikes, payoffReceiverSwaptionList, label='Receievr Swaption Payoff')
-        #ax  = plt.gca()
-        #ax.set_ylim([-0.012, 0.012])
-        #plt.plot(Strikes, StrikeLevel, label='Strike Level')
         plt.legend()
+        plt.title('Payer SwaptionPrice StrikeLevel')
+        plt.xlabel('Strike %')
+        plt.ylabel('Swaption Price')
+        plt.savefig('PayerSwaptionAndReceiverSwaption')
         plt.show()       
         

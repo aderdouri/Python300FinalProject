@@ -9,8 +9,8 @@ Description: In this module we test a basic pricing of caplet and cap using Blac
 
 Notes: AbderrazakDerdouriCQFFinalProject.pdf
 
-Run: Python -m unittest capletCapPricing.CapletCapPricingTests.testCapletPricing
-     Python -m unittest capletCapPricing.CapletCapPricingTests.testCapPricing
+Run: python -m unittest capletCapPricing.CplCapPricingTests.testCplPricing
+     python -m unittest capletCapPricing.CplCapPricingTests.testCapPricing
 
 Revision History:
 """
@@ -19,8 +19,8 @@ import pandas as pd
 import LiteLibrary
 from unittest import TestCase
 
-class CapletCapPricingTests(TestCase):
-    def testCapletPricing(self):
+class CplCapPricingTests(TestCase):
+    def testCplPricing(self):
         """
         Caplet pricing using balck formula
         """
