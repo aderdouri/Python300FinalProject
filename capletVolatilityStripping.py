@@ -1,6 +1,6 @@
 """
 Date: Monday, 24 July 2017
-File name: 
+File name: capletVolatilityStripping.py
 Version: 1 
 Author: Abderrazak DERDOURI
 Subject: CQF Final Project
@@ -12,8 +12,8 @@ Notes: AbderrazakDerdouriCQFFinalProject.pdf
 Run: python -m unittest capletVolatilityStripping.CplVolStripTests.testCplVolStrip
 
 requirement : must be run after  
-             python -m unittest marketDataProcessing.CapATMStrikeTests.testATMStrike
-             to have processedMarketData sheet already prepared
+              python -m unittest lmmCalibration.CapATMStrikeTests.testATMStrike
+              to have lmmCalibration sheet already prepared
 """
 
 import LiteLibrary
@@ -21,16 +21,16 @@ from scipy.optimize import root, fsolve
 from unittest import TestCase
 import numpy as np
 import pandas as pd
-import marketDataProcessing
+import lmmCalibration
 import matplotlib.pyplot as plt
 
-def load_processedMarketData():
+def load_lmmCalibration():
     """
-    Load preProcessed market data (sheet processedMarketData from marketData.xlsx file)
-    The output saved to the CapletVolatility in the same processedMarketData sheet 
+    Load preProcessed market data (sheet lmmCalibration from lmmData.xlsx file)
+    The output saved to the CapletVolatility in the same lmmCalibration sheet 
     """
-    processedMarketData = pd.read_excel('marketData.xlsx', sheetname='processedMarketData', skiprows=0)
-    return processedMarketData
+    lmmCalibration = pd.read_excel('lmmData.xlsx', sheetname='lmmCalibration', skiprows=0)
+    return lmmCalibration
 
 def plotStrippedCapletVolatilities(df):
     """
@@ -102,10 +102,10 @@ class CplVolStripTests(TestCase):
         """
         print('Caplet Volatility Stripping test')
 
-        df = load_processedMarketData()
+        df = load_lmmCalibration()
         df = resolveForCapletVolatility(df)
         df['SigmaCaplet2*TimeToMaturity'] = df.apply(lambda row: np.power(row['CapletVolatility'], 2)*row['DeltaT0Ti'] , axis=1)
 
-        LiteLibrary.writeDataFrame(df, 'processedMarketData')
-        print('See column CapletVolatility from the processedMarketData sheet in the marketData.xlsx file.')
+        LiteLibrary.writeDataFrame(df, 'lmmCalibration')
+        print('See column CapletVolatility from the lmmCalibration sheet in the lmmData.xlsx file.')
         plotStrippedCapletVolatilities(df)                

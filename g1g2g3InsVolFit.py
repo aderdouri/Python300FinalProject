@@ -21,7 +21,7 @@ import numpy as np
 import scipy.optimize as optimize
 from scipy.integrate import quad
 from unittest import TestCase
-import marketDataProcessing
+import lmmCalibration
 import LiteLibrary
 import matplotlib.pyplot as plt
 
@@ -85,7 +85,7 @@ class g1g2g2FitTests(TestCase):
         """
         Paramaters g1, g2, g2 estimation test
         """
-        df = pd.read_excel('marketData.xlsx', sheetname='processedMarketData')
+        df = pd.read_excel('lmmData.xlsx', sheetname='lmmCalibration')
         
         T6M = df[df['TenorTi']=='T6M']
         T10Y = df[df['TenorTi']=='T10Y']
@@ -122,7 +122,7 @@ class g1g2g2FitTests(TestCase):
         v = np.array([-0.10522141, 0.4215886, -1.03067277, 1.23953503])
         g = np.array([-0.0008404, -0.00193876, 0.30603882])
 
-        df = pd.read_excel('marketData.xlsx', sheetname='processedMarketData')
+        df = pd.read_excel('lmmData.xlsx', sheetname='lmmCalibration')
         
         start_idx = df[df['TenorTi']=='T6M'].index[0]
         end_idx = df[df['TenorTi']=='T10Y'].index[0]
@@ -140,6 +140,6 @@ class g1g2g2FitTests(TestCase):
         for idx in range(length):
             df['DeltaTi'].iloc[idx+8] = (df['SigmaCaplet2*TimeToMaturity'].iloc[idx+8]/df['ParametricCorrCapletVolatiliy'].iloc[idx+8])-1
 
-        LiteLibrary.writeDataFrame(df, 'processedMarketData')
+        LiteLibrary.writeDataFrame(df, 'lmmCalibration')
         plotParametricCorrCapletVolatiliy(df)
         plotParametric1vs2(df)

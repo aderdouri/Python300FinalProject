@@ -82,75 +82,74 @@ def monteCarloSimu(Notional, Strike, SpoteRatesList, tau, Expiry, sigmaCapletsLi
         VCap[nsim] = sum(FVprime)
 
     # STEP 9: COMPUTE DISCOUNTED EXPECTED PAYOFF
-    sumCap = 0.0
-    for nsim in range(0, NBSIMUS):
-        sumCap = sumCap + VCap[nsim]
-    payoff = D[N-1][0] * sumCap / NBSIMUS
+    payoff = D[N-1][0] * (sum(VCap) / NBSIMUS)
     return payoff
 
 
-class MCCapPricingTests(TestCase):    
+class MCCapPricingTests(TestCase):       
     def testMCCapPricing(self):        
         """
-        Test MonteCarlo simulation Cap Pricing
+        Let's consider a range of caps each one is a set of 5 caplets
+        and price them analytically and using Monte Carlo simulation
         Plot MonteCarlo simulated price vs Analytical price
+        capStart/capMat = ['T3Y6M/T4Y9M', 'T3Y9M/T5Y', 'T4Y/T5Y3M', 'T4Y3M/T5Y6M', 'T4Y6M/T5Y9M'
+        , 'T4Y9M/T6Y', 'T5Y/T6Y3M', 'T5Y3M/T6Y6M', 'T5Y6M/T6Y9M', 'T5Y9M/T7Y']
         """
-        df = pd.read_excel('marketData.xlsx', sheetname='processedMarketData')      
-
-        start_idx = df[df['TenorTi']=='T6M'].index[0]
-        max_idx = len(df.index)
-        print('max_idx: {0}'.format(max_idx))
+        df = pd.read_excel('lmmData.xlsx', sheetname='lmmCalibration')      
+        start_idx = df[df['TenorTi']=='T1Y'].index[0]
+        maturity_idx = df[df['TenorTi']=='T2Y3M'].index[0]
         
-        analyticCapValueList  = []
-        monteCarloCapValueList  = []
-        for row_idx in range(start_idx +1, start_idx+20):
+        Notional = 1.0
+        Strike = 0.0236
+        tau = 0.25
+        Expiry = 5
+        timeSteps = 0.25
+        NBSIMUS = 1000 # number of simulations
+
+        analyticalCapletValueList = []
+        sigmaCapletsList = []
+        SpoteRatesList = []
+        capMaturities = []
+
+        df['analyticalCapValue'] = np.NaN
+        df['monteCarloCapValue'] = np.NaN
+        df['diffAnaliticalMC'] = np.NaN
+
+        for t in range(10, 20):
+            capStart = df['TenorTi'].iloc[start_idx+t]
+            capMat = df['TenorTi'].iloc[maturity_idx+t]
+            capMaturities.append(capStart+'/'+capMat)
+
+            analyticalCapletValueList = []
             sigmaCapletsList = []
             SpoteRatesList = []
-            capValue = 0.0
+            for idx in range(start_idx+t, maturity_idx+t):
+                DF_T0_Ti_1 = df['DF'].iloc[idx-1] # D(T0, Ti-1)
+                DF_T0_Ti = df['DF'].iloc[idx]     # D(T0, Ti)
+                Tau_i = 0.25
 
-            for idx in range(start_idx, row_idx+1):
-                DF_T0_Ti_1 = df['DF'].iloc[idx-1] # B(T0, Ti-1)
-                DF_T0_Ti = df['DF'].iloc[idx]     # B(T0, Ti)
-                Tau_i =  df['Delta'].iloc[idx]    # time(T3M, Ti)
-                #print('Tau_i: {0}'.format(Tau_i))
+                sigmaCaplet = df['CapletVolatility'].iloc[idx]
+                sigmaCapletsList.append(sigmaCaplet)
 
-                sigmaCapletsList.append(df['CapletVolatility'].iloc[idx])
-                L_T0_Ti_1_Ti = LiteLibrary.liborRate(DF_T0_Ti_1, DF_T0_Ti, Tau_i) 
+                L_T0_Ti_1_Ti = df['LT0Ti-3MTi'].iloc[idx]
                 SpoteRatesList.append(L_T0_Ti_1_Ti)
 
-
-                Strike = df['ForwardSwapRate'].iloc[idx] # S(T0, T3M, Ti)
                 Ti_1 = df['DeltaT0Ti'].iloc[idx]
-                r = 0.0
-                sigma_cap = df['CapVolatility'].iloc[row_idx]                
-                capValue = capValue + DF_T0_Ti*Tau_i*LiteLibrary.bsm_call_value(L_T0_Ti_1_Ti, Strike, Ti_1, r, sigma_cap)
 
-            analyticCapValueList.append(capValue)
-
-            Notional = 1.0 #df['Notional'][0]
-            K = 0.02361    #df['FixedRate'][0] # fixed rate IRS
-            tau = 0.25     # df['Tau'][0] # daycount factor
-            Expiry = (row_idx-start_idx+1)
-            #print('Expiry: {0}'.format(Expiry)) 
-            timeSteps = 0.25
-            NBSIMUS = 1000 # number of simulations
-
-       
-            payoff = monteCarloSimu(Notional, K, SpoteRatesList, tau, Expiry, sigmaCapletsList, timeSteps, NBSIMUS)
-            monteCarloCapValueList.append(payoff)
-            print('payoff: {0}'.format(payoff))        
+                capletValue = LiteLibrary.blackCapletValue(DF_T0_Ti, Tau_i, L_T0_Ti_1_Ti, Strike, Ti_1, sigmaCaplet)
+                analyticalCapletValueList.append(capletValue)
         
-        diff = np.array(monteCarloCapValueList) - np.array(analyticCapValueList)
-        print('monteCarloCapValueList: {0}'.format(monteCarloCapValueList))        
-        print('analyticCapValueList: {0}'.format(analyticCapValueList))        
+            df['analyticalCapValue'].iloc[t] = sum(analyticalCapletValueList)
 
-        plt.figure()
-        plt.plot(monteCarloCapValueList, label='MonteCarlo')
-        plt.plot(analyticCapValueList, label='Analytic')
-        plt.plot(diff, label='Differences')
-        plt.legend()
-        plt.title('Payer SwaptionPrice StrikeLevel')
-        plt.xlabel('Strike %')
-        plt.ylabel('Cap Price')
-        plt.savefig('MoneCarloVSAnalyticCapPrice')
-        plt.show()       
+            payoff = monteCarloSimu(Notional, Strike, SpoteRatesList, tau, Expiry, sigmaCapletsList, timeSteps, NBSIMUS)
+            df['monteCarloCapValue'].iloc[t] = payoff
+            df['diffAnaliticalMC'].iloc[t] = df['monteCarloCapValue'].iloc[t] - df['analyticalCapValue'].iloc[t]
+        
+        AnalyticalVsMCCap = df[['monteCarloCapValue', 'analyticalCapValue', 'diffAnaliticalMC']][10:20]
+        print(AnalyticalVsMCCap)
+        xticks = capMaturities     
+        ax = AnalyticalVsMCCap.plot(title='Analytical vs monteCarlo Cap pricing')
+        fig = ax.get_figure()
+        ax.set_xticklabels(xticks, rotation=20)
+        plt.savefig('MonteCarloVSAnalyticCapPrice')
+        plt.show()        

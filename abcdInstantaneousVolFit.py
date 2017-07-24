@@ -12,6 +12,10 @@ Notes: AbderrazakDerdouriCQFFinalProject.pdf
 Run: python -m unittest abcdInstantaneousVolFit.InstVolFitTests.testabcdFit
      python -m unittest abcdInstantaneousVolFit.InstVolFitTests.testParametricInstVol 
 
+requirement : must be run after  
+              python -m unittest capletVolatilityStripping.CplVolStripTests.testCplVolStrip
+              to have lmmCalibration sheet already prepared
+
 Revision History:
 """
 
@@ -22,7 +26,7 @@ import numpy as np
 import scipy.optimize as optimize
 from scipy.integrate import quad
 from unittest import TestCase
-import marketDataProcessing
+import lmmCalibration
 import LiteLibrary
 import matplotlib.pyplot as plt
 
@@ -64,12 +68,13 @@ class InstVolFitTests(TestCase):
         """
         Run a test solving for v1v2v3v4(abcd) parameters
         """
-        df = pd.read_excel('marketData.xlsx', sheetname='processedMarketData')
+        df = pd.read_excel('lmmData.xlsx', sheetname='lmmCalibration')
         
         start_idx = df[df['TenorTi']=='T6M'].index[0]
         end_idx = df[df['TenorTi']=='T10Y'].index[0]
 
         deltaT0Ti	= df['DeltaT0Ti'][start_idx:1+end_idx]
+        deltaT0TiIndex	= deltaT0Ti.index
         sigmaCaplet2DeltaT0Ti = df['SigmaCaplet2*TimeToMaturity'][start_idx:1+end_idx]
         
         def abcdObjectiveFunc(v):
@@ -89,8 +94,18 @@ class InstVolFitTests(TestCase):
         v0 = [0.1, 0.1, 0.1, 0.1]
         solution = optimize.minimize(abcdObjectiveFunc, v0, method='BFGS')
         print(solution)
-        print('abcd: {0}'.format(solution.x))
-        print('\n')
+        df['abcd'] = np.NaN
+
+        for idx in deltaT0TiIndex:
+            df['abcd'].iloc[idx] = f(0, deltaT0Ti.iloc[idx-start_idx], solution.x)
+
+        
+        abcdFunction = df[['abcd']][start_idx:end_idx]
+        ax = abcdFunction.plot(title='Instantaneous volatility function')
+        fig = ax.get_figure()
+        ax.legend(labels=['abcd=' + str(solution.x)])
+        plt.savefig('InstantaneousVolatilityFunctions')
+        plt.show()        
 
     def testParametricInstVol(self):
         """
@@ -100,7 +115,7 @@ class InstVolFitTests(TestCase):
         """
         v = np.array([-0.10522141, 0.4215886, -1.03067277, 1.23953503])
 
-        df = pd.read_excel('marketData.xlsx', sheetname='processedMarketData')
+        df = pd.read_excel('lmmData.xlsx', sheetname='lmmCalibration')
         
         start_idx = df[df['TenorTi']=='T6M'].index[0]
         end_idx = df[df['TenorTi']=='T10Y'].index[0]
@@ -114,5 +129,5 @@ class InstVolFitTests(TestCase):
         for idx in range(length):
             df['ParametricCapletVolatiliy'].iloc[idx+8] = I2(deltaT0Ti.iloc[idx], v)
 
-        LiteLibrary.writeDataFrame(df, 'processedMarketData')
+        LiteLibrary.writeDataFrame(df, 'lmmCalibration')
         plotParametricCapletVolatiliy(df)

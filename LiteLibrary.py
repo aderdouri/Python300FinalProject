@@ -147,10 +147,10 @@ def writeDataFrame(newdf, newSheetName):
     """
     Write a new Pandas DataFrame as new sheet to an existing xlsx file
     """
-    df = pd.ExcelFile('marketData.xlsx')
+    df = pd.ExcelFile('lmmData.xlsx')
     sheetNames = df.sheet_names  # get all sheet names       
     # Create a Pandas Excel writer using XlsxWriter as the engine.
-    writer = pd.ExcelWriter('marketData.xlsx', engine='xlsxwriter')
+    writer = pd.ExcelWriter('lmmData.xlsx', engine='xlsxwriter')
     for sheetName in sheetNames:
         dfSheet = df.parse(sheetName)  # read a specific sheet to DataFrame
         dfSheet.to_excel(writer, sheet_name=sheetName)

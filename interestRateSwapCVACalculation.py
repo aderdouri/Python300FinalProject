@@ -149,7 +149,7 @@ def MonteCarloSimu(sheetName):
 
     return df, ExpectedExposure, CVA_PERIOD
     
-def myplot(data, figureName, title):
+def plotCVA(data, figureName, title):
     """
     Plot a data list 
     """
@@ -181,30 +181,30 @@ def myplot(data, figureName, title):
     plt.savefig(figureName)
     plt.show()
 
+def plotTermStructure(df, figureName, title):
+    ax = df[['SpotRate', 'forwardRate']].plot(title=title)
+    xticks = ['6M', '1Y', '1.5Y', '2Y', '2.5Y', '3Y', '3.5Y', '4Y', '4.5Y', '5Y']
+    ax.set_xticklabels(xticks, rotation=45)
+    plt.savefig(figureName)
+    plt.show()
+
+
 class IRSCVATests(TestCase):    
     def test01IRSCVA(self):        
         df, ExpectedExposure, CVA_PERIOD = MonteCarloSimu('cvaIncreasing')
 
-        ax = df[['SpotRate', 'forwardRate']].plot(title='Increasing Term structure')
-        xticks = ['6M', '1Y', '1.5Y', '2Y', '2.5Y', '3Y', '3.5Y', '4Y', '4.5Y', '5Y']
-        ax.set_xticklabels(xticks, rotation=45)
-        plt.savefig('IncreasingTermStructure')
-        plt.show()
+        plotTermStructure(df, 'IncreasingTermStructure', 'Increasing Term structure')
 
-        myplot(ExpectedExposure, 'IncreasingTermStructureExpectedExposure', 'IRS Expected Exposure')
-        myplot(CVA_PERIOD, 'IncreasingTermStructureCVAPeriod', 'CVA Period')
+        plotCVA(ExpectedExposure, 'IncreasingTermStructureExpectedExposure', 'IRS Expected Exposure')
+        plotCVA(CVA_PERIOD, 'IncreasingTermStructureCVAPeriod', 'CVA Period')
         print('CVA_PERIOD: {0}'.format(sum(CVA_PERIOD)))
 
 
     def test02IRSCVA(self):        
         df, ExpectedExposure, CVA_PERIOD = MonteCarloSimu('cvaDecreasing')
 
-        ax = df[['SpotRate', 'forwardRate']].plot(title='Decreasing Term structure')
-        xticks = ['6M', '1Y', '1.5Y', '2Y', '2.5Y', '3Y', '3.5Y', '4Y', '4.5Y', '5Y']
-        ax.set_xticklabels(xticks, rotation=45)
-        plt.savefig('DecreasingTermStructure')
-        plt.show()
+        plotTermStructure(df, 'DecreasingTermStructure', 'Decreasing Term structure')
 
-        myplot(ExpectedExposure, 'DecreasingTermStructureExpectedExposure', 'IRS Expected Exposure')
-        myplot(CVA_PERIOD, 'DecreasingTermStructureCVAPeriod', 'CVA Period')
+        plotCVA(ExpectedExposure, 'DecreasingTermStructureExpectedExposure', 'IRS Expected Exposure')
+        plotCVA(CVA_PERIOD, 'DecreasingTermStructureCVAPeriod', 'CVA Period')
         print('CVA_PERIOD: {0}'.format(sum(CVA_PERIOD)))
