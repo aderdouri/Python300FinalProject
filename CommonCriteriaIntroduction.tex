@@ -90,18 +90,13 @@ Dans un monde où la numérisation touche tous les domaines de la vie et tous les 
 
 \section{Les Critères Communs (CC)}
 Les Critères communs représentent le résultat des efforts déployés pour élaborer des critères d'évaluation de la sécurité informatique qui sont largement utiles au sein de la communauté internationale. Il s'agit de l'alignement et du développement d'un certain nombre de critères de source: les critères européens, américains et canadiens existants (ITSEC, TCSEC et CTCPEC respectivement). Les critères communs résolvent les différences conceptuelles et techniques entre les critères sources. Il contribue à l'élaboration d'une norme internationale et ouvre la voie à la reconnaissance mutuelle mondiale des résultats d'évaluation.\\
-
 L'évolution des critères au Canada et dans les pays européens membres de l'ITSEC a suivi les travaux initiaux de l'US TCSEC (Orange Book). L'élaboration des critères fédéraux américains a été une première tentative de combiner ces autres critères avec ceux du TCSEC, et a finalement conduit à la mise en commun des ressources vers la production des critères communs.\\
-
 Une grande force dans l'élaboration des CC est la participation étroite de toutes les parties ayant l'expérience de la création des documents de critères nationaux originaux. Le CC bénéficie de leur sagesse accumulée et de leur intention d'adopter une approche totalement flexible pour la standardisation des fonctionnalités de sécurité et l'assurance d'évaluation. Le CC a été rendu suffisamment souple pour permettre sa convergence évolutive avec les nombreux schémas nationaux existants en matière d'évaluation, de certification et d'accréditation de la sécurité informatique.\\
-
 
 La structure CC offre également une grande flexibilité dans la spécification des produits sécurisés. Les consommateurs et les autres parties peuvent spécifier la fonctionnalité de sécurité d'un produit en termes de profils de protection standard et sélectionner indépendamment le niveau d'assurance d'évaluation à partir d'un ensemble défini de sept niveaux d'assurance d'évaluation croissants, de EAL1 à EAL7.\\
 
 La version 1.0 du CC a été publiée pour commentaires en janvier 1996. La version 2.0 tient compte de l'examen et des essais approfondis réalisés au cours des deux dernières années et a été publiée en mai 1998.\\
-
 La version 2.0 a été adoptée par l'Organisation internationale de normalisation (ISO) en tant que projet final du Comité (FCD) et devrait devenir une norme internationale (ISO 15408) en 1999.\\
-
 
 \subsection{Audience visé}
 Il existe trois groupes qui ont un intérêt général dans l'évaluation des propriétés de sécurité des TOE: les consommateurs, les promoteurs et les évaluateurs. Les critères présentés dans cette partie 1 du CC ont été structurés de manière à répondre aux besoins des trois groupes. Ils sont tous considérés comme les principaux utilisateurs du CC. Les trois groupes peuvent bénéficier des critères comme expliqué dans les paragraphes suivants.
@@ -350,6 +345,92 @@ La méthodologie d'évaluation commune [CC Standards] constitue les instructions s
 Comme vous pouvez le constater, même les définitions peuvent être sujettes à interprétation et à des variations selon l'expérience de l'évaluateur. Une partie de la variance potentielle est atténuée parce que bon nombre d'évaluateurs ont des antécédents communs (p. ex. expérience militaire ou gouvernementale en matière de sécurité) ou parce qu'ils ont une compréhension commune qui n'est consignée dans aucun document.\\
 Même si le document de la Partie 3 du CC décrit les mesures prises par les évaluateurs pour chaque SAR, le CEM fournit des instructions beaucoup plus détaillées sur ce qu'ils doivent faire pour satisfaire à l'exigence d'évaluation. Ce niveau de détail permet d'assurer une plus grande cohérence entre les évaluateurs et entre les systèmes internationaux.
 
+
+\newpage
+\section{Processus d'évaluation}
+Les principales phases du processus d'évaluation et de validation sont les suivantes:
+\begin{itemize}
+	\item Phase 0: Préparation de la pré-évaluation
+	\item Phase 1: Lancement du projet
+	\item Phase 2: Évaluation et feedback
+	\item Phase 3: Validation et certification
+	\item Phase 4: Maintenance de l'assurance	
+\end{itemize}
+
+\subsection{ Préparation de la pré-évaluation}
+Les activités de préparation à la pré-évaluation comprennent: la recherche des besoins des clients, la compréhension des normes CC, le développement des ressources et la sélection des partenaires. Ces activités établiront une base solide sur laquelle bâtir le projet d'évaluation du CC, y compris les connaissances, les ressources, les objectifs et la minimisation des risques.
+\subsection{Lancement du projet}
+La phase de lancement du projet comprend toutes les activités préparatoires à la réunion de lancement du projet. La réunion "cou d'envoi" est le lancement formel et officiel de l'évaluation du CC. Il indique que le laboratoire d'évaluation et les évaluateurs gouvernementaux ont approuvé le projet. Le principal produit livrable de cette phase et le fondement de l'évaluation du CC est la Cible de sécurité (ST).  Le ST doit décrire:
+\begin{itemize}
+\item Cible de l'évaluation
+\item Environnement évalué
+\item Niveau d'évaluation
+\end{itemize}
+
+\subsubsection{Cible de l'évaluation}
+\subsubsection{Environnement évalué}
+L'environnement évalué est l'environnement informatique et informatique dans lequel le produit est déployé et exploité. Le ST décrit l'environnement opérationnel - le matériel informatique, le système d'exploitation et le réseau à utiliser pour l'évaluation. L'environnement évalué tente de refléter les déploiements " typiques " des clients afin de donner de la crédibilité à l'évaluation et de tirer parti de la configuration " typique " ou par défaut qui peut réduire l'effort nécessaire.
+Les certificats CC ne sont valables que pour une seule version de produit.
+\subsubsection{Niveau d'évaluation}
+Si nous évaluons par rapport à un profil de protection, le PP dictera ce que l'EAL doit évaluer.
+
+\subsubsection{Plan de travail de l'évaluation}
+Le plan de travail de l'évaluation est un plan élaboré par le laboratoire d'évaluation du CC, le concepteur et l'expert-conseil du CC. Il indique qui livrera quoi d'ici là. Il s'agit d'un plan initial qui changera probablement et sera ajusté tout au long du projet d'évaluation du CC.
+
+
+
+
+\subsubsection{Réunion de lancement avec l'organisme}
+Bien que la réunion de lancement du Schéma soit en grande partie une formalité puisque la préparation de ce dernier aurait dû aborder n'importe quelle question, il s'agit de la première étape importante de l'évaluation du CC.
+Pour aider à préparer la réunion de lancement, l'organisme peut donner un exemple d'ordre du jour pour une réunion de lancement de l'acceptation de l'évaluation. L'ordre du jour comprend les points suivants:
+\begin{itemize}
+	\item Objet de la réunion
+	\item Présentation des participants
+	\item Définir les rôles et responsabilités des diverses parties
+	\item Identifier les points de contact clés
+	\item Revoir l'organisation et les objectifs du programme
+	\item Sponsor/fournisseur présente le produit (TOE)
+	\item les calendriers des promoteurs et des fournisseurs de l'examen
+	\item Revoir les plans et le calendrier d'évaluation
+	\item Examiner les attentes et les objectifs
+	\item Planifier la prochaine réunion
+	\item Répondre aux questions ou aux préoccupations
+	\item Acceptation dans l'évaluation
+\end{itemize}
+
+Peu de temps après la réunion de lancement réussie, de nombreux programmes et quelques laboratoires d'évaluation CC listent les produits sur leurs sites Web comme In Evaluation.
+
+
+\subsection{Évaluation et feedback}
+La phase d'évaluation et de rétroaction consiste en une série de cycles de production de données probantes, d'évaluation, de commentaires, de modification, de nouvelle présentation et de réévaluation itérées jusqu' à ce que l'évaluateur soit convaincu que les exigences relatives à l'évaluation sont satisfaites. Les tâches suivantes sont exécutées sur chaque document de preuve livrable:
+\begin{itemize}
+	\item Production des preuves par le consultant CC avec la contribution de l'équipe de développement
+	\item Évaluation par le personnel du laboratoire d'évaluation du CC
+	\item Commentaires sur les preuves par le laboratoire d'évaluation du CC renvoyés au fournisseur
+	\item Modification de la preuve pour tenir compte des commentaires
+	\item Nouvelle présentation de la preuve
+	\item Réévaluation par le laboratoire d'évaluation
+\end{itemize}
+La figure 3 montre comment les données d'évaluation peuvent être développées en parallèle avec l'évaluation et la synchronisation avec les efforts de développement du produit.\\
+
+
+Si l'évaluateur découvre une incohérence ou un manque d'information ou une erreur dans la documentation de preuve soumise au cours d'une unité de travail, il produira un rapport d'observation (OU) et l'enverra au fournisseur. En règle générale, le BR signale l'incohérence ou l'erreur, mais il ne donne pas beaucoup d'information au fournisseur sur la façon de corriger la situation. 
+Les laboratoires d'évaluation du CC sont tenus de produire et d'envoyer des rapports au système national. Ces rapports sont appelés Rapport d'évaluation des tests (ETR) et résument les progrès de l'évaluation, y compris l'état d'avancement et la résolution des problèmes et les commentaires signalés au fournisseur. Une fois que toutes les unités de travail de l'activité d'évaluation ont été achevées, une RTE finale est soumise au programme.
+
+\subsubsection{Visite du site}
+Pour la plupart des évaluations, l'évaluateur du CC se rendra sur le site de développement du fournisseur pour observer au moins l'utilisation du système de gestion de la configuration (qui fait partie de l'unité de travail ALC\_CMC).
+
+
+\subsection{Validation et Certification}
+Lorsque le Schéma reçoit l'ETR final du laboratoire d'évaluation du CC, l'évaluateur examine (c. -à-d. valide) les résultats, pose des questions au laboratoire d'évaluation et décide si l'évaluation satisfait ou non à toutes les exigences.
+Lorsque les évaluateurs et le système ont achevé leur examen final et que tous les problèmes ont été résolus, le certificat CC est délivré par le système et attribué au vendeur du produit. 
+
+\subsection{Maintenance de l'assurance}
+Les certificats CC ne sont valables que pour une seule version d'un produit. Selon la complexité du produit et la profondeur de l'évaluation, l'évaluation CC peut prendre plus de temps qu'il n'en faut pour développer une nouvelle révision, rendant ainsi le certificat inutile. Le mécanisme de maintien de l'assurance a été créé pour remédier à cette situation. L'objectif est de raccourcir le cycle de réévaluation des produits déjà évalués.
+Essentiellement, le vendeur doit fournir la preuve que les modifications apportées à la nouvelle version du produit ne compromettent pas les déclarations de sécurité et les preuves présentées dans l'évaluation de la version précédente. Un rapport d'analyse d'impact est présenté au laboratoire d'évaluation du CC qui a effectué l'évaluation initiale. L'IRA doit satisfaire aux exigences énoncées dans la norme Continuité de l'assurance: Exigence de l'ADRC.
+
+
+\newpage
 \section{Preuves de développement}
 Après le document sur la cible de sécurité (ST), le second major ensemble de documents des preuves CC est la preuve de développement. Les preuves de développement sont essentiellement des documents de conception du produit, les évaluateurs examineront ces preuves pour vérifier les allégations fonctionnelles de sécurité du fournisseur. Selon la Méthodologie d'évaluation Commune (CEM) [Standards CC], l'activité de développement a pour but d'évaluer la documentation de conception à l'appui de la compréhension de la façon dont les fonctions de sécurité de la TOE (TSF) répondent aux exigences fonctionnelles de sécurité (SFR). Cette compréhension découle de l'examen de la documentation des preuves de développement qui comprend les spécifications fonctionnelles, la description de la conception de la TOE, la description de la mise en oeuvre (p. ex. code source) et une description de l'architecture de sécurité. Pour les évaluations d'assurance les plus élevées, les descriptions internes et les descriptions du modèle de politique de sécurité sont également requises. Les exigences en matière de preuves de la catégorie d'assurance du développement varient selon l'EAL.\\
 
