@@ -677,7 +677,373 @@ CC doit mieux répondre aux besoins des clients commerciaux en matière de sécurit
 \subsection{CC n'améliore pas la sécurité des produits}
 Beaucoup de personnes s'interrogent si les évaluations CC améliore la sécurité. La réponse c'est qu'elle devrait.  Quels que soient les objectifs initiaux du CC en 1999, certains clients et évaluateurs s'attendent aujourd'hui à ce que le CC améliore la sécurité des produits. Ils s'attendent à ce que les fournisseurs de produits reconnaissent les failles de sécurité de leurs produits au cours du processus d'évaluation et s'efforcent d'améliorer leurs produits. Ils s'attendent à ce que les fournisseurs ne se contentent pas de traiter les évaluations des CC comme une " case à cocher " d'approvisionnement, mais qu'ils s'en servent pour motiver et orienter les améliorations. Cette évolution peut se produire si un nombre suffisant de clients l'exigent de leurs vendeurs.
 
+
+
+
+\newpage
 \section{La Certification de Sécurité de Premier Niveau (CSPN)}
+La CSPN mise en place par l'ANSSI en 2008 consiste en des tests en «boîte noire» effectués en temps et délais contraints. La CSPN est une alternative aux évaluations Critères Communs, dont le coût et la durée peuvent être un obstacle, et lorsque le niveau de confiance visé est moins élevé. Cette certification s'appuie sur des critères, une méthodologie et un processus élaborés par l'ANSSI et publiés sur son site.
+La certification de sécurité de premier niveau permet d'attester que le produit a subi avec succès une évaluation de sécurité par un centre d'évaluation agréé par l'ANSSI, l'évaluation ayant pour caractéristiques principales :
+\begin{itemize}
+	\item d'être conduite en temps et en ressources humaines (charge) contraints
+	\item d'analyser la conformité du produit à ses spécifications de sécurité
+	\item de mesurer l'efficacité des fonctions de sécurité
+\end{itemize}
+
+\subsection{Critères d'évaluation}
+\subsubsection{Fournitures documentaires minimales}
+
+Les présents critères ont été conçus par l'Agence nationale de la sécurité des systèmes d'information (ANSSI) pour permettre l'évaluation, en temps contraint, des fonctionnalités de sécurité proposés par des produits matériels, logiciels ou mixtes visant une CSPN.
+Deux objectifs principaux sont recherchés lors de l'évaluation :
+\begin{itemize}
+\item vérifier que le produit est conforme à sa spécification pour ce qui concerne sa sécurité ;
+\item déterminer l'efficacité des fonctionnalités de sécurité proposées par le produit.
+\end{itemize}
+Dans le cas où le produit nécessite des privilèges particuliers pour s'exécuter sur le système hôte, l'évaluation devra également porter sur l'impact de l'installation du produit sur la sécurité du système hôte. 
+
+Lorsque des fonctions de sécurité essentielles du produit sont implémentées par des mécanismes
+cryptographiques, deux objectifs supplémentaires sont recherchés lors de l'évaluation :
+\begin{itemize}
+	\item vérifier la conformité des mécanismes cryptographiques aux exigences décrites dans le référentiel technique de l'ANSSI;
+	\item vérifier la conformité de la mise en oeuvre de ces mécanismes par le produit par rapport à
+	leur description.
+\end{itemize}
+
+\subsubsection{Fournitures documentaires minimales}
+Un produit qui fournit de la sécurité (une combinaison de confidentialité, d'intégrité, d'authentification et de disponibilité) doit présenter des caractéristiques de sécurité appropriées. Il est nécessaire de déterminer le degré de confiance qui peut être accordé à ces caractéristiques. Pour cela, les caractéristiques elles-mêmes doivent être spécifiées au sein d'un document, qui constitue la cible de sécurité de ce produit.
+
+\textsf{Cible de Sécurité}
+La cible de sécurité sert à la fois de spécification des fonctions dédiées à la sécurité, par rapport à laquelle le produit sera évalué, et de description des liens entre le produit et l'environnement dans lequel celui-ci sera exploité. Sont donc intéressés par la cible de sécurité, non seulement le développeur du produit et les responsables de son évaluation, mais également les personnes chargées de sa gestion, de son achat, de son installation, de sa configuration, de son exploitation et de son emploi. Le contenu exigé d'une cible de sécurité est le suivant :
+
+\begin{itemize}
+\item une identification non ambiguë du produit à évaluer ;
+\item un argumentaire du produit décrivant en langage naturel pour quel usage le produit a été conçu, par qui et dans quel contexte d'emploi il est censé être utilisé ;
+\item l'environnement technique dans lequel le produit fonctionne (modèle d'ordinateur,
+système d'exploitation, etc.) ;
+\item les biens sensibles que le produit doit protéger ;
+\item les mesures d'environnement ;
+\item les menaces contre lesquelles le produit offre une protection ;
+\item les fonctionnalités de sécurité implémentées par le produit pour parer les menaces
+identifiées.
+\end{itemize}
+Ce sont ces fonctionnalités qui feront l'objet de l'évaluation.
+
+\textsf{Spécification des mécanismes cryptographiques}
+
+Les informations relatives aux algorithmes doivent inclure :
+- la description des fonctions de cryptologie offertes par le produit (chiffrement, signature, gestion des clés, etc.) ;
+- la référence des algorithmes à des standards reconnus, non équivoques, et dont les détails
+techniques sont accessibles aisément et sans condition, avec les paramètres et les modes opératoires de leur mise en oeuvre.
+Les informations relatives à la gestion des clés doivent inclure :
+
+\begin{itemize}
+\item la taille des clés ;
+\item le mode de distribution des clés ;
+\item le procédé de génération des clés ;
+\item le format de conservation des clés ;
+\item le format de transmission des clés.
+\end{itemize}
+
+Les informations relatives au traitement des données doivent inclure :
+\begin{itemize}
+\item la description des prétraitements subis par les données claires avant leur chiffrement (compression, formatage, ajout d'un en-tête, etc.) ;
+\item la description des post-traitements des données chiffrées, après leur chiffrement (ajout d'un
+en-tête, formatage, mise en paquet, etc.) ;
+\item des sorties de référence du produit, sous format électronique, effectuées à partir d'un texte
+clair et d'une clé choisie arbitrairement.
+\end{itemize}
+Lorsqu'un générateur de nombres aléatoires est utilisé pour la mise en oeuvre de fonctions
+cryptographiques, la méthode et l'architecture utilisée pour ce générateur devront être décrites.
+Des explications seront fournies sur les raisons qui permettent de penser que le générateur de
+nombres aléatoires est efficace.
+
+
+\subsubsection{Evaluation}
+\noindent L'évaluation se déroule en plusieurs phases:
+\textbf{Phase 1 - Analyse de la cible de sécurité}\\
+L'évaluateur doit :
+\begin{itemize}
+\item Vérifier que la cible de sécurité contient les éléments décrits au chapitre 3 du présent document.
+\item Vérifier que la cible n'est pas « trompeuse » et qu'elle décrit au minimum la fonctionnalité principale pour lequel le produit est conçu.
+\item Vérifier que les fonctions de sécurité sont pertinentes par rapport aux menaces génériques décrites dans la cible.
+\item Vérifier qu'il n'y a pas de fonction de sécurité qui ne serait pas en lien avec une menace décrite dans la cible.
+\item Vérifier que les mesures d'environnement sont pertinentes par rapport aux menaces et à l'usage pour lequel est prévu le produit.
+\end{itemize}
+De manière générale, vérifier qu'il n'y a pas d'incohérence dans la cible de sécurité.
+\textbf{Phase 2 - Installation du produit}\\
+Décrire la plate-forme réellement utilisée pour réaliser les tests sur le produit. Cette plate-forme doit être représentative de l'architecture type du système d'information dans lequel le produit est normalement utilisé, dans la limite des possibilités allouées au projet d'évaluation. 
+
+Pour les produits pouvant s'installer sur plusieurs versions de système d'exploitation, indiquer le système d'exploitation utilisé et sa version, avec le maximum de précision possible (patch, service pack, etc.). 
+
+Si le produit nécessite une installation, procéder à l'installation du produit dans sa configuration typique. 
+
+Si une documentation d'installation existe, vérifier qu'elle permet d'installer le produit dans les différentes configurations couvertes par l'évaluation. 
+
+Noter toutes les informations qui permettent de mener à bien cette installation. Indiquer toutes les non-conformités par rapport à l'éventuelle documentation existante. Noter toutes les particularités de paramétrage du système support, le cas échéant.
+
+\textbf{Phase 3 - Analyse de la conformité ? analyse de la documentation}\\
+
+\textbf{Exigences concernant le contenu et la présentation}
+La documentation utilisateur doit décrire les fonctions dédiées à la sécurité qui concernent l'utilisateur final. Elle doit aussi donner des lignes directrices suffisantes pour leur exploitation sûre. 
+Ces documents, par exemple les manuels de référence et les guides de l'utilisateur, doivent être structurés, avoir une cohérence interne et être compatibles avec tous les autres documents fournis à ce niveau.
+La documentation d'administration doit décrire les fonctions dédiées à la sécurité relevant d'un administrateur. 
+Elle doit distinguer deux types de fonctions : celles qui permettent à un administrateur de contrôler les paramètres de sécurité et celles qui lui permettent seulement d'obtenir des informations. 
+Si un administrateur est nécessaire, elle doit décrire tous les paramètres de sécurité qui sont sous sa responsabilité. Elle doit décrire tous les événements relatifs à la sécurité relevant des fonctions d'administration. Elle doit décrire, d'une façon suffisamment détaillée pour leur utilisation, les procédures relevant de l'administration de la sécurité. Elle doit donner des lignes directrices sur l'utilisation cohérente et efficace des caractéristiques de sécurité du produit et sur la façon dont ces caractéristiques interagissent. Elle doit décrire les instructions sur la façon dont le système ou le produit devra être installé et, le cas échéant, sur la façon dont il devra être configuré. La documentation d'administration, par exemple les manuels de référence et les guides de l'administrateur, doit être structurée, avoir une cohérence interne et être compatible avec tous les autres documents fournis à ce  niveau. La documentation d'administration doit décrire comment le produit est administré de façon sûre. Si différentes configurations sont possibles, l'impact de ces configurations sur la sécurité doit être décrit. Si les procédures de livraison et de génération du système sont décrites, elles doivent garantir l'authenticité et l'intégrité du produit livré. Pendant la génération du produit, toute option ou tout changement de génération doit être audité de telle façon qu'il soit possible a posteriori de reconstituer exactement comment et quand le produit a été généré.
+
+Les procédures pour assurer un démarrage et une exploitation sûrs doivent être décrites. Si une fonction dédiée à la sécurité peut être désactivée ou modifiée pendant le démarrage, l'exploitation normale ou la maintenance, cela doit être décrit. Si le produit comprend des composants matériels dédiés à la sécurité, il doit exister des fonctions de diagnostic mises en oeuvre par l'administrateur ou par l'utilisateur final, ou de façon automatique, pouvant être exécutées par le produit dans son environnement d'exploitation.
+
+Tâches de l'évaluateur
+
+Lister les documents analysés.
+Vérifier que les informations fournies satisfont les exigences concernant le contenu et la présentation et donner un avis sur leur lisibilité et leur complétude. L'évaluateur procédera par échantillonnage si la documentation est importante, en privilégiant :
+\begin{itemize}
+\item la cible de sécurité fournie par le commanditaire ;
+\item la documentation utilisateur ;
+\item la documentation d'installation, d'administration et d'exploitation ;
+\item les documents techniques portant sur les fonctions et mécanismes de sécurité ;
+\item si des fonctions essentielles du produit utilisent des mécanismes cryptographiques, la cryptographie doit être évaluée (voir §4.11).
+\end{itemize}
+
+Si tout ou partie de la documentation est indisponible, indiquer si le produit peut néanmoins être
+installé, configuré, administré et utilisé conformément à ce qui est décrit dans la cible de sécurité,
+par les utilisateurs concernés, en prenant en compte leur compétence. L'évaluateur s'aidera des
+définitions suivantes :
+\begin{itemize}
+\item utilisateur grand public : pas de compétence particulière en informatique ;
+\item utilisateur confirmé : connaissance des principaux concepts de l'informatique ;
+\item administrateur : connaissance fine des principaux concepts de l'informatique et des
+réseaux, capacité à configurer et administrer un parc d'ordinateurs reliés en réseau ;
+\item expert : expert dans le domaine du produit (typiquement, l'évaluateur).
+\end{itemize}
+
+
+
+\textbf{Phase 4 - Analyse de la conformité ? revue du code source (si disponible)}\\
+
+Tâches de l'évaluateur
+Donner un avis d'expert sur la lisibilité et la structuration du code source (exemples de critères :
+existence de commentaires, découpage en modules, typage des données, portabilité, etc.), en
+précisant les modules qui ont été regardés. Il est possible de procéder par échantillonnage.
+On notera que dans le cas d'un code développé dans un cadre coopératif par de multiples
+développeurs, l'analyse d'un échantillon du code peut s'avérer non significatif.
+
+
+\textbf{Phase 5 - Analyse de la conformité ? tests du produit}
+Tâches de l'évaluateur
+Reprendre une à une les fonctionnalités de sécurité et les mécanismes cryptographiques4 du
+produit et les tester.
+Indiquer les tests fonctionnels ou les mécanismes mis en oeuvre, en précisant :
+
+\begin{itemize}
+\item la fonctionnalité ou le mécanisme testé ;
+\item les conditions du test qui sont utiles à sa mise en oeuvre (par exemple, fichier en entrée, taille, type, fichier en sortie, taille type, analyse éventuelle du cryptogramme, etc.) ;
+\item les limites de la fonctionnalité le cas échéant ;
+\item si la fonctionnalité ou le mécanisme est conforme ou pas ;
+\item des éléments d'appréciations (avis d'expert).
+\end{itemize}
+
+\textbf{Phase 6 - Résistance des mécanismes/fonctions}
+
+Définition
+Même si un mécanisme dédié à la sécurité ne peut pas être court-circuité, désactivé, altéré ou contourné, il peut encore être possible de le mettre en échec par une attaque directe tirant profit d'insuffisances dans ses algorithmes, ou dans ses principes ou ses propriétés sous-jacents. Pour cet aspect de l'efficacité, la capacité de ces mécanismes à contenir une telle attaque directe est estimée. Cet aspect de l'efficacité se distingue des autres en ce qu'il exige de prendre en considération le niveau des ressources qui seraient nécessaires à un attaquant pour réussir une attaque directe.
+Exigences concernant le contenu et la présentation 
+Les mécanismes implémentent les fonctions de sécurité proposées par le produit et décrites dans la cible de sécurité. Les informations doivent être suffisantes pour permettre d'en faire une cotation. Pour les mécanismes mettant en oeuvre des algorithmes cryptographiques, une spécification de ces mécanismes doit être fournie.
+
+
+Tâches de l'évaluateur
+Identifier les mécanismes qui implémentent les fonctions de sécurité du produit. Analyser le fonctionnement de chaque mécanisme pour vérifier qu'il est en mesure de rendre le service voulu à la fonction de sécurité. Proposer une cotation intrinsèque de ces mécanismes en utilisant les tables de cotation qui suivent.
+
+Pour les mécanismes mettant en oeuvre des algorithmes cryptographiques, leur utilisation doit être conforme aux exigences fixées dans le référentiel technique de l'ANSSI [RGS\_B]. Si plusieurs modes d'utilisation de ces algorithmes sont possibles, l'évaluateur doit indiquer ceux qui répondent aux exigences du référentiel technique de l'ANSSI. Les tableaux suivants rappellent les principales données permettant de réaliser une cotation.
+L'évaluateur consultera la [CEM] pour plus d'information sur leurs utilisations.
+
+\begin{center}
+	\small{
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			Facteur & Intervalle & Valeur &  vulnérabilité \\
+			\hline					
+			& < 0,5 heure & 0 & 0 \\
+			\cline{2-4}			
+			& < 1 jour & 2 & 3 \\
+			\cline{2-4}			
+			& < 1 mois & 3 & 5 \\
+			\cline{2-4}			
+			& > 1 mois & 5 & 8 \\
+			\cline{2-4}						
+			\multirow{-5}{*}{Temps mis pour} 
+			& Impraticable & * (voir nota 5) & * (voir nota 5) \\
+			\hline		
+						
+			& Profane & 0 & 0 \\
+			\cline{2-4}			
+			& Compétent & 2 & 3 \\
+			\cline{2-4}			
+			\multirow{-5}{*}{Expertise de l'attaquant} 
+			& Expert & * (voir nota 5) & * (voir nota 5) \\
+			\hline		
+
+			& Aucune & 0 & 0 \\
+			\cline{2-4}			
+			& Information publique & 2 & 3 \\
+			\cline{2-4}			
+			\multirow{-5}{*}{Expertise de l'attaquant} 
+			& Information sensible & * (voir nota 5) & * (voir nota 5) \\
+			\hline		
+			
+			
+			& < 0,5 heure ou directement accessible & 0 & 0 \\
+			\cline{2-4}			
+			& < 1 jour & 2 & 3 \\
+			\cline{2-4}			
+			& < 1 mois & 3 & 5 \\
+			\cline{2-4}			
+			
+						
+			& > 1 mois & 5 & 8 \\
+			\cline{2-4}						
+			\multirow{-5}{*}{Temps mis pour} 
+			& Impraticable & * (voir nota 5) & * (voir nota 5) \\
+			\hline		
+			
+			& Aucun & 0 & 0 \\
+			\cline{2-4}			
+			& Standard & 1 & 2 \\
+			\cline{2-4}			
+			& Spécialisé & 3 & 4 \\
+			\cline{2-4}			
+			\multirow{-5}{*}{Temps mis pour} 
+			& Spécifique & 5 & 6 \\
+			\hline		
+
+		\end{tabular}
+	}
+\end{center}
+
+\vspace{0.5em}
+\begin{tabular}{|c|p{5.5cm}|p{5.5cm}|}
+	\hline
+	\textbf{Somme des valeurs} & \textbf{Résistant à un attaquant ayant un potentiel d'attaque} & \textbf{Niveau de résistance des fonctions} \\
+	\hline
+	0 à 9 & Pas de classement & Pas de classement\\
+	\hline
+	10 à 17 & Faible & Basique / Élémentaire\\
+	\hline
+	18 à 24 & Modéré & Médium / Moyen\\
+	\hline
+	> 24 & Élevé & Élevé\\
+	\hline
+\end{tabular}
+
+Le rôle de l'évaluateur est :
+\begin{itemize}
+\item d'identifier des mécanismes de sécurité implémentant les fonctions de sécurité (sous
+réserve de la disponibilité de l'information) ;
+\item de donner un avis d'expert sur la résistance des fonctions ;
+\item de donner un avis d'expert motivé sur la résistance globale du produit à des attaques.
+\end{itemize}
+
+En vue d'estimer l'efficacité de chaque fonction de sécurité ou liée à la sécurité, il devra ainsi
+coter :
+\begin{itemize}
+\item la résistance des fonctions en s'appuyant sur les mécanismes unitaires ;
+\item la résistance globale du produit du point de vue de la sécurité.
+\end{itemize}
+
+\textbf{Phase 7 - Analyse de vulnérabilité (intrinsèque, de construction, d'exploitation, etc.)}\\
+Tâches de l'évaluateur
+Le recensement des vulnérabilités connues s'appuie sur les compétences propres de l'évaluateur et
+sur l'exploitation de bases de vulnérabilités. Pour ces dernières, la tâche consiste à extraire les
+vulnérabilités pertinentes et à vérifier si et comment elles sont exploitables sur le produit.
+On distinguera deux types de vulnérabilités à traiter :
+
+- les vulnérabilités spécifiques du produit, pour lesquelles l'analyse consiste à décrire les conditions, techniques et effets de la réalisation de la vulnérabilité, ainsi que de préciser lexistence de correctifs ou de procédures permettant de contrer la vulnérabilité ;
+- les vulnérabilités génériques potentiellement applicables au produit. Il s'agit de vulnérabilités découvertes sur des produits similaires et pour lesquelles il n'existe pas d'information prouvant que le produit concerné s'en prémunit. La tâche d'analyse se complète alors d'une tentative ? dans la limite des moyens disponibles ? d'exploitation de la vulnérabilité, afin d'éprouver le produit cible.
+Cette tâche consiste donc à :
+
+\begin{enumerate}
+\item a) recenser les vulnérabilités connues du produit. Pour chaque vulnérabilité, rechercher un
+correctif, officiel ou non, ou une méthode de contournement permettant de limiter les effets
+de la vulnérabilité ;
+\item b) recenser les vulnérabilités connues pour les produits de la même catégorie. Il s'agit du ou
+des vulnérabilités connues sur l'ensemble des produits de la catégorie, augmenté des
+vulnérabilités théoriques potentielles ;
+\item c) mettre en oeuvre, tester et valider certaines vulnérabilités, selon des critères de choix comme la faisabilité, l'exploitabilité ou l'absence de correctif.
+\end{enumerate}
+
+
+\textbf{Phase 7bis - Analyse de vulnérabilité du système hôte}
+
+Tâches de l'évaluateur
+Dans le cas où le produit nécessite des privilèges particuliers pour s'exécuter sur le système hôte, l'évaluation devra également porter sur l'impact de l'installation du produit sur la sécurité du système hôte. On entend par système hôte autant un système d'exploitation qu'un réseau.
+Typiquement, si le produit nécessite des privilèges d'exécution particuliers du système d'exploitation, l'évaluateur devra rechercher si le produit permet de réaliser une escalade de privilèges.
+Le rôle de l'évaluateur est :
+\begin{itemize}
+	\item d'identifier les privilèges nécessaires sur le système hôte pour que le produit s'exécute correctement ;
+	\item de donner un avis d'expert motivé sur l'impact sur la sécurité du système hôte.
+\end{itemize}
+
+\textbf{Phase 8 - Analyse de la facilité d'emploi}
+
+Tâches de l'évaluateur
+Identifier les cas où le produit peut être configuré ou utilisé d'une manière qui n'est pas sûre, mais qu'un administrateur ou un utilisateur final pourrait raisonnablement croire sûre.
+Identifier les éventuelles fonctionnalités intrinsèquement non-sûres qu'il convient de ne pas utiliser si elles mènent ou contribuent à mener à une vulnérabilité exploitable, ou encore si la complexité de leur mise en oeuvre est nuisible à la confiance dans la fiabilité de la configuration.
+Fournir, lorsque cela est possible, des recommandations réalistes permettant une utilisation sûre du produit malgré ses éventuelles vulnérabilités.
+
+\textbf{Phase 9 - Entretien avec les développeurs}
+
+Tâches de l'évaluateur
+Acquérir auprès des développeurs de l'information sur l'ensemble des critères analysés. Cette tâche est facultative. Elle implique que les développeurs soient disponibles et acceptent d'être interviewés. L'évaluateur aura intérêt à la réaliser en début de projet et à la compléter ponctuellement en cours de projet si de nouvelles questions apparaissent.
+L'évaluateur donne un avis d'expert sur la capacité qu'a le développeur à maîtriser son produit, la sécurité de celui-ci, etc. L'évaluateur pourra s'inspirer de la liste qui suit pour étayer son avis :
+
+\begin{itemize}
+\item sécurité de l'environnement de développement : locaux, types de personnels, etc. ;
+\item existence d'un système qualité ;
+\item existence d'une documentation de conception et de réalisation du produit ;
+\item existence d'une gestion de configuration ;
+\item capacité des développeurs à répondre aux questions posées.
+\end{itemize}
+
+
+
+\textbf{Phase 10 - Évaluation de la cryptographie (si le produit implémente des mécanismes cryptographiques)}
+Tâches de l'évaluateur
+L'évaluation de la cryptographie doit être réalisée dès lors que des fonctionnalités essentielles du produit sont implémentées par des mécanismes cryptographiques. Cette évaluation est réalisée en relation avec le laboratoire de cryptologie de l'ANSSI.
+L'évaluateur doit pouvoir disposer d'un support technique pour interpréter les fournitures décrites au paragraphe 3.3.
+La vérification de la conformité des mécanismes cryptographiques par rapport aux exigences du référentiel technique de l'ANSSI [RGS\_B] se fait par une analyse documentaire.
+La vérification de la conformité de la mise en oeuvre de ces mécanismes par le produit peut se faire de plusieurs façons :
+
+\begin{itemize}
+\item par comparaison des résultats de traitements cryptographiques réalisés par le produit par rapport à une implémentation de référence. Cela implique que soient mis à disposition de l'évaluateur soit plusieurs sorties de référence (clé, clair, chiffré), soit les moyens de récupérer un ensemble de clairs-chiffrés et de clés qui pourront ensuite être injectés dans un simulateur logiciel pour réaliser les mêmes traitements que le produit, afin de pouvoir faire les comparaisons ;
+\item par analyse du code source avec éventuellement des tests unitaires de certaines fonctions (par exemple, vérifier qu'une fonction AES réalise bien un AES) ;
+\item lorsqu'il s'agit d'un système communicant, en vérifiant que le produit à tester
+\end{itemize}
+
+communique de façon chiffrée avec un équipement de référence.
+Plusieurs approches étant possibles, l'évaluateur décrira celles qu'il a adoptées pour se convaincre
+de la conformité de l'implémentation par rapport aux spécifications.
+Cas des générateurs de nombres aléatoires :
+L'évaluateur vérifiera que l'architecture du générateur de nombres aléatoires répond aux
+exigences décrites dans le référentiel technique de l'ANSSI [RGS\_B].
+Il indiquera les éventuels tests qu'il a réalisés pour s'assurer du caractère aléatoire de la source.
+
+\subsubsection{Résultats de l'évaluation}
+L'évaluation d'un produit suivant les critères exposés dans le présent document permet de constater que le produit fournit bien les fonctions de sécurité indiquées dans la cible de sécurité, que les fonctions de sécurité atteignent toutes au moins un niveau intrinsèque de résistance « élémentaire » (au sens des [CC]) et qu'aucune vulnérabilité n'a pu être exploitée lors de l'évaluation. Cette dernière conclusion doit être prise avec toute la prudence que l'on doit avoir dans le domaine de la sécurité des technologies de l'information. Il n'est en effet pas possible de garantir l'absence de vulnérabilité exploitable dans le produit. L'évaluateur doit proposer une cotation pour chaque fonction / mécanisme de sécurité décrit dans la cible de sécurité. S'il n'est pas possible d'établir cette cotation pour une ou plusieurs fonctions, l'évaluateur doit le mentionner explicitement dans son rapport (RTE) et en indiquer les raisons.\\
+Le RTE comporte au minimum les informations suivantes :
+\begin{enumerate}
+	\item le rappel du contexte de l'analyse (contexte d'emploi, durée de l'analyse, menaces, etc.) ;
+	\item une synthèse de la documentation permettant une description fonctionnelle des fonctions de sécurité ou liées à la sécurité ; ce qui est attendu fonctionnellement du produit (résumé de ses caractéristiques de sécurité notamment) ;
+	\item l'inventaire des vulnérabilités connues (CERT-FR, bases publiques, informations du développeur) et des correctifs ;
+	\item la liste des principaux outils d'analyse utilisés ;
+	\item une synthèse des résultats des tests effectués sur le produit ;
+	\item une cotation de la résistance des fonctions/mécanismes de sécurité ;
+	\item un bilan et une cotation des éventuelles vulnérabilités exploitables identifiées ;
+	\item un bilan du produit et des préconisations d'utilisation ou de paramétrage dans le contexte d'emploi prévu permettant en particulier, de s'assurer qu'aucune vulnérabilité identifiée n'est exploitable pour un niveau inférieur à « élémentaire » (au sens des [CC]).
+\end{enumerate}
+
+Le rapport technique d'évaluation élaboré par l'évaluateur, contenant et argumentant les résultats de l'évaluation, doit être présenté sous une forme acceptable pour être pris en considération par l'ANSSI.\\
+Si le RTE fait apparaître que le produit ne répond pas ou ne répond que partiellement à sa cible de sécurité et qu'il n'est pas possible d'identifier des contre-mesures environnementales réalistes pour améliorer cette situation, le produit sera considéré comme ne répondant pas à sa cible de sécurité. Il en est de même si les tests font apparaître des dysfonctionnements du produit, n'en permettant pas un usage normal ou l'usage prévu, l'affaiblissement du système hôte ou si certaines conclusions du RTE sont « non concluantes », par exemple faute d'information. 
+
+\subsection{Méthodologie d'évaluation}
 
 \section{Conclusion}
 
