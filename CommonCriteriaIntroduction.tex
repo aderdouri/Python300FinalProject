@@ -15,6 +15,7 @@
 \usepackage{setspace}
 \singlespacing
 \usepackage{multirow}
+\usepackage{multicol}
 \linespread{1.0}
 \def\blurb{%
 	\textbf{\Large Conservatoire National des Arts et Métiers} \\}
@@ -53,9 +54,11 @@
 				Abderrazak \textsc{DERDOURI}
 		\end{tabular}}
 		\vfill
-		\ligne{Date de soutenance : Janvier 2018} 
+		\ligne{Date de soutenance : 07 février 2018} 
 		\vfill
-		\ligne{Président du jury : Professeur Pierre \textsc{Paradinas}}
+		\ligne{Président du jury: Professeur Pierre \textsc{Paradinas}}
+		%\vspace{0.5em}
+		\ligne{Membres du jury:\qquad\qquad\qquad\qquad\qquad\qquad\quad\enspace}	
 		\vspace{1em}
 	}%
 	\vss
@@ -78,20 +81,20 @@ Je tiens à exprimer un profond remerciement à l'ensemble des intervenants de l'U
 \setcounter{page}{1}
 
 
-\section*{Glossaire}
-\begin{itemize}
-\item [\textbf{CCN}:] Centre de Certification National
-\item [\textbf{SOGIS}] Senior Officials Group Information Systems Security
-\item [\textbf{CCRA}:] Common Criteria Recognition Arrangement
-\item [\textbf{TOE}:] Target Of Evaluation (Cible d?évaluation)
-\item [\textbf{ST}:] Security Target (Cible de sécurité)
-\item [\textbf{PP}:] Profil de Protection
-\item [\textbf{EAL}:] Evaluation Assurance Level
-\item [\textbf{CC}:] Critères Communs
-\item [\textbf{CSPN}:] Certification de Sécurité de Premier Niveau
-\item [\textbf{CESTI}:] Centre d?Évaluation de la Sécurité des Technologies de l?Information
-\item [\textbf{RTE}:] Rapport Technique d?Évaluation
-\end{itemize}
+%\section*{Glossaire}
+%\begin{itemize}
+%\item [\textbf{CCN}:] Centre de Certification National
+%\item [\textbf{SOGIS}] Senior Officials Group Information Systems Security
+%\item [\textbf{CCRA}:] Common Criteria Recognition Arrangement
+%\item [\textbf{TOE}:] Target Of Evaluation (Cible d'évaluation)
+%\item [\textbf{ST}:] Security Target (Cible de sécurité)
+%\item [\textbf{PP}:] Profil de Protection
+%\item [\textbf{EAL}:] Evaluation Assurance Level
+%\item [\textbf{CC}:] Critères Communs
+%\item [\textbf{CSPN}:] Certification de Sécurité de Premier Niveau
+%\item [\textbf{CESTI}:] Centre d'Évaluation de la Sécurité des Technologies de l'Information
+%\item [\textbf{RTE}:] Rapport Technique d'Évaluation
+%\end{itemize}
 
 \section{Introduction}
 La sécurité des systèmes d'information, ou plus simplement sécurité informatique, est l'ensemble des moyens techniques, organisationnels, juridiques et humains nécessaires à la mise en place de moyens visant à empêcher l'utilisation non-autorisée, le mauvais usage, la modification ou le détournement du système d'information. Assurer la sécurité du système d'information est une activité du management du système d'information. Les utilisateurs et les fournisseurs n'accordent souvent pas la même priorité aux aspects de la sécurité informatique. Il n'est donc pas surprenant que les exigences en matière de sécurité des systèmes, applications et logiciels informatiques passent après les considérations économiques. Cela a de graves conséquences sur la sécurité des systèmes informatiques déployés, comme en témoignent le nombre de faiblesses, de vulnérabilités et d'attaques révélées.\\ 
@@ -105,9 +108,83 @@ La certification de la sécurité informatique va dans ce sens, du point de vue de
 \indent Ce rapport est divisé en deux parties, la première partie est consacré à la certifications des produits de TI selon les Critères Communs, la seconde partie à la certification de premier niveau (CSPN). Ce document est organisé comme suit: Dans la section 2, nous présentons le cadre des Critères Communs. Dans la section 3, nous donnons un résumé du étapes menant à la certification. Dans la section 4, nous présentons les classes d'assurance, la section 5 sera consacré au critiques des Critères Communs, la section 6 est dédiée au CSCP. Nous concluons à la section 7. 
 \newpage
 
+\section{La Certification de produit IT}
+\subsection{Définition}
+La certification permet d'attester par une tierce partie indépendante et impartiale qu'un produit atteint, à un instant donné, un niveau de sécurité représenté par les services de sécurité qu'il offre et sa résistance à un niveau d'attaques donné : en France, quel que soit le type d'évaluation, la certification s'appuie systématiquement, outre des vérifications de conformité, sur des tests d'intrusion pour déterminer le niveau de sécurité réellement atteint par le produit.
+
+
+\subsection{Les objectifs de la certification}
+La certification permet de répondre principalement à trois types d'objectifs. Il peut s'agir d'objectifs règlementaires, tels que l'application de directives européennes ou nationales. L'objectif peut être aussi contractuel, au travers de donneurs d'ordres publics ou privés qui exigent contractuellement la certification de produits avant leur usage. Enfin des industriels ou éditeurs de logiciels peuvent souhaiter se démarquer en certifiant leurs produits (objectif commercial).
+
+
+\subsection{L'offre de services du centre de certification}
+Les services offerts par le centre de certification de l'ANSSI sont gratuits et ouverts à tous : le centre de certification accepte ainsi d'étudier tout besoin de sécurité des multiples donneurs d'ordres. En revanche, le centre veille à ce que le produit analysé reflète bien, dans la cohérence de sa cible de sécurité et la faisabilité de son évaluation, ces besoins exprimés. Le centre s'appuie pour ses missions sur les experts de l'ANSSI. Le centre est aussi à l'écoute des commanditaires et donneurs d'ordres qui souhaitent créer des référentiels d'évaluation spécifiques afin de couvrir les nouveaux besoins de certification. Le centre s'appuie sur des laboratoires d'évaluation agréés (Centre d'Evaluation de la Sécurité des Technologies de l'Information) : il vérifie leurs compétences techniques sur les différents domaines techniques pour lesquels ils sont agréés, et valide la pertinence de leurs travaux pour chaque produit évalué. Selon les besoins de sécurité exprimés par des commanditaires d'évaluation et des donneurs d'ordres, le schéma français de certification offre deux types d'évaluation. La Certification de Sécurité de Premier Niveau est une évaluation réalisée en temps contraint et donc sur des charges de travail fixées au préalable ; elle nécessite un investissement relativement limité, et est nettement plus orientée tests d'intrusion que conformité.
+L'évaluation selon les Critères Communs permet quant à elle de certifier un produit selon des niveaux d'assurance de sécurité Evaluation Assurance Level très variés, allant de EAL1 (niveau d'attaquant faible, script kiddie) à EAL7 (niveau d'attaquant élevé), et prend également en compte la sécurité du développement.
+
+\subsection{Centre d'Evaluation de la Sécurité des Technologies de l'Information (CESTI)}
+Les CESTI réalisent les évaluations : ils agissent en tant que tierce partie indépendante des développeurs de produits et des commanditaires. Ils doivent être agréés par l'organisme de certification et à ce titre sont tenus de respecter toutes les règles du schéma.
+
+\noindent Un CESTI est constitué d'une équipe d'experts et de responsables, intégrés le plus souvent dans un organisme à vocation plus large. Les critères d'agrément imposent un cloisonnement du CESTI vis-à-vis des autres activités de l'organisme auquel il est rattaché.
+
+\noindent Un CESTI doit être impartial et indépendant de toute pression extérieure. Il ne doit en aucun cas être impliqué dans le développement (y compris à titre de conseil) et l'évaluation d'un même produit. Cependant un CESTI peut proposer des prestations de conseil, qui ne devront en aucun cas affecter son impartialité dans le cadre des évaluations qu'il est amené à conduire.
+
+\subsubsection{CESTI CC}
+\begin{multicols}{2}
+\begin{itemize}
+	\item AMOSSYS
+	\item OPPIDA
+	\item CEA - LETI
+	\item SERMA SAFETY \& SECURITY
+	\item THALES (TCS-CNES)
+	\item AMOSSYS + SERMA SAFETY \& SECURITY
+	\item OPPIDA + SERMA SAFETY \& SECURITY
+\end{itemize}
+\end{multicols}
+	
+
+\subsubsection{CESTI CSPN}
+\begin{multicols}{2}
+\begin{itemize}
+	\item AMOSSYS
+	\item CEA - LETI
+	\item EDSI	
+	\item LEXFO	
+	\item OPPIDA	
+	\item Quarkslab	
+	\item SERMA SAFETY \& SECURITY
+	\item SOGETI	
+	\item SYNACKTIV	
+	\item THALES (TCS-CNES)	
+	\item Trusted Labs
+\end{itemize}
+\end{multicols}
+
+\subsection{Reconnaissance des certificats}
+Les certificats émis par l'ANSSI et basés sur les Critères Communs peuvent bénéficier d'une reconnaissance internationale. Cependant le centre émet également des certificats qui ne font pas l'objet d'une telle reconnaissance, selon la demande des commanditaires. Le CCRA (Common Criteria Recognition Agreement) est signé par 25 membres. Il permet essentiellement la reconnaissance au niveau EAL2 (niveau d'attaquant basique). Le SOG-IS est un accord européen regroupant actuellement 10 membres. Il permet la reconnaissance des certificats jusqu'à EAL4, voire pour certains domaines techniques particuliers jusqu'à EAL7. La différence de reconnaissance entre ces deux accords réside dans le niveau de vérification des capacités techniques des centres de certification y participant. En effet, le SOG-IS adjoint aux exigences des audits du CCRA des vérifications nettement plus poussées sur les moyens associés aux missions des centres de certification, mais aussi sur les compétences des laboratoires d'évaluations. Ainsi la portée de la reconnaissance SOG-IS permet d'apporter une confiance dans les résultats de ses membres bien plus élevée que celle établie dans le cadre du CCRA.
+
+\subsection{Audience visé}
+Il existe trois groupes qui ont un intérêt général dans l'évaluation des propriétés de sécurité des TOE : les consommateurs, les promoteurs et les évaluateurs. Les critères présentés dans cette partie 1 du CC ont été structurés de manière à répondre aux besoins des trois groupes. Ils sont tous considérés comme les principaux utilisateurs du CC. Les trois groupes peuvent bénéficier des critères comme expliqué dans les paragraphes suivants.
+
+\subsubsection{Consommateurs}
+Le CC est rédigé pour s'assurer que l'évaluation répond aux besoins des consommateurs, car il s'agit de l'objectif fondamental et de la justification du processus d'évaluation. Les consommateurs peuvent utiliser les résultats des évaluations pour décider si un TOE répond à leurs besoins de sécurité. Ces besoins en matière de sécurité sont habituellement déterminés à la suite d'une analyse des risques et de l'orientation stratégique. Les consommateurs peuvent également utiliser les résultats de l'évaluation pour comparer différents TOE. Le CC donne aux consommateurs, en particulier dans les groupes de consommateurs et les communautés d'intérêts, une structure indépendante de la mise en oeuvre, appelée profil de protection (PP), dans laquelle ils peuvent exprimer leurs exigences en matière de sécurité d'une manière non ambiguë.
+
+
+\subsubsection{Développeurs}
+Le CC a pour but d'aider les promoteurs à se préparer et à participer à l'évaluation de leurs TOE et à déterminer les exigences en matière de sécurité auxquelles ces TOE doivent satisfaire. Ces exigences sont contenues dans un concept dépendant de l'implémentation appelé cible de sécurité (ST). Ce ST peut être basé sur un ou plusieurs PP pour démontrer que le ST est conforme aux exigences de sécurité des consommateurs telles qu'elles sont définies dans ces PP. Le CC peut ensuite être utilisé pour déterminer les responsabilités et les mesures à prendre afin de fournir les preuves nécessaires pour appuyer l'évaluation de l'TOE par rapport à ces exigences. Il définit également le contenu et la présentation de cette preuve.
+
+
+\subsubsection{Évaluateurs}
+Le CC contient des critères que les évaluateurs doivent utiliser lorsqu'ils jugent de la conformité des TOE à leurs exigences en matière de sécurité. Le CC décrit l'ensemble des actions générales que l'évaluateur doit exécuter. Il est à noter que le CC ne précise pas les procédures à suivre dans l'exécution de ces actions.
+
+\subsubsection{Autres}
+Bien que le CC soit orienté vers la spécification et l'évaluation des propriétés de sécurité informatique des TOE, il peut également être utile comme document de référence pour toutes les parties qui ont un intérêt ou une responsabilité en matière de sécurité informatique. Certains des autres groupes d'intérêt qui peuvent bénéficier de l'information contenue dans le CC sont les suivants :
+\begin{itemize}
+	\item Les gardiens des systèmes et les responsables de la sécurité des systèmes chargés de déterminer et de respecter les politiques et les exigences organisationnelles en matière de sécurité des TI
+\item Les auditeurs, tant internes qu'externes, chargés d'évaluer l'adéquation de la sécurité d'une solution informatique (qui peut consister en un TOE ou en contenir un)
+\end{itemize}
 
 \section{Les Critères Communs (CC)}
-Les critères communs représentent le résultat des efforts déployés pour élaborer des critères d'évaluation de la sécurité informatique qui sont largement utiles au sein de la communauté internationale. Il s'agit de l'alignement et du développement d'un certain nombre de critères de source: les critères européens, américains et canadiens existants. Les critères communs remédient aux différences conceptuelles et techniques entre les critères sources. Il contribue à l'élaboration d'une norme internationale (ISO/15408) et ouvre la voie à la reconnaissance mutuelle mondiale des résultats d'évaluation. Une grande force dans l'élaboration des CC est la participation étroite de toutes les parties ayant l'expérience de la création des documents de critères nationaux originaux. Le CC bénéficie de leur sagesse accumulée et de leur intention d'adopter une approche flexible pour la standardisation des fonctionnalités de sécurité et l'assurance d'évaluation. Le CC a été rendu suffisamment souple pour permettre sa convergence évolutive avec les nombreux schémas nationaux existants en matière d'évaluation, de certification et d'accréditation de la sécurité informatique.\\
+Les critères communs représentent le résultat des efforts déployés pour élaborer des critères d'évaluation de la sécurité informatique qui sont largement utiles au sein de la communauté internationale. Il s'agit de l'alignement et du développement d'un certain nombre de critères de source: les critères européens, américains et canadiens existants. Les critères communs remédient aux différences conceptuelles et techniques entre les critères sources. Il contribue à l'élaboration d'une norme internationale (ISO/15408) et ouvre la voie à la reconnaissance mutuelle mondiale des résultats d'évaluation. Une grande force dans l'élaboration des CC est la participation étroite de toutes les parties ayant l'expérience de la création des documents de critères nationaux originaux. Le CC a été rendu suffisamment souple pour permettre sa convergence évolutive avec les nombreux schémas nationaux existants en matière d'évaluation, de certification et d'accréditation de la sécurité informatique.\\
 
 \noindent La structure des CC offre également une grande flexibilité dans la spécification des produits sécurisés. Les consommateurs et les autres parties peuvent spécifier la fonctionnalité de sécurité d'un produit en termes de Profils de Protection (PP) standard et sélectionner indépendamment le niveau d'assurance d'évaluation à partir d'un ensemble défini de sept niveaux d'assurance d'évaluation croissants (EAL1-7).\\
 
@@ -143,6 +220,7 @@ Pour comprendre le langage CC, il est important de se rendre compte que les orga
 Un \emph{Profil de Protection} (PP) est un document décrivant les exigences de sécurité pour un type de produit donné, comme par exemple les systèmes d'exploitation et les pare-feu. Les profils de protection sont généralement élaborés par des groupes d'utilisateurs, de développeurs et/ou de gouvernements. 
 Les PPs suivant sont quelques exemples de PPs approuvés:
 
+\begin{multicols}{2}
 \begin{itemize}	
 \item Anti-Virus
 \item Gestion des certificats
@@ -160,6 +238,7 @@ Les PPs suivant sont quelques exemples de PPs approuvés:
 \item Pare-feu d'entreprise
 \item Plate-forme de sécurité IC (Smart Card)
 \end{itemize}
+\end{multicols}
 
 Les vendeurs peuvent évaluer leurs produits par rapport aux exigences de l'un de ces PP applicables ou ils peuvent faire leurs propres affirmations et faire évaluer ces affirmations par le processus d'évaluation du CC.
 
@@ -167,17 +246,7 @@ Les vendeurs peuvent évaluer leurs produits par rapport aux exigences de l'un de
 Une \emph{Cible de Sécurité} (ST) est le document produit par les vendeurs décrivant les affirmations de sécurité relatives à leur produit. Ces affirmations peuvent être en réponse à un PP ou ces affirmations peuvent simplement être des affirmations du vendeur. Dans les deux cas, le produit peut être évalué et certifié.
 L'un des termes clés utilisé dans le ST est la \emph{Cible de l'Evaluation} (TOE). La TOE est au centre de l'évaluation. Toutes les affirmations de sécurité qui seront évaluées doivent être satisfaites par la TOE. En d'autres termes, la TOE est le sous-ensemble du produit qui contient toutes les fonctionnalités pertinentes pour la sécurité.\\
 
-Le document ST est le fondement de l'évaluation du CC; il définit la portée de l'évaluation et décrit les réclamations de sécurité du développeur. Tous les efforts d'évaluation sont fondés sur les informations fournies dans le ST. Le document ST est organisé comme suit:
-\begin{itemize}	
-\item Introduction
-\item Affirmations de conformité
-\item Définition du problème de sécurité
-\item Objectifs de sécurité
-\item Définition des composants étendus
-\item Exigences de sécurité
-\item Spécification sommaire de la TOE
-\end{itemize}	
-
+Le document ST est le fondement de l'évaluation du CC; il définit la portée de l'évaluation et décrit les affirmations de sécurité du développeur. Tous les efforts d'évaluation sont fondés sur les informations fournies dans le ST. La Cible d'évaluation sera décrite plus en détail dans une section dédié.
 
 \subsection{CC Partie 2 - Composantes fonctionnelles de sécurité}
 En tant que langage, les standards CC ont un vocabulaire standardisé. Le vocabulaire standard permet aux clients d'exprimer leurs besoins en matière de sécurité et aux fournisseurs d'articuler les caractéristiques de sécurité de leurs produits de manière cohérente. Le premier ensemble de caractéristiques de sécurité définies par le CC [Standards CC], \emph{Les Exigences fonctionnelles de Sécurité} (SFR), sont des identificateurs normalisés et des descriptions des caractéristiques de sécurité du produit lui-même.  Ces dispositifs de sécurité sont les contre-mesures aux menaces. Par exemple, il existe un SFR pour définir comment le produit protégera les données des utilisateurs en utilisant des contrôles d'accès. Les SFRs sont organisés en 11 grands groupes appelés \emph{Classe Fonctionnelle Sécurité}. Ostensiblement, ces classes définissent toutes les fonctions de sécurité potentielles qu'un produit pourrait fournir.
@@ -385,37 +454,10 @@ Les activités de préparation à la pré-évaluation comprennent: la recherche des b
 La phase de lancement du projet comprend toutes les activités préparatoires à la réunion de lancement du projet. La réunion <<cou d'envoi>> est le lancement formel et officiel de l'évaluation selon les CC. Il indique que le laboratoire d'évaluation et les organismes gouvernementaux ont approuvé le projet. Le livrable clé de cette phase et le fondement de l'évaluation selon CC est la Cible de Sécurité (ST).  La ST doit décrire:
 \begin{itemize}
 \item Cible de l'évaluation (TOE)
-\item Environnement évalué
-\item Niveau d'évaluation
+\item Environnement évalué (système hôte)
+\item Niveau d'évaluation (EAL)
 \end{itemize}
 
-\subsubsection{Cible de l'évaluation}
-La cible d'évaluation est le produit ou le sous-ensemble du produit évalué. Le sous-ensemble du produit parce que dans la plupart des projets d'évaluation CC, le TOE n'était pas le produit entier livré aux clients.
-
-\subsubsection{Environnement évalué}
-L'environnement évalué est l'environnement dans lequel le produit est déployé et exploité. Le ST décrit l'environnement opérationnel, i.e. le matériel informatique, le système d'exploitation et le réseau à utiliser dans l'évaluation. L'environnement évalué tente de refléter les déploiements \emph{typiques} des clients afin de donner de la crédibilité à l'évaluation et de tirer parti de la configuration \emph{typique} ou par défaut afin de réduire l'effort nécessaire. 
-\subsubsection{Niveau d'évaluation}
-Le dernier composant major de la ST est le niveau d'assurance d'évaluation (EAL). Si l'évaluation se fait par rapport à un PP, ce dernier dictera l'EAL d'évaluation. D'une manière générale plus le niveau d'EAL est élevé plus l'évaluation est longue.
-
-\subsubsection{Réunion de lancement avec l'organisme de certification}
-Bien que la réunion de lancement de l'organisme de certification soit en grande partie une formalité puisque la préparation de ce dernier aurait dû aborder n'importe quelle question, il s'agit de la première étape importante de l'évaluation CC. Chaque organisme aura ses propres exigences particulières pour préparer et mener à bien la réunion de lancement. Le coup d'envoi est le premier indicateur visible pour tous que cette évaluation du CC est en cours. \\
-Pour aider à préparer la réunion de lancement, l'organisme peut donner un exemple d'ordre du jour pour une réunion de lancement de l'acceptation de l'évaluation. 
-L'ordre du jour comprend les points suivants:
-\begin{itemize}
-	\item Objet de la réunion
-	\item Présentation des participants
-	\item Définir les rôles et responsabilités des diverses parties
-	\item Identifier les points de contact clés
-	\item Revoir l'organisation et les objectifs du programme
-	\item Sponsor/fournisseur présente le produit (TOE)
-	\item les calendriers des promoteurs et des fournisseurs de l'examen
-	\item Revoir les plans et le calendrier d'évaluation
-	\item Examiner les attentes et les objectifs
-	\item Planifier la prochaine réunion
-	\item Répondre aux questions ou aux préoccupations
-	\item Acceptation dans l'évaluation
-\end{itemize}
-Peu de temps après la réunion réussie de lancement, de nombreux organismes et quelques laboratoires d'évaluation CC listent les produits sur leurs sites Web comme étant en cours d'évaluation.
 \subsection{Évaluation et feedback}
 La phase d'évaluation et de feedback consiste en une série de cycles de production de données probantes, d'évaluation, de commentaires, de modification, de re-soumission et de réévaluation itérées jusqu'à ce que l'évaluateur soit convaincu que les exigences relatives à l'évaluation sont satisfaites. Les tâches suivantes sont exécutées sur chaque document de preuve livrable:
 \begin{itemize}
@@ -444,7 +486,7 @@ Essentiellement, le développeur doit fournir la preuve que les modifications app
 
 
 \newpage
-\section{Cible de Securité}
+\section{Cible de Sécurité}
 \subsection{Objet de la Cible de Sécurité}
 Le ST est le fondement de l'évaluation selon CC. Faire des erreurs dans ce document peut avoir des répercussions tout au long du processus d'évaluation du CC. La partie 1 des Standards Le ST spécifie les détails de la Cible d'évaluation (TOE). Le ST est le document public le plus important généré par le processus d'évaluation du CC. Les évaluations de CC visent à fournir au client l'assurance que les affirmations de sécurité que les développeur font sur leurs produits sont justifiées et que la ST peut servir à communiquer efficacement ces affirmations.
 \subsection{Vue d'ensemble de la ST}
@@ -506,24 +548,7 @@ La \emph{Référence} de la TOE est généralement le nom du produit à partir duquel
 \paragraph{Aperçu de la TOE\\}
 L'Aperçu de la TOE résume l'utilisation et les principales fonctions de sécurité du TOE. Cette description peut être courte - généralement quelques paragraphes décrivant la TOE. Cette description a pour but de donner un bref aperçu des fonctions et de l'utilisation du produit.
 L'aperçu de la TOE comprend également des descriptions de haut niveau des caractéristiques de sécurité du produit telles que l'authentification, l'audit et la gestion de la sécurité.
-La vue d'ensemble de TOE identifiera clairement le type de TOE. Il ne semble pas y avoir de catalogue standard des types de TOE, mais le Portail des Critères Communs répertorie les produits validés en utilisant les catégories suivantes:
-
-\begin{itemize}
-	\item Dispositifs et systèmes de contrôle d'accès
-	\item Systèmes et dispositifs biométriques
-	\item Dispositifs et systèmes de protection des frontières
-	\item Protection des données
-	\item Bases de données
-	\item Dispositifs et systèmes de détection
-	\item Circuits intégrés, cartes à puce et dispositifs et systèmes associés aux cartes à puce
-	\item Systèmes de gestion des clés
-	\item Dispositifs et systèmes liés au réseau et aux réseaux
-	\item Systèmes d'exploitation
-	\item Autres appareils et systèmes
-	\item Produits pour les signatures numériques
-	\item Informatique de confiance	
-\end{itemize}
-Enfin, l'aperçu de TOE identifiera tout matériel, logiciel ou firmware non-TOE requis par la TOE. Par exemple différentes versions du système d'exploitation.
+La vue d'ensemble de TOE identifiera clairement le type de TOE. Enfin, l'aperçu de TOE identifiera tout matériel, logiciel ou firmware non-TOE requis par la TOE. Par exemple différentes versions du système d'exploitation.
 
 \paragraph{Description de la TOE\\}
 La description de la TOE décrit la portée physique et la portée logique de la TOE. C'est là qu'un bon schéma fonctionnel de l'architecture du système et de l'environnement IT qui l'entoure est utile. Le périmètre physique comprend le matériel, le logiciel, le micro-logiciel et le guidage qui composent la TOE. La portée logique donne une description générale de la fonctionnalité de sécurité du TOE.
@@ -571,26 +596,26 @@ Toutes les hypothèses concernant l'environnement opérationnel de la TOE seront i
 La section sur les objectifs de sécurité de la ST décrit comment les objectifs de sécurité permettront de contrer les menaces identifiées pour la TOE et comment les politiques organisationnelle de sécurité seront respectées par la TOE. Cette section décrira également les objectifs de sécurité de l'environnement opérationnel de la TOE et la façon dont les hypothèses de l'environnement opérationnel seront respectées.
 
 Comme l'illustre la figure 11, chaque objectif de sécurité pour la TOE doit être retracé jusqu'à:
-\begin{enumerate}
+\begin{itemize}
 \item Les menaces contrées par cet objectif de sécurité et
 \item Les OSPs sont appliqués par cet objectif de sécurité
-\end{enumerate}
+\end{itemize}
 
 Chaque objectif de sécurité de l'environnement opérationnel est tracé jusqu'à:
-\begin{enumerate}
+\begin{itemize}
 \item Les menaces contrées par cet objectif de sécurité
 \item Les OSPs sont appliqués par cet objectif de sécurité, et
 \item Hypothèses confirmées par cet objectif de sécurité.
-\end{enumerate}	
+\end{itemize}	
 L'évaluateur vérifiera que toutes les menaces sont contrées, que tous les OSPs sont maintenus et que toutes les hypothèses sont respectées.
 
 \subsubsection{Définition des composants étendus}
 S'il y a des éléments fonctionnel ou d'assurance étendues inclus dans la présente ST, ils doivent tous être clairement décrits dans cette section.
 Les composants étendus sont les composants personnalisés qui ne se trouvent pas dans les Standards CC Parties 2 ou 3. Selon CC Part 1, des composants étendus peuvent être utilisés quand:
-\begin{enumerate}
+\begin{itemize}
 	\item Les SFRs de la Partie 2 du CC ne permettent pas d'atteindre les objectifs de sécurité énoncés pour la TOE.
 	\item Les SARs de la Partie 3 du CC ne couvrent pas les exigences de tiers applicables, telles que les lois locales.	
-\end{enumerate}
+\end{itemize}
 La définition des composantes élargies doit décrire comment chaque composante élargie est reliée aux composantes, aux familles et aux classes existantes du CC et doit être présentée à l'aide d'un modèle similaire.
 
 \subsubsection{Exigences de sécurité}
@@ -709,10 +734,11 @@ La section sur les spécifications sommaires de la TOE (TSS) est la plus regardée
 
 
 \newpage
-\section{Documents justificatifs pour l'évaluation}
-Après le document sur la cible de sécurité (ST), le second major ensemble de documents des preuves CC est la preuve de développement. Les preuves de développement sont essentiellement des documents de conception du produit, les évaluateurs examineront ces preuves pour vérifier les affirmations fonctionnelles de sécurité du développeur. Selon la Méthodologie d'évaluation Commune (CEM) [Standards CC], l'activité de développement a pour but d'évaluer la documentation de conception à l'appui de la compréhension de la façon dont les fonctions de sécurité de la TOE (TSF) répondent aux exigences fonctionnelles de sécurité (SFR). Cette compréhension découle de l'examen de la documentation des preuves de développement qui comprend les spécifications fonctionnelles, la description de la conception de la TOE, la description d'implémentation (e.g. code source) et une description de l'architecture de sécurité. Pour les évaluations d'assurance les plus élevées, les descriptions internes et les descriptions du modèle de politique de sécurité sont également requises. Les exigences d'assurance de la classe développement varient selon l'EAL.\\
+\section{Fournitures d'évaluation}
+\subsection{Documents de développement}
+Les preuves de développement sont essentiellement des documents de conception du produit, les évaluateurs examineront ces preuves pour vérifier les affirmations fonctionnelles de sécurité du développeur. Selon la Méthodologie d'évaluation Commune (CEM) [Standards CC], l'activité de développement a pour but d'évaluer la documentation de conception à l'appui de la compréhension de la façon dont les fonctions de sécurité de la TOE (TSF) répondent aux exigences fonctionnelles de sécurité (SFR). Cette compréhension découle de l'examen de la documentation des preuves de développement qui comprend les spécifications fonctionnelles, la description de la conception de la TOE, la description d'implémentation (e.g. code source) et une description de l'architecture de sécurité.
 
-Pour la plupart des développeurs de produits, les spécifications fonctionnelles, les conceptions internes et les documents d'architecture sont des sorties naturelles de la phase de conception du produit. Ces documents peuvent ne pas être à jour ou ne font pas ressortir les aspects sécuritaires du produit. Ils ne sont pas nécessairement en corrélation avec les exigences de contenu des documents d'assurance CC respectifs. C'est la documentation de conception à jour et axée sur l'évaluation CC dont l'évaluateur CC aura besoin pour mener à bien l'évaluation ADV. Les développeurs de produits sont certainement encouragés à exploiter tous les documents de développement existants, y compris les spécifications de conception externes, les spécifications de conception internes et les descriptions d'architecture pour générer les preuves ADV. Certains vendeurs qui ont une grande expérience avec les CC ont intégré le développement des preuves CC dans leurs cycles normaux de développement de produits.\\
+C'est la documentation de conception à jour et axée sur l'évaluation CC dont l'évaluateur CC aura besoin pour mener à bien l'évaluation ADV. Certains vendeurs qui ont une grande expérience avec les CC ont intégré le développement des preuves CC dans leurs cycles normaux de développement de produits.\\
 Dans ce paragraphe, nous discuterons les différentes exigences d'évidence sur le développement (ADV) pour les niveaux EAL allant de 1 à 4. Les familles ADV sont:
 \begin{itemize}
 	\item Spécifications fonctionnelles (ADV\_FSP)
@@ -723,7 +749,7 @@ Dans ce paragraphe, nous discuterons les différentes exigences d'évidence sur le
 	\item Modélisation des politiques de sécurité (ADV\_SPM)
 \end{itemize}
 
-\subsection{Spécifications fonctionnelles}
+\subsubsection{Spécifications fonctionnelles}
 La plupart des développeurs de logiciels sont familiarisés avec le concept des spécifications fonctionnelles (FSP) en tant que descriptions de haut niveau des fonctions du produit. Dans les évaluations CC, les FSP se concentrent sur les fonctions de sécurité revendiquées dans la ST. Selon la Partie 3 du CC, l'objectif de la famille des spécifications fonctionnelles (ADV\_FSP) est de décrire le TSFI. Il s'agit des interfaces des fonctions de sécurité de la TOE (TSF) qui se trouvent à l'intérieur de la TOE, mais en dehors du TSF. Les interfaces sont des entrées, sorties et services du TSF. Par exemple, une base de données accepte des requêtes SQL comme entrées à partir d'une applet client, exécute les opérations et renvoie les réponses. Le FSP décrit les requêtes SQL et les réponses retournées, mais il n' y a pas de description de la façon dont les entrées sont traitées ou communiquées - elles font partie de la conception TOE (ADV\_TDS).
 La partie 3 du CC classent les différents types d'interfaces comme suit:
 
@@ -743,7 +769,7 @@ Au fur et à mesure que les niveaux d'assurance augmentent, le développeur doit f
 \item Description des messages d'erreur: Ce qui génère les erreurs, messages d'erreur et définitions de code d'erreur
 \end{itemize}
 
-J'aborderai les quatre premières classes ADV\_FSP qui couvrent les exigences EAL 1 à 4, car ce sont les plus utilisés par les produits commerciaux. Les composants le sont:
+J'aborderai les quatre premières classes ADV\_FSP qui couvrent les exigences EAL 1 à 4, car ce sont les plus utilisés par les produits commerciaux. Les composants sont:
 \\
 \vspace{0.5em}
 \\
@@ -766,14 +792,9 @@ J'aborderai les quatre premières classes ADV\_FSP qui couvrent les exigences EAL
 
 ADV\_FSP.1, \emph{Spécifications fonctionnelles de base}, exige une description de l'objectif et du mode d'utilisation de chaque interface SFR-enforcing et de chaque interface SFR-supporting. Elle nécessite également un mapping avec les SFRs concernés.\\
 
-ADV\_FSP.2, \emph{Spécification fonctionnelle de renforcement de sécurité}, élargit l'exigence ADV\_FSP.1 en exigeant la description de l'objectif et de la méthode d'utilisation pour toutes les TSFIs. De plus, des descriptions des actions et des messages d'erreur doivent être fournis pour toutes les fonctions de SFR de renforcement de la TSFI. ADV\_FSP.2 et ses supérieurs dépendent du ADV\_TDS.1.\\
-
-ADV\_FSP.3, \emph{Spécifications fonctionnelles avec récapitulatif complet}, exige en plus des exigences ADV\_FSP.2 des descriptions des actions de SFR de renforcement et des exceptions associées à l'invocation du TSFI.\\
-
-ADV\_FSP.3 requiert également un récapitulatif des actions de SFR-supportant et de  SFR non-interférant de chaque TSFI.
 ADV\_FSP.4, \emph{Spécifications fonctionnelles complètes}, requièrent une description complète du TSFI comprenant: l'objectif, la méthode d'utilisation, tous les paramètres, toutes les actions et tous les messages d'erreur.
 
-\subsection{Architecture de sécurité}
+\subsubsection{Architecture de sécurité}
 Le but de l'architecture de sécurité (ADV\_ARC) est de fournir des preuves pour appuyer les affirmations du TSF. On s'attend à ce que le développeur décrit la conception et l'implémentation de la TOE, illustrant que le TSF ne peut être court-circuité ou altéré. La séparation des domaines sera également décrite dans l'architecture de sécurité. Il n' y a qu'un seul composant dans cette famille ADV\_ARC.1 et il dépend du ADV\_FSP. 1 et ADV\_TDS.1.
 \\
 \vspace{0.5em}
@@ -792,14 +813,7 @@ Le but de l'architecture de sécurité (ADV\_ARC) est de fournir des preuves pour 
 \\
 La première exigence de l'ADV\_ARC.1, \emph{Description de l'Architecture de Sécurité}, est que les descriptions de l'architecture de sécurité soient cohérentes avec le niveau des fonctions SFR de renforcement décrites dans la conception de la TOE. Cela exigera une cohérence avec les éléments probants pour ADV\_TDS.1. Tous les modules énumérés dans l'architecture de sécurité doivent également être inclus dans les spécifications fonctionnelles ou dans les preuves de conception de la TOE.\\
 
-Certaines fonctions de sécurité de la TOE maintiennent des environnements pour des entités externes telles que les systèmes d'exploitation qui fournissent de l'espace mémoire pour une application. Les descriptions de ces domaines de sécurité doivent être incluses dans l'architecture de sécurité. Des descriptions de la façon dont ces environnements sont maintenus et séparés par le TSF seront incluses dans l'architecture de sécurité.\\
-
-On s'attend à ce que la TSF soit initialisé dans un état sécurisé. Tous les composants impliqués dans le processus sécurisé d'initialisation doivent être décrits dans l'architecture de sécurité. Une description suffisante doit être fournie afin que l'évaluateur puisse déterminer quels composants sont invoqués et pour que le processus d'initialisation soit sûr.\\
-L'auto-protection est un élément clé de l'architecture de sécurité et fait référence à la capacité du TSF à empêcher la manipulation par des entités externes de modifications non autorisées. Les mécanismes d'auto-protection peuvent être des restrictions physiques ou logiques. Elle peut aussi inclure la notion de privilège et de séparation de domaines.\\
-
-Une autre caractéristique clé de l'architecture de sécurité est la capacité d'empêcher le contournement des fonctions de sécurité. Par exemple, un utilisateur ne doit pas pouvoir utiliser des fonctions de la TOE protégées sans s'identifier et s'authentifier au préalable auprès de la TOE. L'évaluateur devra non seulement s'appuyer sur l'architecture de sécurité pour déterminer la capacité de non contournement, mais il devra aussi examiner les spécifications fonctionnelles, la conception de la TOE et d'autres éléments probants. L'évaluateur est tenu de s'assurer que chaque TSFI est analysée par rapport à tous les SFRs affirmés.
-
-\subsection{Conception de la TOE}
+\subsubsection{Conception de la TOE}
 La conception de la TOE (ADV\_TDS) introduit une terminologie plus spécifique. Les \emph{sous-systèmes} sont considérés comme faisant partie de l'architecture. Ce sont les "grands blocs" dans le schéma fonctionnel de l'architecture. Les \emph{Modules} sont les "petits blocs" et remplissent des fonctions spécifiques. L'objectif de la conception de la TOE est de décrire les limites du TSF et la façon dont le TSF implémente les SFRs. Les \emph{sous-systèmes} et \emph{modules} sont catégorisé comme: SFR-renorcing, SFR-supporting ou SFR-non-interfering. Comme prévu, au fur et à mesure que le niveau d'assurance augmente, le niveau de détail augmente du niveau sous-système au niveau module.
 \\
 \vspace{0.5em}
@@ -821,11 +835,7 @@ La conception de la TOE (ADV\_TDS) introduit une terminologie plus spécifique. L
 Comme dans le cas de l'ADV\_FSP, je discuterai des exigences de conception de la TOE pour les EAL allant de 2 à 4 seulement.\\
 ADV\_TDS.1, la conception de la TOE, exige une description de la conception de base da la TOE à l'aide de sous-systèmes. Tous les sous-systèmes du TSF seront répertoriés, de même qu'une description du comportement et des interactions de tous les sous-systèmes SFR-renforçant. Le comportement des sous-systèmes SFR-supportant et SFR-non-interférant sera également pris en compte afin de démontrer qu'ils ne sont pas SFR-renforçant.\\
 
-ADV\_TDS.2, la documentation de la \emph{Conception Architecturale} ajoutera à ADV\_TDS.1 des descriptions plus détaillées des sous-systèmes SFR-supportant et SFR-non-interférant.  Il devrait y avoir suffisamment de détails sur le comportement et les interactions de ces sous-systèmes pour que l'évaluateur puisse vérifier leur classification.\\
-
-ADV\_TDS.3, la documentation \emph{Conception Modulaire de Base}, va au niveau de détail du module. La conception de la TOE est expliquée en termes de modules et de sous-systèmes. Tous les modules doivent être mappés avec leurs sous-systèmes. Chaque module SFR-renforçant sera décrit en termes d'objectifs, d'interfaces et d'interactions. Chaque module SFR-supportant et SFR-non-interférant sera décrit par sa fonction et son interaction avec les autres modules.
-
-\subsection{Représentation de l'implémentation}
+\subsubsection{Représentation de l'implémentation}
 \emph{La représentation de l'implémentation} (ADV\_IMP) n'est applicable qu' à partir du niveau EAL 4. La représentation de l'implémentation peut prendre la forme d'un code source logiciel ou firmware, de diagrammes matériels et de diagrammes IC.
 La clé d'ADV\_IMP est le mapping entre la représentation de l'implémentation et la conception de la TOE du TSF.\\
 
@@ -833,11 +843,8 @@ De nombreux vendeurs de produits se préoccupe par cette exigence en ce qui conce
 
 L'autre problème avec le code source du logiciel est que bien que l'évaluation CC soit centrée sur le TOE, le code source ne l'est généralement pas, il n'est généralement pas pratique d'essayer de séparer le code source de la TOE du reste du code produit. Cela peut poser un problème si les évaluateurs tombent sur la vulnérabilité d'une partie du produit qui ne fait pas partie de la la TOE.
 
-\section{Tests, évaluation de la vulnérabilité et éléments probants d'orientation}
-\subsection{Documentation Tests}
+\subsection{Document de Tests}
 L'évaluation des preuves de la classe d'assurance Tests (ATE) a pour but de confirmer que les fonctions de sécurité de la TOE fonctionnent comme prévu. Cela signifie que les composants de la classe ATE, lorsqu'ils sont conçus pour que les évaluateurs confirment les affirmations faites dans les autres documents CC, telles que les spécifications fonctionnelles et la cible de sécurité.\\
-
-Cette partie de l'évaluation exige du développeur la fourniture de renseignements sur ce qui a été testé et sur la façon dont le produit a été testé. Il peut être tenus de mettre au point des tests supplémentaires pour tester spécifiquement les fonctions de sécurité telles que définies par la ST et les spécifications fonctionnelles (FSP).\\
 
 Dans ce paragraphe, nous nous concentrerons sur les exigences des niveaux EAL allant de 1 à 4 uniquement pour la classe ATE avec les sujets suivants:
 \begin{itemize}
@@ -847,13 +854,13 @@ Dans ce paragraphe, nous nous concentrerons sur les exigences des niveaux EAL al
 	\item Test indépendant (ATE\_IND)
 \end{itemize}
 
-\subsection{Couverture}
+\subsubsection{Couverture}
 L'évidence du \emph{Test de couverture} décrit l'étendue de la couverture des tests effectuée par les développeurs à travers les interfaces de module de la TOE.\\
 L'objectif du ATE\_COV.1, \emph{Évidence de Couverture}, est de démontrer qu'une partie des interfaces des fonctions de sécurité de la TOE (TSFI) ont été testée. Le développeur doit illustrer comment certains tests correspondent aux interfaces définies dans les spécifications fonctionnelles. Un mapping entre SFR, TSFI, les détails des tests et les résultats des tests fournirait le genre de preuves que l'évaluateur peut facilement examiner.\\
 
 ATE\_COV.2, \emph{Analyse de Couverture}, élargit ATE\_COV.1 pour couvrir toutes les TSFI. Le mapping doit inclure toutes les TSFIs présentes dans le FSP.
 
-\subsection{Profondeur}
+\subsubsection{Profondeur}
 L'objectif du test en \emph{Profondeur} (ATE\_DPT) est d'examiner la profondeur des tests réalisés par le développeur. Une documentation de conception plus détaillée est nécessaire pour effectuer cette analyse, de sorte que les dépendances comprennent l'architecture, la conception de la TOE et les preuves de tests fonctionnels.
 \\
 \vspace{0.5em}
@@ -872,7 +879,7 @@ L'objectif du test en \emph{Profondeur} (ATE\_DPT) est d'examiner la profondeur 
 \\
 Pour ATE\_DPT.1, \emph{Test de la conception de base}, le développeur fournira une analyse de la profondeur des tests. Cette analyse inclura la correspondance entre les tests et les sous-systèmes TSF dans la conception de la TOE. Il montrera également que tous les sous-systèmes ont été testés. La documentation des tests doit comprendre le plan de test, la configuration des tests, les résultats attendus et les résultats réels. L'évaluateur examinera les preuves de test par rapport au comportement attendu en fonction de la documentation de conception.
 
-\subsection{Tests fonctionnels}
+\subsubsection{Tests fonctionnels}
 Les preuves du test fonctionnel (ATE\_FUN) documentent les tests effectués par le développeur sur les fonctions de sécurité exprimés dans le ST.
 \\
 \vspace{0.5em}
@@ -891,7 +898,7 @@ Les preuves du test fonctionnel (ATE\_FUN) documentent les tests effectués par l
 \\
 L'ATE\_FUN.1, l'évidence \emph{Test fonctionnel} exige que le développeur teste le TSF et enregistre les résultats. La documentation des tests comprendra le plan de test, les résultats attendues et réels des tests. Les plans de test décrivent la configuration des tests et les étapes nécessaires à leur exécution. Bien entendu, les résultats réels des tests doivent correspondre aux résultats attendus. Les informations relatives à la configuration des tests doivent être suffisamment détaillées pour que les tests puissent être reproduits avec des résultats identiques. Les évaluateurs relanceront un échantillonnage des tests fonctionnels du développeur pour vérifier les résultats. Si des tests doivent être exécutés dans un ordre particulier (par exemple pour définir des conditions préalables pour d'autres tests), cet ordre doit être bien documenté.
 
-\subsection{Test Indépendant}
+\subsubsection{Test Indépendant}
 Les tests indépendants (ATE\_IND) visent à fournir une plus grande assurance sur les tests des développeurs. Des tests indépendants sont mis au point et effectués par les évaluateurs.
 \\
 \vspace{0.5em}
@@ -912,7 +919,7 @@ ATE\_IND.1, l'évidence \emph{Test Indépendant}, exige simplement que la TOE soit
 
 ATE\_IND.2 {Échantillon de test indépendant}, exige du développeur qu'il fournisse un environnement de test équivalent afin que l'évaluateur puisse exécuter un sous-ensemble des tests du développeur. Il peut être utile que l'évaluateur effectue ces tests lors de sa visite du site du développeur, ce qui lui permet d'accéder à l'environnement de test du développeur. Cela élimine les problèmes logistiques liés à l'expédition du matériel au laboratoire de l'évaluateur et évite les complications liées à la tentative de reproduire la configuration du système de test selon les spécifications du développeur.
 
-\subsection{Preuve d'évaluation de la vulnérabilité}
+\subsection{Document d'évaluation de la vulnérabilité}
 L'objectif de l'évaluation de la vulnérabilité est de déterminer si les vulnérabilités découvertes au cours du développement ou de l'évaluation pourraient être exploitées. L'exploitation de ces vulnérabilités peut conduire à une exposition non autorisée des données ou à d'autres formes de contournement des fonctions de sécurité. Il n'y a qu'une seule famille dans cette classe, c'est AVA\_VAN, \emph{Analyse de vulnérabilité}.
 \\
 \vspace{0.5em}
@@ -944,44 +951,6 @@ AVA\_VAN.2, \emph{Analyse de vulnérabilité}, ajoute aux exigences AVA\_VAN.1 une
 
 AVA\_VAN.3, \emph{Analyse de vulnérabilité ciblée}, augmente la profondeur des tests d'intrusion de l'évaluateur en utilisant la représentation d'implémentation avec les spécifications fonctionnelles, la documentation de conception et d'architecture. Le potentiel d'attaque (c'est-à-dire la connaissance anticipée de l'attaquant) passe de Basique à Basique-Enrichie.
 
-\subsection{Preuve d'orientation}
-La classe AGD, \emph{Guide} fait référence à la documentation utilisateur fournie avec le produit. Il s'agit généralement de manuels d'utilisation, de guides d'administrateur et de manuels d'installation et de configuration. L'un des principaux problèmes concerne les produits sans sécurité à l'étape de la configuration. Fournir des instructions appropriées aux utilisateurs sur la façon de mettre en place, configurer et installer les produits en toute sécurité peut résoudre cet ensemble de problèmes graves.
-\\
-\vspace{0.5em}
-\\
-\begin{tabular}{|c|c|}
-	\hline
-	\textbf{EAL} & \textbf{Les exigences du composant}\\
-	\hline
-	EAL 1-4 & AGD\_OPE.1 - Guide Opérationnel\\
-	\hline
-	EAL 1-4 \& 4 & AGD\_PRE.1 - Préparation du Guide \\
-	\hline
-\end{tabular}
-\\
-\vspace{0.5em}
-\\
-Il y a deux familles dans cette classe, chacune n'ayant qu'une seule composante. Ces composants reconnaissent les différents rôles des utilisateurs dans l'installation et le fonctionnement de la TOE. Tous les rôles des utilisateurs doivent être pris en compte dans la preuve de l'AGD.\\
-
-AGD\_OPE.1, \emph{Guide opérationnel}, décrit à l'utilisateur la fonctionnalité de sécurité de la TOE. Les directives opérationnelles doivent décrire les fonctions et les privilèges propres à chaque rôle. Pour chaque interface, le guide opérationnel doit inclure une description des éléments suivants:
-\begin{itemize}
-	\item Méthodes que les utilisateurs peuvent utiliser pour invoquer les fonctions (par exemple ligne de commande ou appel système)
-	\item Paramètres qui peuvent être initialisés par l'utilisateur avec des valeurs sécurisées 
-	\item Réponses ou codes d'erreur	
-\end{itemize}
-Tous les types d'événements de sécurité pertinents doivent être documentés dans le Guide opérationnel pour chaque rôle d'utilisateur. Les utilisateurs doivent savoir quels événements de sécurité peuvent se produire et ce qu'il faut faire pour rester en sécurité. De même, les utilisateurs doivent connaître tous les modes de fonctionnement possibles et les implications qu'ils ont sur la sécurité. Les évaluations passeront en revue les éléments d'orientation pour s'assurer qu'ils sont clairs et convenables.\\
-
-ADG\_PRE.1, \emph{Guide préparatoire}, fournit des informations aux utilisateurs sur la façon d'installer et de configurer la TOE en toute sécurité. Le guide préparatoire commence par des directives d'acceptation sécurisées conformément au processus de livraison sécurisé du développeur. Cela doit être conforme à la preuve présentée pour l'ALC\_DEL. Les descriptions d'installation doivent inclure des directives sur la sécurisation de l'environnement opérationnel. Celles-ci devraient inclure:
-\begin{itemize}
-	\item Configuration minimale requise
-	\item Exigences de l'environnement opérationnel
-	\item Étapes pour configurer la TOE en toute sécurité
-	\item Instructions pour modifier les paramètres de sécurité de l'installation de la TOE
-	\item Comment gérer les exceptions et les problèmes
-\end{itemize}
-
-Les preuves de guide peuvent être fournies sous forme d'addenda à la documentation standard du produit à l'utilisateur final ou peuvent être intégrées dans le guide standard de l'utilisateur. Dans les deux cas, l'objectif est de fournir aux clients des informations sur la manière d'installer, de configurer et d'utiliser le produit en toute sécurité conformément aux conditions d'évaluation.
-
 \newpage
 \section{Problèmes Critères Communs}
 Parmi les avantages des CC, on peut citer:
@@ -1002,66 +971,32 @@ Les questions clés, du point de vue d'un fournisseur, sur les critères communs p
 \end{itemize}
 
 \subsection{Évaluation statique de produits}
-De par la nature même des évaluations de produits, la Cible d'évaluation (TOE) doit rester statique au cours de l'évaluation. Toute modification apportée à la TOE au cours ou après l'évaluation pourrait invalider les affirmations faites et, par conséquent, aucune évaluation faite par les évaluations ne peut être garantie sans un examen plus approfondi. Les évaluations par critères communs ne sont valables que pour la version du produit évaluée sur les plates-formes évaluées et dans les configurations désignées. Cette "rigidité" et ce caractère statique des évaluations vont à l'encontre de l'évolution rapide des cycles de développement de produits informatiques commerciaux. Pour compliquer davantage les choses, des correctifs de sécurité sont livrés régulièrement pour atténuer les vulnérabilités découvertes. Sans ces correctifs, les clients peuvent être plus à risque en utilisant un produit évalué mais non corrigé qu'un produit non évalué mais corrigé.\\
-
-Des programmes de maintenance d'assurance (ou de certificat) sont maintenant disponibles pour faciliter la mise à jour des évaluations et des certifications. Il s'agit habituellement de justifications documentées de ce qui a changé depuis la dernière évaluation, accompagnées de mises à jour de certains documents probants. Ceci fonctionne très bien pour les correctifs mineurs et les versions mineures. Il est certain que les livraisons importantes et les changements majeurs de produits nécessitent une réévaluation complète avec une certaine réutilisation des données probantes. 
+La Cible d'évaluation (TOE) doit rester statique au cours de l'évaluation. Toute modification apportée à la TOE au cours ou après l'évaluation pourrait invalider les affirmations faites et, par conséquent, aucune évaluation faite par les évaluations ne peut être garantie sans un examen plus approfondi. Les évaluations par critères communs ne sont valables que pour la version du produit évaluée sur les plates-formes évaluées et dans les configurations désignées. Cette <<rigidité>> et ce caractère statique des évaluations vont à l'encontre de l'évolution rapide des cycles de développement de produits informatiques commerciaux. Pour compliquer davantage les choses, des correctifs de sécurité sont livrés régulièrement pour atténuer les vulnérabilités découvertes.\\
+\noindent Des programmes de maintenance d'assurance (ou de certificat) sont maintenant disponibles pour faciliter la mise à jour des évaluations et des certifications. Il s'agit habituellement de justifications documentées de ce qui a changé depuis la dernière évaluation, accompagnées de mises à jour de certains documents probants. Ceci fonctionne très bien pour les correctifs mineurs et les versions mineures. Il est certain que les livraisons importantes et les changements majeurs de produits nécessitent une réévaluation complète avec une certaine réutilisation des données probantes. 
 
 \subsection{Temps d'évaluation longs par rapport aux cycles de développement des produits}
-L'évaluation du CC peut prendre des mois, voire des années, selon la complexité du produit évalué et un certain nombre d'autres facteurs. Les cycles longs d'évaluation accentuent le fait que les évaluations sont des évaluations "instantanés" dans le temps des produits. Les cycles de développement de produits sont conduits à des intervalles de plus en plus courts afin de répondre aux besoins des clients et de corriger les défauts. Les périodes d'évaluation des CC ne sont pas synchronisées avec les cycles de développement de produits modernes, ce qui oblige les développeur à réfléchir sérieusement avant de s'engager dans une évaluation.\\
-
-Les temps longs d'évaluation sont un mauvais service pour les clients. Les clients veulent et ont besoin des dernières versions et mises à jour des produits. Ils ont eux-mêmes la pression du temps et de la concurrence. Leurs missions et leurs objectifs peuvent être compromis s'ils ne peuvent obtenir des produits dotés des caractéristiques nécessaires. Aujourd'hui, les clients sont confrontés à la nécessité de choisir un produit qui est sécurisé (c'est-à-dire avec les derniers correctifs de sécurité appliqués) ou un produit qui l' a été (par exemple une version plus ancienne). Certains clients gouvernementaux sont encouragés (si ce n'est pas requis) par la réglementation ou la politique à acheter et à utiliser uniquement des produits évalués par CC. Si des vulnérabilités sont découvertes ultérieurement dans la version évaluée, les clients sont confrontés à la décision de corriger le produit ou invalider complètement la version certifiée, d'attendre que le fournisseur évalue la version la plus récente ou de continuer à utiliser la version évaluée mais potentiellement plus risquée. Le client ne devrait pas avoir à faire ce choix.\\
-
-Les évaluations indépendantes par des tiers prennent naturellement du temps dans la mesure que les évaluateurs s'informent sur la technologie, les caractéristiques et les processus de développement des produits. Ils doivent comprendre l'architecture, la fonctionnalité et le design des produits. Les évaluateurs doivent également connaître les détails des processus d'élaboration et de prestation du fournisseur, puis ils peuvent évaluer les affirmations dans la Cible de sécurité. Cette "courbe d'apprentissage" prolonge le temps d'évaluation, surtout si c'est la première évaluation du produit et la première exposition de l'évaluateur à ce type de technologie. Certes, à mesure que les évaluateurs acquièrent plus d'expérience grâce à des évaluations répétées, le temps d'apprentissage diminue.\\
-
-
-Une des sources de retards pendant les évaluations du CC est le manque de réactivité des développeurs. Des réponses retardées et l'absence de plans d'urgence pour éviter le "temps mort" de l'évaluateur entraînent des cycles d'évaluation globalement plus longs. Les développeurs sont souvent attirés par des questions ou des projets plus prioritaires. Si les développeurs ne sont pas en mesure de répondre aux questions des évaluateurs, le processus d'évaluation peut être bloqué. Étant donné que les questions plus prioritaires sont courantes dans le monde des affaires d'aujourd'hui, il est essentiel que le gestionnaire de projet d'évaluation applique des principes fondamentaux plus rigoureux de gestion de projet pour minimiser l'impact de ces perturbations.
+L'évaluation du CC peut prendre des mois, voire des années, selon la complexité du produit évalué et un certain nombre d'autres facteurs. Les cycles longs d'évaluation accentuent le fait que les évaluations sont des évaluations "instantanés" dans le temps des produits. Les cycles de développement de produits sont conduits à des intervalles de plus en plus courts afin de répondre aux besoins des clients et de corriger les défauts. Les périodes d'évaluation des CC ne sont pas synchronisées avec les cycles de développement de produits modernes, ce qui oblige les développeur à réfléchir sérieusement avant de s'engager dans une évaluation. Une des sources de retards pendant les évaluations du CC est le manque de réactivité des développeurs. Les développeurs sont souvent attirés par des questions ou des projets plus prioritaires.
 
 \subsection{Les vulnérabilités de codage ne sont pas prises en compte}
-Les vulnérabilités d'implémentation sont les vulnérabilités introduites dans le logiciel qui se traduisent par des dépassements mémoire et des erreurs de scripting inter-sites. Ces vulnérabilités peuvent être exploitées pour obtenir un accès non autorisé aux données des clients ou perturber leurs activités.\\
-
+Les vulnérabilités d'implémentation sont les vulnérabilités introduites dans le logiciel qui se traduisent par des dépassements mémoire et des erreurs de scripting inter-sites. Ces vulnérabilités peuvent être exploitées pour obtenir un accès non autorisé aux données des clients ou perturber leurs activités.
 Les évaluations des CC aux niveaux d'assurance (EAL 1 à 4) ne fournissent pas le type de preuves (c'est-à-dire le code source) dont les évaluateurs auraient besoin pour effectuer un travail adéquat de recherche des vulnérabilités d'implémentation. \\
 
-Des développeurs ne voudrons pas que les évaluateurs CC examinent le code source de leur produit pour vérifier les vulnérabilités de l'implémentation simplement parce qu'il ne pensent pas qu'ils ont l'expertise pour le faire. Les fournisseurs embauchent des consultants en sécurité qui ont l'expertise nécessaire pour effectuer des inspections de conception et de code ainsi que des tests d'intrusion pour la technologie spécifique concernée. De nombreux fournisseurs de produits font appel à des consultants internes et externes en sécurité pour ces tâches. Les évaluations CC n'accordent aucun "crédit" aux développeurs pour de telles activités, car la recherche de ces types de vulnérabilités n'entre pas dans le cadre des évaluations CC, même si ces activités peuvent répondre aux préoccupations des clients.
+\noindent Des développeurs ne voudrons pas que les évaluateurs CC examinent le code source de leur produit pour vérifier les vulnérabilités de l'implémentation simplement parce qu'il ne pensent pas qu'ils ont l'expertise pour le faire. Les fournisseurs embauchent des consultants en sécurité qui ont l'expertise nécessaire pour effectuer des inspections de conception et de code ainsi que des tests d'intrusion pour la technologie spécifique concernée. De nombreux fournisseurs de produits font appel à des consultants internes et externes en sécurité pour ces tâches. Les évaluations CC n'accordent aucun "crédit" aux développeurs pour de telles activités, car la recherche de ces types de vulnérabilités n'entre pas dans le cadre des évaluations CC, même si ces activités peuvent répondre aux préoccupations des clients.
 
 
-\subsection{Non reconnu ou requis par les clients commerciaux}
-Bien que le CC soit une norme internationale (ISO 15408) et que les certificats soient mutuellement reconnus dans 26 pays, la demande de produits évalués par le CC est relativement faible. En dehors des organismes publics et des entités contrôlées ou réglementées par le gouvernement, très peu d'entreprises commerciales reconnaissent les certifications CC. Les entreprises commerciales et les consommateurs (ménages) représentent la grande majorité des revenus de la plupart des vendeurs de produits commerciaux, ce qui signifie qu'ils dirigent l'orientation, la stratégie et les motivations des vendeurs de produits commerciaux. Si les clients commerciaux exigeaient des évaluations CC, les vendeurs ne se plaindraient pas si âprement du coût des évaluations. Les coûts d'évaluation peuvent être plus facilement amortis sur l'ensemble des clients, ce qui facilite également la justification de l'important investissement.\\
+\subsection{Non connu ou requis par les clients commerciaux}
+Bien que le CC soit une norme internationale (ISO 15408) et que les certificats soient mutuellement reconnus dans 26 pays, la demande de produits évalués par le CC est relativement faible. En dehors des organismes publics et des entités contrôlées ou réglementées par le gouvernement, très peu d'entreprises commerciales reconnaissent les certifications CC. 
 
-Les fournisseurs doivent également tenir compte des coûts (revenus) d'opportunité perdus. Pour chaque minute et chaque dollar dépensé dans les efforts d'évaluation CC, les fournisseurs de produits commerciaux choisissent de ne pas investir ce temps et cet argent dans des fonctionnalités produit plus compétitives, une meilleure qualité, de meilleures performances ou un meilleur service à la clientèle - tout ce qui garantit presque une augmentation des revenus supplémentaires. Les efforts d'évaluation des CC peuvent facilement se traduire par l'absence de recettes supplémentaires. Un fournisseur peut dépenser des centaines de milliers de dollars et des centaines d'heures-personnes pour préparer et exécuter une évaluation de produit CC. Il n' y a aucune garantie que les ventes de ce produit augmenteront parce qu'il est maintenant évalué par le CC.\\
-
-CC doit mieux répondre aux besoins des clients commerciaux en matière de sécurité des produits (perçus et réels). Si la susceptibilité aux virus et aux vers est une préoccupation majeure pour le marché de masse, alors les produits d'évaluation CC ont fait quelque chose pour atténuer ou éliminer la possibilité que des vulnérabilités exploitables existent dans ce produit.
+\noindent Les fournisseurs de produits commerciaux préfèrent investir de leur temps et leur argent dans des fonctionnalités produit plus compétitives, de meilleure qualité, de meilleures performances ou un meilleur service à la clientèle, dans tout ce qui garantit presque une augmentation des revenus supplémentaires. Un fournisseur peut dépenser des centaines de milliers d'euros et des centaines d'heures-personnes pour préparer et exécuter une évaluation de produit CC. Il n' y a aucune garantie que les ventes de ce produit augmenteront parce qu'il est maintenant évalué par le CC.
 
 \subsection{CC n'améliore pas la sécurité des produits}
-Beaucoup de personnes s'interrogent si les évaluations CC améliore la sécurité. La réponse c'est qu'elle devrait.  Quels que soient les objectifs initiaux du CC en 1999, certains clients et évaluateurs s'attendent aujourd'hui à ce que le CC améliore la sécurité des produits. Ils s'attendent à ce que les fournisseurs de produits reconnaissent les failles de sécurité de leurs produits au cours du processus d'évaluation et s'efforcent d'améliorer leurs produits. Ils s'attendent à ce que les fournisseurs ne se contentent pas de traiter les évaluations des CC comme une " case à cocher " d'approvisionnement, mais qu'ils s'en servent pour motiver et orienter les améliorations. Cette évolution peut se produire si un nombre suffisant de clients l'exigent de leurs vendeurs.
+Beaucoup de personnes s'interrogent si les évaluations CC améliore la sécurité. La réponse c'est qu'elle devrait.  Quels que soient les objectifs initiaux du CC en 1999, certains clients et évaluateurs s'attendent aujourd'hui à ce que le CC améliore la sécurité des produits. Ils s'attendent à ce que les fournisseurs de produits reconnaissent les failles de sécurité de leurs produits au cours du processus d'évaluation et s'efforcent d'améliorer leurs produits. Ils s'attendent à ce que les fournisseurs ne se contentent pas de traiter les évaluations des CC comme une <<case à cocher>> d'approvisionnement, mais qu'ils s'en servent pour motiver et orienter les améliorations. Cette évolution peut se produire si un nombre suffisant de clients l'exigent de leurs vendeurs.
 
 
 
 
 \newpage
 \section{La Certification de Sécurité de Premier Niveau (CSPN)}
-
-\begin{tabular}{|p{8cm}|p{8cm}|}
-\hline	
-CC & CSPN\\
-\hline
-EAL 1 à 7 & Niveau unique\\
-\hline
-Boîte grise-blanche & Boîte noire\\
-\hline
-Accords de reconnaissance des certificats & Aucun accord : reconnaissance franco-française\\
-\hline
-Pas de contraintes de temps & Temps imposé: 25 h.j (+10 si crypto), adaptation si cas particulier\\
-\hline
-Mise à jour du produit possible durant l?évaluation Version du produit & figée\\
-\hline
-Connaissance des CC par le développeur pour fournir des documents conformes & Aucune connaissance spécifique nécessaire pour le développeur\\
-\hline
-Coût relativement élevé (60 à 200K?) & Coût relativement faible (25 à 35K?)\\
-\hline
-\end{tabular}
-\\
-\vspace{0.5em}
-\\
 La CSPN mise en place par l'ANSSI en 2008 consiste en des tests en <<boîte noire>> effectués en temps et délais contraints. La CSPN est une alternative aux évaluations Critères Communs, dont le coût et la durée peuvent être un obstacle, et lorsque le niveau de confiance visé est moins élevé. Cette certification s'appuie sur des critères, une méthodologie et un processus élaborés par l'ANSSI et publiés sur son site.
 La certification de sécurité de premier niveau permet d'attester que le produit a subi avec succès une évaluation de sécurité par un centre d'évaluation agréé par l'ANSSI, l'évaluation ayant pour caractéristiques principales :
 \begin{itemize}
@@ -1070,6 +1005,8 @@ La certification de sécurité de premier niveau permet d'attester que le produit 
 	\item de mesurer l'efficacité des fonctions de sécurité
 \end{itemize}
 \noindent Les produits qui peuvent faire l'objet d'une certification CSPN sont répartis en plusieurs catégories
+
+%\begin{multicols}{2}
 \begin{itemize}
 	\item Effacement de données
 	\item Stockage sécurisé
@@ -1087,16 +1024,8 @@ La certification de sécurité de premier niveau permet d'attester que le produit 
 	\item Automate programmable industriel
 	\item Commutateur industriel
 \end{itemize}
-La certification CSPN a notamment été attribuée aux produit suivants :
-\begin{itemize}
-	\item Blancco (effacement de données), 
-	\item TrueCrypt (stockage sécurisé), 
-	\item l'hyperviseur TRANGO (système d'exploitation et de virtualisation), 
-	\item Bro (détection d'intrusions), 
-	\item NEDAP AEOS (système de contrôle d'accès), 
-	\item Dropbear (communication sécurisée) 
-	\item TEOPAD (environnement d'exécution sécurisé).
-\end{itemize}
+%\end{multicols}
+	
 
 \subsection{Objectif des présents critères}
 Les présents critères ont été conçus par l'ANSSI pour permettre l'évaluation, en temps contraint, des fonctionnalités de sécurité proposés par des produits matériels, logiciels ou mixtes visant une CSPN.
@@ -1119,38 +1048,26 @@ cryptographiques, deux objectifs supplémentaires sont recherchés lors de l'évalu
 Un produit qui fournit de la sécurité (une combinaison de confidentialité, d'intégrité, d'authentification et de disponibilité) doit présenter des caractéristiques de sécurité appropriées. Il est nécessaire de déterminer le degré de confiance qui peut être accordé à ces caractéristiques. Pour cela, les caractéristiques elles-mêmes doivent être spécifiées au sein d'un document, qui constitue la cible de sécurité de ce produit.
 
 \subsubsection{Cible de Sécurité}
-La cible de sécurité sert à la fois de spécification des fonctions dédiées à la sécurité, par rapport à laquelle le produit sera évalué, et de description des liens entre le produit et l'environnement dans lequel celui-ci sera exploité. Sont donc intéressés par la cible de sécurité, non seulement le développeur du produit et les responsables de son évaluation, mais également les personnes chargées de sa gestion, de son achat, de son installation, de sa configuration, de son exploitation et de son emploi. Le contenu exigé d'une cible de sécurité est le suivant :
-
-\begin{itemize}
-\item une identification non ambiguë du produit à évaluer ;
-\item un argumentaire du produit décrivant en langage naturel pour quel usage le produit a été conçu, par qui et dans quel contexte d'emploi il est censé être utilisé ;
-\item l'environnement technique dans lequel le produit fonctionne (modèle d'ordinateur,
-système d'exploitation, etc.) ;
-\item les biens sensibles que le produit doit protéger ;
-\item les mesures d'environnement ;
-\item les menaces contre lesquelles le produit offre une protection ;
-\item les fonctionnalités de sécurité implémentées par le produit pour parer les menaces
-identifiées.
-\end{itemize}
-Ce sont ces fonctionnalités qui feront l'objet de l'évaluation.
+La cible de sécurité sert à la fois de spécification des fonctions dédiées à la sécurité, par rapport à laquelle le produit sera évalué, et de description des liens entre le produit et l'environnement dans lequel celui-ci sera exploité. Sont donc intéressés par la cible de sécurité, non seulement le développeur du produit et les responsables de son évaluation, mais également les personnes chargées de sa gestion, de son achat, de son installation, de sa configuration, de son exploitation et de son emploi. 
+Le contenu exigé d'une cible de sécurité est spécifié dans la REF\_CSPN. Ce sont ces fonctionnalités qui feront l'objet de l'évaluation.
 
 \subsubsection{Spécification des mécanismes cryptographiques}
-
 Les informations relatives aux algorithmes doivent inclure:
 \begin{itemize} 
 \item la description des fonctions de cryptologie offertes par le produit (chiffrement, signature, gestion des clés, etc.) ;
 \item la référence des algorithmes à des standards reconnus, non équivoques, et dont les détails techniques sont accessibles aisément et sans condition, avec les paramètres et les modes opératoires de leur mise en oeuvre.
 \end{itemize}
-
 Les informations relatives à la gestion des clés doivent inclure :
 
+%\begin{multicols}{2}
 \begin{itemize}
-\item la taille des clés;
-\item le mode de distribution des clés;
-\item le procédé de génération des clés;
-\item le format de conservation des clés;
-\item le format de transmission des clés.
+\item La taille des clés
+\item Le mode de distribution des clés
+\item Le procédé de génération des clés
+\item Le format de conservation des clés
+\item Le format de transmission des clés
 \end{itemize}
+%\end {multicols}
 
 Les informations relatives au traitement des données doivent inclure :
 \begin{itemize}
@@ -1166,75 +1083,21 @@ nombres aléatoires est efficace.
 
 
 \subsection{Critères d'évaluation}
-\noindent L'évaluation se déroule en plusieurs phases:
+\noindent L'évaluation se déroule en plusieurs phases, par souci de synthèse ces phases sont brièvement décrite.
 \subsubsection{Phase 1 - Analyse de la cible de sécurité}
-L'évaluateur doit :
-\begin{itemize}
-\item Vérifier que la cible de sécurité contient les éléments concernant la documentation (paragraphe 8.2)
-\item Vérifier que la cible n'est pas <<trompeuse>> et qu'elle décrit au minimum la fonctionnalité principale pour lequel le produit est conçu.
-\item Vérifier que les fonctions de sécurité sont pertinentes par rapport aux menaces génériques décrites dans la cible.
-\item Vérifier qu'il n'y a pas de fonction de sécurité qui ne serait pas en lien avec une menace décrite dans la cible.
-\item Vérifier que les mesures d'environnement sont pertinentes par rapport aux menaces et à l'usage pour lequel est prévu le produit.
-\end{itemize}
-De manière générale, vérifier qu'il n'y a pas d'incohérence dans la cible de sécurité.
-
+De manière générale, l'évaluateur doit vérifier qu'il n'y a pas d'incohérence dans la cible de sécurité et que la cible de sécurité est complète.
 \subsubsection{Phase 2 - Installation du produit}
-Décrire la plate-forme réellement utilisée pour réaliser les tests sur le produit. Cette plate-forme doit être représentative de l'architecture type du système d'information dans lequel le produit est normalement utilisé, dans la limite des possibilités allouées au projet d'évaluation. 
-
-Pour les produits pouvant s'installer sur plusieurs versions de système d'exploitation, indiquer le système d'exploitation utilisé et sa version, avec le maximum de précision possible (patch, service pack, etc.). 
-
-Si le produit nécessite une installation, procéder à l'installation du produit dans sa configuration typique. 
-
-Si une documentation d'installation existe, vérifier qu'elle permet d'installer le produit dans les différentes configurations couvertes par l'évaluation. 
-
-Noter toutes les informations qui permettent de mener à bien cette installation. Indiquer toutes les non-conformités par rapport à l'éventuelle documentation existante. Noter toutes les particularités de paramétrage du système support, le cas échéant.
-
+Il s'agit de décrire la plate-forme réellement utilisée pour réaliser les tests sur le produit et dérouler toutes les procédures qui permettent d'avoir une environnement opérationnel. 
 \subsubsection{Phase 3 - Analyse de la conformité - analyse de la documentation}
-
-\noindent \textbf{Exigences concernant le contenu et la présentation}\\
-La documentation utilisateur doit décrire les fonctions dédiées à la sécurité qui concernent l'utilisateur final. Elle doit aussi donner des lignes directrices suffisantes pour leur exploitation sûre. La liste des documents inclus:
-
-\begin{itemize}
-	\item Les manuels de référence et les guides de l'utilisateur
-	\item La documentation d'administration qui doit décrire les fonctions dédiées à la sécurité relevant d'un administrateur.	
-\end{itemize}
-
-L'évaluateur analysera la documentation fournies. pour vérifier que les informations fournies satisfont les exigences concernant le contenu et la présentation et donner un avis sur leur lisibilité et leur complétude. L'évaluateur procédera par échantillonnage si la documentation est importante, en privilégiant :
-\begin{itemize}
-\item La cible de sécurité fournie par le commanditaire
-\item La documentation utilisateur
-\item La documentation d'installation, d'administration et d'exploitation
-\item Les documents techniques portant sur les fonctions et mécanismes de sécurité
-\item Si des fonctions essentielles du produit utilisent des mécanismes cryptographiques, la cryptographie doit être évaluée.
-\end{itemize}
-
-Si tout ou partie de la documentation est indisponible, indiquer si le produit peut néanmoins être installé, configuré, administré et utilisé conformément à ce qui est décrit dans la cible de sécurité, par les utilisateurs concernés, en prenant en compte leur compétence. L'évaluateur s'aidera des
-définitions suivantes :
-\begin{itemize}
-\item utilisateur grand public : pas de compétence particulière en informatique ;
-\item utilisateur confirmé : connaissance des principaux concepts de l'informatique ;
-\item administrateur : connaissance fine des principaux concepts de l'informatique et des
-réseaux, capacité à configurer et administrer un parc d'ordinateurs reliés en réseau ;
-\item expert : expert dans le domaine du produit (typiquement, l'évaluateur).
-\end{itemize}
-
+L'évaluateur analysera la documentation fournies (manuels de référence, guides de l'utilisateur et documentation d'administration) pour vérifier que les informations fournies satisfont les exigences concernant le contenu et la présentation et donner un avis sur leur lisibilité et leur complétude. L'évaluateur procédera par échantillonnage si la documentation est importante. Si tout ou partie de la documentation est indisponible, indiquer si le produit peut néanmoins être installé, configuré, administré et utilisé conformément à ce qui est décrit dans la cible de sécurité, par les utilisateurs concernés, en prenant en compte leur compétence (utilisateur grand public, confirmé, administrateur ou expert).
 
 \subsubsection{Phase 4 - Analyse de la conformité - revue du code source (si disponible)}
 Donner un avis d'expert sur la lisibilité et la structuration du code source (exemples de critères : existence de commentaires, découpage en modules, typage des données, portabilité, etc.), en précisant les modules qui ont été regardés. Il est possible de procéder par échantillonnage. On notera que dans le cas d'un code développé dans un cadre coopératif par de multiples développeurs, l'analyse d'un échantillon du code peut s'avérer non significatif.
 
 \subsubsection{Phase 5 - Analyse de la conformité - tests du produit}
-Reprendre une à une les fonctionnalités de sécurité et les mécanismes cryptographiques du produit et les tester. Indiquer les tests fonctionnels ou les mécanismes mis en oeuvre, en précisant :
-\begin{itemize}
-\item La fonctionnalité ou le mécanisme testé ;
-\item Les conditions du test qui sont utiles à sa mise en oeuvre (par exemple, fichier en entrée, taille, type, fichier en sortie, taille type, analyse éventuelle du cryptogramme, etc.) ;
-\item Les limites de la fonctionnalité le cas échéant ;
-\item Si la fonctionnalité ou le mécanisme est conforme ou pas;
-\item Des éléments d'appréciations (avis d'expert).
-\end{itemize}
-
+Reprendre une à une les fonctionnalités de sécurité et les mécanismes cryptographiques du produit et les tester. Indiquer les tests fonctionnels ou les mécanismes mis en oeuvre et noter les éventuelles éléments d'appréciations.
 \subsubsection{Phase 6 - Résistance des mécanismes/fonctions}
 Même si un mécanisme dédié à la sécurité ne peut pas être court-circuité, désactivé, altéré ou contourné, il peut encore être possible de le mettre en échec par une attaque directe tirant profit d'insuffisances dans ses algorithmes, ou dans ses principes ou ses propriétés sous-jacents. Pour cet aspect de l'efficacité, la capacité de ces mécanismes à contenir une telle attaque directe est estimée. Cet aspect de l'efficacité se distingue des autres en ce qu'il exige de prendre en considération le niveau des ressources qui seraient nécessaires à un attaquant pour réussir une attaque directe.\\
-
 Le tâche de l'évaluateur consiste à :
 \begin{itemize}
 	\item Identifiera les mécanismes qui implémentent les fonctions de sécurité du produit. 
@@ -1304,11 +1167,9 @@ Le tâche de l'évaluateur consiste à :
 		\end{tabular}
 	}
 \end{center}
-
-* indique que le chemin d?attaque n?est pas exploitable dans un intervalle de temps qui serait utile à un attaquant.
-Une valeur * indique un haut niveau de résistance.
-
-\vspace{0.5em}
+(*) indique que le chemin d'attaque n'est pas exploitable dans un intervalle de temps qui serait utile à un attaquant.
+Une valeur (*) indique un haut niveau de résistance.
+\begin{center}
 \begin{tabular}{|c|p{5.5cm}|p{5.5cm}|}
 	\hline
 	\textbf{Somme des valeurs} & \textbf{Résistant à un attaquant ayant un potentiel d'attaque} & \textbf{Niveau de résistance des fonctions} \\
@@ -1322,7 +1183,7 @@ Une valeur * indique un haut niveau de résistance.
 	> 24 & Élevé & Élevé\\
 	\hline
 \end{tabular}
-
+\end{center}
 Le rôle de l'évaluateur est :
 \begin{itemize}
 	\item d'identifier des mécanismes de sécurité implémentant les fonctions de sécurité (sous réserve de la disponibilité de l'information) ;
@@ -1338,19 +1199,13 @@ coter :
 \end{itemize}
 
 \subsubsection{Phase 7 - Analyse de vulnérabilité (intrinsèque, de construction, d'exploitation, etc.)}
-La tâche de l'évaluateur consiste à extraire les vulnérabilités pertinentes et à vérifier si et comment elles sont exploitables sur le produit. On distinguera deux types de vulnérabilités à traiter:
-
-\begin{itemize}
-	\item Les vulnérabilités spécifiques du produit, pour lesquelles l'analyse consiste à décrire les conditions, techniques et effets de la réalisation de la vulnérabilité, ainsi que de préciser l'existence de correctifs ou de procédures permettant de contrer la vulnérabilité ;
-	\item Les vulnérabilités génériques potentiellement applicables au produit. Il s'agit de vulnérabilités découvertes sur des produits similaires et pour lesquelles il n'existe pas d'information prouvant que le produit concerné s'en prémunit.
-\end{itemize}
+La tâche de l'évaluateur consiste à extraire les vulnérabilités pertinentes, que ça soit spécifique du produit ou découverte sur des produits similaire,  et à vérifier si et comment elles sont exploitables sur le produit.
 Cette tâche consiste donc à :
-
-\begin{enumerate}
-	\item a) Recenser les vulnérabilités connues du produit. Pour chaque vulnérabilité, rechercher un correctif, officiel ou non, ou une méthode de contournement permettant de limiter les effets de la vulnérabilité ;
-	\item b) Recenser les vulnérabilités connues pour les produits de la même catégorie. Il s'agit du ou des vulnérabilités connues sur l'ensemble des produits de la catégorie, augmenté des vulnérabilités théoriques potentielles ;
-	\item c) Mettre en oeuvre, tester et valider certaines vulnérabilités, selon des critères de choix comme la faisabilité, l'exploitabilité ou l'absence de correctif.
-\end{enumerate}
+\begin{itemize}
+	\item Recenser les vulnérabilités connues du produit. Pour chaque vulnérabilité, rechercher un correctif, officiel ou non, ou une méthode de contournement permettant de limiter les effets de la vulnérabilité ;
+	\item Recenser les vulnérabilités connues pour les produits de la même catégorie. Il s'agit du ou des vulnérabilités connues sur l'ensemble des produits de la catégorie, augmenté des vulnérabilités théoriques potentielles ;
+	\item Mettre en oeuvre, tester et valider certaines vulnérabilités, selon des critères de choix comme la faisabilité, l'exploitabilité ou l'absence de correctif.
+\end{itemize}
 
 
 \subsubsection{Phase 7bis - Analyse de vulnérabilité du système hôte}
@@ -1388,20 +1243,31 @@ Il indiquera les éventuels tests qu'il a réalisés pour s'assurer du caractère al
 
 \subsubsection{Résultats de l'évaluation}
 L'évaluation d'un produit suivant les critères CSPN permet de constater que le produit fournit bien les fonctions de sécurité indiquées dans la cible de sécurité, que les fonctions de sécurité atteignent toutes au moins un niveau intrinsèque de résistance <<élémentaire>> (au sens des [CC]) et qu'aucune vulnérabilité n'a pu être exploitée lors de l'évaluation. Cette dernière conclusion doit être prise avec toute la prudence que l'on doit avoir dans le domaine de la sécurité des technologies de l'information. Il n'est en effet pas possible de garantir l'absence de vulnérabilité exploitable dans le produit. L'évaluateur doit proposer une cotation pour chaque fonction / mécanisme de sécurité décrit dans la cible de sécurité. S'il n'est pas possible d'établir cette cotation pour une ou plusieurs fonctions, l'évaluateur doit le mentionner explicitement dans son rapport (RTE) et en indiquer les raisons.\\
-Le RTE comporte au minimum les informations suivantes :
-\begin{itemize}
-	\item le rappel du contexte de l'analyse (contexte d'emploi, durée de l'analyse, menaces, etc.) ;
-	\item une synthèse de la documentation permettant une description fonctionnelle des fonctions de sécurité ou liées à la sécurité ; ce qui est attendu fonctionnellement du produit (résumé de ses caractéristiques de sécurité notamment) ;
-	\item l'inventaire des vulnérabilités connues (CERT-FR, bases publiques, informations du développeur) et des correctifs ;
-	\item la liste des principaux outils d'analyse utilisés ;
-	\item une synthèse des résultats des tests effectués sur le produit ;
-	\item une cotation de la résistance des fonctions/mécanismes de sécurité ;
-	\item un bilan et une cotation des éventuelles vulnérabilités exploitables identifiées ;
-	\item un bilan du produit et des préconisations d'utilisation ou de paramétrage dans le contexte d'emploi prévu permettant en particulier, de s'assurer qu'aucune vulnérabilité identifiée n'est exploitable pour un niveau inférieur à <<élémentaire>> (au sens des [CC]).
-\end{itemize}
+
 Le RTE élaboré par l'évaluateur, contenant et argumentant les résultats de l'évaluation, doit être présenté sous une forme acceptable pour être pris en considération par l'ANSSI (Plan imposé par l'ANSSI).\\
 Si le RTE fait apparaître que le produit ne répond pas ou ne répond que partiellement à sa cible de sécurité et qu'il n'est pas possible d'identifier des contre-mesures environnementales réalistes pour améliorer cette situation, le produit sera considéré comme ne répondant pas à sa cible de sécurité. Il en est de même si les tests font apparaître des dysfonctionnements du produit, n'en permettant pas un usage normal ou l'usage prévu, l'affaiblissement du système hôte ou si certaines conclusions du RTE sont <<non concluantes>>, par exemple faute d'information. 
-
+\\
+\vspace{0.5em}
+\\
+\begin{tabular}{|p{8cm}|p{8cm}|}
+	\hline	
+	\textsf{CC} & \textsf{CSPN}\\
+	\hline
+	EAL 1 à 7 & Niveau unique\\
+	\hline
+	Boîte grise-blanche & Boîte noire\\
+	\hline
+	Accords de reconnaissance des certificats & Aucun accord : reconnaissance franco-française\\
+	\hline
+	Pas de contraintes de temps & Temps imposé: 25 h.j (+10 si crypto), adaptation si cas particulier\\
+	\hline
+	Mise à jour du produit possible durant l'évaluation Version du produit & figée\\
+	\hline
+	Connaissance des CC par le développeur pour fournir des documents conformes & Aucune connaissance spécifique nécessaire pour le développeur\\
+	\hline
+	Coût relativement élevé (60 à 200K?) & Coût relativement faible (25 à 35K?)\\
+	\hline
+\end{tabular}
 
 \section{Conclusion}
 Ce rapport a abordé la certification de produits des technologies d'informations d'un point de vue sécurité. Les différents concepts des Critères Communs ont été abordés, la certification de sécurité de premier niveau a été présenté. Les motivations ainsi que les problèmes posés par la certification selon les Critères Communs ont été discuté. Ce rapport peut être complété par une présentation plus détaillé des procédures d'évaluation au niveaux des algorithmes, des techniques d'intrusion et de cotation de vulnérabilités. L'avenir des Critères Communs reste discutable. L'industrie des Smart Cartes qui est un précurseur dans le domaine de la certification peut être ajouté à cet rapport. Des exemples plus concrets des différents concepts des Critères Communs peuvent être tiré du cas public de la certification de TrueCrypt et venir enrichir ce travail. 
