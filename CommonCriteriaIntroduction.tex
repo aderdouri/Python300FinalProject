@@ -16,6 +16,9 @@
 \singlespacing
 \usepackage{multirow}
 \usepackage{multicol}
+\usepackage{hyperref}
+%\usepackage[pdfborder=0]{hyperref}
+\hypersetup{pdfborder=0 0 0}
 \linespread{1.0}
 \def\blurb{%
 	\textbf{\Large Conservatoire National des Arts et Métiers} \\}
@@ -252,6 +255,7 @@ Le document ST est le fondement de l'évaluation du CC; il définit la portée de l
 En tant que langage, les standards CC ont un vocabulaire standardisé. Le vocabulaire standard permet aux clients d'exprimer leurs besoins en matière de sécurité et aux fournisseurs d'articuler les caractéristiques de sécurité de leurs produits de manière cohérente. Le premier ensemble de caractéristiques de sécurité définies par le CC [Standards CC], \emph{Les Exigences fonctionnelles de Sécurité} (SFR), sont des identificateurs normalisés et des descriptions des caractéristiques de sécurité du produit lui-même.  Ces dispositifs de sécurité sont les contre-mesures aux menaces. Par exemple, il existe un SFR pour définir comment le produit protégera les données des utilisateurs en utilisant des contrôles d'accès. Les SFRs sont organisés en 11 grands groupes appelés \emph{Classe Fonctionnelle Sécurité}. Ostensiblement, ces classes définissent toutes les fonctions de sécurité potentielles qu'un produit pourrait fournir.
 Les classes fonctionnelles de sécurité de la partie 2 du CC sont énumérées dans le tableau suivant.
 
+\begin{center}
 \begin{tabular}{|c|c|p{6cm}|}
 	\hline
 	\textbf{ID de la Classe} &  \textbf{Nom de la Classe} & \textbf{Description}\\
@@ -279,9 +283,7 @@ Les classes fonctionnelles de sécurité de la partie 2 du CC sont énumérées dans 
 	FTP & Chemins/Canaux de confiance/ & Chemins et canaux de communication fiables avec le TSF\\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5em}
-\\
+\end{center}
 Les \emph{classes} sont ensuite segmentées en plusieurs \emph{familles}, \emph{composants} et \emph{éléments}. Les SFRs contenus dans la Partie 2 du CC représentent des décennies d'efforts pour identifier, décrire et catégoriser des contre-mesures efficaces face à une grande variété de menaces informatiques. Beaucoup d'efforts ont été consacrés au développement de ce <<dictionnaire>> de fonctions de sécurité. L'utilisation de ces exigences normalisées aide à lever l'ambiguïté de l'utilisation de termes différents pour une même exigence. Pour s'adapter à une grande variété de types de produits et de caractéristiques de sécurité, les SFRs peuvent inclure des \emph{opérations} qui permettent d'affiner les définitions.\\
 
 Certains SFRs ont des \emph{dépendances}. En d'autres termes, utiliser un SFR qui a des dépendances signifie qu'on doit également inclure ses dépendances. Par exemple, la gestion des erreurs d'Authentification (FIA\_AFL.1.1) dépend du moment de l'authentification (FIA\_UID.1.1). Cela signifie que si on affirme que le produit prend en charge FIA\_AFL.1.1, on doit également affirmer que le produit prend également en charge FIA\_UID.1.1. La dépendance a du sens car si on essaye de verrouiller quelqu'un après un nombre spécifié de tentatives de connexion échouées (comme l'indique FIA\_AFL.1.1), on doit d'abord autoriser la connexion authentifiée avant que l'utilisateur ne soit identifié (comme l'exige FIA\_UID.1.1).
@@ -303,10 +305,9 @@ Le fondement du CC est de fournir une assurance par le recours à des techniques 
 	\item Tests d'intrusion
 \end{itemize}
 Lorsque la partie 2 du CC et les SFRs sont utilisés pour décrire les caractéristiques de sécurité du produit lui-même, la partie 3 du CC et les composantes d'assurance de sécurité se rapportent à la sécurité des processus de développement du produit.
-Les exigences d'assurance de sécurité (SAR) couvrent les domaines relatifs au développement, à la livraison et au déploiement sécurisés du produit. Les huit classes d'assurance de sécurité décrites dans la Partie 3 du CC sont énumérées au tableau suivant.
-\\
-\vspace{0.5em}
-\\
+Les exigences d'assurance de sécurité (SAR) couvrent les domaines relatifs au développement, à la livraison et au déploiement sécurisés du produit. Les huit classes d'assurance de sécurité décrites dans la Partie 3 du CC sont énumérées au tableau suivant.\\
+
+\begin{center}
 \begin{tabular}{|c|c|p{6cm}|}
 	\hline
 	\textbf{ID de la Classe} &  \textbf{Nom de la Classe} & \textbf{Description}\\
@@ -324,9 +325,7 @@ Les exigences d'assurance de sécurité (SAR) couvrent les domaines relatifs au dé
 	ACO & Composition & Données probantes sur la composition, tests, analyse de vulnérabilité et argumentation\\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5em}
-\\
+\end{center}
 Les \emph{classes d'assurance de sécurité} sont divisées en \emph{familles}, \emph{composants} et \emph{éléments}. Par exemple, la classe développement, ADV,  est répartie dans les familles suivantes:
 \begin{itemize}
 	\item Architecture de la sécurité (ADV\_ARC)
@@ -342,10 +341,8 @@ La notation de SAR comporte également des identificateurs d'éléments D, C et E. 
 Par exemple, ADV\_INT.3.1, \emph{Minimally Complex internales}, exige du développeur qu'il conçoit et mette en oeuvre la fonctionnalité de sécurité de la cible d'évaluation (TSF) en utilisant des internes bien structurés. Un TSF peut être quelque chose comme un mécanisme d'authentification des utilisateurs pour détecter ou empêcher l'accès non autorisé au système. Les développeurs qui utilisent des méthodologies de conception structurées pourront prétendre répondre à cette exigence. Les éléments de contenu et de présentation sont les éléments probants (documentation) présentés aux évaluateurs pour prouver que les exigences ont été respectées. Enfin, les évaluateurs confirment les affirmations des développeurs. Le document CEM donne plus de détails sur les actions et les exigences de l'évaluateur.
 
 \emph{niveaux d'assurance d'évaluation} (EAL) ont été créés en tant que recueil pratique des SARs indiquant sept niveaux différents d'assurance d'évaluation. De façon générale, les exigences d'assurance sont généralement fondées sur les EALs plutôt que sur les SARs individuels. Le tableau 5 illustre l'éventail des sept niveaux allant du niveau le moins rigoureux (EAL 1) au plus rigoureux (EAL 7). L'idée ici est qu'un client peut examiner l'EAL d'un produit évalué et dire en un coup d'oeil combien d'efforts ont été consacrés à l'évaluation des affirmations de sécurité formulées par le développeur. La plupart des produits commerciaux évalueront leurs produits aux niveaux EAL 2 à EAL 4. L'EAL 4 est le niveau le plus élevé qui est mutuellement reconnu à l'échelle internationale. On croit que les évaluations supérieures à la norme EAL 4 exigent des techniques d'évaluation uniques ou exclusives qui ne peuvent être reproduites ou normalisées à l'échelle internationale.\\
-\\
-\vspace{0.5em}
-\\
-\begin{tabular}{|c|p{8cm}|}
+\begin{center}
+	\begin{tabular}{|c|p{8cm}|}
 	\hline
 	\textbf{Niveau d'Assurance} & \textbf{Description}\\
 	\hline
@@ -364,54 +361,51 @@ Par exemple, ADV\_INT.3.1, \emph{Minimally Complex internales}, exige du dévelop
 	EAL 7 & Conception formellement vérifiée et testée \\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5em}
-\\
+\end{center}
+
 Les EALs peuvent être \emph{augmenté} en ajoutant des SARs aux affirmations d'assurance. Par exemple, l'ajout du SAR ALC\_FLR.1, Basic Flaw Remediation, à l'EAL 2 serait désigné \emph{EAL 2 augmenté par ALC\_FLR.1} ou plus officieusement \emph{EAL 2+}. Cela signifie qu'en plus des SARs contenus dans les exigences du standard EAL 2, ALC\_FLR.1 est ajouté comme illustré dans le tableau suivant.
 
 \begin{center}
-	\small{
-		\begin{tabular}{|l|l|l|}
-			\hline
-			Classe fonctionnelle de Sécurité & Composant fonctionnel & Description \\
-			\hline					
-			& FAU\_ARP.1 & Alerte de sécurité\\
-			\cline{2-3}			
-			& FAU\_GEN.1 & Alerte de génération\\
-			\cline{2-3}			
-			& FAU\_SAA.1 & Analyse d'Audit\\
-			\cline{2-3}						
-			\multirow{-5}{*}{Audit de la sécurité} 
-			& FAU\_SAR.1 & Résumé d'Audit \\
-			\hline								
-			
-			& FDP\_ARP.1 & Alerte de sécurité\\
-			\cline{2-3}			
-			\multirow{-2}{*}{Audit de la sécurité} 
-			& FDP\_SAR.1 & Résumé d'Audit \\
-			\hline								
-			
-			
-			& FIA\_UAU.1 & Alerte de sécurité\\
-			\cline{2-3}			
-			\multirow{-2}{*}{Identification et Authentification} 
-			& FDP\_UID.1 & Identification et Authentification \\
-			\hline								
-			
-			
-			& FMT\_MOF.1 & Alerte de sécurité\\
-			\cline{2-3}			
-			& FMT\_MSA.1 & Alerte de génération\\
-			\cline{2-3}			
-			& FMT\_MSA.1 & Analyse d'Audit\\
-			\cline{2-3}						
-			& FMT\_SMF.1 & Analyse d'Audit\\
-			\cline{2-3}						
-			\multirow{-5}{*}{Audit de la sécurité} 
-			& FMT\_SAR.1 & Résumé d'Audit \\
-			\hline								
-		\end{tabular}
-	}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Classe fonctionnelle de Sécurité & Composant fonctionnel & Description \\
+		\hline					
+		& FAU\_ARP.1 & Alerte de sécurité\\
+		\cline{2-3}			
+		& FAU\_GEN.1 & Alerte de génération\\
+		\cline{2-3}			
+		& FAU\_SAA.1 & Analyse d'Audit\\
+		\cline{2-3}						
+		\multirow{-5}{*}{Audit de la sécurité} 
+		& FAU\_SAR.1 & Résumé d'Audit \\
+		\hline								
+		
+		& FDP\_ARP.1 & Alerte de sécurité\\
+		\cline{2-3}			
+		\multirow{-2}{*}{Audit de la sécurité} 
+		& FDP\_SAR.1 & Résumé d'Audit \\
+		\hline								
+		
+		
+		& FIA\_UAU.1 & Alerte de sécurité\\
+		\cline{2-3}			
+		\multirow{-2}{*}{Identification et Authentification} 
+		& FDP\_UID.1 & Identification et Authentification \\
+		\hline								
+		
+		
+		& FMT\_MOF.1 & Alerte de sécurité\\
+		\cline{2-3}			
+		& FMT\_MSA.1 & Alerte de génération\\
+		\cline{2-3}			
+		& FMT\_MSA.1 & Analyse d'Audit\\
+		\cline{2-3}						
+		& FMT\_SMF.1 & Analyse d'Audit\\
+		\cline{2-3}						
+		\multirow{-5}{*}{Audit de la sécurité} 
+		& FMT\_SAR.1 & Résumé d'Audit \\
+		\hline								
+	\end{tabular}
 \end{center}
 
 
@@ -627,50 +621,47 @@ Dans la ST, on déclare les SFRs de la CC Part 2 que la TOE supporte. Les SFRs qu
 
 
 \begin{center}
-	\small{
-		\begin{tabular}{|l|l|l|}
-			\hline
-			Classe fonctionnelle de Sécurité & Composant fonctionnel & Description \\
-			\hline					
-			& FAU\_ARP.1 & Alerte de sécurité\\
-			\cline{2-3}			
-			& FAU\_GEN.1 & Alerte de génération\\
-			\cline{2-3}			
-			& FAU\_SAA.1 & Analyse d'Audit\\
-			\cline{2-3}						
-			\multirow{-5}{*}{Audit de la sécurité} 
-			& FAU\_SAR.1 & Résumé d'Audit \\
-			\hline								
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Classe fonctionnelle de Sécurité & Composant fonctionnel & Description \\
+		\hline					
+		& FAU\_ARP.1 & Alerte de sécurité\\
+		\cline{2-3}			
+		& FAU\_GEN.1 & Alerte de génération\\
+		\cline{2-3}			
+		& FAU\_SAA.1 & Analyse d'Audit\\
+		\cline{2-3}						
+		\multirow{-5}{*}{Audit de la sécurité} 
+		& FAU\_SAR.1 & Résumé d'Audit \\
+		\hline								
 
-			& FDP\_ARP.1 & Alerte de sécurité\\
-			\cline{2-3}			
-			\multirow{-2}{*}{Audit de la sécurité} 
-			& FDP\_SAR.1 & Résumé d'Audit \\
-			\hline								
-
-
-			& FIA\_UAU.1 & Alerte de sécurité\\
-			\cline{2-3}			
-			\multirow{-2}{*}{Identification et Authentification} 
-			& FDP\_UID.1 & Identification et Authentification \\
-			\hline								
+		& FDP\_ARP.1 & Alerte de sécurité\\
+		\cline{2-3}			
+		\multirow{-2}{*}{Audit de la sécurité} 
+		& FDP\_SAR.1 & Résumé d'Audit \\
+		\hline								
 
 
-			& FMT\_MOF.1 & Alerte de sécurité\\
-			\cline{2-3}			
-			& FMT\_MSA.1 & Alerte de génération\\
-			\cline{2-3}			
-			& FMT\_MSA.1 & Analyse d'Audit\\
-			\cline{2-3}						
-			& FMT\_SMF.1 & Analyse d'Audit\\
-			\cline{2-3}						
-			\multirow{-5}{*}{Audit de la sécurité} 
-			& FMT\_SAR.1 & Résumé d'Audit \\
-			\hline								
-		\end{tabular}
-	}
+		& FIA\_UAU.1 & Alerte de sécurité\\
+		\cline{2-3}			
+		\multirow{-2}{*}{Identification et Authentification} 
+		& FDP\_UID.1 & Identification et Authentification \\
+		\hline								
+
+
+		& FMT\_MOF.1 & Alerte de sécurité\\
+		\cline{2-3}			
+		& FMT\_MSA.1 & Alerte de génération\\
+		\cline{2-3}			
+		& FMT\_MSA.1 & Analyse d'Audit\\
+		\cline{2-3}						
+		& FMT\_SMF.1 & Analyse d'Audit\\
+		\cline{2-3}						
+		\multirow{-5}{*}{Audit de la sécurité} 
+		& FMT\_SAR.1 & Résumé d'Audit \\
+		\hline								
+	\end{tabular}
 \end{center}
-
 
 
 \paragraph{Exigences d'Assurance de sécurité\\}
@@ -679,48 +670,46 @@ En général, les évaluations CC sont effectuées par rapport à un des niveaux d'as
 
 
 \begin{center}
-	\small{
-		\begin{tabular}{|l|l|l|}
-			\hline
-			Classe fonctionnelle de Sécurité & Composant fonctionnel & Description \\
-			\hline					
-			& FAU\_ARP.1 & Alerte de sécurité\\
-			\cline{2-3}			
-			& FAU\_GEN.1 & Alerte de génération\\
-			\cline{2-3}			
-			& FAU\_SAA.1 & Analyse d'Audit\\
-			\cline{2-3}						
-			\multirow{-5}{*}{Audit de la sécurité} 
-			& FAU\_SAR.1 & Résumé d'Audit \\
-			\hline								
-			
-			& FDP\_ARP.1 & Alerte de sécurité\\
-			\cline{2-3}			
-			\multirow{-2}{*}{Audit de la sécurité} 
-			& FDP\_SAR.1 & Résumé d'Audit \\
-			\hline								
-			
-			
-			& FIA\_UAU.1 & Alerte de sécurité\\
-			\cline{2-3}			
-			\multirow{-2}{*}{Identification et Authentification} 
-			& FDP\_UID.1 & Identification et Authentification \\
-			\hline								
-			
-			
-			& FMT\_MOF.1 & Alerte de sécurité\\
-			\cline{2-3}			
-			& FMT\_MSA.1 & Alerte de génération\\
-			\cline{2-3}			
-			& FMT\_MSA.1 & Analyse d'Audit\\
-			\cline{2-3}						
-			& FMT\_SMF.1 & Analyse d'Audit\\
-			\cline{2-3}						
-			\multirow{-5}{*}{Audit de la sécurité} 
-			& FMT\_SAR.1 & Résumé d'Audit \\
-			\hline								
-		\end{tabular}
-	}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		Classe fonctionnelle de Sécurité & Composant fonctionnel & Description \\
+		\hline					
+		& FAU\_ARP.1 & Alerte de sécurité\\
+		\cline{2-3}			
+		& FAU\_GEN.1 & Alerte de génération\\
+		\cline{2-3}			
+		& FAU\_SAA.1 & Analyse d'Audit\\
+		\cline{2-3}						
+		\multirow{-5}{*}{Audit de la sécurité} 
+		& FAU\_SAR.1 & Résumé d'Audit \\
+		\hline								
+		
+		& FDP\_ARP.1 & Alerte de sécurité\\
+		\cline{2-3}			
+		\multirow{-2}{*}{Audit de la sécurité} 
+		& FDP\_SAR.1 & Résumé d'Audit \\
+		\hline								
+		
+		
+		& FIA\_UAU.1 & Alerte de sécurité\\
+		\cline{2-3}			
+		\multirow{-2}{*}{Identification et Authentification} 
+		& FDP\_UID.1 & Identification et Authentification \\
+		\hline								
+		
+		
+		& FMT\_MOF.1 & Alerte de sécurité\\
+		\cline{2-3}			
+		& FMT\_MSA.1 & Alerte de génération\\
+		\cline{2-3}			
+		& FMT\_MSA.1 & Analyse d'Audit\\
+		\cline{2-3}						
+		& FMT\_SMF.1 & Analyse d'Audit\\
+		\cline{2-3}						
+		\multirow{-5}{*}{Audit de la sécurité} 
+		& FMT\_SAR.1 & Résumé d'Audit \\
+		\hline								
+	\end{tabular}
 \end{center}
 
 
@@ -770,9 +759,8 @@ Au fur et à mesure que les niveaux d'assurance augmentent, le développeur doit f
 \end{itemize}
 
 J'aborderai les quatre premières classes ADV\_FSP qui couvrent les exigences EAL 1 à 4, car ce sont les plus utilisés par les produits commerciaux. Les composants sont:
-\\
-\vspace{0.5em}
-\\
+
+\begin{center}
 \begin{tabular}{|c|c|}
 	\hline
 	\textbf{EAL} & \textbf{Les exigences du composant}\\
@@ -786,9 +774,7 @@ J'aborderai les quatre premières classes ADV\_FSP qui couvrent les exigences EAL
 	EAL 4 & ADV\_FSP.4 Spécification fonctionnelle complète\\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5em}
-\\
+\end{center}
 
 ADV\_FSP.1, \emph{Spécifications fonctionnelles de base}, exige une description de l'objectif et du mode d'utilisation de chaque interface SFR-enforcing et de chaque interface SFR-supporting. Elle nécessite également un mapping avec les SFRs concernés.\\
 
@@ -796,9 +782,8 @@ ADV\_FSP.4, \emph{Spécifications fonctionnelles complètes}, requièrent une descr
 
 \subsubsection{Architecture de sécurité}
 Le but de l'architecture de sécurité (ADV\_ARC) est de fournir des preuves pour appuyer les affirmations du TSF. On s'attend à ce que le développeur décrit la conception et l'implémentation de la TOE, illustrant que le TSF ne peut être court-circuité ou altéré. La séparation des domaines sera également décrite dans l'architecture de sécurité. Il n' y a qu'un seul composant dans cette famille ADV\_ARC.1 et il dépend du ADV\_FSP. 1 et ADV\_TDS.1.
-\\
-\vspace{0.5em}
-\\
+
+\begin{center}
 \begin{tabular}{|c|c|}
 	\hline
 	\textbf{EAL} & \textbf{Les exigences du composant}\\
@@ -808,16 +793,14 @@ Le but de l'architecture de sécurité (ADV\_ARC) est de fournir des preuves pour 
 	EAL 2-4 & ADV\_ARC.1 Description de l'Architecture de Sécurité \\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5em}
-\\
+\end{center}
+
 La première exigence de l'ADV\_ARC.1, \emph{Description de l'Architecture de Sécurité}, est que les descriptions de l'architecture de sécurité soient cohérentes avec le niveau des fonctions SFR de renforcement décrites dans la conception de la TOE. Cela exigera une cohérence avec les éléments probants pour ADV\_TDS.1. Tous les modules énumérés dans l'architecture de sécurité doivent également être inclus dans les spécifications fonctionnelles ou dans les preuves de conception de la TOE.\\
 
 \subsubsection{Conception de la TOE}
 La conception de la TOE (ADV\_TDS) introduit une terminologie plus spécifique. Les \emph{sous-systèmes} sont considérés comme faisant partie de l'architecture. Ce sont les "grands blocs" dans le schéma fonctionnel de l'architecture. Les \emph{Modules} sont les "petits blocs" et remplissent des fonctions spécifiques. L'objectif de la conception de la TOE est de décrire les limites du TSF et la façon dont le TSF implémente les SFRs. Les \emph{sous-systèmes} et \emph{modules} sont catégorisé comme: SFR-renorcing, SFR-supporting ou SFR-non-interfering. Comme prévu, au fur et à mesure que le niveau d'assurance augmente, le niveau de détail augmente du niveau sous-système au niveau module.
-\\
-\vspace{0.5em}
-\\
+
+\begin{center}
 \begin{tabular}{|c|c|}
 	\hline
 	\textbf{EAL} & \textbf{Les exigences du composant}\\
@@ -829,9 +812,8 @@ La conception de la TOE (ADV\_TDS) introduit une terminologie plus spécifique. L
 	EAL 4 & ADV\_TDS.3 - Conception modulaire de base \\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5em}
-\\
+\end{center}
+
 Comme dans le cas de l'ADV\_FSP, je discuterai des exigences de conception de la TOE pour les EAL allant de 2 à 4 seulement.\\
 ADV\_TDS.1, la conception de la TOE, exige une description de la conception de base da la TOE à l'aide de sous-systèmes. Tous les sous-systèmes du TSF seront répertoriés, de même qu'une description du comportement et des interactions de tous les sous-systèmes SFR-renforçant. Le comportement des sous-systèmes SFR-supportant et SFR-non-interférant sera également pris en compte afin de démontrer qu'ils ne sont pas SFR-renforçant.\\
 
@@ -862,9 +844,8 @@ ATE\_COV.2, \emph{Analyse de Couverture}, élargit ATE\_COV.1 pour couvrir toutes
 
 \subsubsection{Profondeur}
 L'objectif du test en \emph{Profondeur} (ATE\_DPT) est d'examiner la profondeur des tests réalisés par le développeur. Une documentation de conception plus détaillée est nécessaire pour effectuer cette analyse, de sorte que les dépendances comprennent l'architecture, la conception de la TOE et les preuves de tests fonctionnels.
-\\
-\vspace{0.5em}
-\\
+
+\begin{center}
 \begin{tabular}{|c|c|}
 	\hline
 	\textbf{EAL} & \textbf{Les exigences du composant}\\
@@ -874,16 +855,13 @@ L'objectif du test en \emph{Profondeur} (ATE\_DPT) est d'examiner la profondeur 
 	EAL 3 \& 4 & ATE\_DPT.1 - Test de la conception de base \\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5em}
-\\
+\end{center}
+
 Pour ATE\_DPT.1, \emph{Test de la conception de base}, le développeur fournira une analyse de la profondeur des tests. Cette analyse inclura la correspondance entre les tests et les sous-systèmes TSF dans la conception de la TOE. Il montrera également que tous les sous-systèmes ont été testés. La documentation des tests doit comprendre le plan de test, la configuration des tests, les résultats attendus et les résultats réels. L'évaluateur examinera les preuves de test par rapport au comportement attendu en fonction de la documentation de conception.
 
 \subsubsection{Tests fonctionnels}
 Les preuves du test fonctionnel (ATE\_FUN) documentent les tests effectués par le développeur sur les fonctions de sécurité exprimés dans le ST.
-\\
-\vspace{0.5em}
-\\
+\begin{center}
 \begin{tabular}{|c|c|}
 	\hline
 	\textbf{EAL} & \textbf{Les exigences du composant}\\
@@ -893,16 +871,13 @@ Les preuves du test fonctionnel (ATE\_FUN) documentent les tests effectués par l
 	EAL 2-4 & ATE\_FUN.1 - Test fonctionnel \\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5em}
-\\
+\end{center}
+
 L'ATE\_FUN.1, l'évidence \emph{Test fonctionnel} exige que le développeur teste le TSF et enregistre les résultats. La documentation des tests comprendra le plan de test, les résultats attendues et réels des tests. Les plans de test décrivent la configuration des tests et les étapes nécessaires à leur exécution. Bien entendu, les résultats réels des tests doivent correspondre aux résultats attendus. Les informations relatives à la configuration des tests doivent être suffisamment détaillées pour que les tests puissent être reproduits avec des résultats identiques. Les évaluateurs relanceront un échantillonnage des tests fonctionnels du développeur pour vérifier les résultats. Si des tests doivent être exécutés dans un ordre particulier (par exemple pour définir des conditions préalables pour d'autres tests), cet ordre doit être bien documenté.
 
 \subsubsection{Test Indépendant}
 Les tests indépendants (ATE\_IND) visent à fournir une plus grande assurance sur les tests des développeurs. Des tests indépendants sont mis au point et effectués par les évaluateurs.
-\\
-\vspace{0.5em}
-\\
+\begin{center}
 \begin{tabular}{|c|c|}
 	\hline
 	\textbf{EAL} & \textbf{Les exigences du composant}\\
@@ -912,18 +887,16 @@ Les tests indépendants (ATE\_IND) visent à fournir une plus grande assurance sur
 	EAL 2-4 & ATE\_IND.2 - Test d'indépendance - échantillonnage \\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5em}
-\\
+\end{center}
+
 ATE\_IND.1, l'évidence \emph{Test Indépendant}, exige simplement que la TOE soit mise à la disposition des évaluateurs. L'évaluateur élaborera un plan de test indépendant et exécutera un sous-ensemble de tests sur la fonctionnalité de sécurité de la TOE.\\
 
 ATE\_IND.2 {Échantillon de test indépendant}, exige du développeur qu'il fournisse un environnement de test équivalent afin que l'évaluateur puisse exécuter un sous-ensemble des tests du développeur. Il peut être utile que l'évaluateur effectue ces tests lors de sa visite du site du développeur, ce qui lui permet d'accéder à l'environnement de test du développeur. Cela élimine les problèmes logistiques liés à l'expédition du matériel au laboratoire de l'évaluateur et évite les complications liées à la tentative de reproduire la configuration du système de test selon les spécifications du développeur.
 
 \subsection{Document d'évaluation de la vulnérabilité}
 L'objectif de l'évaluation de la vulnérabilité est de déterminer si les vulnérabilités découvertes au cours du développement ou de l'évaluation pourraient être exploitées. L'exploitation de ces vulnérabilités peut conduire à une exposition non autorisée des données ou à d'autres formes de contournement des fonctions de sécurité. Il n'y a qu'une seule famille dans cette classe, c'est AVA\_VAN, \emph{Analyse de vulnérabilité}.
-\\
-\vspace{0.5em}
-\\
+
+\begin{center}
 \begin{tabular}{|c|c|}
 	\hline
 	\textbf{EAL} & \textbf{Les exigences du composant}\\
@@ -935,9 +908,8 @@ L'objectif de l'évaluation de la vulnérabilité est de déterminer si les vulnérab
 	EAL 4 & AVA\_VAN.3 - Analyse de vulnérabilité ciblée \\
 	\hline
 \end{tabular}
-\\
-\vspace{0.5em}
-\\
+\end{center}
+
 L'élément AVA\_VAN.1, \emph{Enquête sur la vulnérabilité}, exige que le développeur effectue une enquête sur les informations de vulnérabilité du domaine public qui peuvent s'appliquer à la TOE. L'évaluateur effectuera des tests d'intrusion pour confirmer que ces vulnérabilités ne peuvent pas être exploitées pour exposer la TOE à un risque. Ces sources publiques d'informations sur les vulnérabilités peuvent être des sites Web tels que: 
 \begin{itemize}
 	\item U. S. Computer Emergency Readiness Team
@@ -1106,67 +1078,66 @@ Le tâche de l'évaluateur consiste à :
 \end{itemize}
 
 \begin{center}
-	\small{
-		\begin{tabular}{|l|l|l|l|}
-			\hline
-			Facteur & Intervalle & Valeur &  vulnérabilité \\
-			\hline					
-			& < 0,5 heure & 0 & 0 \\
-			\cline{2-4}			
-			& < 1 jour & 2 & 3 \\
-			\cline{2-4}			
-			& < 1 mois & 3 & 5 \\
-			\cline{2-4}			
-			& > 1 mois & 5 & 8 \\
-			\cline{2-4}						
-			\multirow{-5}{*}{Temps mis pour} 
-			& Impraticable & * (voir nota 5) & * (voir nota 5) \\
-			\hline		
-						
-			& Profane & 0 & 0 \\
-			\cline{2-4}			
-			& Compétent & 2 & 3 \\
-			\cline{2-4}			
-			\multirow{-5}{*}{Expertise de l'attaquant} 
-			& Expert & * (voir nota 5) & * (voir nota 5) \\
-			\hline		
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		Facteur & Intervalle & Valeur &  vulnérabilité \\
+		\hline					
+		& < 0,5 heure & 0 & 0 \\
+		\cline{2-4}			
+		& < 1 jour & 2 & 3 \\
+		\cline{2-4}			
+		& < 1 mois & 3 & 5 \\
+		\cline{2-4}			
+		& > 1 mois & 5 & 8 \\
+		\cline{2-4}						
+		\multirow{-5}{*}{Temps mis pour} 
+		& Impraticable & * (voir nota 5) & * (voir nota 5) \\
+		\hline		
+					
+		& Profane & 0 & 0 \\
+		\cline{2-4}			
+		& Compétent & 2 & 3 \\
+		\cline{2-4}			
+		\multirow{-5}{*}{Expertise de l'attaquant} 
+		& Expert & * (voir nota 5) & * (voir nota 5) \\
+		\hline		
 
-			& Aucune & 0 & 0 \\
-			\cline{2-4}			
-			& Information publique & 2 & 3 \\
-			\cline{2-4}			
-			\multirow{-5}{*}{Expertise de l'attaquant} 
-			& Information sensible & * (voir nota 5) & * (voir nota 5) \\
-			\hline		
-			
-			
-			& < 0,5 heure ou directement accessible & 0 & 0 \\
-			\cline{2-4}			
-			& < 1 jour & 2 & 3 \\
-			\cline{2-4}			
-			& < 1 mois & 3 & 5 \\
-			\cline{2-4}			
-			
-						
-			& > 1 mois & 5 & 8 \\
-			\cline{2-4}						
-			\multirow{-5}{*}{Temps mis pour} 
-			& Impraticable & * (voir nota 5) & * (voir nota 5) \\
-			\hline		
-			
-			& Aucun & 0 & 0 \\
-			\cline{2-4}			
-			& Standard & 1 & 2 \\
-			\cline{2-4}			
-			& Spécialisé & 3 & 4 \\
-			\cline{2-4}			
-			\multirow{-5}{*}{Temps mis pour} 
-			& Spécifique & 5 & 6 \\
-			\hline		
+		& Aucune & 0 & 0 \\
+		\cline{2-4}			
+		& Information publique & 2 & 3 \\
+		\cline{2-4}			
+		\multirow{-5}{*}{Expertise de l'attaquant} 
+		& Information sensible & * (voir nota 5) & * (voir nota 5) \\
+		\hline		
+		
+		
+		& < 0,5 heure ou directement accessible & 0 & 0 \\
+		\cline{2-4}			
+		& < 1 jour & 2 & 3 \\
+		\cline{2-4}			
+		& < 1 mois & 3 & 5 \\
+		\cline{2-4}			
+		
+					
+		& > 1 mois & 5 & 8 \\
+		\cline{2-4}						
+		\multirow{-5}{*}{Temps mis pour} 
+		& Impraticable & * (voir nota 5) & * (voir nota 5) \\
+		\hline		
+		
+		& Aucun & 0 & 0 \\
+		\cline{2-4}			
+		& Standard & 1 & 2 \\
+		\cline{2-4}			
+		& Spécialisé & 3 & 4 \\
+		\cline{2-4}			
+		\multirow{-5}{*}{Temps mis pour} 
+		& Spécifique & 5 & 6 \\
+		\hline		
 
-		\end{tabular}
-	}
+	\end{tabular}
 \end{center}
+
 (*) indique que le chemin d'attaque n'est pas exploitable dans un intervalle de temps qui serait utile à un attaquant.
 Une valeur (*) indique un haut niveau de résistance.
 \begin{center}
@@ -1246,9 +1217,9 @@ L'évaluation d'un produit suivant les critères CSPN permet de constater que le p
 
 Le RTE élaboré par l'évaluateur, contenant et argumentant les résultats de l'évaluation, doit être présenté sous une forme acceptable pour être pris en considération par l'ANSSI (Plan imposé par l'ANSSI).\\
 Si le RTE fait apparaître que le produit ne répond pas ou ne répond que partiellement à sa cible de sécurité et qu'il n'est pas possible d'identifier des contre-mesures environnementales réalistes pour améliorer cette situation, le produit sera considéré comme ne répondant pas à sa cible de sécurité. Il en est de même si les tests font apparaître des dysfonctionnements du produit, n'en permettant pas un usage normal ou l'usage prévu, l'affaiblissement du système hôte ou si certaines conclusions du RTE sont <<non concluantes>>, par exemple faute d'information. 
-\\
-\vspace{0.5em}
-\\
+
+
+\begin{center}
 \begin{tabular}{|p{8cm}|p{8cm}|}
 	\hline	
 	\textsf{CC} & \textsf{CSPN}\\
@@ -1268,8 +1239,38 @@ Si le RTE fait apparaître que le produit ne répond pas ou ne répond que partiell
 	Coût relativement élevé (60 à 200K?) & Coût relativement faible (25 à 35K?)\\
 	\hline
 \end{tabular}
+\end{center}
 
 \section{Conclusion}
 Ce rapport a abordé la certification de produits des technologies d'informations d'un point de vue sécurité. Les différents concepts des Critères Communs ont été abordés, la certification de sécurité de premier niveau a été présenté. Les motivations ainsi que les problèmes posés par la certification selon les Critères Communs ont été discuté. Ce rapport peut être complété par une présentation plus détaillé des procédures d'évaluation au niveaux des algorithmes, des techniques d'intrusion et de cotation de vulnérabilités. L'avenir des Critères Communs reste discutable. L'industrie des Smart Cartes qui est un précurseur dans le domaine de la certification peut être ajouté à cet rapport. Des exemples plus concrets des différents concepts des Critères Communs peuvent être tiré du cas public de la certification de TrueCrypt et venir enrichir ce travail. 
+
+
+{\small
+	\begin{thebibliography}{99}
+		\bibitem{pa} \url{https://www.ssi.gouv.fr/administration/produits-certifies/}
+		\bibitem{pa} \url{https://www.ssi.gouv.fr/uploads/2015/01/ccpart1v3.1r5.pdf}
+		\bibitem{pa} \url{https://www.ssi.gouv.fr/uploads/2015/01/ccpart2v3.1r5.pdf}
+		\bibitem{pa} \url{https://www.ssi.gouv.fr/uploads/2015/01/ccpart3v3.1r5.pdf}
+		\bibitem{pa} \url{https://www.ssi.gouv.fr/uploads/2015/01/cemv3.1r5.pdf}
+		\bibitem{pa} \url{https://www.commoncriteriaportal.org/}		
+		\bibitem{pa} Wesley Hisao Higaki and Yukie Higaki: 
+		\emph{Successful Common Criteria Evaluations: A Practical Guide for Vendors} July 21, 2010
+		
+		\bibitem{pa} Andreas Daniel Sinnhofer, Wolfgang Raschke, Christian Steger, Christian Kreiner: 
+		\emph{Patterns for common criteria certification} ACM July 2015 EuroPLoP '15: Proceedings of the 20th European Conference on Pattern Languages of Programs
+		
+		
+		\bibitem{pa} Isaac Agudo, José L. Vivas, Javier López:
+		\emph{Security assurance during the software development cycle} ACM June 2009 CompSysTech '09: Proceedings of the International Conference on Computer Systems and Technologies and Workshop for PhD Students in Computing
+		
+		
+		\bibitem{pa} Dariusz Rogowski:
+		\emph{Software implementation of common criteria related design patterns}, 2013 IEEE Federated Conference on Computer Science and Information Systems	
+		
+		\bibitem{pa}Luca Recchia; Giuseppe Procopio; Andrea Onofrii; Francesco Rogo:
+		\emph{Security Evaluation of a Linux System: Common Criteria EAL4+ Certification Experience}, 2014 IEEE International Symposium on Software Reliability Engineering Workshops
+		
+	\end{thebibliography}
+}
 
 \end{document}
