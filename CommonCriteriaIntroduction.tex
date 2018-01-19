@@ -1,10 +1,10 @@
-\documentclass[11pt,oneside,a4paper, titlepage]{article}
+\documentclass[12pt,oneside,a4paper, titlepage]{article}
 \usepackage{graphicx}
 \addtolength{\voffset}{-15mm}
 \usepackage{inputenc}
 \usepackage{a4wide}
 \usepackage[T1]{fontenc}	
-\usepackage[french]{babel}
+\usepackage[english, french]{babel}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{color}
@@ -17,11 +17,13 @@
 \usepackage{multirow}
 \usepackage{multicol}
 \usepackage{hyperref}
-%\usepackage[pdfborder=0]{hyperref}
 \hypersetup{pdfborder=0 0 0}
 \linespread{1.0}
+
+\AtBeginDocument{\def\labelitemi{$\bullet$}}
+
 \def\blurb{%
-	\textbf{\Large CONSERVATOIRE NATIONAL DES ARTS ET METIERS} \\ \textbf{} }
+	\textbf{\Large CONSERVATOIRE NATIONAL DES ARTS ET METIERS} \\ \textbf{\Large PARIS} }
 \def\clap#1{\hbox to 0pt{\hss #1\hss}}%
 \def\ligne#1{%
 	\hbox to \hsize{%
@@ -41,6 +43,8 @@
 		\hss
 		\llap{\vbox{\raggedleft #3}}}}%	
 \begin{document}
+	\renewcommand\labelitemi{\tiny$\bullet$}
+	
 	\thispagestyle{empty}\vbox to .9\vsize{%
 	\vss
 	\vbox to 1\vsize{%
@@ -80,9 +84,6 @@ Je tiens à remercier également le jury d'admission à l'EICNAM.
 	
 \tableofcontents
 \newpage
-\renewcommand{\thepage}{\arabic{page}}
-\setcounter{page}{1}
-
 
 \section*{Glossaire}
 \noindent \textbf{CCN}: Centre de Certification National\\
@@ -105,6 +106,8 @@ Je tiens à remercier également le jury d'admission à l'EICNAM.
 \textbf{TSFI} : TSF Interface (Interface de la TSF)\\
 
 \newpage
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{page}{1}
 \section{Introduction}
 La sécurité des systèmes d'information, ou plus simplement sécurité informatique, est l'ensemble des moyens techniques, organisationnels, juridiques et humains nécessaires à la mise en place de moyens visant à empêcher l'utilisation non-autorisée, le mauvais usage, la modification ou le détournement du système d'information. Assurer la sécurité du système d'information est une activité du management du système d'information. Les utilisateurs et les fournisseurs n'accordent souvent pas la même priorité aux aspects de la sécurité informatique. Il n'est donc pas surprenant que les exigences en matière de sécurité des systèmes, applications et logiciels informatiques passent après les considérations économiques. Cela a de graves conséquences sur la sécurité des systèmes informatiques déployés, comme en témoignent le nombre de faiblesses, de vulnérabilités et d'attaques révélées.\\ 
 
@@ -1088,7 +1091,7 @@ Si le RTE fait apparaître que le produit ne répond pas ou ne répond que partiell
 \section{Conclusion}
 Ce rapport a abordé la certification de produits des technologies d'informations d'un point de vue sécurité. Les différents concepts des Critères Communs ont été abordés, la certification de sécurité de premier niveau a été présenté. Les motivations ainsi que les problèmes posés par la certification selon les Critères Communs ont été discuté. Ce rapport peut être complété par une présentation plus détaillé des procédures d'évaluation au niveaux des algorithmes, des techniques d'intrusion et de cotation de vulnérabilités. L'avenir des Critères Communs reste discutable. L'industrie des Smart Cartes qui est un précurseur dans le domaine de la certification peut être ajouté à cet rapport. Des exemples plus concrets des différents concepts des Critères Communs peuvent être tiré du cas public de la certification de TrueCrypt et venir enrichir ce travail. 
 
-
+\newpage
 {\small
 	\begin{thebibliography}{99}
 		\bibitem{pa} \url{https://www.ssi.gouv.fr/administration/produits-certifies/}
