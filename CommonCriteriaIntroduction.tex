@@ -96,6 +96,13 @@ Je tiens à remercier également le jury d'admission à l'EICNAM.
 \textbf{CSPN}: Certification de Sécurité de Premier Niveau\\
 \textbf{CESTI}: Centre d'Évaluation de la Sécurité des Technologies de l'Information\\
 \textbf{RTE}: Rapport Technique d'Évaluation\\
+\textbf{CC} : Common Criteria (Critères Communs) \\
+\textbf{CEM} : Common Evaluation Methodology (Méthodologie Commune d'Evaluation)\\
+\textbf{SFR} : Security Functional Requirement (Exigence Fonctionnelle de sécurité)\\
+\textbf{ST} : Security Target (Cible de Sécurité)\\
+\textbf{TOE} : Target Of Evaluation (Cible de l'Evaluation)\\
+\textbf{TSF} : TOE Security Functionality (Fonctionnalité de Sécurité de la TOE)\\
+\textbf{TSFI} : TSF Interface (Interface de la TSF)\\
 
 \newpage
 \section{Introduction}
@@ -610,7 +617,7 @@ La section déclarations de conformité de la ST identifie les affirmations de con
 Cette cible de sécurité est conforme aux parties 2 et 3 de la version 3.1 
 des Critères Communs ([CC2] et [CC3]).
 2.2 Conformité à un profil de protection
-Cette cible de sécurité n?est conforme à aucun profil de protection identifié.
+Cette cible de sécurité n'est conforme à aucun profil de protection identifié.
 2.3 Conformité à un paquet d'assurance
 Le niveau d'assurance de l'évaluation visé par cette cible de sécurité est 
 EAL2+ (ou EAL2 augmenté), augmenté des composants suivants :
@@ -625,7 +632,7 @@ EAL2+ (ou EAL2 augmenté), augmenté des composants suivants :
 La section définition des problèmes de sécurité de la ST est conçue pour décrire les problèmes de sécurité abordés par la TOE. Cette définition est réalisée en décrivant les menaces, les politiques organisationnelles de sécurité et les hypothèses. L'exemple suivant est tiré de la ST Truecrypt.
 
 \begin{verbatim}
-3.4 Politiques de sécurité de l?organisation (OSP)
+3.4 Politiques de sécurité de l'organisation (OSP)
 OSP.CRYPTO { XE "OSP.CRYPTO" }
 Les mécanismes cryptographiques de la TOE doivent être conformes aux exigences du
 référentiel cryptographique de la DCSSI pour le niveau de robustesse standard([CRYPTO]).
@@ -640,111 +647,20 @@ des données sensibles sont accessibles à un utilisateur légitime sur l'équipemen
 
 \newpage
 \section{Fournitures d'évaluation}
-Un produit qui fournit de la sécurité doit présenter des caractéristiques de sécurité appropriées. Il est nécessaire de déterminer le degré de confiance qui peut être accordé à ces caractéristiques. Pour cela, les caractéristiques elles-mêmes doivent être spécifiées au sein d'un certaines nombre de documents. Dans le cas de la certification CSPN, l'ANSSI précise une documentation minimaliste. Dans le cas des CC la liste des documents est beaucoup plus large et dépend de l'organisme d'évaluation et le type de produit évalué. La création de cette documentation est partagé entre développeur, centre d'évaluation. Dans cette section on présente une parties de ces documents d'évidences.
+Un produit qui fournit de la sécurité doit présenter des caractéristiques de sécurité appropriées. Il est nécessaire de déterminer le degré de confiance qui peut être accordé à ces caractéristiques. Pour cela, les caractéristiques elles-mêmes doivent être spécifiées au sein d'un certaines nombre de documents. Dans le cas de la certification CSPN, l'ANSSI précise une documentation minimaliste. Dans le cas des CC la liste des documents est beaucoup plus large et dépend de l'organisme d'évaluation et le type de produit évalué. La création de cette documentation est partagé entre développeur, centre d'évaluation.
 
-\subsection{Évidence de développement}
-Les évidence de développement sont essentiellement des documents de conception du produit, les évaluateurs examineront ces preuves pour vérifier les affirmations fonctionnelles de sécurité du développeur. Selon la Méthodologie d'évaluation Commune (CEM), l'activité de développement a pour but d'évaluer la documentation de conception à l'appui de la compréhension de la façon dont les fonctions de sécurité de la TOE (TSF) répondent aux exigences fonctionnelles de sécurité (SFR). Cette compréhension découle de l'examen de la documentation des d'évidence de développement qui comprend les spécifications fonctionnelles, la description de la conception de la TOE, la description d'implémentation (e.g. code source) et une description de l'architecture de sécurité.
-
-C'est la documentation de conception à jour et axée sur l'évaluation CC dont l'évaluateur CC aura besoin pour mener à bien l'évaluation ADV. Certains vendeurs qui ont une grande expérience avec les CC ont intégré le développement des preuves CC dans leurs cycles normaux de développement de produits.\\
-Dans ce paragraphe, nous discuterons les différentes exigences d'évidence sur le développement (ADV) pour les niveaux EAL allant de 1 à 4. Ces familles ADV sont:
+Ces fournitures ou évidences d'évaluations comprennent :
 \begin{itemize}
-	\item Spécifications fonctionnelles (ADV\_FSP)
-	\item Architecture de sécurité (ADV\_ARC)
-	\item Conception de la TOE (ADV\_TDS)
-	\item Représentation de l'implémentation (ADV\_IMP)
-	\item TSF Internes (ADV\_INT)
-	\item Modélisation des politiques de sécurité (ADV\_SPM)
+	\item Évidences de développement (ADV)
+	\item Évidences de support du cycle de vie (ALC)
+	\item Évidences de tests (ATE)
+	\item Évidences d'évaluation de la vulnérabilité (AVA)	
+	\item Évidences de guide (AGD)	
 \end{itemize}
+On se contentera dans cette section à la présentation des évidences de tests et évaluation de la vulnérabilité.
 
-\subsubsection{Spécifications fonctionnelles}
-La plupart des développeurs de logiciels sont familiarisés avec le concept des spécifications fonctionnelles (FSP) en tant que descriptions de haut niveau des fonctions du produit. Dans les évaluations CC, les FSP se concentrent sur les fonctions de sécurité revendiquées dans la ST. Selon la Partie 3 du CC, l'objectif de la famille des spécifications fonctionnelles (ADV\_FSP) est de décrire le TSFI. Il s'agit des interfaces des fonctions de sécurité de la TOE (TSF) qui se trouvent à l'intérieur de la TOE, mais en dehors du TSF. Les interfaces sont des entrées, sorties et services du TSF. Par exemple, une base de données accepte des requêtes SQL comme entrées à partir d'une applet client, exécute les opérations et renvoie les réponses. Le FSP décrit les requêtes SQL et les réponses retournées, mais il n' y a pas de description de la façon dont les entrées sont traitées ou communiquées - elles font partie de la conception TOE (ADV\_TDS).
-La partie 3 du CC classent les différents types d'interfaces comme suit:
-
-\begin{itemize}
-	\item SFR-enforcing - une interface qui permet de remonter directement à un SFR
-	\item SFR-supporting - une interface qui supporte les politiques de sécurité de la TOE 
-	\item SFR-non-interfering - une interface dans laquelle aucune SFR-enforcing n'a une dépendance
-\end{itemize}
-
-Au fur et à mesure que les niveaux d'assurance augmentent, le développeur doit fournir une description plus détaillée et une preuve que l'interface correspond à la catégorie désignée. Chaque TSFI est décrite en termes de son:
-\begin{itemize}
-\item Objectif: Objectif général de l'interface
-\item Mode d'utilisation: Comment utiliser l'interface
-\item Paramètres: Entrées et sorties
-\item Description des paramètres: Description significative
-\item Actions: Ce que fait l'interface
-\item Description des messages d'erreur: Ce qui génère les erreurs, messages d'erreur et définitions de code d'erreur
-\end{itemize}
-
-J'aborderai les quatre premières classes ADV\_FSP qui couvrent les exigences EAL 1 à 4, car ce sont les plus utilisés par les produits commerciaux. Les composants sont:
-
-\begin{center}
-\begin{tabular}{|c|c|}
-	\hline
-	\textbf{EAL} & \textbf{Les exigences du composant}\\
-	\hline
-	EAL 1 & ADV\_FSP.1 Spécification fonctionnelle de base\\
-	\hline
-	EAL 2 & ADV\_FSP.2 Spécification fonctionnelle de renforcement de la sécurité \\
-	\hline
-	EAL 3 & ADV\_FSP.3 Spécification fonctionnelle avec récapitulatif complet\\
-	\hline
-	EAL 4 & ADV\_FSP.4 Spécification fonctionnelle complète\\
-	\hline
-\end{tabular}
-\end{center}
-
-ADV\_FSP.1, \emph{Spécifications fonctionnelles de base}, exige une description de l'objectif et du mode d'utilisation de chaque interface SFR-enforcing et de chaque interface SFR-supporting. Elle nécessite également un mapping avec les SFRs concernés.\\
-
-ADV\_FSP.4, \emph{Spécifications fonctionnelles complètes}, requièrent une description complète du TSFI comprenant: l'objectif, la méthode d'utilisation, tous les paramètres, toutes les actions et tous les messages d'erreur.
-
-\subsubsection{Architecture de sécurité}
-Le but de l'architecture de sécurité (ADV\_ARC) est de fournir des preuves pour appuyer les affirmations du TSF. On s'attend à ce que le développeur décrit la conception et l'implémentation de la TOE, illustrant que le TSF ne peut être court-circuité ou altéré. La séparation des domaines sera également décrite dans l'architecture de sécurité. Il n' y a qu'un seul composant dans cette famille ADV\_ARC.1 et il dépend du ADV\_FSP. 1 et ADV\_TDS.1.
-
-\begin{center}
-\begin{tabular}{|c|c|}
-	\hline
-	\textbf{EAL} & \textbf{Les exigences du composant}\\
-	\hline
-	EAL 1 & Aucun\\
-	\hline
-	EAL 2-4 & ADV\_ARC.1 Description de l'Architecture de Sécurité \\
-	\hline
-\end{tabular}
-\end{center}
-
-La première exigence de l'ADV\_ARC.1, \emph{Description de l'Architecture de Sécurité}, est que les descriptions de l'architecture de sécurité soient cohérentes avec le niveau des fonctions SFR de renforcement décrites dans la conception de la TOE. Cela exigera une cohérence avec les éléments probants pour ADV\_TDS.1. Tous les modules énumérés dans l'architecture de sécurité doivent également être inclus dans les spécifications fonctionnelles ou dans les preuves de conception de la TOE.\\
-
-\subsubsection{Conception de la TOE}
-La conception de la TOE (ADV\_TDS) introduit une terminologie plus spécifique. Les \emph{sous-systèmes} sont considérés comme faisant partie de l'architecture. Ce sont les "grands blocs" dans le schéma fonctionnel de l'architecture. Les \emph{Modules} sont les "petits blocs" et remplissent des fonctions spécifiques. L'objectif de la conception de la TOE est de décrire les limites du TSF et la façon dont le TSF implémente les SFRs. Les \emph{sous-systèmes} et \emph{modules} sont catégorisé comme: SFR-renorcing, SFR-supporting ou SFR-non-interfering. Comme prévu, au fur et à mesure que le niveau d'assurance augmente, le niveau de détail augmente du niveau sous-système au niveau module.
-
-\begin{center}
-\begin{tabular}{|c|c|}
-	\hline
-	\textbf{EAL} & \textbf{Les exigences du composant}\\
-	\hline
-	EAL 2 & ADV\_TDS.1 - Conception de base \\
-	\hline
-	EAL 3 & ADV\_TDS.2 - Conception Architecturale \\
-	\hline
-	EAL 4 & ADV\_TDS.3 - Conception modulaire de base \\
-	\hline
-\end{tabular}
-\end{center}
-
-Comme dans le cas de l'ADV\_FSP, je discuterai des exigences de conception de la TOE pour les EAL allant de 2 à 4 seulement.\\
-ADV\_TDS.1, la conception de la TOE, exige une description de la conception de base da la TOE à l'aide de sous-systèmes. Tous les sous-systèmes du TSF seront répertoriés, de même qu'une description du comportement et des interactions de tous les sous-systèmes SFR-renforçant. Le comportement des sous-systèmes SFR-supportant et SFR-non-interférant sera également pris en compte afin de démontrer qu'ils ne sont pas SFR-renforçant.\\
-
-\subsubsection{Représentation de l'implémentation}
-\emph{La représentation de l'implémentation} (ADV\_IMP) n'est applicable qu' à partir du niveau EAL 4. La représentation de l'implémentation peut prendre la forme d'un code source logiciel ou firmware, de diagrammes matériels et de diagrammes IC.
-La clé d'ADV\_IMP est le mapping entre la représentation de l'implémentation et la conception de la TOE du TSF.\\
-
-De nombreux vendeurs de produits se préoccupe par cette exigence en ce qui concerne la protection de la propriété intellectuelle (PI) et le respect des règlements de l'entreprise (ou du gouvernement) concernant la manipulation et la protection de certains PI sensibles.\\
-
-L'autre problème avec le code source du logiciel est que bien que l'évaluation CC soit centrée sur le TOE, le code source ne l'est généralement pas, il n'est généralement pas pratique d'essayer de séparer le code source de la TOE du reste du code produit. Cela peut poser un problème si les évaluateurs tombent sur la vulnérabilité d'une partie du produit qui ne fait pas partie de la la TOE.
-
-\subsection{Document de Tests}
-L'évaluation des preuves de la classe d'assurance Tests (ATE) a pour but de confirmer que les fonctions de sécurité de la TOE fonctionnent comme prévu. Cela signifie que les composants de la classe ATE, lorsqu'ils sont conçus pour que les évaluateurs confirment les affirmations faites dans les autres documents CC, telles que les spécifications fonctionnelles et la cible de sécurité.\\
+\subsection{Évidence de Tests}
+L'évaluation des évidences de la classe d'assurance Tests (ATE) a pour but de confirmer que les fonctions de sécurité de la TOE fonctionnent comme prévu. Cela signifie que les composants de la classe ATE, lorsqu'ils sont conçus pour que les évaluateurs confirment les réclamations faites dans les autres documents CC, telles que les spécifications fonctionnelles et la cible de sécurité.\\
 
 Dans ce paragraphe, nous nous concentrerons sur les exigences des niveaux EAL allant de 1 à 4 uniquement pour la classe ATE avec les sujets suivants:
 \begin{itemize}
@@ -758,10 +674,10 @@ Dans ce paragraphe, nous nous concentrerons sur les exigences des niveaux EAL al
 L'évidence du \emph{Test de couverture} décrit l'étendue de la couverture des tests effectuée par les développeurs à travers les interfaces de module de la TOE.\\
 L'objectif du ATE\_COV.1, \emph{Évidence de Couverture}, est de démontrer qu'une partie des interfaces des fonctions de sécurité de la TOE (TSFI) ont été testée. Le développeur doit illustrer comment certains tests correspondent aux interfaces définies dans les spécifications fonctionnelles. Un mapping entre SFR, TSFI, les détails des tests et les résultats des tests fournirait le genre de preuves que l'évaluateur peut facilement examiner.\\
 
-ATE\_COV.2, \emph{Analyse de Couverture}, élargit ATE\_COV.1 pour couvrir toutes les TSFI. Le mapping doit inclure toutes les TSFIs présentes dans le FSP.
+\noindent ATE\_COV.2, \emph{Analyse de Couverture}, élargit ATE\_COV.1 pour couvrir toutes les TSFIs. Le mapping doit inclure toutes les TSFIs présentes dans le FSP.
 
 \subsubsection{Profondeur}
-L'objectif du test en \emph{Profondeur} (ATE\_DPT) est d'examiner la profondeur des tests réalisés par le développeur. Une documentation de conception plus détaillée est nécessaire pour effectuer cette analyse, de sorte que les dépendances comprennent l'architecture, la conception de la TOE et les preuves de tests fonctionnels.
+L'objectif du test en \emph{Profondeur} (ATE\_DPT) est d'examiner la profondeur des tests réalisés par le développeur. Une documentation de conception plus détaillée est nécessaire pour effectuer cette analyse, de sorte que les dépendances comprennent l'architecture, la conception de la TOE et les évidence de tests fonctionnels.
 
 \begin{center}
 \begin{tabular}{|c|c|}
@@ -775,10 +691,10 @@ L'objectif du test en \emph{Profondeur} (ATE\_DPT) est d'examiner la profondeur 
 \end{tabular}
 \end{center}
 
-Pour ATE\_DPT.1, \emph{Test de la conception de base}, le développeur fournira une analyse de la profondeur des tests. Cette analyse inclura la correspondance entre les tests et les sous-systèmes TSF dans la conception de la TOE. Il montrera également que tous les sous-systèmes ont été testés. La documentation des tests doit comprendre le plan de test, la configuration des tests, les résultats attendus et les résultats réels. L'évaluateur examinera les preuves de test par rapport au comportement attendu en fonction de la documentation de conception.
+\noindent Pour ATE\_DPT.1, \emph{Test de la conception de base}, le développeur fournira une analyse de la profondeur des tests. Cette analyse inclura la correspondance entre les tests et les sous-systèmes TSF dans la conception de la TOE. Il montrera également que tous les sous-systèmes ont été testés. La documentation des tests doit comprendre le plan de test, la configuration des tests, les résultats attendus et les résultats réels. L'évaluateur examinera les preuves de test par rapport au comportement attendu en fonction de la documentation de conception.
 
 \subsubsection{Tests fonctionnels}
-Les preuves du test fonctionnel (ATE\_FUN) documentent les tests effectués par le développeur sur les fonctions de sécurité exprimés dans le ST.
+Les évidences du test fonctionnel (ATE\_FUN) documentent les tests effectués par le développeur sur les fonctions de sécurité exprimés dans le ST.
 \begin{center}
 \begin{tabular}{|c|c|}
 	\hline
@@ -791,7 +707,7 @@ Les preuves du test fonctionnel (ATE\_FUN) documentent les tests effectués par l
 \end{tabular}
 \end{center}
 
-L'ATE\_FUN.1, l'évidence \emph{Test fonctionnel} exige que le développeur teste le TSF et enregistre les résultats. La documentation des tests comprendra le plan de test, les résultats attendues et réels des tests. Les plans de test décrivent la configuration des tests et les étapes nécessaires à leur exécution. Bien entendu, les résultats réels des tests doivent correspondre aux résultats attendus. Les informations relatives à la configuration des tests doivent être suffisamment détaillées pour que les tests puissent être reproduits avec des résultats identiques. Les évaluateurs relanceront un échantillonnage des tests fonctionnels du développeur pour vérifier les résultats. Si des tests doivent être exécutés dans un ordre particulier (par exemple pour définir des conditions préalables pour d'autres tests), cet ordre doit être bien documenté.
+\noindent L'ATE\_FUN.1, l'évidence \emph{Test fonctionnel} exige que le développeur teste le TSF et enregistre les résultats. La documentation des tests comprendra le plan de test, les résultats attendues et réels des tests. Les plans de test décrivent la configuration des tests et les étapes nécessaires à leur exécution. Bien entendu, les résultats réels des tests doivent correspondre aux résultats attendus. Les informations relatives à la configuration des tests doivent être suffisamment détaillées pour que les tests puissent être reproduits avec des résultats identiques. Les évaluateurs relanceront un échantillonnage des tests fonctionnels du développeur pour vérifier les résultats. Si des tests doivent être exécutés dans un ordre particulier (par exemple pour définir des conditions préalables pour d'autres tests), cet ordre doit être bien documenté.
 
 \subsubsection{Test Indépendant}
 Les tests indépendants (ATE\_IND) visent à fournir une plus grande assurance sur les tests des développeurs. Des tests indépendants sont mis au point et effectués par les évaluateurs.
@@ -807,11 +723,11 @@ Les tests indépendants (ATE\_IND) visent à fournir une plus grande assurance sur
 \end{tabular}
 \end{center}
 
-ATE\_IND.1, l'évidence \emph{Test Indépendant}, exige simplement que la TOE soit mise à la disposition des évaluateurs. L'évaluateur élaborera un plan de test indépendant et exécutera un sous-ensemble de tests sur la fonctionnalité de sécurité de la TOE.\\
+\noindent ATE\_IND.1, l'évidence \emph{Test Indépendant}, exige simplement que la TOE soit mise à la disposition des évaluateurs. L'évaluateur élaborera un plan de test indépendant et exécutera un sous-ensemble de tests sur la fonctionnalité de sécurité de la TOE.\\
 
-ATE\_IND.2 {Échantillon de test indépendant}, exige du développeur qu'il fournisse un environnement de test équivalent afin que l'évaluateur puisse exécuter un sous-ensemble des tests du développeur. Il peut être utile que l'évaluateur effectue ces tests lors de sa visite du site du développeur, ce qui lui permet d'accéder à l'environnement de test du développeur. Cela élimine les problèmes logistiques liés à l'expédition du matériel au laboratoire de l'évaluateur et évite les complications liées à la tentative de reproduire la configuration du système de test selon les spécifications du développeur.
+\noindent ATE\_IND.2 {Échantillon de test indépendant}, exige du développeur qu'il fournisse un environnement de test équivalent afin que l'évaluateur puisse exécuter un sous-ensemble des tests du développeur. Il peut être utile que l'évaluateur effectue ces tests lors de sa visite du site du développeur, ce qui lui permet d'accéder à l'environnement de test du développeur. Cela élimine les problèmes logistiques liés à l'expédition du matériel au laboratoire de l'évaluateur et évite les complications liées à la tentative de reproduire la configuration du système de test selon les spécifications du développeur.
 
-\subsection{Document d'évaluation de la vulnérabilité}
+\subsection{Évidences d'évaluation de la vulnérabilité}
 L'objectif de l'évaluation de la vulnérabilité est de déterminer si les vulnérabilités découvertes au cours du développement ou de l'évaluation pourraient être exploitées. L'exploitation de ces vulnérabilités peut conduire à une exposition non autorisée des données ou à d'autres formes de contournement des fonctions de sécurité. Il n'y a qu'une seule famille dans cette classe, c'est AVA\_VAN, \emph{Analyse de vulnérabilité}.
 
 \begin{center}
@@ -841,17 +757,27 @@ AVA\_VAN.2, \emph{Analyse de vulnérabilité}, ajoute aux exigences AVA\_VAN.1 une
 
 AVA\_VAN.3, \emph{Analyse de vulnérabilité ciblée}, augmente la profondeur des tests d'intrusion de l'évaluateur en utilisant la représentation d'implémentation avec les spécifications fonctionnelles, la documentation de conception et d'architecture. Le potentiel d'attaque (c'est-à-dire la connaissance anticipée de l'attaquant) passe de Basique à Basique-Enrichie.
 
+
 \newpage
 \section{Problèmes Critères Communs}
-Parmi les avantages des CC, on peut citer:
+Parmi les avantages des CC on peut citer:
 \begin{itemize}
 \item Standard reconnu internationalement
 \item Conçu pour décrire les exigences de sécurité des systèmes et composants
 \item Aide à améliorer la sécurité des processus et des produits des développeurs
 \item La certification standardisée est un catalyseur culturel du changement dans l'industrie.
 \end{itemize}
+Des axes d'amélioration existent:
 
-Les questions clés, du point de vue d'un fournisseur, sur les critères communs peuvent être résumées comme suit:
+\begin{itemize}
+\item Réduire les coûts des évaluations CC
+\item Accroître la demande de produits évalués CC
+\item Améliorer l'utilisation et l'utilité du profil de protection
+\item Augmenter la sécurité des produits grâce aux spécifications et à l'évaluation CC
+\end{itemize}
+
+
+\noindent Les questions clés, du point de vue d'un vendeur, sur les critères communs peuvent être résumées comme suit:
 \begin{itemize}
 	\item Evaluation statique du produit 
 	\item Temps d'évaluation longs par rapport aux cycles de développement des produits
@@ -861,7 +787,7 @@ Les questions clés, du point de vue d'un fournisseur, sur les critères communs p
 \end{itemize}
 
 \subsection{Évaluation statique de produits}
-La Cible d'évaluation (TOE) doit rester statique au cours de l'évaluation. Toute modification apportée à la TOE au cours ou après l'évaluation pourrait invalider les affirmations faites et, par conséquent, aucune évaluation faite par les évaluations ne peut être garantie sans un examen plus approfondi. Les évaluations par critères communs ne sont valables que pour la version du produit évaluée sur les plates-formes évaluées et dans les configurations désignées. Cette <<rigidité>> et ce caractère statique des évaluations vont à l'encontre de l'évolution rapide des cycles de développement de produits informatiques commerciaux. Pour compliquer davantage les choses, des correctifs de sécurité sont livrés régulièrement pour atténuer les vulnérabilités découvertes.\\
+La Cible d'évaluation (TOE) doit rester statique au cours de l'évaluation. Toute modification apportée à la TOE au cours ou après l'évaluation pourrait invalider les réclamations faites. Les évaluations par critères communs ne sont valables que pour la version du produit évaluée sur les plates-formes évaluées et dans les configurations désignées. Cette <<rigidité>> et ce caractère statique des évaluations vont à l'encontre de l'évolution rapide des cycles de développement de produits informatiques commerciaux. Pour compliquer davantage les choses, des correctifs de sécurité sont livrés régulièrement pour atténuer les vulnérabilités découvertes.\\
 \noindent Des programmes de maintenance d'assurance (ou de certificat) sont maintenant disponibles pour faciliter la mise à jour des évaluations et des certifications. Il s'agit habituellement de justifications documentées de ce qui a changé depuis la dernière évaluation, accompagnées de mises à jour de certains documents probants. Ceci fonctionne très bien pour les correctifs mineurs et les versions mineures. Il est certain que les livraisons importantes et les changements majeurs de produits nécessitent une réévaluation complète avec une certaine réutilisation des données probantes. 
 
 \subsection{Temps d'évaluation longs par rapport aux cycles de développement des produits}
