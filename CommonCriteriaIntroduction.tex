@@ -51,26 +51,20 @@
 	\vbox to 1\vsize{%
 		\haut{}{\blurb}{}
 		\vfill
-		\vspace{3em}
-		\ligne{\Large \textbf{Mémoire présenté en vue d'obtenir\\ \vspace{4em} 
-				UE <<Information et communication pour l'ingénieur>>
+		\vspace{8em}
+		\ligne{\Large Mémoire présenté en vue d'obtenir\\ \vspace{1em} 
+				\textbf{UE <<Information et communication pour l'ingénieur>>}
 				\\ Spécialité : INFORMATIQUE
-				\\ \vspace{4em} \textsc{Thème} \\ \vspace{4em} La certification de produit d'un point de vue sécurité}\\ \vspace{4em} Par}
-		\vspace{3em}
+				\\ \vspace{4em} \textsc{Thème} \\ \vspace{2em} \textbf{La certification de produit des technologies d'information d'un point de vue sécurité}\\ \vspace{4em}} 
+		\ligne{Par}
+		\vspace{2em}
 		\ligne{%
 			\begin{tabular}{l}
 				Abderrazak \textsc{DERDOURI}
 		\end{tabular}}
-		\vfill
-		\vfill
-		\vfill
+		\vspace{3em}
 		\ligne{Date de soutenance : 07 février 2018} 
-		\vfill
-		\vfill
-		\vfill
-		\vfill
-		\vfill
-		\vfill		
+		\vspace{3em}
 		\ligne{Président du jury: Professeur Pierre \textsc{Paradinas}}
 		\vspace{0.5em}
 		\ligne{Membres du jury:\qquad\qquad\qquad\qquad\qquad\quad\enspace\enspace}	
@@ -81,10 +75,10 @@
 \renewcommand{\thepage}{}	
 \newpage
 \section*{Remerciements}
-\noindent Je tiens à exprimer un profond remerciement à l'ensemble des intervenants de l'UE ENG-221:\\
+\noindent Je tiens à exprimer un profond remerciement à l'ensemble des intervenants de l'UE ENG221:\\
 - Monsieur Pierre Paradinas pour la proposition du sujet, feedback sur le plan et la lecture de mon rapport.\\
-- Les membres du Jury pour leur lecture de mon rapport.\\
-- Monsieur Kamel Barkaoui responsable de l'UE ENG-221.\\
+- Les membres du jury pour leur lecture de mon rapport.\\
+- Monsieur Kamel Barkaoui responsable de l'UE ENG221.\\
 - Madame Ghislaine Chartron pour le cours Information et communication pour l'ingénieur.\\
 - Madame Beatrice Arruabarrena pour le cours Information et communication pour l'ingénieur.\\
 Je tiens à remercier également le jury d'admission à l'EICNAM.
@@ -93,6 +87,8 @@ Je tiens à remercier également le jury d'admission à l'EICNAM.
 \tableofcontents
 \newpage
 
+\renewcommand{\thepage}{\arabic{page}}
+\setcounter{page}{1}
 \section*{Glossaire}
 \noindent \textbf{CCN}: Centre de Certification National\\
 \textbf{SOGIS} Senior Officials Group Information Systems Security\\
@@ -116,18 +112,16 @@ Je tiens à remercier également le jury d'admission à l'EICNAM.
 \textbf{IC}:  Integrated Circuit\\
 
 \newpage
-\renewcommand{\thepage}{\arabic{page}}
-\setcounter{page}{1}
 \section{Introduction}
 La sécurité des systèmes d'information, ou plus simplement sécurité informatique, est l'ensemble des moyens techniques, organisationnels, juridiques et humains nécessaires à la mise en place de moyens visant à empêcher l'utilisation non-autorisée, le mauvais usage, la modification ou le détournement du système d'information. Assurer la sécurité du système d'information est une activité du management du système d'information. Les utilisateurs et les fournisseurs n'accordent souvent pas la même priorité aux aspects de la sécurité informatique. Il n'est donc pas surprenant que les exigences en matière de sécurité des systèmes, applications et logiciels informatiques passent après les considérations économiques. Cela a de graves conséquences sur la sécurité des systèmes informatiques déployés, comme en témoignent le nombre de faiblesses, de vulnérabilités et d'attaques révélées.\\ 
 
 
 \noindent Dans un monde où la numérisation touche tous les domaines de la vie et tous les groupes d'utilisateurs, la responsabilité de la sécurité informatique doit être assumée par tous les membres de la société, collectivement assumée par les citoyens, les entreprises, les instituts de recherche et les responsables politiques.
-La certification de la sécurité informatique va dans ce sens, du point de vue des utilisateurs, la normalisation de la sécurité et la certification de la sécurité informatique fournissent des instruments efficaces pour améliorer la transparence de la sécurité de l'information, évaluer la confidentialité des produits et établir un niveau élevé de sécurité de l'information sur le marché dans l'intérêt des utilisateurs. En raison de la globalité du marché, seules les normes de sécurité informatique et les certifications de sécurité informatique basées sur des normes internationales <<Critères Communs>> permettent de garantir la sécurité et donc la confidentialité des produits logiciels et matériels. Les acteurs mondiaux du secteur des technologies d'information ne sont pas prêts à investir dans les tests et la certification que sur la base de normes internationales.\\
+La certification de la sécurité informatique va dans ce sens, du point de vue des utilisateurs, la normalisation de la sécurité et la certification de la sécurité informatique fournissent des instruments efficaces pour améliorer la transparence de la sécurité de l'information, évaluer la confidentialité des produits et établir un niveau élevé de sécurité de l'information sur le marché dans l'intérêt des utilisateurs. En raison de la globalité du marché, seules les normes et les certifications de sécurité informatique basées sur des normes internationales <<Critères Communs>> permettent de garantir la sécurité et donc la confidentialité des produits logiciels, matériels et mixtes. Les acteurs mondiaux du secteur des technologies d'information ne sont pas prêts à investir dans les tests et la certification que sur la base de normes internationales.\\
 
 
 \section*{Résumé}
-\indent Ce rapport est consacré la certification de produit des technologies d'information (TI) d'un point de vue sécurité, il abordera la certification de produits des TI selon les Critères Communs (CC) et la Certification de Sécurité de Premier Niveau (CSPN). Ce document est organisé en sept sections. Dans la section 2 on introduit la certification et le schéma français, la section 3 est complètement consacré à la ce certification selon les Critères Communs, la section 4 discute le processus d'évaluation ainsi que lés évidences d'évaluation. La section 5 discute les problèmes liés aux Critères Communs. L'avant dernière section est consacrée à la CSPN. Nous concluons à la section 7. 
+\indent Ce rapport est consacré la certification de produit des technologies d'information (TI) d'un point de vue sécurité, il abordera la certification de produits des TI selon les Critères Communs (CC) et la Certification de Sécurité de Premier Niveau (CSPN). Ce document est organisé en sept sections. Dans la section 2 on introduit la certification et le schéma français, la section 3 est consacrée aux concepts des CC, la section 4 discute le processus et lés évidences de l'évaluation CC. La section 5 discute les problèmes liés aux CC. L'avant dernière section est consacrée à la CSPN. Nous concluons à la section 7. 
 \newpage
 
 \section{Sécurité et certification de produit des TI}
@@ -759,7 +753,7 @@ Des axes d'amélioration existent:
 
 \begin{figure}[h!] 
 	\centering \includegraphics[width=0.9\textwidth]{myStatistic}
-	\caption{ \small{Liste des PPs approuvés (source: \url{https://www.commoncriteriaportal.org/products/stats/})}}	
+	\caption{ \small{Produits certifiés par schéma et niveau d'assurance (source: \url{https://www.commoncriteriaportal.org/products/stats/})}}	
 \end{figure}
 
 \newpage
@@ -865,10 +859,23 @@ nombres aléatoires est efficace.
 \subsection{Critères d'évaluation}
 \noindent L'évaluation se déroule en plusieurs phases, dans un but de synthèse seuls les phases 6 et 10 seront détaillées, la phase 10 contient quelques exemples de TrueCrypt. La figure suivante résume l'ensemble des phases.
 
-\begin{figure}[h!] 
-	\centering \includegraphics[width=0.8\textwidth]{myCSPN}
-	\caption{Phases d'application des critères d'évaluation CSPN}	
-\end{figure}
+%\begin{figure}[h!] 
+%	\centering \includegraphics[width=0.8\textwidth]{myCSPN}
+%	\caption{Phases d'application des critères d'évaluation CSPN}	
+%\end{figure}
+\begin{enumerate}
+	\item phase 1 - analyse de la cible de sécurité
+	\item phase 2 ? installation du produit
+	\item phase 3 ? analyse de la conformité ? analyse de la documentation
+	\item phase 4 ? analyse de la conformité ? revue du code source (si disponible)
+	\item phase 5 ? analyse de la conformité ? tests du produit
+	\item phase 6 - résistance des mécanismes/fonctions
+	\item phase 7 ? analyse de vulnerabilité (intrinseque, de construction, d?exploitation, etc.)
+	\item phase 7bis ? analyse de vulnerabilite du système hote
+	\item phase 8 ? analyse de la facilite d?emploi
+	\item phase 9 ? entretien avec les developpeurs
+	\item phase 10 ? évaluation de la cryptographie (si le produit implémente des mecanismes cryptographiques) .
+\end{enumerate}
 
 \newpage
 \subsubsection{Phase 6 - Résistance des mécanismes/fonctions}
@@ -1050,34 +1057,42 @@ L'évaluation d'un produit suivant les critères CSPN permet de constater que le p
 
 
 \section{Conclusion}
-Ce rapport a abordé la certification de produits des technologies d'informations d'un point de vue sécurité. Les différents concepts des Critères Communs ont été abordés, la certification de sécurité de premier niveau a été présenté. Les motivations ainsi que les problèmes posés par la certification selon les Critères Communs ont été discuté. Ce rapport peut être complété par une présentation plus détaillé des procédures d'évaluation au niveaux des algorithmes, des techniques d'intrusion et de cotation de vulnérabilités. L'avenir des Critères Communs reste discutable. L'industrie des Smart Cartes qui est un précurseur dans le domaine de la certification peut être ajouté à cet rapport. Des exemples plus concrets des différents concepts des Critères Communs peuvent être tiré du cas public de la certification de TrueCrypt et venir enrichir ce travail. 
+Ce rapport a abordé la certification de produits des technologies d'information d'un point de vue sécurité. Les différents concepts des Critères Communs ont été abordés, la certification de sécurité de premier niveau a été présenté. Les motivations ainsi que les problèmes posés par la certification selon les Critères Communs ont été discuté. Ce rapport peut être complété par une présentation plus détaillé des procédures d'évaluation au niveaux des algorithmes, des techniques d'intrusion et de cotation de vulnérabilités. L'avenir des Critères Communs reste discutable. L'industrie des Smart Cartes qui est un précurseur dans le domaine de la certification peut être ajouté à cet rapport. Des exemples plus concrets des différents concepts des Critères Communs peuvent être tiré du cas public de la certification de TrueCrypt et venir enrichir ce travail. 
 
 \newpage
 {\small
 	\begin{thebibliography}{99}
-		\bibitem{pa} \url{https://www.ssi.gouv.fr/administration/produits-certifies/}
-		\bibitem{pa} \url{https://www.ssi.gouv.fr/uploads/2015/01/ccpart1v3.1r5.pdf}
-		\bibitem{pa} \url{https://www.ssi.gouv.fr/uploads/2015/01/ccpart2v3.1r5.pdf}
-		\bibitem{pa} \url{https://www.ssi.gouv.fr/uploads/2015/01/ccpart3v3.1r5.pdf}
-		\bibitem{pa} \url{https://www.ssi.gouv.fr/uploads/2015/01/cemv3.1r5.pdf}
-		\bibitem{pa} \url{https://www.ssi.gouv.fr/archive/fr/documentation/exemple/index.html}
-		\bibitem{pa} \url{https://www.commoncriteriaportal.org/}				
+		
+		\bibitem{pa} Common Criteria for Information Technology Security Evaluation: 
+		\emph{Part 1: Introduction and general model} April 2017 Version 3.1 Revision 5 - [CCMB-2017-04-001]
+
+		\bibitem{pa} Common Criteria for Information Technology Security Evaluation 
+		\emph{Part 2: Security functional components} April 2017 Version 3.1 Revision 5 - [CCMB-2017-04-002]
+		
+		
+		\bibitem{pa} Common Criteria for Information Technology Security Evaluation: 
+		\emph{Part 3: Security assurance components} April 2017 Version 3.1 Revision 5 - [CCMB-2017-04-003]
+		
+		\bibitem{pa} Common Methodology for Information Technology Security Evaluation: 
+		\emph{Evaluation methodology} April 2017 Version 3.1 Revision 5 - [CCMB-2017-04-004]
+						
+		\bibitem {pa} Règles et recommandations concernant le choix et le dimensionnement des mécanismes cryptographiques - [RGS\_B1].
+		\bibitem {pa} Règles et recommandations concernant la gestion des clés utilisées dans des mécanismes cryptographiques - [RGS\_B2].
+		\bibitem {pa} Règles et recommandations concernant les mécanismes d'authentification - [RGS\_B3].		
+				
+		\bibitem {pa} Critères pour l'évaluation en vue d'une Certification de Sécurité de Premier Niveau Version - [ANSSI-CSPN-CER-I-02/1.1]				
+		\bibitem {pa} Certification de sécurité de premier niveau des produits des technologies de l'information - [ANSSI-CSPN-CER-P-01]
+		\bibitem {pa} Méthodologie pour l'évaluation en vue d'une Certification de Sécurité de Premier Niveau -Contenu du RTE - [ANSSI-CSPN-NOTE-01]	
+		
 		\bibitem{pa} Wesley Hisao Higaki and Yukie Higaki: 
 		\emph{Successful Common Criteria Evaluations: A Practical Guide for Vendors} July 21, 2010
 		
-		\bibitem{pa} Andreas Daniel Sinnhofer, Wolfgang Raschke, Christian Steger, Christian Kreiner: 
-		\emph{Patterns for common criteria certification} ACM July 2015 EuroPLoP '15: Proceedings of the 20th European Conference on Pattern Languages of Programs
+		\bibitem{pa} French Common Criteria Evidence Example 
+		\emph {TrueCrypt}:
+		\url{https://www.ssi.gouv.fr/archive/fr/documentation/exemple/index.html}
 		
-		
-		\bibitem{pa} Isaac Agudo, José L. Vivas, Javier López:
-		\emph{Security assurance during the software development cycle} ACM June 2009 CompSysTech '09: Proceedings of the International Conference on Computer Systems and Technologies and Workshop for PhD Students in Computing
-		
-		
-		\bibitem{pa} Dariusz Rogowski:
-		\emph{Software implementation of common criteria related design patterns}, 2013 IEEE Federated Conference on Computer Science and Information Systems	
-		
-		\bibitem{pa}Luca Recchia; Giuseppe Procopio; Andrea Onofrii; Francesco Rogo:
-		\emph{Security Evaluation of a Linux System: Common Criteria EAL4+ Certification Experience}, 2014 IEEE International Symposium on Software Reliability Engineering Workshops
+		\bibitem{pa} \url{https://www.commoncriteriaportal.org/}				
+									
 		
 	\end{thebibliography}
 }
