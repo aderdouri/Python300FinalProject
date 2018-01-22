@@ -564,7 +564,7 @@ Les évaluations CC sont des processus qui nécessitent une préparation et des act
 \subsubsection{Préparation de la pré-évaluation}
 Les activités de préparation à la pré-évaluation comprennent: la recherche des besoins des consommateurs, la compréhension du standards CC, l'allocation des ressources et la sélection des partenaires. Ces activités établiront une base solide sur laquelle bâtir le projet d'évaluation du CC, y compris les connaissances, les ressources, les objectifs et la réduction des risques.
 \subsubsection{Lancement du projet}
-La phase de lancement du projet comprend toutes les activités préparatoires à la réunion de lancement du projet avec le schéma. La réunion <<cou d'envoi>> est le lancement formel et officiel de l'évaluation CC. Il indique que le laboratoire d'évaluation et le schéma ont approuvé le projet. Le livrable clé de cette phase et le fondement de l'évaluation CC est la Cible de Sécurité (ST). La ST doit décrire:
+La phase de lancement du projet comprend toutes les activités préparatoires à la réunion de lancement du projet avec le schéma. La réunion <<cou d'envoi>> est le lancement formel et officiel de l'évaluation CC. Il indique que le laboratoire d'évaluation et le schéma ont approuvé le projet. Le livrable clé de cette phase et le fondement de l'évaluation CC est la cible de sécurité (ST). La ST doit décrire:
 \begin{itemize}
 \item La cible de l'évaluation (TOE)
 \item L'environnement évalué (système hôte)
@@ -577,8 +577,8 @@ La phase d'évaluation et de feedback consiste en une série de cycles de producti
 	\item Production des évidences par le développeur
 	\item Évaluation par le personnel du laboratoire d'évaluation
 	\item Commentaires sur les évidences par le laboratoire d'évaluation renvoyés au développeur
-	\item Modification de l'évidence pour tenir compte des commentaires
-	\item Nouvelle présentation de l'évidence corrigée
+	\item Modification des évidences pour tenir compte des commentaires
+	\item Nouvelle présentation des évidences corrigées
 	\item Réévaluation par le laboratoire d'évaluation
 \end{itemize}
 La figure 5 montre comment les évidences d'évaluation peuvent être développées en parallèle avec l'évaluation et synchronisées avec les efforts de développement du produit.\\
@@ -588,24 +588,21 @@ La figure 5 montre comment les évidences d'évaluation peuvent être développées e
 	\caption{Processus de développement et d'évaluation}		
 \end{figure}
 
-\noindent Si l'évaluateur découvre une incohérence ou un manque d'information ou une erreur dans la documentation d'évidence soumise au cours d'une unité de travail, il produira un rapport d'observation (OR) et l'enverra au développeur. En règle générale, l'OR signale l'incohérence ou l'erreur, mais il ne donne pas beaucoup d'information au développeur sur la façon de corriger la situation. 
-Les laboratoires d'évaluation sont tenus de produire et d'envoyer des rapports au schéma national. Ces rapports sont appelés Rapport Technique d'Evaluation (ETR) et résument les progrès de l'évaluation, y compris l'état d'avancement et la résolution des problèmes et les commentaires signalés au développeur. Une fois que toutes les unités de travail de l'activité d'évaluation ont été achevées, un ETR finale est soumis au Schéma.\\
+\noindent Si l'évaluateur découvre une incohérence ou un manque d'information ou une erreur dans la documentation d'évidence soumise au cours d'une unité de travail, il produira un \emph{Rapport d'Observation} (OR) et l'enverra au développeur. En règle générale, l'OR signale l'incohérence ou l'erreur, mais il ne donne pas beaucoup d'information au développeur sur la façon de corriger la situation. 
+Les laboratoires d'évaluation sont tenus de produire et d'envoyer des rapports au schéma national. Ces rapports sont appelés \emph{Rapport Technique d'Evaluation} (ETR) et résument la progression de l'évaluation, y compris l'état d'avancement, résolution des problèmes et les commentaires signalés au développeur. Une fois que toutes les unités de travail de l'activité d'évaluation ont été achevées, un ETR final est envoyé au schéma.\\
 
-\noindent Pour la plupart des évaluations, l'évaluateur se rendra sur le site de développement du développeur pour observer au moins l'utilisation du système de gestion de la configuration (qui fait partie de l'unité de travail ALC\_CMC).
+\noindent Pour la plupart des évaluations, l'évaluateur se rendra sur le site de développement du développeur pour observer au moins l'utilisation du système de gestion de configuration (qui fait partie de l'unité de travail ALC\_CMC).
 
 
 \subsubsection{Validation et Certification}
-Lorsque le schéma de certification reçoit l'ETR final du laboratoire d'évaluation du CC, le certificateur examine (i.e. valide) les résultats, pose des questions au laboratoire d'évaluation et décide si l'évaluation satisfait ou non à toutes les exigences.
-Lorsque les évaluateurs et le le schéma de certification ont achevé leur examen final et que tous les problèmes ont été résolus, le certificat CC est délivré par le l'organisme de certification et attribué au vendeur du produit. 
+Lorsque le schéma de certification reçoit l'ETR final du laboratoire d'évaluation CC, le certificateur examine (i.e. valide) les résultats, pose des questions au laboratoire d'évaluation et décide si l'évaluation satisfait ou non à toutes les exigences. Lorsque les évaluateurs et le schéma de certification ont achevé leur examen final et que tous les problèmes ont été résolus, le certificat CC est délivré par le l'organisme de certification et attribué au produit. 
 
 \subsubsection{Maintenance de l'assurance}
 Les certificats CC ne sont valables que pour une version donnée du produit. Selon la complexité du produit et la profondeur de l'évaluation, l'évaluation CC peut prendre plus de temps qu'il n'en faut pour développer une nouvelle révision, rendant ainsi le certificat inutile. Le mécanisme de maintien de l'assurance a été créé pour remédier à cette situation. L'objectif est de raccourcir le cycle de réévaluation des produits déjà évalués.
-Essentiellement, le développeur doit fournir l'évidence que les modifications apportées à la nouvelle version du produit ne compromettent pas les affirmations de sécurité et les évidences présentées dans l'évaluation de la version précédente. Un rapport d'analyse d'impact (IAR) est présenté au laboratoire d'évaluation CC qui a effectué l'évaluation initiale. L'IAR doit satisfaire aux exigences énoncées dans la norme de continuité l'assurance (les exigences standard CCRA).
+Essentiellement, le développeur doit fournir l'évidence que les modifications apportées à la nouvelle version du produit ne compromettent pas les affirmations de sécurité et les évidences présentées dans l'évaluation de la version précédente. \emph{Un Rapport d'Analyse d'Impact} (IAR) est présenté au laboratoire d'évaluation CC qui a effectué l'évaluation initiale. L'IAR doit satisfaire aux exigences énoncées dans la norme de continuité l'assurance (les exigences standard CCRA).
 
 \subsection{Evaluation des évidences}
-Un produit qui fournit de la sécurité doit présenter des caractéristiques de sécurité appropriées. Il est nécessaire de déterminer le degré de confiance qui peut être accordé à ces caractéristiques. Pour cela, les caractéristiques elles-mêmes doivent être spécifiées au sein d'un certains nombre de documents. Dans le cas de la certification CSPN, l'ANSSI précise une documentation minimaliste. Dans le cas des CC la liste des documents est beaucoup plus large et sa création est partagée entre le développeur et le centre d'évaluation.
-
-Parmi ces évidences on cite :
+Un produit qui fournit de la sécurité doit présenter des caractéristiques de sécurité appropriées. Il est nécessaire de déterminer le degré de confiance qui peut être accordé à ces caractéristiques. Pour cela, les caractéristiques elles-mêmes doivent être spécifiées au sein d'un certains nombre de documents. Dans le cas de la certification CSPN, l'ANSSI précise une documentation minimaliste. Dans le cas des CC la liste des documents est beaucoup plus large et sa création est partagée entre le développeur et le centre d'évaluation. Parmi ces évidences (j'entends par évidences les fournitures de documents d'évaluation) on cite:
 \begin{itemize}
 	\item Évidences de développement (ADV)
 	\item Évidences de support du cycle de vie (ALC)
@@ -618,7 +615,7 @@ On se contentera dans cette section de la présentation des évidences de tests et
 \subsubsection{Évidence de Tests}
 L'évaluation des évidences de la classe d'assurance Tests (ATE) a pour but de confirmer que les fonctions de sécurité de la TOE fonctionnent comme prévu. Cela signifie que les composants de la classe ATE ont été conçus pour que les évaluateurs confirment les réclamations faites dans les autres documents CC, telles que les spécifications fonctionnelles et la cible de sécurité.\\
 
-Dans ce paragraphe, nous nous concentrerons sur les exigences des niveaux EAL allant de 1 à 4 uniquement pour la classe ATE avec les sujets suivants:
+\noindent Dans ce paragraphe, nous nous concentrerons sur les exigences des niveaux EAL allant de 1 à 4 uniquement pour la classe ATE avec les sujets suivants:
 \begin{itemize}
 	\item Couverture (ATE\_COV)
 	\item Profondeur (ATE\_DPT)
@@ -627,14 +624,30 @@ Dans ce paragraphe, nous nous concentrerons sur les exigences des niveaux EAL al
 \end{itemize}
 
 \paragraph*{Couverture\\}
-L'évidence du \emph{Test de couverture} décrit l'étendue de la couverture des tests effectuée par les développeurs à travers les interfaces de la TOE.\\
-L'objectif du ATE\_COV.1, \emph{Évidence de Couverture}, est de démontrer qu'une partie des interfaces des fonctions de sécurité (TSFI) de la TOE ont été testés. Le développeur doit illustrer comment certains tests correspondent bien aux interfaces définies dans les spécifications fonctionnelles. Un mapping entre SFR, TSFI, les détails des tests et les résultats des tests fournirait le genre d'évidence que l'évaluateur peut facilement examiner.\\
+L'évidence du \emph{Test de Couverture} décrit l'étendue de la couverture des tests effectués par les développeurs à travers les interfaces de la TOE.
+\begin{table}[H]
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{EAL} & \textbf{Exigences du composant}\\
+		\hline
+		EAL 1 & Aucun \\
+		\hline
+		EAL 2 & ATE\_COV.1 - Évidences de la couverture \\
+		\hline
+		EAL 3 \& 4 & ATE\_COV.2 - Analyse de la couverture \\
+		\hline
+	\end{tabular}
+\end{center}
+\end{table}
+
+\noindent L'objectif du ATE\_COV.1, \emph{Évidence de Couverture}, est de démontrer qu'une partie des interfaces des fonctions de sécurité (TSFI) de la TOE ont été testés. Le développeur doit illustrer comment certains tests correspondent bien aux interfaces définies dans les spécifications fonctionnelles. Un mapping entre SFR, TSFI, les détails des tests et les résultats des tests fournirait le genre d'évidence que l'évaluateur peut facilement examiner.\\
 \noindent ATE\_COV.2, \emph{Analyse de Couverture}, élargit ATE\_COV.1 pour couvrir toutes les TSFIs. Le mapping doit inclure toutes les TSFIs présentes dans les spécifications fonctionnelles (FSP).
 
 \paragraph*{Profondeur\\}
-L'objectif du test en \emph{Profondeur} (ATE\_DPT) est d'examiner la profondeur des tests réalisés par le développeur. Une documentation de conception plus détaillée est nécessaire pour effectuer cette analyse, de sorte que les dépendances comprennent l'architecture, la conception de la TOE et les évidence des tests fonctionnels.
+L'objectif du \emph{Test Profondeur} (ATE\_DPT) est d'examiner la profondeur des tests réalisés par le développeur. Une documentation de conception plus détaillée est nécessaire pour effectuer cette analyse, de sorte que les dépendances comprennent l'architecture, la conception de la TOE et les évidence des tests fonctionnels.
 
-\begin{table}
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{|c|c|}
 	\hline
@@ -646,17 +659,16 @@ L'objectif du test en \emph{Profondeur} (ATE\_DPT) est d'examiner la profondeur 
 	\hline
 \end{tabular}
 \end{center}
-\caption{Classes fonctionnelles de sécurité}
 \end{table}
 
 \noindent Pour l'ATE\_DPT.1, \emph{Test de la conception de base}, le développeur fournira une analyse de la profondeur des tests. Cette analyse inclura la correspondance entre les tests et les sous-systèmes TSF dans la conception de la TOE. Il montrera également que tous les sous-systèmes ont été testés. La documentation des tests doit comprendre le plan de test, la configuration des tests, les résultats attendus et les résultats réels. L'évaluateur examinera les évidences de test par rapport au comportement attendu en fonction de la documentation de conception.
 
 \paragraph*{Tests fonctionnels\\}
-Les évidences de test fonctionnel (ATE\_FUN) documentent les tests effectués par le développeur sur les fonctions de sécurité exprimés dans le ST.
+Les évidences de test fonctionnel (ATE\_FUN) documentent les tests effectués par le développeur sur les fonctions de sécurité exprimées dans la ST.
 \begin{center}
 \begin{tabular}{|c|c|}
 	\hline
-	\textbf{EAL} & \textbf{Les exigences du composant}\\
+	\textbf{EAL} & \textbf{Exigences du composant}\\
 	\hline
 	EAL 1 & Aucun \\
 	\hline
@@ -665,14 +677,14 @@ Les évidences de test fonctionnel (ATE\_FUN) documentent les tests effectués par
 \end{tabular}
 \end{center}
 
-\noindent L'ATE\_FUN.1, l'évidence de \emph{Test fonctionnel} exige que le développeur teste le TSF et enregistre les résultats. La documentation des tests comprendra le plan de test, les résultats attendus et obtenus des tests. Les plans de test décrivent la configuration des tests et les étapes nécessaires à leur exécution. Bien entendu, les résultats obtenus des tests doivent correspondre aux résultats attendus. Les informations relatives à la configuration des tests doivent être suffisamment détaillées pour que les tests puissent être reproduits avec des résultats identiques. Les évaluateurs relanceront un échantillonnage des tests fonctionnels du développeur pour vérifier les résultats. Si des tests doivent être exécutés dans un ordre particulier (par exemple pour définir des conditions préalables pour d'autres tests), cet ordre doit être bien documenté.
+\noindent L'ATE\_FUN.1, l'évidence de \emph{Test fonctionnel} exige que le développeur teste la TSF et enregistre les résultats. La documentation des tests comprendra le plan de test, les résultats attendus et obtenus des tests. Les plans de test décrivent la configuration des tests et les étapes nécessaires à leur exécution. Bien entendu, les résultats obtenus des tests doivent correspondre aux résultats attendus. Les informations relatives à la configuration des tests doivent être suffisamment détaillées pour que les tests puissent être reproduits avec des résultats identiques. Les évaluateurs relanceront un échantillonnage des tests fonctionnels du développeur pour vérifier les résultats. Si des tests doivent être exécutés dans un ordre particulier (par exemple pour définir des conditions préalables pour d'autres tests), cet ordre doit être bien documenté.
 
 \paragraph*{Test Indépendant\\}
 Les tests indépendants (ATE\_IND) visent à fournir une plus grande assurance sur les tests des développeurs. Des tests indépendants sont mis au point et effectués par les évaluateurs.
 \begin{center}
 \begin{tabular}{|c|c|}
 	\hline
-	\textbf{EAL} & \textbf{Les exigences du composant}\\
+	\textbf{EAL} & \textbf{Exigences du composant}\\
 	\hline
 	EAL 1 & ATE\_IND.1 - test indépendant\\
 	\hline
@@ -681,9 +693,9 @@ Les tests indépendants (ATE\_IND) visent à fournir une plus grande assurance sur
 \end{tabular}
 \end{center}
 
-\noindent L' ATE\_IND.1, l'évidence \emph{Test Indépendant}, exige simplement que la TOE soit mise à la disposition des évaluateurs. L'évaluateur élaborera un plan de test indépendant et exécutera un sous-ensemble de tests sur la fonctionnalité de sécurité de la TOE.\\
+\noindent L' ATE\_IND.1, \emph{Test Indépendant}, exige simplement que la TOE soit mise à la disposition des évaluateurs. L'évaluateur élaborera un plan de test indépendant et exécutera un sous-ensemble de tests sur la fonctionnalité de sécurité de la TOE.\\
 
-\noindent L' ATE\_IND.2 {Échantillon de test indépendant}, exige du développeur qu'il fournisse un environnement de test équivalent afin que l'évaluateur puisse exécuter un sous-ensemble des tests du développeur. Il peut être utile que l'évaluateur effectue ces tests lors de sa visite du site du développeur, ce qui lui permet d'accéder à l'environnement de test du développeur. Cela éliminera les problèmes logistiques liés à l'expédition du matériel au laboratoire de l'évaluateur et évite les complications liées à la tentative de reproduire la configuration du système de test selon les spécifications du développeur.
+\noindent L' ATE\_IND.2, \emph{Échantillon de test indépendant}, exige du développeur de fournir un environnement de test équivalent afin que l'évaluateur puisse exécuter un sous-ensemble des tests du développeur. Il peut être utile que l'évaluateur effectue ces tests lors de sa visite du site du développeur, ce qui lui permet d'accéder à l'environnement de test du développeur. Cela éliminera les problèmes logistiques liés à l'expédition du matériel au laboratoire de l'évaluateur et évite les complications liées à la tentative de reproduire la configuration du système de test selon les spécifications du développeur.
 
 \subsubsection{Évidences d'évaluation de la vulnérabilité}
 L'objectif de l'évaluation de la vulnérabilité est de déterminer si les vulnérabilités découvertes au cours du développement ou de l'évaluation pourraient être exploitées. L'exploitation de ces vulnérabilités peut conduire à une exposition non autorisée des données ou à d'autres formes de contournement des fonctions de sécurité. Il n'y a qu'une seule famille dans cette classe, c'est l'AVA\_VAN, \emph{Analyse de vulnérabilité}.
@@ -691,38 +703,37 @@ L'objectif de l'évaluation de la vulnérabilité est de déterminer si les vulnérab
 \begin{center}
 \begin{tabular}{|c|c|}
 	\hline
-	\textbf{EAL} & \textbf{Les exigences du composant}\\
+	\textbf{EAL} & \textbf{Exigences du composant}\\
 	\hline
 	EAL 1 & AVA\_VAN.1 - Enquête de vulnérabilité\\
 	\hline
-	EAL 2 \& 4 & AVA\_VAN.2 - Analyse de la vulnérabilité \\
+	EAL 2 \& 4 & AVA\_VAN.2 - Analyse de vulnérabilité \\
 	\hline
 	EAL 4 & AVA\_VAN.3 - Analyse de vulnérabilité ciblée \\
 	\hline
 \end{tabular}
 \end{center}
 
-\noindent L'élément AVA\_VAN.1, \emph{Enquête sur la vulnérabilité}, exige que le développeur effectue une enquête sur les informations de vulnérabilité du domaine public qui peuvent s'appliquer à la TOE. L'évaluateur effectuera des tests d'intrusion pour confirmer que ces vulnérabilités ne peuvent pas être exploitées pour exposer la TOE à un risque. Ces sources publiques d'informations sur les vulnérabilités peuvent être des sites Web tels que: 
+\noindent L'élément AVA\_VAN.1, \emph{Enquête de vulnérabilité}, exige que le développeur effectue une enquête sur les informations de vulnérabilité du domaine public qui peuvent s'appliquer à la TOE. L'évaluateur effectuera des tests d'intrusion pour confirmer que ces vulnérabilités ne peuvent pas être exploitées pour exposer la TOE à un risque. Ces sources publiques d'informations sur les vulnérabilités peuvent être des sites Web tels que: 
 \begin{itemize}
-	\item Centre gouvernemental de veille, d'alerte et de réponse aux attaques informatiques (CERT-FR)
-	\item United States Computer Emergency Readiness Team (US-CERT)
+	\item Centre gouvernemental de veille, d'alerte et de réponse aux attaques informatiques (CERT-FR, US-CERT)
 	\item Base de données sur les vulnérabilités (\url{https://vuldb.com/fr/})
 	\item Base de données sur les vulnérabilités (SecurityFocus)
 \end{itemize}	
 Le développeur fournira également des informations démontrant pourquoi ces vulnérabilités ne sont pas exploitables dans la TOE et l'environnement opérationnel.
 
-\noindent L'AVA\_VAN.2, \emph{Analyse de vulnérabilité}, ajoute aux exigences AVA\_VAN.1 une suite de tests d'intrusion développée par l'évaluateur. L'évaluateur utilisera l'information tirée des spécifications fonctionnelles, de la conception de la TOE et de l'architecture de sécurité pour découvrir les vulnérabilités potentielles. L'évaluateur effectuera ensuite des tests d'intrusion pour tenter d'exploiter ces vulnérabilités. Si une de ces vulnérabilités est exploitable, cette partie de l'évaluation échoue.\\
+\noindent L'AVA\_VAN.2, \emph{Analyse de vulnérabilité}, ajoute aux exigences AVA\_VAN.1 une suite de tests d'intrusion développés par l'évaluateur. L'évaluateur utilisera l'information tirée des spécifications fonctionnelles, de la conception de la TOE et de l'architecture de sécurité pour découvrir les vulnérabilités potentielles. L'évaluateur effectuera ensuite des tests d'intrusion pour tenter d'exploiter ces vulnérabilités. Si une de ces vulnérabilités est exploitable, cette partie de l'évaluation échoue.\\
 
 \noindent L'AVA\_VAN.3, \emph{Analyse de vulnérabilité ciblée}, augmente la profondeur des tests d'intrusion de l'évaluateur en utilisant la représentation d'implémentation avec les spécifications fonctionnelles, la documentation de conception et d'architecture. Le potentiel d'attaque (c'est-à-dire la connaissance anticipée de l'attaquant) passe de Basique à Basique-Enrichie.
 
 
 \begin{figure}[h!] 
-	\centering \includegraphics[width=0.9\textwidth]{myAlertes}
+	\centering \includegraphics[width=0.5\textwidth]{myAlertes}
 	\caption{Exemple d'alerte de sécurité public}		
 \end{figure}
 
 \newpage
-\section{Critères communs et avenir des évaluations de sécurité}
+\subsection{Critères communs et avenir des évaluations de sécurité}
 Parmi les avantages des CC on peut citer:
 \begin{itemize}
 \item Standard reconnu internationalement
@@ -749,7 +760,7 @@ Des axes d'amélioration existent:
 	\item CC est perçu comme n'améliorant pas la sécurité des produits
 \end{itemize}
 
-\noindent Les critères communs et, en particulier, la reconnaissance des critères communs - constituent une base précieuse et prouvée pour l'assurance de sécurité dans un monde numérique qui en a de plus en plus besoin.
+\noindent Depuis sa standardisation en 1999 à ce jour on continue à évaluer en CC des produits dans différents domaines et sur plusieurs niveaux comme le montre les dernières statistiques (figure 7). Les CC et, en particulier, la reconnaissance des CC - constituent une base précieuse et prouvée pour l'assurance de sécurité dans un monde numérique qui en a de plus en plus besoin.
 
 \begin{figure}[h!] 
 	\centering \includegraphics[width=0.9\textwidth]{myStatistic}
@@ -758,7 +769,7 @@ Des axes d'amélioration existent:
 
 \newpage
 \section{La Certification de Sécurité de Premier Niveau (CSPN)}
-La CSPN mise en place par l'ANSSI en 2008 consiste en des tests en <<boîte noire>> effectués en temps et délais contraints. La CSPN est une alternative aux évaluations Critères Communs, dont le coût et la durée peuvent être un obstacle, et lorsque le niveau de confiance visé est moins élevé. Cette certification s'appuie sur des critères, une méthodologie et un processus élaborés par l'ANSSI et publiés sur son site.
+La CSPN mise en place par l'ANSSI en 2008 consiste en des tests en <<boîte noire>> effectués en temps et délais contraints. La CSPN est une alternative aux évaluations CC, dont le coût et la durée peuvent être un obstacle, et lorsque le niveau de confiance visé est moins élevé. Cette certification s'appuie sur des critères, une méthodologie et un processus élaborés par l'ANSSI et publiés sur son site.
 La CSPN permet d'attester que le produit a subi avec succès une évaluation de sécurité par un centre d'évaluation agréé par l'ANSSI, l'évaluation ayant pour caractéristiques principales :
 \begin{itemize}
 	\item d'être conduite en temps et en ressources humaines (charge) contraints
@@ -767,16 +778,12 @@ La CSPN permet d'attester que le produit a subi avec succès une évaluation de sé
 \end{itemize}
 \noindent A la date du 1er septembre 2017, 245 produits étaient entrés en évaluation. Parmi eux, 99 ont été certifiés répartis en plusieurs catégories:
 
-%\begin{multicols}{2}
+\begin{multicols}{2}
 \begin{itemize}
 	\item Effacement de données
 	\item Stockage sécurisé
-	\item Systèmes d'exploitation et de virtualisation
 	\item Pare-feu
 	\item Détection d'intrusions
-	\item Anti-virus, protection contre les codes malveillants
-	\item Administration et supervision de la sécurité
-	\item Identification, authentification et contrôle d'accès
 	\item Communication sécurisée
 	\item Messagerie sécurisée
 	\item Matériel et logiciel embarqué
@@ -784,8 +791,12 @@ La CSPN permet d'attester que le produit a subi avec succès une évaluation de sé
 	\item Environnement d'exécution sécurisé
 	\item Automate programmable industriel
 	\item Commutateur industriel
+	\item Systèmes d'exploitation et de virtualisation
+	\item Anti-virus, protection contre les codes malveillants
+	\item Administration et supervision de la sécurité
+	\item Identification, authentification et contrôle d'accès	
 \end{itemize}
-%\end{multicols}
+\end{multicols}
 	
 
 \subsection{Objectif des présents critères}
@@ -805,25 +816,28 @@ cryptographiques, deux objectifs supplémentaires sont recherchés lors de l'évalu
 	leur description.
 \end{itemize}
 
+\subsection{Contraintes imposées}
+L'évaluation est réalisée en temps et charge contraints afin de répondre à des exigences de
+maîtrise des coûts et des délais. Une évaluation en vue d'une CSPN doit normalement être réalisée en 25 hommes.jours et dans un
+délai calendaire de 8 semaines. Lorsque des fonctions de sécurité essentielles du produit reposent sur des algorithmes
+cryptographiques, la charge est augmentée de 10 hommes.jours afin d'en permettre l'analyse.
+
 \subsection{Fournitures documentaires minimales}
 Un produit qui fournit de la sécurité (une combinaison de confidentialité, d'intégrité, d'authentification et de disponibilité) doit présenter des caractéristiques de sécurité appropriées. Il est nécessaire de déterminer le degré de confiance qui peut être accordé à ces caractéristiques. Pour cela, les caractéristiques elles-mêmes doivent être spécifiées au sein d'un document, qui constitue la cible de sécurité de ce produit.
 
 \subsubsection{Cible de Sécurité}
-La cible de sécurité sert à la fois de spécification des fonctions dédiées à la sécurité, par rapport à laquelle le produit sera évalué, et de description des liens entre le produit et l'environnement dans lequel celui-ci sera exploité. Sont donc intéressés par la cible de sécurité, non seulement le développeur du produit et les responsables de son évaluation, mais également les personnes chargées de sa gestion, de son achat, de son installation, de sa configuration, de son exploitation et de son emploi. 
-Le contenu exigé d'une cible de sécurité est spécifié dans la REF\_CSPN. Ce sont ces fonctionnalités qui feront l'objet de l'évaluation.
-
-Le contenu exigé d'une cible de sécurité est le suivant :
-\begin{enumerate}
-	\item [a)] une identification non ambiguë du produit à évaluer ;
-	\item [b)] un argumentaire du produit décrivant en langage naturel pour quel usage le produit a été conçu, par qui et dans quel contexte d'emploi il est censé être utilisé;
-	\item [c)] l'environnement technique dans lequel le produit fonctionne (modèle d'ordinateur, système d'exploitation, etc.) ;
-	\item [d)] les biens sensibles que le produit doit protéger ;
-	\item [e)] les mesures d'environnement ;
-	\item [f)] les menaces contre lesquelles le produit offre une protection ;
-	\item [g)] les fonctionnalités de sécurité implémentées par le produit pour parer les menaces identifiées.
-\end{enumerate}
+La cible de sécurité sert à la fois de spécification des fonctions dédiées à la sécurité, par rapport à laquelle le produit sera évalué, et de description des liens entre le produit et l'environnement dans lequel celui-ci sera exploité. Sont donc intéressés par la cible de sécurité, non seulement le développeur du produit et les responsables de son évaluation, mais également les personnes chargées de sa gestion, de son achat, de son installation, de sa configuration, de son exploitation et de son emploi. \\
+\noindent Le contenu exigé d'une cible de sécurité est le suivant :
+\begin{itemize}
+	\item une identification non ambiguë du produit à évaluer
+	\item un argumentaire du produit décrivant en langage naturel pour quel usage le produit a été conçu, par qui et dans quel contexte d'emploi il est censé être utilisé;
+	\item l'environnement technique dans lequel le produit fonctionne (modèle d'ordinateur, système d'exploitation, etc.)
+	\item les biens sensibles que le produit doit protéger
+	\item les mesures d'environnement
+	\item les menaces contre lesquelles le produit offre une protection
+	\item les fonctionnalités de sécurité implémentées par le produit pour parer les menaces identifiées.
+\end{itemize}
 \noindent Ce sont ces fonctionnalités qui feront l'objet de l'évaluation.
-
 
 \subsubsection{Spécification des mécanismes cryptographiques}
 Les informations relatives aux algorithmes doivent inclure:
@@ -833,7 +847,7 @@ Les informations relatives aux algorithmes doivent inclure:
 \end{itemize}
 \noindent Les informations relatives à la gestion des clés doivent inclure :
 
-%\begin{multicols}{2}
+\begin{multicols}{2}
 \begin{itemize}
 \item La taille des clés
 \item Le mode de distribution des clés
@@ -841,7 +855,7 @@ Les informations relatives aux algorithmes doivent inclure:
 \item Le format de conservation des clés
 \item Le format de transmission des clés
 \end{itemize}
-%\end {multicols}
+\end {multicols}
 
 \noindent Les informations relatives au traitement des données doivent inclure :
 \begin{itemize}
@@ -857,38 +871,32 @@ nombres aléatoires est efficace.
 
 
 \subsection{Critères d'évaluation}
-\noindent L'évaluation se déroule en plusieurs phases, dans un but de synthèse seuls les phases 6 et 10 seront détaillées, la phase 10 contient quelques exemples de TrueCrypt. La figure suivante résume l'ensemble des phases.
-
-%\begin{figure}[h!] 
-%	\centering \includegraphics[width=0.8\textwidth]{myCSPN}
-%	\caption{Phases d'application des critères d'évaluation CSPN}	
-%\end{figure}
+\noindent L'évaluation se déroule en plusieurs phases, dans un but de synthèse seuls les phases 6 et 10 seront détaillées, la phase 6 contient quelques exemples de TrueCrypt. Ces phases sont:
 \begin{enumerate}
-	\item phase 1 - analyse de la cible de sécurité
-	\item phase 2 ? installation du produit
-	\item phase 3 ? analyse de la conformité ? analyse de la documentation
-	\item phase 4 ? analyse de la conformité ? revue du code source (si disponible)
-	\item phase 5 ? analyse de la conformité ? tests du produit
-	\item phase 6 - résistance des mécanismes/fonctions
-	\item phase 7 ? analyse de vulnerabilité (intrinseque, de construction, d?exploitation, etc.)
-	\item phase 7bis ? analyse de vulnerabilite du système hote
-	\item phase 8 ? analyse de la facilite d?emploi
-	\item phase 9 ? entretien avec les developpeurs
-	\item phase 10 ? évaluation de la cryptographie (si le produit implémente des mecanismes cryptographiques) .
+	\item [Phase] 1 - analyse de la cible de sécurité
+	\item [Phase] 2 - installation du produit
+	\item [Phase] 3 - analyse de la conformité - analyse de la documentation
+	\item [Phase] 4 - analyse de la conformité - revue du code source (si disponible)
+	\item [Phase] 5 - analyse de la conformité - tests du produit
+	\item [Phase] 6 - résistance des mécanismes/fonctions
+	\item [Phase] 7 - analyse de vulnérabilité (intrinsèque, de construction, d'exploitation, etc.)
+	\item [Phase] 7bis - analyse de vulnérabilité du système hôte
+	\item [Phase] 8 - analyse de la facilite d'emploi
+	\item [Phase] 9 - entretien avec les développeurs
+	\item [Phase] 10 - évaluation de la cryptographie (si le produit implémente de la cryptographie) .
 \end{enumerate}
 
 \newpage
-\subsubsection{Phase 6 - Résistance des mécanismes/fonctions}
+\subsubsection*{Phase 6 - Résistance des mécanismes/fonctions}
 Même si un mécanisme dédié à la sécurité ne peut pas être court-circuité, désactivé, altéré ou contourné, il peut encore être possible de le mettre en échec par une attaque directe tirant profit d'insuffisances dans ses algorithmes, ou dans ses principes ou ses propriétés sous-jacents. Pour cet aspect de l'efficacité, la capacité de ces mécanismes à contenir une telle attaque directe est estimée. Cet aspect de l'efficacité se distingue des autres en ce qu'il exige de prendre en considération le niveau des ressources qui seraient nécessaires à un attaquant pour réussir une attaque directe.\\
 Le tâche de l'évaluateur consiste à :
 \begin{itemize}
-	\item Identifiera les mécanismes qui implémentent les fonctions de sécurité du produit. 
-	\item Analysera le fonctionnement de chaque mécanisme pour vérifier qu'il est en mesure de rendre le service voulu à la fonction de sécurité. 
+	\item Identifiera les mécanismes qui implémentent les fonctions de sécurité du produit
+	\item Analysera le fonctionnement de chaque mécanisme pour vérifier qu'il est en mesure de rendre le service voulu à la fonction de sécurité
 	\item Proposer une \emph{cotation} intrinsèque de ces mécanismes en utilisant les tables de cotation qui suivent.
 \end{itemize}
 
-
-\noindent Les tableaux suivants rappellent les principales données permettant de réaliser une cotation (CEM):
+\noindent Les tableaux suivants rappellent les principales données permettant de réaliser une cotation [4]:
 
 \begin{table} [H]
 \begin{center}
@@ -909,7 +917,6 @@ Le tâche de l'évaluateur consiste à :
 		& Impraticable & * & * \\
 		\hline		
 					
-		\hline					
 		& Profane & 0 & 0 \\
 		\cline{2-4}			
 		& Compétent & 2 & 2 \\
@@ -985,16 +992,18 @@ Le tâche de l'évaluateur consiste à :
 \end{itemize}
 
 \noindent En vue d'estimer l'efficacité de chaque fonction de sécurité ou liée à la sécurité, il devra ainsi
-coter:
+\emph{coter}:
 \begin{itemize}
 \item la résistance des fonctions en s'appuyant sur les mécanismes unitaires ;
 \item la résistance globale du produit du point de vue de la sécurité.
 \end{itemize}
 
+\noindent Un autre exemple de cotation d'attaque,  \emph{Exemple de calcul pour une attaque directe}  est donné dans la référence bibliographique [4] page 430.
 
-\subsubsection{Phase 10 - Évaluation de la cryptographie}
+
+\subsubsection*{Phase 10 - Évaluation de la cryptographie}
 L'évaluation de la cryptographie doit être réalisée dès lors que des fonctionnalités essentielles du produit sont implémentées par des mécanismes cryptographiques. Cette évaluation est réalisée en relation avec le laboratoire de cryptologie de l'ANSSI.
-Plusieurs approches de vérification de la conformité de la mise en oeuvre de ces mécanismes par le produit étant possibles, l'évaluateur décrira celles qu'il a adoptées pour se convaincre de la conformité de l'implémentation par rapport aux spécifications. Dans le cas cas des générateurs de nombres aléatoires l'évaluateur vérifiera que l'architecture du générateur de nombres aléatoires répond aux exigences décrites dans le référentiel technique de l'ANSSI [RGS\_B]. Il indiquera les éventuels tests qu'il a réalisés pour s'assurer du caractère aléatoire de la source.\\
+Plusieurs approches de vérification de la conformité de la mise en oeuvre de ces mécanismes par le produit étant possibles, l'évaluateur décrira celles qu'il a adoptées pour se convaincre de la conformité de l'implémentation par rapport aux spécifications. Dans le cas cas des générateurs de nombres aléatoires l'évaluateur vérifiera que l'architecture du générateur de nombres aléatoires répond aux exigences décrites dans le référentiel technique de l'ANSSI [5] et [6]. Il indiquera les éventuels tests qu'il a réalisés pour s'assurer du caractère aléatoire de la source.\\
 
 \noindent A titre d'exemple TrueCrypt a fait l'objet d'une cotation de mécanismes cryptographiques des fonctions suivants :
 \paragraph*{Dérivation des clés à partir d'un mot de passe}
@@ -1019,14 +1028,15 @@ Le mode LRW utilisé avec l'AES ou avec TwoFish est de niveau standard.
 \begin{verbatim}
 La cotation des mécanismes cryptographiques du projet TrueCrypt a donné 
 des résultats satisfaisants sur les mécanismes mis en oeuvre pour assurer 
-la confidentialité des données. Par ailleurs, la cotation a laissé apparaître
-des points qu'il conviendra de vérifier lors des tests réalisés au sein du CESTI. 
+la confidentialité des données. Par ailleurs, la cotation a laissé 
+apparaître des points qu'il conviendra de vérifier lors des tests réalisés 
+au sein du CESTI. 
 Ces points concernent le générateur d'aléa du logiciel.
 \end{verbatim}
 
 
 
-\subsubsection{Résultats de l'évaluation}
+\subsubsection*{Résultats de l'évaluation}
 L'évaluation d'un produit suivant les critères CSPN permet de constater que le produit fournit bien les fonctions de sécurité indiquées dans la cible de sécurité, que les fonctions de sécurité atteignent toutes au moins un niveau intrinsèque de résistance <<élémentaire>> (au sens des [CC]) et qu'aucune vulnérabilité n'a pu être exploitée lors de l'évaluation. Cette dernière conclusion doit être prise avec toute la prudence que l'on doit avoir dans le domaine de la sécurité des technologies de l'information. Il n'est en effet pas possible de garantir l'absence de vulnérabilité exploitable dans le produit. L'évaluateur doit proposer une cotation pour chaque fonction / mécanisme de sécurité décrit dans la cible de sécurité. S'il n'est pas possible d'établir cette cotation pour une ou plusieurs fonctions, l'évaluateur doit le mentionner explicitement dans son rapport (RTE) et en indiquer les raisons.\\
 
 \noindent Le tableau suivants est un récapitulatif des différences entre une évaluation CC et une évaluation CSPN.
