@@ -1,0 +1,802 @@
+\documentclass[handout]{beamer}
+\usepackage{mathtools}
+\usepackage{lscape}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{booktabs,tabularx}
+\linespread{1}
+\usepackage[latin1]{inputenc}
+\usepackage{smartdiagram}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{hyperref}
+
+\usetheme{Warsaw}
+\title[Information et communication pour l'ingénieur]{La certification de produit des technologies d'information d'un point de vue sécurité}
+\author{Abderrazak DERDOURI}
+\date{07 février 2018}
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+
+\begin{frame}{\centerline{Plan de l'exposé}}
+\begin{enumerate}
+\item [1)] Introduction de la certification
+\item [2)] Présentation du schéma Français
+\item [3)] Processus de certification
+\item [4)] Concepts clés des Critères Communs (CC)
+\item [5)] Certification de Sécurité de Premier Niveau (CSPN)
+\item [6)] Evaluation de la vulnérabilité
+\item [7)] Avantages et inconvénients
+\item [8)] Conclusion
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Définition de la certification}}
+La certification permet d'attester par une tierce partie indépendante et impartiale qu'un produit atteint, à un instant donné, un niveau de sécurité représenté par les services de sécurité qu'il offre et sa résistance à un niveau d'attaques donné.
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Objectifs de la certification}}
+\begin{enumerate}
+\item [a)] Des objectifs réglementaires
+\item [b)] Des objectifs contractuels
+\item [c)] Des objectifs commerciaux
+\end{enumerate}
+Mais aussi dans une démarche sécuritaire
+\end{frame}
+
+\begin{frame}{\centerline{Objectifs réglementaires}}
+pour répondre aux règlements nationaux ou européens qui imposent l'utilisation de solutions
+garantissant un niveau de robustesse éprouvé;\\
+Exemples: CEE pour chronotachygraphe, BdF pour porte-monnaie électronique, CEE pour signature électronique, labellisation pour les administrations...
+\end{frame}
+
+
+\begin{frame}{\centerline{Objectifs contractuels}}
+pour répondre aux donneurs d'ordres publics ou privés qui exigent que les solutions utilisées aient préalablement obtenu un Visa de sécurité ANSSI;
+\end{frame}
+
+
+\begin{frame}{\centerline{objectifs commerciaux}}
+\(\Rightarrow\) Pour se démarquer de la concurrence par la garantie d'un certain niveau de robustesse.
+\end{frame}
+
+
+\begin{frame}{\centerline{Démarche sécuritaire}}
+\begin{enumerate}
+\item Se convaincre que la solution utilisée est sûre
+\begin{itemize}
+\item En visant un haut niveau de confiance
+\item En ne publiant pas forcément les certificats
+\item Et en faisant parfois réaliser des expertises complémentaires
+\item En centrant l'évaluation sur l'analyse de vulnérabilités		
+\end{itemize}
+\item Donneurs d'ordre : banques, opérateurs de télécommunications, défense...
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{A quoi sert la certification}}
+\begin{enumerate}
+\item Utilisateur: êtes assuré que les fonctionnalités certifiées offrent un niveau de sécurité éprouvé;
+\item Développeur: accéder à de nombreux marchés de cyber-sécurité en France et à l'international.
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Le Processus de Certification}}
+Le processus de certification est géré au sein de l'Agence Nationale de la Sécurité des Systèmes d'Informations (ANSSI) par le Centre de Certification National (CCN)
+\end{frame}
+
+
+\begin{frame}{\centerline{Le Processus de Certification-ANSSI}}
+L'Agence Nationale de la Sécurité des Systèmes d'Informations (ANSSI):
+\begin{enumerate}
+	\item [a)] Autorité nationale en matière de sécurité et de défense des systèmes d'informations
+	\item [b)] Créée en 2009 par décret
+	\item [c)] Sous l'autorité du Premier ministre
+	\item [d)] Rattachée au SGDSN (Secrétaire Général de la Défense et de la Sécurité Nationale)
+\end{enumerate}
+Réservoir de compétences au profit de l'état et des Opérateurs d'Importance Vitale.
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Le Processus de Certification}}
+Le Centre de Certification National (CCN):
+\begin{enumerate}
+\item [a)] Service public impartial et gratuit
+\item [b)] Schéma d'évaluation et de certification qui offre deux types de certification:
+\begin{itemize}		
+	\item La Certification Critères Communs (CC).
+	\item La Certification de Sécurité de Premier Niveau (CSPN)
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{La Certification Critères Communs (CC)}}
+\begin{enumerate}
+	\item [a)] Un standard internationalement reconnu 
+	\item [b)] S'inscrit dans des accords de reconnaissance multilatéraux. 	
+	\item [c)] La durée du processus de certification varie entre 6 et 18 mois en moyenne (selon le type de produit, le niveau visé, etc.).
+\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}{\centerline{CSPN}}
+\begin{enumerate}
+	\item [a)] Constitue une alternative aux évaluations CC 
+	\item [a)] pour estimer la résistance d'un produit à des attaques de niveau modéré. 
+	\item [a)] généralement moins exhaustive que la certification CC. 
+	\item [a)] Temps et charge contraints (par défaut 2 mois, 25 à 35 jours/homme).
+\end{enumerate}
+\end{frame}
+
+
+
+
+\begin{frame}{\centerline{Comment se passe l'évaluation dans le processus de certification}}
+l'évaluation comporte principalement: deux volets :
+\begin{enumerate}
+\item Une analyse de la conformité
+\item Une analyse de vulnérabilité
+\end{enumerate}
+\end{frame}
+
+
+
+
+\begin{frame}{\centerline{niveaux d'assurance d'évaluation}}
+Les critères communs proposent par défaut 7 niveaux d'assurance d'évaluation. 
+\begin{enumerate}
+	\item EAL1 : testé fonctionnellement/résistant à un attaquant de niveau élémentaire (<<script-kiddie>>).
+	\item EAL2 : testé structurellement/résistant à un attaquant de niveau faible.
+	\item EAL3 : testé et vérifié méthodiquement/résistant à un attaquant de niveau faible.
+	\item EAL4 : conçu, testé et vérifié méthodiquement/résistant à un attaquant de niveau modéré.
+	\item EAL5 : conçu de façon semi-formelle et testé/résistant à un attaquant de niveau moyen.
+	\item EAL6 : conception vérifiée de façon semi-formelle et système testé/résistant à un attaquant de niveau élevé.
+	\item EAL7 : conception vérifiée de façon formelle et système testé/résistant à un attaquant de niveau élevé.
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{quelle est la portée de la certification par l'ANSSI}}
+La certification Critères Communs bénéficie d'une reconnaissance européenne et mondiale via les accords
+\begin{enumerate}
+	\item SOG-IS (Senior Officials Group Information Security)
+	\begin{itemize}
+		\item 14 pays européens
+		\item Reconnaissance des certificats CC jusqu'au niveau EAL4 par défaut et EAL7 pour certains types de produits
+	\end{itemize}
+	\item CCRA (Common Criteria Recognition Arrangement)
+		\begin{itemize}
+		\item 28 pays (17 émetteurs + 11 consommateurs)
+		\item Reconnaissance des certificats CC jusqu'au niveau EAL2 par défaut et EAL4 dans certains cas.
+	\end{itemize}	
+	\item La reconnaissance de la CSPN à l'échelle européenne constitue un objectif à court ou moyen terme.
+\end{enumerate}
+\end{frame}
+
+
+
+
+\begin{frame}{\centerline{L'évaluation d'un produit dans le processus de certification}}
+Centre d'Evaluation de la Sécurité des Technologies de l'Information (CESTI):
+\begin{enumerate}
+	\item Pour une l'évaluation CC : accrédité suivant la norme ISO/IEC 17025 par le COFRAC et agréé par l'ANSSI; 
+	\item Pour l'évaluation CSPN : agréé par l'ANSSI. 
+	\item L'ANSSI assure un contrôle continu des évaluations.	
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{CESTI}}
+\begin{table}[H]	
+	\begin{center}
+		\small{
+			\begin{tabular}{|c|c|}		
+				\hline
+				\textbf{CESTI}	& \textbf{Type d'évaluation} \\
+				\hline
+				AMOSSYS			& CC + CSPN \\
+				\hline
+				OPPIDA			& CC + CSPN \\
+				\hline
+				CEA - LETI		& CC + CSPN \\
+				\hline
+				SERMA SAFETY \& SECURITY & CC + CSPN \\
+				\hline
+				THALES (TCS-CNES)		 & CC + CSPN \\
+				\hline
+				AMOSSYS + SERMA SAFETY \& SECURITY & CC + CSPN \\
+				\hline
+				OPPIDA + SERMA SAFETY \& SECURITY  &  CC + CSPN \\	
+				\hline
+				EDSI	& CSPN \\
+				\hline
+				LEXFO	& CSPN \\
+				\hline
+				SOGETI	& CSPN \\
+				\hline
+				SYNACKTIV	& CSPN \\
+				\hline
+				Trusted Labs& CSPN \\
+				\hline
+				Quarkslab	& CSPN \\
+				\hline
+			\end{tabular}
+		}
+	\end{center}
+	\caption{CESTI par domaines d'agrément (CC ou CSPN ou les deux)}
+\end{table}
+\end{frame}
+
+
+\begin{frame}{\centerline{Processus de certification}}
+\begin{enumerate}
+	\item [a)] Préparation de la pré-évaluation
+	\item [b)] Lancement du projet
+	\item [c)] Evaluation et feedback
+	\item [d)] Validation et Certification
+	\item [e)] Maintenance de l'assurance
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Critères Communs}}
+Deux objectifs
+\begin{itemize}		
+	\item Envelopper des critères d'évaluation harmonisés entre les nations
+	\item Assurer la reconnaissance des certificats entre les nations
+\end{itemize}		
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Audience visée par les CC}}
+On distingue trois groupes:
+\begin{enumerate}
+	\item [a)] Consommateurs
+	\item [b)] Développeurs
+	\item [c)] Évaluateurs
+\end{enumerate}
+Autres:
+\begin{itemize}
+	\item  Responsabilité de sécurité informatique 
+	\item  Promoteurs de l'évaluation
+	\item  Autorités d'évaluation
+	\item  Architectes et concepteurs de sécurité
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{\centerline{Exemple de produit certifié: TrueCrypt}}
+L'ANSSI a rendu public un exemple complet de fournitures d'évaluation  CC version 3.1: 
+\begin{itemize}
+	\item Produit concerné : le chiffreur de mémoire de masse TrueCrypt dans sa version 4.2a.
+	\item Version des CC utilisée : CC 3.1
+	\item Niveau d'évaluation visé : EAL2 augmenté (EAL2+)
+	\item Documentation complète
+	\item Code source
+	\item Evaluation de la cryptographie
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{\centerline{Critères Communs: documentation}}
+\begin{enumerate}
+	\item CC Partie 1 - Introduction et modèle général
+	\item CC Partie 2 - Composantes fonctionnelles de sécurité
+	\item CC Partie 3 - Composantes d'assurance de sécurité
+	\item Méthodologie d'évaluation commune (CEM)	
+\end{enumerate}
+
+\end{frame}
+
+
+\begin{frame}{\centerline{Concepts Clés des CC}}
+Quelques notions indispensables
+\begin{itemize}
+	\item Cible d'évaluation (TOE)
+	\item Cible de sécurité (ST)
+	\item Profile de Protection (PP)
+	\item Exigences fonctionnelles de sécurité (SFRs)
+	\item Exigences d'assurance de sécurité (SARs) 
+	\item Niveaux d'assurance de l'évaluation (EALs) 	
+\end{itemize}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{ La Cible d'évaluation (TOE)}}
+Partie du produit soumise à évaluation:
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.75\textwidth]{myTOE}
+	\caption{Exemple de diagramme TOE}	
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{\centerline{Cible de sécurité (Security Target-ST)}}
+\begin{itemize}
+\item Spécification du besoin de sécurité
+\item Définition de ce qui est et ce qui n'est pas évalué (cahier des charges)
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}{\centerline{Cible de sécurité (Security Target-ST)}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.75\textwidth]{myST}
+	\caption{Diagramme TOE}	
+\end{figure}
+\end{frame}
+
+
+
+
+\begin{frame}{\centerline{PP (Profile de Protection ou Protection Profil)}}
+\begin{enumerate}
+	\item Cible générique pour un type de produit défini et pour un usage donné
+	\begin{itemize}
+	\item Contient déjà la trame (biens, menaces, objectifs...)
+	\item Défini déjà le besoin de sécurité
+	\end{itemize}
+\item Rédaction par un ensemble de commanditaires ou d'acteurs d'un type de produit (PP passeport, PP SSCD, PP tachographe, PP JavaCard...)
+\item Intérêt: permet de s'assurer qu'un produit est conforme à un besoin de sécurité déterminé (pas de modification de la TOE en cours d'évaluation pour échapper à des vulnérabilités)
+\end{enumerate}
+\end{frame}
+
+
+
+
+\begin{frame}{\centerline{Profile de Protection ou Protection Profil- PP)}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.75\textwidth]{myPP}
+	\caption{Exemple de diagramme TOE}	
+\end{figure}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Profile de Protection ou Protection Profil- PP)}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=1.0\textwidth]{myPPContents}
+	\caption{Exemple de diagramme TOE}	
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{\centerline{Critères Communs-CC}}
+\begin{enumerate}
+	\item Ensemble de règles auquel un produit peut se conformer
+	\item Plusieurs niveaux: « EAL » (1->7)
+	\item Niveau de conformité ADV, AGD, ALC, ASE, ATE
+	\item Niveau de résistance aux attaques AVA\_VAN	
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Exigences fonctionnelles de sécurité}}
+\begin{table}[H]
+	\begin{center}
+		\begin{tabular}{|c|c|p{6cm}|}
+			\hline
+			\textbf{ID de la Classe} &  \textbf{Nom de la Classe}\\
+			\hline
+			FAU & Audit de la Sécurité\\
+			\hline
+			FCO & Communications\\
+			\hline
+			FCS & Support de la cryptographie\\
+			\hline
+			FDP &  Protection des données utilisateurs\\
+			\hline
+			FIA & Identification et Authentification\\
+			\hline
+			FMT & Management de la sécurité\\
+			\hline
+			FPR & Anonymat\\
+			\hline
+			FPT & Protection de la TSF\\
+			\hline
+			FRU & Utilisation des ressources\\
+			\hline
+			FTA & Accès TOE\\
+			\hline
+			FTP & Chemins/Canaux de confiance\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{11 classes fonctionnelles de sécurité}
+\end{table}
+\end{frame}
+
+
+\begin{frame}{\centerline{Exigences fonctionnelles de sécurité}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.75\textwidth]{myFunctionalClassStructure}
+	\caption{Exemple de diagramme TOE}	
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{\centerline{Exigences fonctionnelles de sécurité}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.75\textwidth]{myFunctionalFamilyStructure}
+	\caption{Exemple de diagramme TOE}	
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{\centerline{Exigences fonctionnelles de sécurité}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.75\textwidth]{myFunctionalComponentStructure}
+	\caption{Exemple de diagramme TOE}	
+\end{figure}
+\end{frame}
+
+\begin{frame}{\centerline{Exigences fonctionnelles de sécurité}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.75\textwidth]{mySampleClassDecompositionDiagram}
+	\caption{Exemple de diagramme TOE}	
+\end{figure}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Evaluation Assurance Level (EAL)}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.60\textwidth]{myEALStructure}
+	\caption{Exemple de diagramme TOE}	
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{\centerline{Evaluation Assurance Level (EAL)}}
+\begin{table}[H]
+		\(\overbrace{\qquad\qquad\qquad\qquad\enspace\enspace\enspace}^{EAL} \qquad\qquad\enspace\)	
+		%\begin{center}
+		\tiny{
+		\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+			\hline
+			\textbf{Classe} & \textbf{Famille} & \textbf{1}&\textbf{2}&\textbf{3}&\textbf{4}&\textbf{5}&\textbf{6}&\textbf{7}& \textbf{Intitulé du composant}\\
+			\hline					
+			& ADV\_ARC &  & 1 &1&1&1&1&1& Architecture de sécurité\\
+			\cline{2-10}			
+			& ADV\_FSP & 1 & 2 &3&4&5&5&6& Spécification fonctionnelle\\
+			\cline{2-10}			
+			& ADV\_IMP &  &&&1&1&2&2& Représentation de la mise en oeuvre\\
+			\cline{2-10}			
+			& ADV\_INT &&&&&2&3&3& Internes TSF\\
+			\cline{2-10}						
+			& ADV\_SPM & & &&&&1&1& Modélisation de la politique de sécurité\\
+			\cline{2-10}						
+			\multirow{-5}{*}{ADV} 
+			& ADV\_TDS & &1&2&3&4&5&6& Conception de la TOE\\
+			\hline		
+			
+			& AGD\_OPE &1&1&1&1&1&1&1& Guide utilisateur opérationnel\\
+			\cline{2-10}			
+			\multirow{-2}{*}{AGD} 
+			& AGD\_PRE &1&1&1&1&1&1&1& Procédures préparatoires\\
+			\hline
+			
+			& ALC\_CMC & &2&3&4&4&5&5& Capacités CM\\
+			\cline{2-10}			
+			& ALC\_CMS &1&2&3&4&5&5&5& portée CM\\
+			\cline{2-10}			
+			& ALC\_DEL &&1&1&1&1&1&1& Livraison\\
+			\cline{2-10}			
+			& ALC\_DVS &&&1&1&1&2&2& Sécurité du développement\\
+			\cline{2-10}			
+			& ALC\_FLR &&&1&1&1&1&2& Définition du cycle de vie\\
+			\cline{2-10}					
+			& ALC\_LCD &&&&&&&& Remédiation des défauts\\
+			\cline{2-10}			
+			
+			\multirow{-7}{*}{ALC} 
+			& ALC\_TAT &&&&1&2&3&3& Outils et techniques\\
+			
+			\hline							
+			& ASE\_INT &1&1&1&1&1&1&1& Introduction ST\\
+			\cline{2-10}			
+			& ASE\_CCL &1&1&1&1&1&1&1& Réclamations de conformité\\
+			\cline{2-10}			
+			& ASE\_SPD &&1&1&1&1&1&1& Définition du problème de sécurité\\
+			\cline{2-10}			
+			& ASE\_OBJ &1&2&2&2&2&2&2& Objectifs de sécurité\\
+			\cline{2-10}			
+			& ASE\_ECD &1&1&1&1&1&1&1& Définition des composants étendus\\
+			\cline{2-10}			
+			& ASE\_REQ &1&2&2&2&2&2&2& Exigences de sécurité\\
+			\cline{2-10}			
+			\multirow{-6}{*}{ASE} & ASE\_TSS &1&1&1&1&1&1&1& Spécification sommaire de TOE\\
+			
+			
+			\hline					
+			& ATE\_COV &&1&2&2&2&3&3& Couverture\\
+			\cline{2-10}
+			& ATE\_DPT &&&1&1&3&3&4& Profondeur\\
+			\cline{2-10}
+			& ATE\_FUN &&1&1&1&1&2&2& Tests fonctionnels\\
+			\cline{2-10}
+			\multirow{-4}{*}{ATE} & ATE\_IND &1&2&2&2&2&2&3& Test indépendant\\
+			
+			\hline					
+			AVA & AVA\_VAN &1&2&2&3&4&5&5& Analyse de la vulnérabilité\\
+			\cline{2-10}			
+			\hline					
+		\end{tabular}
+	}
+	{\qquad\qquad\qquad\qquad\enspace\enspace\enspace}\\
+	Classes d'assurances de sécurité et niveaux EAL
+\end{table}
+
+\end{frame}
+
+
+
+
+
+
+
+
+\begin{frame}{\centerline{La Certification de Sécurité de Premier Niveau (CSPN)}}
+
+\begin{enumerate}
+	\item Méthodologie publique française
+	\item Expertise technique avec des méthodes d'évaluation spécifique
+	\item Différents domaines:
+		\begin{itemize}
+			\item Effacement de données
+			\item Stockage sécurisé
+			\item Pare-feu
+			\item Communication sécurisée
+			\item Messagerie sécurisée
+			\item Matériel et logiciel embarqué
+			\item Anti-virus, protection contre les codes malveillants
+			\item Administration et supervision de la sécurité
+			\item Identification, authentification et contrôle d'accès
+			\item etc...	
+		\end{itemize}
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{La Certification de Sécurité de Premier Niveau (CSPN)}}
+\begin{enumerate}
+\item Charges contraintes de 25h.j. + 10h.j. si crypto
+\item Si cryptographie analyse obligatoire
+\item Boîte noire
+\item Niveau unique
+\item Pas de correction possible du produit
+\item Processus mis en place en 2008
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{\centerline{Evaluation CSPN}}
+L'évaluation se déroule 10 phases:
+\begin{enumerate}
+	\item [Phase] 1 - Analyse de la cible de sécurité
+	\item [Phase] 2 - Installation du produit
+	\item [Phase] 3 - Analyse de la conformité - analyse de la documentation
+	\item [Phase] 4 - Analyse de la conformité - revue du code source (si disponible)
+	\item [Phase] 5 - Analyse de la conformité - tests du produit
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Evaluation CSPN}}
+\begin{enumerate}
+	\item [Phase] 6 - Résistance des mécanismes/fonctions
+	\item [Phase] 7 - Analyse de vulnérabilité (intrinsèque, de construction, d'exploitation, etc.)
+	\item [Phase] 7bis - Analyse de vulnérabilité du système hôte
+	\item [Phase] 8 - Analyse de la facilite d'emploi
+	\item [Phase] 9 - Entretien avec les développeurs
+	\item [Phase] 10 - Evaluation de la cryptographie (si le produit implémente de la cryptographie) .
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Evaluation CSPN}}
+Comment coter une attaque?  critères:
+\begin{enumerate}
+\item Temps passé
+\item Niveau d'expertise
+\item Connaissance du produit
+\item Accessibilité au produit
+\item Equipement nécessaire
+\end{enumerate}
+A chaque critère une table de cotation
+\end{frame}
+
+
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{table} [H]
+	\tiny{
+	\begin{center}
+		\begin{tabular}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+			\hline
+			\textbf{Facteur} & \textbf{Intervalle} & \textbf{Valeur pour identification d'une vulnérabilité} &  \textbf{Valeur pour exploitation d'une vulnérabilité} \\
+			\hline					
+			& < 0,5 heure & 0 & 0 \\
+			\cline{2-4}			
+			& < 1 jour & 2 & 3 \\
+			\cline{2-4}			
+			& < 1 mois & 3 & 5 \\
+			\cline{2-4}			
+			& > 1 mois & 5 & 8 \\
+			\cline{2-4}						
+			\multirow{-5}{25mm}{Temps mis pour} 
+			& Impraticable & * & * \\
+			\hline		
+			
+			& Profane & 0 & 0 \\
+			\cline{2-4}			
+			& Compétent & 2 & 2 \\
+			\cline{2-4}			
+			\multirow{-5}{25mm}{Expertise de l'attaquant} 
+			& Expert & 5 & 4 \\
+			\hline		
+			
+			& Aucune & 0 & 0 \\
+			\cline{2-4}			
+			& Information publique & 2 & 2 \\
+			\cline{2-4}			
+			\multirow{-4}{25mm}{Connaissance \\nécessaire à l'attaquant} 
+			& Information sensible & 5 & 4 \\
+			\hline		
+			
+			& < 0,5 heure ou directement accessible & 0 & 0 \\
+			\cline{2-4}			
+			& < 1 jour & 2 & 4 \\
+			\cline{2-4}			
+			& < 1 mois & 3 & 6 \\
+			\cline{2-4}			
+			
+			
+			& > 1 mois & 4 & 9 \\
+			\cline{2-4}						
+			\multirow{-5}{25mm}{Accès au produit par l'attaquant} 
+			& Impraticable & * & * \\
+			\hline		
+			
+			& Aucun & 0 & 0 \\
+			\cline{2-4}			
+			& Standard & 1 & 2 \\
+			\cline{2-4}			
+			& Spécialisé & 3 & 4 \\
+			\cline{2-4}			
+			\multirow{-5}{25mm}{Type d'équipement\\ nécessaire pour exploiter la vulnérabilité} 
+			& Spécifique & 5 & 6 \\
+			\hline		
+			
+		\end{tabular}
+	\end{center}
+	\caption{Cotation du temps écoulé pour l'identification et l'exploitation d'une vulnérabilité}
+}
+\end{table}
+\end{frame}
+
+
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{table} [H]
+	\begin{center}
+		\begin{tabular}{|c|p{3.5cm}|p{3.5cm}|}
+			\hline
+			\textbf{Somme des valeurs} & \textbf{Résistant à un attaquant ayant un potentiel d'attaque} & \textbf{Niveau de résistance des fonctions} \\
+			\hline
+			0 à 9 & Pas de classement & Pas de classement\\
+			\hline
+			10 à 17 & Faible & Basique / Élémentaire\\
+			\hline
+			18 à 24 & Modéré & Médium / Moyen\\
+			\hline
+			> 24 & Élevé & Élevé\\
+			\hline
+		\end{tabular}
+	\end{center}
+	\caption{Cotation de la vulnérabilité}
+\end{table}
+\end{frame}
+
+
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{table}[H]
+	\small{
+		\begin{center}
+			\begin{tabular}{|p{5.3 cm}|p{5.2cm}|}
+				\hline	
+				\textbf{CC} & \textbf{CSPN}\\
+				\hline
+				EAL 1 à 7 & Niveau unique\\
+				\hline
+				Boîte grise-blanche & Boîte noire\\
+				\hline
+				Accords de reconnaissance des certificats & Aucun accord : reconnaissance franco-française\\
+				\hline
+				Pas de contraintes de temps & Temps imposé: 25 h.j (+10 si crypto), adaptation si cas particulier\\
+				\hline
+				Mise à jour du produit possible durant l'évaluation Version du produit & figée\\
+				\hline
+				Connaissance des CC par le développeur pour fournir des documents conformes & Aucune connaissance spécifique nécessaire pour le développeur\\
+				\hline
+				Coût relativement élevé (60 à 200K?) & Coût relativement faible (25 à 35K?)\\
+				\hline
+			\end{tabular}
+			\caption{Historical milestones in development of animal cell cultures}
+			\label{tab:history}	
+		\end{center}
+	}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Comment sont validés les résultats des CESTI}}
+RTE Rapport technique d'évaluation
+\begin{enumerate}
+	\item Soumis à l'ANSSI en fin d'évaluation
+	Résultats d'évaluation
+	\begin{itemize}
+		\item Niveau conformité ADV, AGD, ALC, ASE, ATE
+		\item Niveau technique AVA		
+	\end{itemize}
+	\item Verdict final (le produit est-il bien résistant au niveau visé ?)
+	\item Validé (ou pas) par le CCN avec l'aide d'experts techniques internes suivants les domaines
+	\item Si validation, donne lieu à un certificat et un rapport de certification
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{figure}[h!] 
+	\centering \includegraphics[width=1\textwidth]{myDevEvalProcess}
+	\caption{Processus de développement et d'évaluation}			
+\end{figure}
+
+
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=1.0\textwidth]{myAlertes}
+	\caption{Processus de développement et d'évaluation}		
+\end{figure}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Conclusion}}
+\begin{enumerate}	
+	\item La certification est un processus concret: 
+	\begin{itemize}
+		\item 1173 certifications CC et CSPN ont été délivrées par l'ANSSI au total
+		\item dont 115 en 2016				
+	\end{itemize}
+	\item L'ANSSI est l'un des premiers émetteurs de certifications au monde	
+	\item Le processus d'évaluation améliore la sécurité des produits, même pour un faible niveau de confiance visé
+	\item Critères Communs, et surtout la reconnaissance internationale des certificats, sont une base précieuse et éprouvée	
+	\item La certification n'est pas une garantie mais un seuil de confiance, le client continue à assumer son risque
+\end{enumerate}
+\end{frame}
+
+
+\end{document}
+
+
