@@ -127,6 +127,14 @@ Le Centre de Certification National (CCN):
 \end{frame}
 
 
+\begin{frame}{\centerline{ La Cible d'évaluation (TOE)}}
+Partie du produit soumise à évaluation:
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.8\textwidth]{myEvlautionSteps}
+	\caption{Exemple de diagramme TOE}	
+\end{figure}
+\end{frame}
+
 \begin{frame}{\centerline{La Certification Critères Communs (CC)}}
 \begin{enumerate}
 	\item [a)] Un standard internationalement reconnu 
@@ -351,7 +359,7 @@ Partie du produit soumise à évaluation:
 
 \begin{frame}{\centerline{PP (Profile de Protection ou Protection Profil)}}
 \begin{enumerate}
-	\item Cible générique pour un type de produit défini et pour un usage donné
+	\item  Cible de sécurité générique pour un type de produits et un besoin de sécurité prédéfinis.
 	\begin{itemize}
 	\item Contient déjà la trame (biens, menaces, objectifs...)
 	\item Défini déjà le besoin de sécurité
@@ -360,8 +368,6 @@ Partie du produit soumise à évaluation:
 \item Intérêt: permet de s'assurer qu'un produit est conforme à un besoin de sécurité déterminé (pas de modification de la TOE en cours d'évaluation pour échapper à des vulnérabilités)
 \end{enumerate}
 \end{frame}
-
-
 
 
 \begin{frame}{\centerline{Profile de Protection ou Protection Profil- PP)}}
@@ -381,15 +387,10 @@ Partie du produit soumise à évaluation:
 \end{frame}
 
 
-\begin{frame}{\centerline{Critères Communs-CC}}
-\begin{enumerate}
-	\item Ensemble de règles auquel un produit peut se conformer
-	\item Plusieurs niveaux: « EAL » (1->7)
-	\item Niveau de conformité ADV, AGD, ALC, ASE, ATE
-	\item Niveau de résistance aux attaques AVA\_VAN	
-\end{enumerate}
+\begin{frame}{\centerline{Exigences fonctionnelles de sécurité}}
+Représentent les fonctions de sécurité du produit et qui seront à évaluer.
+Exemples : mécanisms d'identification et authentification , protection de données, configuration de la sécurité et l'audit des fonctions de logging
 \end{frame}
-
 
 
 \begin{frame}{\centerline{Exigences fonctionnelles de sécurité}}
@@ -458,6 +459,139 @@ Partie du produit soumise à évaluation:
 \end{figure}
 \end{frame}
 
+
+\begin{frame}{\centerline{Critères Communs-CC}}
+\begin{enumerate}
+	\item Ensemble de règles auquel un produit peut se conformer
+	\item Plusieurs niveaux: <<EAL>>(1->7)
+	\item Niveau de conformité ADV, AGD, ALC, ASE, ATE
+	\item Niveau de résistance aux attaques AVA\_VAN	
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Le niveau AVA\_VAN}}
+L'évaluateur doit effectuer des tests de pénétration basés sur les vulnérabilités potentielles identifiées afin de déterminer que la TOE résiste aux attaques effectuées par un attaquant possédant un potentiel d'attaque: \textbf{basique/ basique-amélioré / modéré / élevé}:
+\begin{table}[H]
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{Composant} & \textbf{Niveau d'attaque potentielle}\\
+		\hline
+		AVA\_VAN.1 \& AVA\_VAN.2 & Basic \\
+		\hline
+		AVA\_VAN.3 & Enhanced-Basic\\
+		\hline
+		AVA\_VAN.4 & Moderate \\
+		\hline
+		AVA\_VAN.5 & High \\
+		\hline		
+	\end{tabular}
+	\caption{11 classes fonctionnelles de sécurité}
+\end{center}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Analyse de la vulnérabilité}}
+
+La classe AVA: Évaluation de la vulnérabilité aborde la possibilité de vulnérabilités exploitables introduites dans le développement ou l'exploitation de la TOE.\\
+La figure ci-dessous montre les familles au sein de cette classe et la hiérarchie des composantes au sein des familles.
+
+AVA\_VAN.1.1D : Le développeur doit fournir la TOE pour les tests.
+AVA\_VAN.1.1C La TOE doit être testable.
+
+myVulnerabilityAssessmentClassDecomposition
+
+L'évaluateur doit effectuer des tests de pénétration, basés sur les vulnérabilités potentielles identifiées, pour déterminer si la TOE résiste aux attaques menées par un attaquant possédant un potentiel d'attaque de base / de base enrichie / Modéré / élevé.
+
+\begin{figure}[h!] 
+	\centering \includegraphics[width=1\textwidth]{myVulnerabilityAssessmentClassDecomposition}
+	\caption{Décomposition des classes d'évaluation de la vulnérabilité}	
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{\centerline{Analyse de la vulnérabilité}}
+AVA\_VAN.x.1D : Le développeur doit fournir la TOE pour les tests.
+AVA\_VAN.1.1C La TOE doit être testable.
+
+myVulnerabilityAssessmentClassDecomposition
+
+L'évaluateur doit effectuer des tests de pénétration, basés sur les vulnérabilités potentielles identifiées, pour déterminer si la TOE résiste aux attaques menées par un attaquant possédant un potentiel d'attaque de base / de base enrichie / Modéré / élevé.
+
+\begin{figure}[h!] 
+	\centering \includegraphics[width=1\textwidth]{myVulnerabilityAssessmentClassDecomposition}
+	\caption{Décomposition des classes d'évaluation de la vulnérabilité}	
+\end{figure}
+\end{frame}
+
+
+
+
+\begin{frame}{\centerline{Le niveau AVA\_VAN}}
+	\begin{table}
+	\begin{tabularx}{\linewidth}{|X|X|X|}
+		\hline
+		Composant de vulnérabilité 
+		& TOE résistant à l'attaquant avec un potentiel d'attaque de: 
+		& Vulnérabilités résiduelles exploitables seulement par l'attaquant avec un potentiel d'attaque de:\\
+		\hline
+		VAN.5 & High & Beyond High\\
+		\hline
+		VAN.4 & Moderate & High\\
+		\hline
+		VAN.3 & Enhanced-Basic & Moderate\\
+		\hline
+		VAN.2 & Basic & Enhanced-Basic\\
+		\hline
+		VAN.1 & Basic & Enhanced-Basic\\
+		\hline
+	\end{tabularx}
+	\caption{Historical milestones in development of animal cell cultures}
+	\label{tab:history}
+\end{table}
+\end{frame}
+
+
+\begin{frame}{\centerline{Critères Communs-CC}}
+L'objectif de cette activité est de déterminer si la TOE se comporte comme décrit dans la ST et tel que spécifié dans les preuves d'évaluation (décrites dans la classe ADV):
+
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{EAL} & \textbf{Exigences du composant}\\
+		\hline
+		EAL 1 & ATE\_IND.1 - test indépendant\\
+		\hline
+		EAL 2-4 & ATE\_IND.2 - test indépendant - échantillonnage \\
+		\hline
+	\end{tabular}
+\end{center}
+\end{frame}
+
+\begin{frame}{\centerline{Critères Communs-CC}}
+\begin{center}
+	\begin{tabular}{|c|c|}
+		\hline
+		\textbf{EAL} & \textbf{Exigences du composant}\\
+		\hline
+		EAL 1 & AVA\_VAN.1 - Enquête de vulnérabilité\\
+		\hline
+		EAL 2 \& 4 & AVA\_VAN.2 - Analyse de vulnérabilité \\
+		\hline
+		EAL 4 & AVA\_VAN.3 - Analyse de vulnérabilité ciblée \\
+		\hline
+	\end{tabular}
+\end{center}
+\end{frame}
+
+
+\begin{frame}{\centerline{Exigences d'assurance de sécurité}}
+définissent les caractéristiques des processus sécurisés de développement, de livraison, de déploiement et de maintenance du produit
+\end{frame}
 
 
 \begin{frame}{\centerline{Evaluation Assurance Level (EAL)}}
@@ -555,6 +689,141 @@ Partie du produit soumise à évaluation:
 
 
 
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{enumerate}
+\item [D]: Le développeur doit fournir la TOE pour les tests.
+\item [C]: La TOE doit pouvoir être testé.
+\item [E1] : L'évaluateur doit confirmer que les informations fournies satisfont à toutes les exigences en matière de contenu et de présentation des preuves.
+\item [E2] : L'évaluateur doit effectuer une recherche dans les sources du domaine public afin d'identifier les vulnérabilités potentielles dans la TOE.
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{enumerate}
+	\item [E3]: L'évaluateur doit effectuer une analyse \emph{indépendante/ciblée/méthodique/méthodique avancée} de la vulnérabilité de l'ETO en utilisant la documentation d'orientation, les spécifications fonctionnelles, la conception de l'ETO et la description de l'architecture de sécurité pour identifier les vulnérabilités potentielles dans l'ETO.	
+	\item [E4]: L'évaluateur doit effectuer des tests de pénétration, basés sur les vulnérabilités potentielles identifiées pour déterminer si la TOE résiste aux attaques menées par un attaquant possédant un potentiel d'attaque de \emph{base/ de base enrichie/modéré/élevé}.
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{table} [H]
+	\small{
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|c|}
+				\hline
+				\textbf{Vulnérabilité} & \textbf{Famille} & \textbf{Action} &  \textbf{Analyse} & \textbf{Attaque}\\
+				\hline					
+				
+				& AVA\_VAN.1.1D & D & &\\
+				\cline{2-5}			
+				& AVA\_VAN.1.1C & C & &\\
+				\cline{2-5}			
+				& AVA\_VAN.1.1E & E1 & &\\
+				\cline{2-5}			
+				& AVA\_VAN.1.2E & E2 & &\\
+				\cline{2-5}						
+				\multirow{-5}{*}{AVA\_VAN.1} 
+				& AVA\_VAN.1.3E & E3 & & Basique\\
+				\hline									
+				
+				& AVA\_VAN.2.1D & D & &\\
+				\cline{2-5}			
+				& AVA\_VAN.2.1C & C & &\\
+				\cline{2-5}			
+				& AVA\_VAN.2.1E & E1 & &\\
+				\cline{2-5}			
+				& AVA\_VAN.2.2E & E2 & &\\
+				\cline{2-5}						
+				& AVA\_VAN.2.3E & E3 & Indépendante &\\
+				\cline{2-5}						
+				\multirow{-5}{*}{AVA\_VAN.2} 
+				& AVA\_VAN.2.4E & E4 & & Basique\\
+				\hline									
+												
+			\end{tabular}
+		\end{center}
+	}
+	\caption{Cotation du temps écoulé pour l'identification et l'exploitation d'une vulnérabilité}
+\end{table}
+\end{frame}
+
+
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{table} [H]
+	\small{
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|c|}
+				\hline
+				\textbf{Vulnérabilité} & \textbf{Famille} & \textbf{Action} &  \textbf{Analyse} & \textbf{Attaque}\\
+				\hline					
+				
+				& AVA\_VAN.3.1D & D & &\\
+				\cline{2-5}			
+				& AVA\_VAN.3.1C & C & &\\
+				\cline{2-5}			
+				& AVA\_VAN.3.1E & E1 & &\\
+				\cline{2-5}			
+				& AVA\_VAN.3.2E & E2 & &\\
+				\cline{2-5}						
+				& AVA\_VAN.3.3E & E2 & & Ciblée\\
+				\cline{2-5}						
+				\multirow{-5}{*}{AVA\_VAN.3} 
+				& AVA\_VAN.3.4E & E3 & Basique &\\
+				\hline									
+				
+				& AVA\_VAN.4.1D & D & &\\
+				\cline{2-5}			
+				& AVA\_VAN.4.1C & C & &\\
+				\cline{2-5}			
+				& AVA\_VAN.4.1E & E1 & &\\
+				\cline{2-5}			
+				& AVA\_VAN.4.2E & E2 & &\\
+				\cline{2-5}						
+				& AVA\_VAN.4.3E & E3 & Modéré & Méthodique\\
+				\cline{2-5}						
+				\multirow{-5}{*}{AVA\_VAN.4} 
+				& AVA\_VAN.4.4E & E4 & Basique &\\
+				\hline									
+				
+			\end{tabular}
+		\end{center}
+	}
+	\caption{Cotation du temps écoulé pour l'identification et l'exploitation d'une vulnérabilité}
+\end{table}
+\end{frame}
+
+
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{table} [H]
+	\small{
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|c|}
+				\hline
+				\textbf{Vulnérabilité} & \textbf{Famille} & \textbf{Action} &  \textbf{Analyse} & \textbf{Attaque}\\
+				\hline													
+				& AVA\_VAN.5.1D & D & &\\
+				\cline{2-5}			
+				& AVA\_VAN.5.1C & C & &\\
+				\cline{2-5}			
+				& AVA\_VAN.5.1E & E1 & &\\
+				\cline{2-5}			
+				& AVA\_VAN.5.2E & E2 & &\\
+				\cline{2-5}						
+				& AVA\_VAN.5.3E & E3 & & \small{M.Avancée}\\
+				\cline{2-5}						
+				\multirow{-5}{*}{AVA\_VAN.5} 
+				& AVA\_VAN.5.4E & E4 & Élevé &\\
+				\hline									
+				
+			\end{tabular}
+		\end{center}
+	}
+	\caption{Cotation du temps écoulé pour l'identification et l'exploitation d'une vulnérabilité}
+\end{table}
+\end{frame}
+
 
 
 \begin{frame}{\centerline{La Certification de Sécurité de Premier Niveau (CSPN)}}
@@ -622,79 +891,157 @@ Comment coter une attaque?  critères:
 \item Niveau d'expertise
 \item Connaissance du produit
 \item Accessibilité au produit
-\item Equipement nécessaire
+\item Équipement nécessaire
 \end{enumerate}
 A chaque critère une table de cotation
 \end{frame}
 
 
+
+
 \begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{enumerate}
+	\item [1)] Temps passé
+\end{enumerate}
 \begin{table} [H]
-	\tiny{
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\
+				\hline					
+				& < 0,5 heure & 0 & 0 \\
+				\cline{2-4}			
+				& < 1 jour & 2 & 3 \\
+				\cline{2-4}			
+				& < 1 mois & 3 & 5 \\
+				\cline{2-4}			
+				& > 1 mois & 5 & 8 \\
+				\cline{2-4}						
+				\multirow{-5}{*}{Temps mis pour} 
+				& Impraticable & * & * \\
+				\hline									
+			\end{tabular}
+		\end{center}
+		\caption{Cotation du temps écoulé pour l'identification et l'exploitation d'une vulnérabilité}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{enumerate}
+	\item [2)] Niveau d'expertise
+\end{enumerate}
+
+\begin{table} [H]
 	\begin{center}
 		\begin{tabular}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
 			\hline
-			\textbf{Facteur} & \textbf{Intervalle} & \textbf{Valeur pour identification d'une vulnérabilité} &  \textbf{Valeur pour exploitation d'une vulnérabilité} \\
-			\hline					
-			& < 0,5 heure & 0 & 0 \\
-			\cline{2-4}			
-			& < 1 jour & 2 & 3 \\
-			\cline{2-4}			
-			& < 1 mois & 3 & 5 \\
-			\cline{2-4}			
-			& > 1 mois & 5 & 8 \\
-			\cline{2-4}						
-			\multirow{-5}{25mm}{Temps mis pour} 
-			& Impraticable & * & * \\
-			\hline		
-			
+			\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\
+			\hline									
 			& Profane & 0 & 0 \\
 			\cline{2-4}			
 			& Compétent & 2 & 2 \\
 			\cline{2-4}			
-			\multirow{-5}{25mm}{Expertise de l'attaquant} 
+			\multirow{-3}{20mm}{Expertise de l'attaquant} 
 			& Expert & 5 & 4 \\
-			\hline		
-			
-			& Aucune & 0 & 0 \\
-			\cline{2-4}			
-			& Information publique & 2 & 2 \\
-			\cline{2-4}			
-			\multirow{-4}{25mm}{Connaissance \\nécessaire à l'attaquant} 
-			& Information sensible & 5 & 4 \\
-			\hline		
-			
-			& < 0,5 heure ou directement accessible & 0 & 0 \\
-			\cline{2-4}			
-			& < 1 jour & 2 & 4 \\
-			\cline{2-4}			
-			& < 1 mois & 3 & 6 \\
-			\cline{2-4}			
-			
-			
-			& > 1 mois & 4 & 9 \\
-			\cline{2-4}						
-			\multirow{-5}{25mm}{Accès au produit par l'attaquant} 
-			& Impraticable & * & * \\
-			\hline		
-			
-			& Aucun & 0 & 0 \\
-			\cline{2-4}			
-			& Standard & 1 & 2 \\
-			\cline{2-4}			
-			& Spécialisé & 3 & 4 \\
-			\cline{2-4}			
-			\multirow{-5}{25mm}{Type d'équipement\\ nécessaire pour exploiter la vulnérabilité} 
-			& Spécifique & 5 & 6 \\
-			\hline		
-			
+			\hline										
 		\end{tabular}
 	\end{center}
 	\caption{Cotation du temps écoulé pour l'identification et l'exploitation d'une vulnérabilité}
-}
 \end{table}
 \end{frame}
 
+
+
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{enumerate}	
+	\item [3)] Connaissance du produit
+\end{enumerate}
+
+\begin{table} [H]
+	\small{
+		\begin{center}
+			\begin{tabular}{|c|p{3cm}|c|c|}
+				\hline
+				\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\
+				\hline					
+				& Aucune & 0 & 0 \\
+				\cline{2-4}			
+				& Information publique & 2 & 2 \\
+				\cline{2-4}			
+				\multirow{-3}{25mm}{Connaissance \\nécessaire à l'attaquant} 
+				& Information sensible & 5 & 4 \\
+				\hline									
+			\end{tabular}
+		\end{center}
+	}
+		\caption{Cotation du temps écoulé pour l'identification et l'exploitation d'une vulnérabilité}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{enumerate}
+	\item [4)] Accessibilité au produit
+\end{enumerate}
+
+\begin{table} [H]
+	\small{
+		\begin{center}
+			\begin{tabular}{|c|p{3cm}|c|c|}
+				\hline
+				\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\				
+				\hline			
+				& < 0,5 heure ou directement accessible & 0 & 0 \\
+				\cline{2-4}			
+				& < 1 jour & 2 & 4 \\
+				\cline{2-4}			
+				& < 1 mois & 3 & 6 \\
+				\cline{2-4}											
+				& > 1 mois & 4 & 9 \\
+				\cline{2-4}						
+				\multirow{-6}{25mm}{Accès au produit par l'attaquant} 
+				& Impraticable & * & * \\
+				\hline										
+			\end{tabular}
+		\end{center}
+		\caption{Cotation du temps écoulé pour l'identification et l'exploitation d'une vulnérabilité}
+	}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
+\begin{enumerate}
+	\item [5)] Équipement nécessaire
+\end{enumerate}
+
+\begin{table} [H]
+	\small{
+		\begin{center}
+			\begin{tabular}{|c|c|c|c|}
+				\hline
+				\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\															
+				\hline						
+				& Aucun & 0 & 0 \\
+				\cline{2-4}			
+				& Standard & 1 & 2 \\
+				\cline{2-4}			
+				& Spécialisé & 3 & 4 \\
+				\cline{2-4}			
+				\multirow{-5}{25mm}{Type d'équipement nécessaire} 
+				& Spécifique & 5 & 6 \\
+				\hline		
+				
+			\end{tabular}
+		\end{center}
+		\caption{Cotation du temps écoulé pour l'identification et l'exploitation d'une vulnérabilité}
+	}
+\end{table}
+\end{frame}
 
 \begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
 \begin{table} [H]
@@ -784,15 +1131,15 @@ RTE Rapport technique d'évaluation
 
 \begin{frame}{\centerline{Conclusion}}
 \begin{enumerate}	
-	\item La certification est un processus concret: 
+	\item [1)] La certification est un processus concret: 
 	\begin{itemize}
 		\item 1173 certifications CC et CSPN ont été délivrées par l'ANSSI au total
 		\item dont 115 en 2016				
 	\end{itemize}
-	\item L'ANSSI est l'un des premiers émetteurs de certifications au monde	
-	\item Le processus d'évaluation améliore la sécurité des produits, même pour un faible niveau de confiance visé
-	\item Critères Communs, et surtout la reconnaissance internationale des certificats, sont une base précieuse et éprouvée	
-	\item La certification n'est pas une garantie mais un seuil de confiance, le client continue à assumer son risque
+	\item [2)] L'ANSSI est l'un des premiers émetteurs de certifications au monde	
+	\item [3)] Le processus d'évaluation améliore la sécurité des produits, même pour un faible niveau de confiance visé
+	\item [4)] Critères Communs, et surtout la reconnaissance internationale des certificats, sont une base précieuse et éprouvée	
+	\item [5)] La certification n'est pas une garantie mais un seuil de confiance, le client continue à assumer son risque
 \end{enumerate}
 \end{frame}
 
