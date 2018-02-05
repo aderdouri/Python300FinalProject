@@ -23,11 +23,6 @@
 \date{07 février 2018}
 \begin{document}
 
-\newlength{\Oldarrayrulewidth}
-\newcommand{\Cline}[2]{%
-	\noalign{\global\setlength{\Oldarrayrulewidth}{\arrayrulewidth}}%
-	\noalign{\global\setlength{\arrayrulewidth}{#1}}\cline{#2}%
-	\noalign{\global\setlength{\arrayrulewidth}{\Oldarrayrulewidth}}}
 
 \begin{frame}
 \titlepage
@@ -36,15 +31,15 @@
 
 \begin{frame}{\centerline{Plan de l'exposé}}
 \begin{enumerate}
-\item [1)] Introduction de la certification
-\item [2)] Présentation du schéma Français
-\item [3)] Processus de certification
-\item [4)] Concepts clés des Critères Communs (CC)
-\item [5)] Evaluation de la vulnérabilité
+\item [1)] Introduction de la certification et du schéma Français
+\item [2)] Processus de certification
+\item [3)] Concepts clés des Critères Communs (CC)
+\item [4)] Analyse de la conformité
+\item [5)] Analyse de vulnérabilité
 \item [6)] Certification de Sécurité de Premier Niveau (CSPN)
-\item [7)] Avantages et inconvénients
-\item [8)] Conclusion
+\item [7)] Conclusion
 \end{enumerate}
+Annexe : Estimation des vulnérabilités et Cotation d'une attaque.
 \end{frame}
 
 
@@ -67,18 +62,13 @@ Mais aussi dans une démarche purement sécuritaire
 \begin{frame}{\centerline{Le Processus de Certification}}
 \begin{enumerate}
 	\item [a)] Est géré au sein de l'Agence Nationale de la Sécurité des Systèmes d'Informations (ANSSI) 
+	\begin{itemize}
+		\item ANSSI : Autorité nationale en matière de sécurité et de défense des systèmes d'informations
+		\item Réservoir de compétences au profit de l'état et des Opérateurs d'Importance Vitale
+	\end{itemize}	
 	\item [b)] Par le Centre de Certification National (CCN)	
 \end{enumerate}
 \end{frame}
-
-
-\begin{frame}{\centerline{Le Processus de Certification-ANSSI}}
-\begin{enumerate}
-	\item [a)] ANSSI : Autorité nationale en matière de sécurité et de défense des systèmes d'informations
-	\item [b)] Réservoir de compétences au profit de l'état et des Opérateurs d'Importance Vitale
-\end{enumerate}
-\end{frame}
-
 
 
 \begin{frame}{\centerline{Le Processus de Certification-CCN}}
@@ -104,7 +94,7 @@ Centre d'Evaluation de la Sécurité des Technologies de l'Information (CESTI):
 
 
 \begin{frame}{\centerline{Le Processus de Certification-CESTI}}
-Agrées par domaines: Matériel, logiciel embarqué, Communication sécurisée, Stockage sécurisé:
+Agrées par domaines techniques: Matériel, logiciel embarqué...
 \begin{table}[H]	
 \begin{center}
 	\small{
@@ -165,20 +155,23 @@ La certification CC bénéficie d'une reconnaissance européenne et mondiale via le
 
 
 
-\begin{frame}{\centerline{Le Processus de Certification-CC}}
-\begin{figure}[h!] 
-	\centering \includegraphics[width=0.7\textwidth]{myEvlautionSteps}
-	\caption{Exemple de diagramme TOE}	
-\end{figure}
-\end{frame}
-
-
-\begin{frame}{\centerline{Le Processus de Certification-CSPN}}
-Partie du produit soumise à évaluation:
-\begin{figure}[h!] 
-\centering \includegraphics[width=0.7\textwidth]{myEvlautionStepsCSPN}
-\caption{Exemple de diagramme TOE}	
-\end{figure}
+\begin{frame}{\centerline{Le Processus de Certification-Les phases}}
+Le processus d'évaluation engage trois parties:
+\begin{itemize}
+	\item [a)] Le Commanditaire
+	\item [b)] Le CESTI
+	\item [c)] Le Centre de certification
+\end{itemize}	
+Plusieurs phases:
+\begin{itemize}
+	\item [1)] Entrée en évaluation
+	\item [2)] Evaluation, en deux volets
+	\begin{itemize}
+		\item Evaluation de la conformité 
+		\item Evaluation de la vulnérabilité
+	\end{itemize}
+	\item [3)] Certification
+\end{itemize}
 \end{frame}
 
 
@@ -205,7 +198,7 @@ Partie des fonctionnalités de sécurité du produit soumise à évaluation:
 
 
 \begin{frame}{\centerline{Cible de sécurité (ST)}}
-Le premier document produit par le développeur et est évalué, inclut:
+Spécification du besoin de sécurité:
 \begin{figure}[h!] 
 	\centering \includegraphics[width=0.85\textwidth]{myST}
 	\caption{Contenu de la Cible de sécurité (ST)}	
@@ -218,18 +211,11 @@ Le premier document produit par le développeur et est évalué, inclut:
 \begin{frame}{\centerline{Profile de Protection (PP)}}
 \begin{enumerate}
 	\item [a)] Cible de sécurité générique pour un type de produits et un besoin de sécurité prédéfinis
-	\item [b)] Rédaction par un ensemble de commanditaires ou d'acteurs d'un type de produit (PP Passeport, PP Carte à puce,...)
+	\item [b)] Rédaction par un ensemble de commanditaires ou d'acteurs d'un type de produit (PP Base de données, PP Carte à puce,...)
 	\item [c)] Permet de s'assurer qu'un produit est conforme à un besoin de sécurité déterminé
 \end{enumerate}
 \end{frame}
 
-
-\begin{frame}{\centerline{Profile de Protection (PP) - Contenu}}
-\begin{figure}[h!] 
-	\centering \includegraphics[width=1.0\textwidth]{myPPContents}
-	\caption{Contenu d'un PP}	
-\end{figure}
-\end{frame}
 
 \begin{frame}{\centerline{Profile de Protection - PPs approuvés}}
 \begin{figure}[h!] 
@@ -242,15 +228,16 @@ Le premier document produit par le développeur et est évalué, inclut:
 \begin{frame}{\centerline{Exigences fonctionnelles de sécurité - SARs}}
 Représentent les fonctions de sécurité du produit et qui seront à évaluer. 
 \begin{itemize}
-	\item Mécanismes d'identification et authentification, 
-	\item Protection de données, 
-	\item Configuration de la sécurité et l'audit des fonctions de logging
+	\item Mécanismes d'identification et authentification
+	\item Chiffrement et déchiffrement des données
+	\item Génération et dérivation des clés
 \end{itemize}
 \end{frame}
 
 
 
 \begin{frame}{\centerline{Exigences fonctionnelles de sécurité - Classes}}
+
 Organisés en classes:
 \begin{table}[H]
 	\begin{center}
@@ -369,9 +356,9 @@ Les classes sont divisées en familles, composants et éléments:
 \begin{frame}{\centerline{Exigences d'assurance de sécurité - SARs}}
 Les éléments contiennent des identificateurs D, C, E:
 \begin{itemize}
-	\item \emph{\underline{D}éveloppeurs}
+	\item \emph{\underline{D}éveloppeur}
 	\item \emph{\underline{C}ontenu}
-	\item \emph{\underline{E}valuateurs}	
+	\item \emph{\underline{E}valuateur}	
 \end{itemize}
 \noindent Exemple:
 \begin{itemize}
@@ -414,7 +401,7 @@ Une collection pratique de SARs:
 
 \begin{frame}{\centerline{Exigences d'assurance de sécurité - SARs}}
 \begin{itemize}
-	\item Un EAL d'un produit : portée, profondeur, rigueur de l'évaluation
+	\item Un EAL d'un produit : périmètre, profondeur, rigueur de l'évaluation
 	\item Un EAL n'est pas une <<grade>>
 	\item Les EALs peuvent être augmentés par l'ajout de SARs	
 \end{itemize}
@@ -423,10 +410,9 @@ Une collection pratique de SARs:
 
 \begin{frame}{\centerline{Classes d'assurance de sécurité et EALs}}
 \begin{table}[H]
-		\(\overbrace{\qquad\qquad\qquad\qquad\qquad\enspace\enspace\enspace}^{EAL} \qquad\enspace\)	
-		%\begin{center}
+	\(\qquad\qquad\qquad\qquad\qquad\qquad\enspace\enspace\enspace \overbrace{\qquad\qquad\qquad\qquad\qquad\qquad}^{EAL}\)	
 		\tiny{
-		\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
+		\begin{tabular}{|l|l|l|l|l|l|l|l|l|}
 			\hline
 			\textbf{Classe} & \textbf{Famille} & 
 			\textbf{\cellcolor{red!25}{\normalsize{1}}}
@@ -435,73 +421,72 @@ Une collection pratique de SARs:
 			&\textbf{\cellcolor{red!25}\normalsize{4}}
 			&\textbf{\cellcolor{red!25}\normalsize{5}}
 			&\textbf{\cellcolor{red!25}\normalsize{6}}
-			&\textbf{\cellcolor{red!25}\normalsize{7}}
-			&\textbf{Intitulé du composant}\\
+			&\textbf{\cellcolor{red!25}\normalsize{7}}\\
 			\hline					
-			& ADV\_ARC &  & 1 &1&1&1&1&1& Architecture de sécurité\\
-			\cline{2-10}			
-			& ADV\_FSP & 1 & 2 &3&4&5&5&6& Spécification fonctionnelle\\
-			\cline{2-10}			
-			& ADV\_IMP &  &&&1&1&2&2& Représentation de la mise en oeuvre\\
-			\cline{2-10}			
-			& ADV\_INT &&&&&2&3&3& Internes TSF\\
-			\cline{2-10}						
-			& ADV\_SPM & & &&&&1&1& Modélisation de la politique de sécurité\\
-			\cline{2-10}						
-			\multirow{-5}{*}{ADV} 
-			& ADV\_TDS & &1&2&3&4&5&6& Conception de la TOE\\
+			& ADV\_ARC &  & 1 &1&1&1&1&1\\
+			\cline{2-9}			
+			& ADV\_FSP & 1 & 2 &3&4&5&5&6\\
+			\cline{2-9}			
+			& ADV\_IMP &  &&&1&1&2&2\\
+			\cline{2-9}			
+			& ADV\_INT &&&&&2&3&3\\
+			\cline{2-9}						
+			& ADV\_SPM & & &&&&1&1\\
+			\cline{2-9}						
+			\multirow{-5}{*}{ADV: Développement} 
+			& ADV\_TDS & &1&2&3&4&5&6\\
 			\hline		
 			
-			& AGD\_OPE &1&1&1&1&1&1&1& Guide utilisateur opérationnel\\
-			\cline{2-10}			
-			\multirow{-2}{*}{AGD} 
-			& AGD\_PRE &1&1&1&1&1&1&1& Procédures préparatoires\\
+			& AGD\_OPE &1&1&1&1&1&1&1\\
+			\cline{2-9}			
+			\multirow{-2}{*}{AGD: Guides d'utilisation} 
+			& AGD\_PRE &1&1&1&1&1&1&1\\
 			\hline
 			
-			& ALC\_CMC & &2&3&4&4&5&5& Capacités CM\\
-			\cline{2-10}			
-			& ALC\_CMS &1&2&3&4&5&5&5& portée CM\\
-			\cline{2-10}			
-			& ALC\_DEL &&1&1&1&1&1&1& Livraison\\
-			\cline{2-10}			
-			& ALC\_DVS &&&1&1&1&2&2& Sécurité du développement\\
-			\cline{2-10}			
-			& ALC\_FLR &&&1&1&1&1&2& Définition du cycle de vie\\
-			\cline{2-10}					
-			& ALC\_LCD &&&&&&&& Remédiation des défauts\\
-			\cline{2-10}			
+			& ALC\_CMC &1&2&3&4&4&5&5\\
+			\cline{2-9}			
+			& ALC\_CMS &1&2&3&4&5&5&5\\
+			\cline{2-9}			
+			& ALC\_DEL &&1&1&1&1&1&1\\
+			\cline{2-9}			
+			& ALC\_DVS &&&1&1&1&2&2\\
+			\cline{2-9}			
+			& ALC\_FLR  &&&&&&&\\
+			\cline{2-9}					
+			& ALC\_LCD &&&1&1&1&1&2\\
+			\cline{2-9}			
 			
-			\multirow{-7}{*}{ALC} 
-			& ALC\_TAT &&&&1&2&3&3& Outils et techniques\\
+			\multirow{-7}{*}{ALC: Support au cycle de vie} 
+			& ALC\_TAT &&&&1&2&3&3\\
 			
 			\hline							
-			& ASE\_INT &1&1&1&1&1&1&1& Introduction ST\\
-			\cline{2-10}			
-			& ASE\_CCL &1&1&1&1&1&1&1& Réclamations de conformité\\
-			\cline{2-10}			
-			& ASE\_SPD &&1&1&1&1&1&1& Définition du problème de sécurité\\
-			\cline{2-10}			
-			& ASE\_OBJ &1&2&2&2&2&2&2& Objectifs de sécurité\\
-			\cline{2-10}			
-			& ASE\_ECD &1&1&1&1&1&1&1& Définition des composants étendus\\
-			\cline{2-10}			
-			& ASE\_REQ &1&2&2&2&2&2&2& Exigences de sécurité\\
-			\cline{2-10}			
-			\multirow{-6}{*}{ASE} & ASE\_TSS &1&1&1&1&1&1&1& Spécification sommaire de TOE\\
+			& ASE\_CCL &1&1&1&1&1&1&1\\
+			\cline{2-9}			
+			& ASE\_ECD &1&1&1&1&1&1&1\\
+			\cline{2-9}			
+			& ASE\_INT &1&1&1&1&1&1&1\\
+			\cline{2-9}			
+			& ASE\_OBJ &1&2&2&2&2&2&2\\
+			\cline{2-9}
+			& ASE\_REQ &1&2&2&2&2&2&2\\
+			\cline{2-9}			
+			& ASE\_SPD &&1&1&1&1&1&1\\
+			\cline{2-9}			
+			\multirow{-6}{*}{ASE: Evaluation de cible de sécurité} & ASE\_TSS &1&1&1&1&1&1&1\\
 			
 			
 			\hline					
-			& ATE\_COV &&1&2&2&2&3&3& Couverture\\
-			\cline{2-10}
-			& ATE\_DPT &&&1&1&3&3&4& Profondeur\\
-			\cline{2-10}
-			& ATE\_FUN &&1&1&1&1&2&2& Tests fonctionnels\\
-			\cline{2-10}
-			\multirow{-4}{*}{ATE} & ATE\_IND &1&2&2&2&2&2&3& Test indépendant\\
+			& ATE\_COV &&1&2&2&2&3&3\\
+			\cline{2-9}
+			& ATE\_DPT &&&1&1&3&3&4\\
+			\cline{2-9}
+			& ATE\_FUN &&1&1&1&1&2&2\\
+			\cline{2-9}
+			\multirow{-4}{*}{ATE: Tests} & ATE\_IND &1&2&2&2&2&2&3\\
 			
 			\hline					
-			AVA & AVA\_VAN &1&2&2&3&4&5&5& Analyse de la vulnérabilité\\
-			\hline
+			AVA: Vulnérabilité & AVA\_VAN &1&2&2&3&4&5&5\\
+			\hline					
 		\end{tabular}
 	}
 	{\qquad\qquad\qquad\qquad\enspace\enspace\enspace}\\
@@ -532,7 +517,7 @@ Une collection pratique de SARs:
 			\cline{2-10}			
 			& ADV\_IMP &  &&&1&1&2&2& Représentation de la mise en oeuvre\\
 			\cline{2-10}			
-			& ADV\_INT &&&&&2&3&3& Internes TSF\\
+			& ADV\_INT &&&&&2&3&3& Structure Internes des TSF\\
 			\cline{2-10}						
 			& ADV\_SPM & & &&&&1&1& Modélisation de la politique de sécurité\\
 			\cline{2-10}						
@@ -546,36 +531,36 @@ Une collection pratique de SARs:
 			& AGD\_PRE &1&1&1&1&1&1&1& Procédures préparatoires\\
 			\hline
 			
-			& ALC\_CMC & &2&3&4&4&5&5& Capacités CM\\
+			& ALC\_CMC &1&2&3&4&4&5&5& Capacités CM\\
 			\cline{2-10}			
-			& ALC\_CMS &1&2&3&4&5&5&5& portée CM\\
+			& ALC\_CMS &1&2&3&4&5&5&5& Portée CM\\
 			\cline{2-10}			
 			& ALC\_DEL &&1&1&1&1&1&1& Livraison\\
 			\cline{2-10}			
 			& ALC\_DVS &&&1&1&1&2&2& Sécurité du développement\\
 			\cline{2-10}			
-			& ALC\_FLR &&&1&1&1&1&2& Définition du cycle de vie\\
+			& ALC\_FLR  &&&&&&&& Remédiation des défauts\\
 			\cline{2-10}					
-			& ALC\_LCD &&&&&&&& Remédiation des défauts\\
+			& ALC\_LCD &&&1&1&1&1&2&  Définition du cycle de vie\\
 			\cline{2-10}			
 			
 			\multirow{-7}{*}{ALC} 
 			& ALC\_TAT &&&&1&2&3&3& Outils et techniques\\
 			
 			\hline							
-			& ASE\_INT &1&1&1&1&1&1&1& Introduction ST\\
-			\cline{2-10}			
 			& ASE\_CCL &1&1&1&1&1&1&1& Réclamations de conformité\\
-			\cline{2-10}			
-			& ASE\_SPD &&1&1&1&1&1&1& Définition du problème de sécurité\\
-			\cline{2-10}			
-			& ASE\_OBJ &1&2&2&2&2&2&2& Objectifs de sécurité\\
 			\cline{2-10}			
 			& ASE\_ECD &1&1&1&1&1&1&1& Définition des composants étendus\\
 			\cline{2-10}			
+			& ASE\_INT &1&1&1&1&1&1&1& Introduction ST\\
+			\cline{2-10}			
+			& ASE\_OBJ &1&2&2&2&2&2&2& Objectifs de sécurité\\
+			\cline{2-10}
 			& ASE\_REQ &1&2&2&2&2&2&2& Exigences de sécurité\\
 			\cline{2-10}			
-			\multirow{-6}{*}{ASE} & ASE\_TSS &1&1&1&1&1&1&1& Spécification sommaire de TOE\\
+			& ASE\_SPD &&1&1&1&1&1&1& Définition du problème de sécurité\\
+			\cline{2-10}			
+			\multirow{-6}{*}{ASE} & ASE\_TSS &1&1&1&1&1&1&1& Spécification sommaire de la TOE\\
 			
 			
 			\hline					
@@ -585,12 +570,10 @@ Une collection pratique de SARs:
 			\cline{2-10}
 			& ATE\_FUN &&1&1&1&1&2&2& Tests fonctionnels\\
 			\cline{2-10}
-			\multirow{-4}{*}{ATE} & ATE\_IND &1&2&2&2&2&2&3& Test indépendant\\
+			\multirow{-4}{*}{ATE} & ATE\_IND &1&2&2&2&2&2&3& Tests indépendants\\
 			
 			\hline					
 			AVA & AVA\_VAN &1&2&2&3&4&5&5& Analyse de la vulnérabilité\\
-			%\cline{5-5}
-			%\Cline{10pt}{5-5}
 			\hline					
 		\end{tabular}
 	}
@@ -600,138 +583,57 @@ Une collection pratique de SARs:
 \end{frame}
 
 
-\begin{frame}{\centerline{Analyse de la conformité}}
-L'analyse de la conformité permet de s'assurer de la conformité des fonctions de sécurité implémentées à celle attendues.\\
-L'évaluation se base sur les fournitures (évidences) fournit par le développeur et concerne les classes suivantes:
-\begin{enumerate}
-	\item [1)] ADV: Développement
-	\item [2)] AGD: Guide
-	\item [3)] ALC : Support de cycle de vie
-	\item [4)] ASE: Cible de sécurité
-	\item [5)] ATE: Tests
-\end{enumerate}
-\end{frame}
-
-
-\begin{frame}{\centerline{Analyse de la conformité-Classe Tests (ATE)}}
+\begin{frame}{\centerline{Evaluation de la conformité}}
+Déterminer le degré de confiance en examinant les fournitures documentaires du développeur.\\
+Les actions concernent: \emph{\underline{D}éveloppeur}, \emph{\underline{C}ontenu} ou \emph{\underline{E}valuateur} et les classes suivantes:
 \begin{table}[H]
-	\tiny{
-		\begin{tabular}{|l|l|l|}
+	\begin{center}
+		\begin{tabular}{|l|l|}
 			\hline
-			\textbf{Classe} & \textbf{Famille} &\textbf{Intitulé du composant}\\
+			\textbf{ID de la Classe} & \textbf{Classe}\\
 			\hline					
-			& ADV\_ARC & Architecture de sécurité\\
-			\cline{2-3}			
-			& ADV\_FSP & Spécification fonctionnelle\\
-			\cline{2-3}			
-			& ADV\_IMP & Représentation de la mise en oeuvre\\
-			\cline{2-3}			
-			& ADV\_INT & Internes TSF\\
-			\cline{2-3}						
-			& ADV\_SPM & Modélisation de la politique de sécurité\\
-			\cline{2-3}						
-			\multirow{-5}{*}{ADV: Développement} 
-			& ADV\_TDS & Conception de la TOE\\
+			ADV & Développement\\
 			\hline					
-			& AGD\_OPE & Guide utilisateur opérationnel\\
-			\cline{2-3}			
-			\multirow{-2}{*}{AGD: Guide} 
-			& AGD\_PRE & Procédures préparatoires\\
+			AGD & Guides d'utilisation\\
+			\hline					
+			ALC & Support au cycle de vie\\
+			\hline					
+			ASE & Evaluation de la cible de sécurité\\
+			\hline					
+			ATE & Tests\\
 			\hline
-			
-			& ALC\_CMC & Capacités CM\\
-			\cline{2-3}			
-			& ALC\_CMS & portée CM\\
-			\cline{2-3}			
-			& ALC\_DEL & Livraison\\
-			\cline{2-3}			
-			& ALC\_DVS & Sécurité du développement\\
-			\cline{2-3}			
-			& ALC\_FLR & Définition du cycle de vie\\
-			\cline{2-3}					
-			& ALC\_LCD & Remédiation des défauts\\
-			\cline{2-3}			
-			
-			\multirow{-7}{*}{ALC: Support de cycle de vie} 
-			& ALC\_TAT & Outils et techniques\\
-			
-			\hline							
-			& ASE\_INT & Introduction ST\\
-			\cline{2-3}			
-			& ASE\_CCL & Réclamations de conformité\\
-			\cline{2-3}			
-			& ASE\_SPD & Définition du problème de sécurité\\
-			\cline{2-3}			
-			& ASE\_OBJ & Objectifs de sécurité\\
-			\cline{2-3}			
-			& ASE\_ECD & Définition des composants étendus\\
-			\cline{2-3}			
-			& ASE\_REQ & Exigences de sécurité\\
-			\cline{2-3}			
-			\multirow{-6}{*}{ASE: Cible de sécurité} & ASE\_TSS & Spécification sommaire de TOE\\
-			
-			
-			\hline					
-			& ATE\_COV & Couverture\\
-			\cline{2-3}
-			& ATE\_DPT & Profondeur\\
-			\cline{2-3}
-			& ATE\_FUN & Tests fonctionnels\\
-			\cline{2-3}
-			\multirow{-4}{*}{ATE: Tests} & ATE\_IND & Test indépendant\\
-			\hline		
 		\end{tabular}
-	}
+	\end{center}
+	\caption{Classes pour niveau de conformité}
 \end{table}
 \end{frame}
 
 
-\begin{frame}{\centerline{Analyse de la conformité-Classe Tests (ATE)}}
-L'objectif de cette activité est de déterminer si la TOE se comporte comme décrit dans la ST et tel que spécifié dans les preuves d'évaluation décrites dans la classe d'assurance de développement (ADV).
-\begin{itemize}
-	\item \emph{\underline{D}éveloppeur}
-	\item \emph{\underline{C}ontenu}
-	\item \emph{\underline{E}valuateur}		
-\end{itemize}
+\begin{frame}{\centerline{Analyse de la conformité - Classe Tests (ATE)}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.8\textwidth]{myATEExample00}
+	\caption{Exemple de TrueCrypt}	
+\end{figure}
 \end{frame}
 
 
-\begin{frame}{\centerline{Analyse de la conformité-Classe Tests (ATE)}}
-\begin{enumerate}
-\item [1)] ATE\_COV.1 Preuve de couverture\\	
-Dépendances : ADV\_FSP.2 et ATE\_FUN.1	
-\begin{itemize}
-\item ATE\_COV.1.1.1D Le développeur doit fournir une preuve de la couverture de l'essai.
-\item ATE\_COV.1.1.1C La preuve de la couverture de l'essai doit indiquer la correspondance entre les essais figurant dans la documentation de l'essai et les ITS dans la spécification fonctionnelle.
-\item ATE\_COV.1.1.1E L'évaluateur doit confirmer que les informations fournies satisfont à toutes les exigences en matière de contenu et de présentation des preuves.
-\end{itemize}
-\end{enumerate}
-\end{frame}
 
-\begin{frame}{\centerline{Analyse de la conformité-Classe Tests (ATE)}}
-\begin{enumerate}
-\item [2)] ATE\_COV.2 Analyse de la couverture
-\begin{itemize}
-\item ATE\_COV.2.1D Le développeur doit fournir une analyse de la couverture de l'essai.
-\item ATE\_COV.2.1C L'analyse de la couverture de l'essai doit démontrer la correspondance entre les essais dans la documentation de l'essai et les ITS dans la spécification fonctionnelle.
-\item ATE\_COV.2.2C L'analyse de la couverture de l'essai doit démontrer que toutes les ITS dans la spécification fonctionnelle ont été testées.
-\item ATE\_COV.2.1E L'évaluateur doit confirmer que les informations fournies satisfont à toutes les exigences en matière de contenu et de présentation des preuves.
-\end{itemize}
-\end{enumerate}
+\begin{frame}{\centerline{Analyse de la conformité - Classe Tests (ATE)}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.85\textwidth]{myATEExample01}
+	\caption{Exemple de TrueCrypt}	
+\end{figure}
 \end{frame}
 
 
-\begin{frame}{\centerline{Analyse de la conformité-Classe Tests (ATE)}}
-\begin{enumerate}
-\item [3)] ATE\_COV.3 Analyse rigoureuse de la couverture
-\begin{itemize}	
-	\item ATE\_COV.3.1D Le développeur doit fournir une analyse de la couverture de l'essai.
-	\item ATE\_COV.3.1C L'analyse de la couverture de l'essai doit démontrer la correspondance entre les essais dans la documentation de l'essai et les ITS dans la spécification fonctionnelle.
-	\item ATE\_COV.3.2C L'analyse de la couverture d'essai doit démontrer que toutes les ITS dans la spécification fonctionnelle ont été entièrement testées.
-	\item ATE\_COV.3.1E L'évaluateur doit confirmer que les informations fournies satisfont à toutes les exigences en matière de contenu et de présentation des preuves.
-\end{itemize}
-\end{enumerate}
+\begin{frame}{\centerline{Analyse de la conformité - Support au cycle de vie (ALC)}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.85\textwidth]{myALCExample01}\\
+	\centering \includegraphics[width=0.85\textwidth]{myALCExample02}
+	\caption{Exemple de TrueCrypt}	
+\end{figure}
 \end{frame}
+
 
 
 \begin{frame}{\centerline{Evaluation de la vulnérabilité - AVA\_VAN}}
@@ -740,7 +642,6 @@ Décomposition de la classe d'évaluation de la vulnérabilité:
 	\centering \includegraphics[width=1.0\textwidth]{myVulnerabilityAssessmentClassDecomposition}
 \end{figure}
 \end{frame}
-
 
 
 \begin{frame}{\centerline{Evaluation de la vulnérabilité - AVA\_VAN}}
@@ -756,40 +657,135 @@ L'évaluation de la vulnérabilité se résume comme suit:
 
 \begin{frame}{\centerline{Evaluation de la vulnérabilité - AVA\_VAN}}
 \begin{enumerate}
-	\item [E3]: L'évaluateur doit effectuer une analyse \emph{indépendante/indépendante ciblée/indépendante méthodique/indépendante méthodique avancée} de la vulnérabilité de la TOE en utilisant \emph{la documentation d'orientation, les spécifications fonctionnelles, la conception, la description de l'architecture de sécurité et la représentation de l'implémentation} pour identifier les vulnérabilités potentielles dans la TOE.	
-	\item [E4]: L'évaluateur doit effectuer des tests de pénétration, basés sur les vulnérabilités potentielles identifiées pour déterminer si la TOE résiste aux attaques menées par un attaquant possédant un potentiel d'attaque \emph{Basique/ Basique -Amélioré/Modéré/Elevé}.
+\item [E3]: L'évaluateur doit effectuer une analyse \emph{indépendante/indépendante ciblée/indépendante méthodique/indépendante méthodique avancée} de la vulnérabilité de la TOE en utilisant \emph{la documentation d'orientation, les spécifications fonctionnelles, la conception, la description de l'architecture de sécurité et la représentation de l'implémentation} pour identifier les vulnérabilités potentielles dans la TOE.	
+\item [E4]: L'évaluateur doit effectuer des tests de pénétration, basés sur les vulnérabilités potentielles identifiées pour déterminer si la TOE résiste aux attaques menées par un attaquant possédant un potentiel d'attaque \emph{Basique/ Basique -Amélioré/Modéré/Elevé}.
 \end{enumerate}
 \end{frame}
 
 
-\begin{frame}{\centerline{différences entre une évaluation CC et une évaluation CSPN}}
-\begin{table} [H]
-	\small{
-		\begin{center}
-			\begin{tabular}{|l|p{3cm}|p{2cm}|}
-			\hline
-			\textbf{Composant} & \textbf{Niveau d'attaque potentielle} & \textbf{Analyse}\\
-			\hline
-			AVA\_VAN.1 & Basique & Indépendante\\
-			\hline
-			AVA\_VAN.2 & Basique & Indépendante\\
-			\hline
-			AVA\_VAN.3 & Basique-Amélioré & Indépendante ciblée\\
-			\hline
-			AVA\_VAN.4 & Modéré & Indépendante méthodique\\
-			\hline
-			AVA\_VAN.5 & Élevé &Indépendante méthodique avancée \\
-			\hline		
-			\end{tabular}
-		\end{center}
-	}
-	\caption{Analyse de la vulnérabilité}
-\end{table}
+\begin{frame}{\centerline{CSPN - Description}}
+\begin{enumerate}
+	\item [1)] Méthodologie publique française
+	\item [2)] Charges contraintes de 25 jours/homme + 10 jours/homme si cryptographie
+	\item [3)] Coût relativement faible
+	\item [4)] Si cryptographie analyse obligatoire
+	\item [5)] Boîte noire 
+	\item [5)] Niveau unique
+	\item [7)] Pas de correction possible du produit au cours de l'évaluation
+\end{enumerate}
+\end{frame}
+
+\begin{frame}{\centerline{CSPN - Exigences de fournitures}}
+Les fournitures documentaires minimales pour une évlaution CSPN:
+\begin{enumerate}
+	\item [1)] La cible de sécurité
+	\item [2)] Spécification des mécanismes cryptographiques
+	\begin{itemize}
+		\item Les informations relatives aux algorithmes
+		\item Les informations relatives à la gestion des clés
+		\item Les informations relatives au traitement des données (compression, formatage,...)
+		\item La méthode et l'architecture utilisée pour le générateur de nombres aléatoires (si utilisé)
+	\end{itemize}
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{CSPN - Objectifs}}
+Deux objectifs principaux sont recherchés lors de l'évaluation :
+\begin{enumerate}
+\item [1)] Vérifier que le produit est conforme à sa spécification pour ce qui concerne sa sécurité
+\item [2)] Déterminer l'efficacité des fonctionnalités de sécurité proposées par le produit
+\item [3)] Si cryptographie vérifier:
+\begin{itemize}
+	\item La conformité des mécanismes cryptographiques aux exigences décrites dans le référentiel technique de l'ANSSI [RGS\_B]
+	\item La conformité de la mise en oeuvre de ces mécanismes par le produit par rapport à leur description.
+\end{itemize} 
+\end{enumerate}
 \end{frame}
 
 
 
-\begin{frame}{\centerline{Evaluation CSPN - Cotation}}
+\begin{frame}{\centerline{CSPN - Les phases d'évaluation}}
+\noindent L'évaluation se déroule en 10 phases:
+\begin{enumerate}
+\item [Phase] 1 - Analyse de la cible de sécurité
+\item [Phase] 2 - Installation du produit
+\item [Phase] 3 - Analyse de la conformité - Analyse de la documentation
+\item [Phase] 4 - Analyse de la conformité - Revue du code source
+\item [Phase] 5 - Analyse de la conformité - Tests du produit
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Evaluation CSPN - Les phases}}
+\begin{enumerate}
+\item [Phase] 6 - Résistance des mécanismes/fonctions
+\item [Phase] 7 - Analyse de vulnérabilité
+\item [Phase] 7bis - Analyse de vulnérabilité du système hôte
+\item [Phase] 8 - Analyse de la facilite d'emploi
+\item [Phase] 9 - Entretien avec les développeurs
+\item [Phase] 10 - Evaluation de la cryptographie
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Problèmes des CC}}
+\begin{enumerate}	
+\item [1)] Evaluation statique du produit (TOE fixe)
+\item [2)] Temps d'évaluation longs par rapport à des cycles de développement de plus en plus rapides
+\item [3)] Des correctives peuvent être livrés au cours de l'évaluation\\
+\(\Rightarrow\) augmente la durée de l'évaluation
+\item [4)] Pas suffisamment connue par les développeurs commerciaux
+\item [5)] Les vulnérabilités de codage ne sont pas pris en compte
+\item [6)] Perçue comme n'améliorant pas la sécurité (littérature)	
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Avantages des CC}}
+\begin{enumerate}	
+\item [1)] Reconnaissance internationale
+\item [2)] La maintenance assure la continuité des certificats
+\item [3)] Extensibilité des SARs
+\item [4)] Philosophie des CC: Nivellement des tâches d'évaluation
+\begin{itemize}
+\item Périmètre de l'analyse
+\item Profondeur d'analyse
+\item Niveau de rigueur de l'évaluation		
+\end{itemize}	
+\item [5)] Généricité des STs via des PPs déjà approuvés
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Conclusion}}
+\begin{enumerate}	
+\item [1)] La certification est un processus concret: 
+\begin{itemize}
+\item 1173 certifications CC et CSPN ont été délivrées par l'ANSSI
+\item dont 115 en 2016				
+\end{itemize}
+\item [2)] L'ANSSI est l'un des premiers émetteurs de certifications au monde	
+\item [3)] Le processus d'évaluation améliore la sécurité des produits, même pour un faible niveau de confiance visé
+\item [4)] La certification n'est pas une garantie mais un seuil de confiance, le consommateur continue à assumer son risque
+\item [5)] La CSPN est une alternative pour à niveau mois élevé
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{\normalsize{La certification de produit des TI d'un point de vue sécurité}}}
+\centering{ \Large{Merci de votre attention}}
+\end{frame}
+
+
+
+
+\begin{frame}{\centerline{\normalsize{Annexe}}}
+\centering{ \Large{Cotation d'une attaque et exemple}}
+\end{frame}
+
+
+\begin{frame}{\centerline{Evaluation de la vulnérabilité - Cotation d'une attaque}}
 Cotation d'une attaque, les critères:
 \begin{enumerate}
 \item [1)] Temps passé
@@ -802,287 +798,233 @@ A chaque critère une table de cotation
 \end{frame}
 
 
-\begin{frame}{\centerline{Evaluation CSPN - Cotation}}
+\begin{frame}{\centerline{Cotation d'une attaque - 1}}
 \begin{enumerate}
-	\item [1)] Temps passé
+\item [1)] Temps passé
 \end{enumerate}
 \begin{table} [H]
-		\begin{center}
-			\begin{tabular}{|c|c|c|c|}
-				\hline
-				\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\
-				\hline					
-				& < 0,5 heure & 0 & 0 \\
-				\cline{2-4}			
-				& < 1 jour & 2 & 3 \\
-				\cline{2-4}			
-				& < 1 mois & 3 & 5 \\
-				\cline{2-4}			
-				& > 1 mois & 5 & 8 \\
-				\cline{2-4}						
-				\multirow{-5}{*}{Temps mis pour} 
-				& Impraticable & * & * \\
-				\hline									
-			\end{tabular}
-		\end{center}
-		\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\
+\hline					
+& < 0,5 heure & 0 & 0 \\
+\cline{2-4}			
+& < 1 jour & 2 & 3 \\
+\cline{2-4}			
+& < 1 mois & 3 & 5 \\
+\cline{2-4}			
+& > 1 mois & 5 & 8 \\
+\cline{2-4}						
+\multirow{-5}{*}{Temps mis pour} 
+& Impraticable & * & * \\
+\hline									
+\end{tabular}
+\end{center}
+\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
 \end{table}
 \end{frame}
 
 
 
-\begin{frame}{\centerline{Evaluation CSPN - Cotation}}
+\begin{frame}{\centerline{Cotation d'une attaque - Niveau d'expertise}}
 \begin{enumerate}
-	\item [2)] Niveau d'expertise
+\item [2)] Niveau d'expertise
 \end{enumerate}
 
 \begin{table} [H]
-	\begin{center}
-		\begin{tabular}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
-			\hline
-			\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\
-			\hline									
-			& Profane & 0 & 0 \\
-			\cline{2-4}			
-			& Compétent & 2 & 2 \\
-			\cline{2-4}			
-			\multirow{-3}{20mm}{Expertise de l'attaquant} 
-			& Expert & 5 & 4 \\
-			\hline										
-		\end{tabular}
-	\end{center}
-	\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
+\begin{center}
+\begin{tabular}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\
+\hline									
+& Profane & 0 & 0 \\
+\cline{2-4}			
+& Compétent & 2 & 2 \\
+\cline{2-4}			
+\multirow{-3}{20mm}{Expertise de l'attaquant} 
+& Expert & 5 & 4 \\
+\hline										
+\end{tabular}
+\end{center}
+\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
 \end{table}
 \end{frame}
 
 
 
-\begin{frame}{\centerline{Evaluation CSPN - Cotation}}
+\begin{frame}{\centerline{Cotation d'une attaque - Connaissance du produit}}
 \begin{enumerate}	
-	\item [3)] Connaissance du produit
+\item [3)] Connaissance du produit
 \end{enumerate}
 
 \begin{table} [H]
-	\small{
-		\begin{center}
-			\begin{tabular}{|c|p{3cm}|c|c|}
-				\hline
-				\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\
-				\hline					
-				& Aucune & 0 & 0 \\
-				\cline{2-4}			
-				& Information publique & 2 & 2 \\
-				\cline{2-4}			
-				\multirow{-3}{25mm}{Connaissance \\nécessaire à l'attaquant} 
-				& Information sensible & 5 & 4 \\
-				\hline									
-			\end{tabular}
-		\end{center}
-	}
-	\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
+\small{
+\begin{center}
+\begin{tabular}{|c|p{3cm}|c|c|}
+\hline
+\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\
+\hline					
+& Aucune & 0 & 0 \\
+\cline{2-4}			
+& Information publique & 2 & 2 \\
+\cline{2-4}			
+\multirow{-3}{25mm}{Connaissance \\nécessaire à l'attaquant} 
+& Information sensible & 5 & 4 \\
+\hline									
+\end{tabular}
+\end{center}
+}
+\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
 \end{table}
 \end{frame}
 
 
 
-\begin{frame}{\centerline{Evaluation CSPN - Cotation}}
+\begin{frame}{\centerline{Cotation d'une attaque - Accessibilité au produit}}
 \begin{enumerate}
-	\item [4)] Accessibilité au produit
+\item [4)] Accessibilité au produit
 \end{enumerate}
 
 \begin{table} [H]
-	\small{
-		\begin{center}
-			\begin{tabular}{|c|p{3cm}|c|c|}
-				\hline
-				\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\				
-				\hline			
-				& < 0,5 heure ou directement accessible & 0 & 0 \\
-				\cline{2-4}			
-				& < 1 jour & 2 & 4 \\
-				\cline{2-4}			
-				& < 1 mois & 3 & 6 \\
-				\cline{2-4}											
-				& > 1 mois & 4 & 9 \\
-				\cline{2-4}						
-				\multirow{-6}{25mm}{Accès au produit par l'attaquant} 
-				& Impraticable & * & * \\
-				\hline										
-			\end{tabular}
-		\end{center}
-	\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
-	}
+\small{
+\begin{center}
+\begin{tabular}{|c|p{3cm}|c|c|}
+\hline
+\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\				
+\hline			
+& < 0,5 heure ou directement accessible & 0 & 0 \\
+\cline{2-4}			
+& < 1 jour & 2 & 4 \\
+\cline{2-4}			
+& < 1 mois & 3 & 6 \\
+\cline{2-4}											
+& > 1 mois & 4 & 9 \\
+\cline{2-4}						
+\multirow{-6}{25mm}{Accès au produit par l'attaquant} 
+& Impraticable & * & * \\
+\hline										
+\end{tabular}
+\end{center}
+\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
+}
 \end{table}
 \end{frame}
 
 
 
-\begin{frame}{\centerline{Evaluation CSPN - Cotation}}
+\begin{frame}{\centerline{Cotation d'une attaque - Équipement nécessaire}}
 \begin{enumerate}
-	\item [5)] Équipement nécessaire
+\item [5)] Équipement nécessaire
 \end{enumerate}
 
 \begin{table} [H]
-	\small{
-		\begin{center}
-			\begin{tabular}{|c|c|c|c|}
-				\hline
-				\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\															
-				\hline						
-				& Aucun & 0 & 0 \\
-				\cline{2-4}			
-				& Standard & 1 & 2 \\
-				\cline{2-4}			
-				& Spécialisé & 3 & 4 \\
-				\cline{2-4}			
-				\multirow{-5}{25mm}{Type d'équipement nécessaire} 
-				& Spécifique & 5 & 6 \\
-				\hline		
-				
-			\end{tabular}
-		\end{center}
-	\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
-	}
+\small{
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\															
+\hline						
+& Aucun & 0 & 0 \\
+\cline{2-4}			
+& Standard & 1 & 2 \\
+\cline{2-4}			
+& Spécialisé & 3 & 4 \\
+\cline{2-4}			
+\multirow{-5}{25mm}{Type d'équipement nécessaire} 
+& Spécifique & 5 & 6 \\
+\hline		
+
+\end{tabular}
+\end{center}
+\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
+}
 \end{table}
 \end{frame}
 
-\begin{frame}{\centerline{Evaluation CSPN - Cotation}}
+\begin{frame}{\centerline{Cotation d'une attaque -  Classement}}
 \begin{table} [H]
-	\begin{center}
-		\begin{tabular}{|c|p{3.5cm}|p{3.5cm}|}
-			\hline
-			\textbf{Somme des valeurs} & \textbf{Résistant à un attaquant ayant un potentiel d'attaque} & \textbf{Niveau de résistance des fonctions} \\
-			\hline
-			0 à 9 & Pas de classement & Pas de classement\\
-			\hline
-			10 à 17 & Faible & Basique / Élémentaire\\
-			\hline
-			18 à 24 & Modéré & Médium / Moyen\\
-			\hline
-			> 24 & Élevé & Élevé\\
-			\hline
-		\end{tabular}
-	\end{center}
-	\caption{Classification de la Résistance aux attaques / des fonctions}
-\end{table}
-\end{frame}
-
-\begin{frame}{\centerline{La Certification de Sécurité de Premier Niveau (CSPN)}}
-\begin{enumerate}
-	\item [a)] Méthodologie publique française
-	\item [b)] Expertise technique avec des méthodes d'évaluation spécifique
-	\item [c)] Différents domaines:
-	\begin{itemize}
-		\item Effacement de données
-		\item Stockage sécurisé
-		\item Pare-feu
-		\item Communication sécurisée
-		\item Messagerie sécurisée
-		\item Matériel et logiciel embarqué
-		\item Anti-virus, protection contre les codes malveillants
-		\item Administration et supervision de la sécurité
-		\item Identification, authentification et contrôle d'accès
-		\item etc...	
-	\end{itemize}
-\end{enumerate}
-\end{frame}
-
-
-\begin{frame}{\centerline{La Certification de Sécurité de Premier Niveau (CSPN)}}
-\begin{enumerate}
-\item [a)] Charges contraintes de 25h.j. + 10h.j. si crypto
-\item [b)] Si cryptographie analyse obligatoire
-\item [c)] Boîte noire
-\item [d)] Niveau unique
-\item [e)] Pas de correction possible du produit
-\item [f)] Processus mis en place en 2008
-\end{enumerate}
-\end{frame}
-
-\begin{frame}{\centerline{Evaluation CSPN - Les phases}}
-\noindent L'évaluation se déroule 10 phases:
-\begin{enumerate}
-	\item [Phase] 1 - Analyse de la cible de sécurité
-	\item [Phase] 2 - Installation du produit
-	\item [Phase] 3 - Analyse de la conformité - analyse de la documentation
-	\item [Phase] 4 - Analyse de la conformité - revue du code source (si disponible)
-	\item [Phase] 5 - Analyse de la conformité - tests du produit
-\end{enumerate}
-\end{frame}
-
-
-\begin{frame}{\centerline{Evaluation CSPN - Les phases}}
-\begin{enumerate}
-\item [Phase] 6 - Résistance des mécanismes/fonctions
-\item [Phase] 7 - Analyse de vulnérabilité (intrinsèque, de construction, d'exploitation, etc.)
-\item [Phase] 7bis - Analyse de vulnérabilité du système hôte
-\item [Phase] 8 - Analyse de la facilite d'emploi
-\item [Phase] 9 - Entretien avec les développeurs
-\item [Phase] 10 - Evaluation de la cryptographie (si le produit implémente de la cryptographie) .
-\end{enumerate}
-\end{frame}
-
-
-\begin{frame}{\centerline{\small{Différences entre une évaluation CC et une évaluation CSPN}}}
-\begin{table}[H]
-	\small{
-		\begin{center}
-			\begin{tabular}{|p{5.3 cm}|p{5.2cm}|}
-				\hline	
-				\textbf{CC} & \textbf{CSPN}\\
-				\hline
-				EAL 1 à 7 & Niveau unique\\
-				\hline
-				Boîte grise-blanche & Boîte noire\\
-				\hline
-				Accords de reconnaissance des certificats & Aucun accord : reconnaissance franco-française\\
-				\hline
-				Pas de contraintes de temps & Temps imposé: 25 h.j (+10 si crypto), adaptation si cas particulier\\
-				\hline
-				Mise à jour du produit possible durant l'évaluation & Version du produit figée\\
-				\hline
-				Connaissance des CC par le développeur pour fournir des documents conformes & Aucune connaissance spécifique nécessaire pour le développeur\\
-				\hline
-				Coût relativement élevé (60 à 200K?) & Coût relativement faible (25 à 35K?)\\
-				\hline
-			\end{tabular}
-			\caption{Différences CC et CSPN}
-		\end{center}
-	}
+\begin{center}
+\begin{tabular}{|c|p{3.5cm}|p{3.5cm}|}
+\hline
+\textbf{Somme des valeurs} & \textbf{Résistant à un attaquant ayant un potentiel d'attaque} & \textbf{Niveau de résistance des fonctions} \\
+\hline
+0 à 9 & Pas de classement & Pas de classement\\
+\hline
+10 à 17 & Faible & Basique / Élémentaire\\
+\hline
+18 à 24 & Modéré & Médium / Moyen\\
+\hline
+> 24 & Élevé & Élevé\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Classification de la Résistance aux attaques / des fonctions}
 \end{table}
 \end{frame}
 
 
-\begin{frame}{\centerline{Problèmes des évaluations CC}}
-\begin{enumerate}	
-\item [1)] Evaluation statique du produit (TOE fixe)
-\item [2)] Temps d'évaluation longs par rapport aux Cycle de développement plus rapides
-\item [3)] Des correctives peuvent être livrés au cours de l'évaluation\\
-\(\Rightarrow\) augmente la durée de l'évaluation
-\item [4)] Pas suffisamment connue par les développeurs commerciaux
-\item [5)] Les vulnérabilités de codage ne sont pas pris en compte
-\item [6)] Une évaluation CC est aperçue comme n'améliorant pas la sécurité	
+
+\begin{frame}{\centerline{Exemple de cotation d'une attaque - 1}}
+Hypothèses:
+\begin{enumerate}
+\item [1)] Une TOE pourrait utiliser un simple mécanisme d'authentification par mot de passe
+\item [2)] La durée d'accès à un terminal n'est pas contrôlée d'une façon efficace
+\item [3)] Le système impose les restrictions suivantes sur le mot de passe :
+\begin{itemize}
+\item Le mot de passe est sur 4 à 6 chiffres
+\item Les séquences numériques consécutives sont interdites (7-6-5-4-3)
+\item Les chiffres ne doivent pas être répétés 
+\item Le terminal est verrouillé pendant une heure après la sixième tentative d'authentification échouée.
+\item Remise à zéro du compteur au bout de cinq minutes
+\item L'attaquant puisse tenter 60 fois / heure
+\end{itemize}
 \end{enumerate}
 \end{frame}
 
 
-
-\begin{frame}{\centerline{Conclusion}}
-\begin{enumerate}	
-	\item [1)] La certification est un processus concret: 
-	\begin{itemize}
-		\item 1173 certifications CC et CSPN ont été délivrées par l'ANSSI
-		\item dont 115 en 2016				
-	\end{itemize}
-	\item [2)] L'ANSSI est l'un des premiers émetteurs de certifications au monde	
-	\item [3)] Le processus d'évaluation améliore la sécurité des produits, même pour un faible niveau de confiance visé
-	\item [4)] Critères Communs, et surtout la reconnaissance internationale des certificats, sont une base précieuse et éprouvée	
-	\item [5)] La certification n'est pas une garantie mais un seuil de confiance, le consommateur continue à assumer son risque
-	\item [6)] La maintenance assure la continuité du certificat
-	\item [7)] Les CC assure la généricité via les PP
-    \item [8)] Les SARs sont extensible
-    \item [9)] Continuité du certificat par le mécanisme de maintenance
+\begin{frame}{\centerline{Exemple de cotation d'une attaque - 2}}
+Le pire des cas : Cas d'un mot de passe sur 4 chiffres:
+\begin{enumerate}
+\item [1)] Le nombre de permutations possible du mot de passe: \(n=\frac{10!}{(10-4)!}=5040\)
+\item [2)] Le nombre de séquences croissantes et décroissantes est \(7  + 7 = 14\)
+\item [3)] Le nombre de permutations possible résultant: \(n=5040-14=5026\)
 \end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Exemple de cotation d'une attaque - 3}}
+\begin{enumerate}
+\item [4)] En moyenne l'attaquant doit rentrer 2513 fois un mot de passe toutes les 60 minutes
+\item [5)] Le nombre de permutations possible \(\frac{2513}{60 minutes} \simeq 42 heures\) avant d'enter le bon mot de passe
+\item [6)] Selon la table utilisé on obtient une note inférieur à 9\\
+\(\Rightarrow\) Pas de classement
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Le Processus de Certification-CC}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.7\textwidth]{myEvlautionSteps}
+	\caption{Exemple de diagramme TOE}	
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{\centerline{Le Processus de Certification-CSPN}}
+Partie du produit soumise à évaluation:
+\begin{figure}[h!] 
+\centering \includegraphics[width=0.7\textwidth]{myEvlautionStepsCSPN}
+\caption{Exemple de diagramme TOE}	
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{\centerline{Statistiques}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.9\textwidth]{Rplot01}
+	\caption{Contenu de la Cible de sécurité (ST)}	
+\end{figure}
 \end{frame}
 
 
