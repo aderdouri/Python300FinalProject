@@ -1,0 +1,338 @@
+\documentclass[handout]{beamer}
+\usepackage{mathtools}
+\usepackage{lscape}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{booktabs,tabularx}
+\linespread{1}
+\usepackage[latin1]{inputenc}
+\usepackage{smartdiagram}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{colortbl}
+
+\usetheme{Warsaw}
+\title[Information et communication pour l'ingénieur]{La certification de produit des technologies d'information d'un point de vue sécurité}
+\author{Abderrazak DERDOURI}
+\date{07 février 2018}
+\begin{document}
+
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+\begin{frame}{\centerline{\normalsize{Annexe}}}
+\centering{ \Large{Evaluation de la vulnérabilité - Cotation d'une attaque et exemple}}
+\end{frame}
+
+
+\begin{frame}{\centerline{Evaluation de la vulnérabilité - AVA\_VAN}}
+Décomposition de la classe d'évaluation de la vulnérabilité:
+\begin{figure}[h!] 
+	\centering \includegraphics[width=1.0\textwidth]{myVulnerabilityAssessmentClassDecomposition}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{\centerline{Evaluation de la vulnérabilité - AVA\_VAN}}
+L'évaluation de la vulnérabilité se résume comme suit:
+\begin{enumerate}
+\item [D]: Le développeur doit fournir la TOE pour les tests.
+\item [C]: La TOE doit être testable.
+\item [E1]: L'évaluateur doit confirmer que les informations fournies satisfont à toutes les exigences en matière de contenu et de présentation des preuves.
+\item [E2]: L'évaluateur doit effectuer une recherche dans les sources du domaine public afin d'identifier les vulnérabilités potentielles dans la TOE.
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Evaluation de la vulnérabilité - AVA\_VAN}}
+\begin{enumerate}
+\item [E3]: L'évaluateur doit effectuer une analyse \emph{indépendante/indépendante ciblée/indépendante méthodique/indépendante méthodique avancée} de la vulnérabilité de la TOE en utilisant \emph{la documentation d'orientation, les spécifications fonctionnelles, la conception, la description de l'architecture de sécurité et la représentation de l'implémentation} pour identifier les vulnérabilités potentielles dans la TOE.	
+\item [E4]: L'évaluateur doit effectuer des tests de pénétration, basés sur les vulnérabilités potentielles identifiées pour déterminer si la TOE résiste aux attaques menées par un attaquant possédant un potentiel d'attaque \emph{Basique/ Basique -Amélioré/Modéré/Elevé}.
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Evaluation de la vulnérabilité - Cotation d'une attaque}}
+Cotation d'une attaque, les critères:
+\begin{enumerate}
+\item [1)] Temps passé
+\item [2)] Niveau d'expertise
+\item [3)] Connaissance du produit
+\item [4)] Accessibilité au produit
+\item [5)] Équipement nécessaire
+\end{enumerate}
+A chaque critère une table de cotation
+\end{frame}
+
+
+\begin{frame}{\centerline{Cotation d'une attaque - 1}}
+\begin{enumerate}
+\item [1)] Temps passé
+\end{enumerate}
+\begin{table} [H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\
+\hline					
+& < 0,5 heure & 0 & 0 \\
+\cline{2-4}			
+& < 1 jour & 2 & 3 \\
+\cline{2-4}			
+& < 1 mois & 3 & 5 \\
+\cline{2-4}			
+& > 1 mois & 5 & 8 \\
+\cline{2-4}						
+\multirow{-5}{*}{Temps mis pour} 
+& Impraticable & * & * \\
+\hline									
+\end{tabular}
+\end{center}
+\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Cotation d'une attaque - Niveau d'expertise}}
+\begin{enumerate}
+\item [2)] Niveau d'expertise
+\end{enumerate}
+
+\begin{table} [H]
+\begin{center}
+\begin{tabular}{|c|p{2.5cm}|p{2.5cm}|p{2.5cm}|}
+\hline
+\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\
+\hline									
+& Profane & 0 & 0 \\
+\cline{2-4}			
+& Compétent & 2 & 2 \\
+\cline{2-4}			
+\multirow{-3}{20mm}{Expertise de l'attaquant} 
+& Expert & 5 & 4 \\
+\hline										
+\end{tabular}
+\end{center}
+\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Cotation d'une attaque - Connaissance du produit}}
+\begin{enumerate}	
+\item [3)] Connaissance du produit
+\end{enumerate}
+
+\begin{table} [H]
+\small{
+\begin{center}
+\begin{tabular}{|c|p{3cm}|c|c|}
+\hline
+\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\
+\hline					
+& Aucune & 0 & 0 \\
+\cline{2-4}			
+& Information publique & 2 & 2 \\
+\cline{2-4}			
+\multirow{-3}{25mm}{Connaissance \\nécessaire à l'attaquant} 
+& Information sensible & 5 & 4 \\
+\hline									
+\end{tabular}
+\end{center}
+}
+\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Cotation d'une attaque - Accessibilité au produit}}
+\begin{enumerate}
+\item [4)] Accessibilité au produit
+\end{enumerate}
+
+\begin{table} [H]
+\small{
+\begin{center}
+\begin{tabular}{|c|p{3cm}|c|c|}
+\hline
+\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\				
+\hline			
+& < 0,5 heure ou directement accessible & 0 & 0 \\
+\cline{2-4}			
+& < 1 jour & 2 & 4 \\
+\cline{2-4}			
+& < 1 mois & 3 & 6 \\
+\cline{2-4}											
+& > 1 mois & 4 & 9 \\
+\cline{2-4}						
+\multirow{-6}{25mm}{Accès au produit par l'attaquant} 
+& Impraticable & * & * \\
+\hline										
+\end{tabular}
+\end{center}
+\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
+}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Cotation d'une attaque - Équipement nécessaire}}
+\begin{enumerate}
+\item [5)] Équipement nécessaire
+\end{enumerate}
+
+\begin{table} [H]
+\small{
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Facteur} & \textbf{Intervalle} & \textbf{Identification} &  \textbf{Exploitation} \\															
+\hline						
+& Aucun & 0 & 0 \\
+\cline{2-4}			
+& Standard & 1 & 2 \\
+\cline{2-4}			
+& Spécialisé & 3 & 4 \\
+\cline{2-4}			
+\multirow{-5}{25mm}{Type d'équipement nécessaire} 
+& Spécifique & 5 & 6 \\
+\hline		
+
+\end{tabular}
+\end{center}
+\caption{Cotation pour l'identification et l'exploitation d'une vulnérabilité}
+}
+\end{table}
+\end{frame}
+
+\begin{frame}{\centerline{Cotation d'une attaque -  Classement}}
+\begin{table} [H]
+\begin{center}
+\begin{tabular}{|c|p{3.5cm}|p{3.5cm}|}
+\hline
+\textbf{Somme des valeurs} & \textbf{Résistant à un attaquant ayant un potentiel d'attaque} & \textbf{Niveau de résistance des fonctions} \\
+\hline
+0 à 9 & Pas de classement & Pas de classement\\
+\hline
+10 à 17 & Faible & Basique / Élémentaire\\
+\hline
+18 à 24 & Modéré & Médium / Moyen\\
+\hline
+> 24 & Élevé & Élevé\\
+\hline
+\end{tabular}
+\end{center}
+\caption{Classification de la Résistance aux attaques / des fonctions}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Exemple de cotation d'une attaque - 1}}
+Hypothèses:
+\begin{enumerate}
+\item [1)] Une TOE pourrait utiliser un simple mécanisme d'authentification par mot de passe
+\item [2)] La durée d'accès à un terminal n'est pas contrôlée d'une façon efficace
+\item [3)] Le système impose les restrictions suivantes sur le mot de passe :
+\begin{itemize}
+\item Le mot de passe est sur 4 à 6 chiffres
+\item Les séquences numériques consécutives sont interdites (7-6-5-4-3)
+\item Les chiffres ne doivent pas être répétés 
+\item Le terminal est verrouillé pendant une heure après la sixième tentative d'authentification échouée.
+\item Remise à zéro du compteur au bout de cinq minutes
+\item L'attaquant puisse tenter 60 fois / heure
+\end{itemize}
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Exemple de cotation d'une attaque - 2}}
+Le pire des cas : Cas d'un mot de passe sur 4 chiffres:
+\begin{enumerate}
+\item [1)] Le nombre de permutations possible du mot de passe: \(n=\frac{10!}{(10-4)!}=5040\)
+\item [2)] Le nombre de séquences croissantes et décroissantes est \(7  + 7 = 14\)
+\item [3)] Le nombre de permutations possible résultant: \(n=5040-14=5026\)
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Exemple de cotation d'une attaque - 3}}
+\begin{enumerate}
+\item [4)] En moyenne l'attaquant doit rentrer 2513 fois un mot de passe toutes les 60 minutes
+\item [5)] Le nombre de permutations possible \(\frac{2513}{60 minutes} \simeq 42 heures\) avant d'enter le bon mot de passe
+\item [6)] Selon la table utilisé on obtient une note inférieur à 9\\
+\(\Rightarrow\) Pas de classement
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Le Processus de Certification-CC}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.7\textwidth]{myEvlautionSteps}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}{\centerline{Le Processus de Certification-CSPN}}
+\begin{figure}[h!] 
+\centering \includegraphics[width=0.7\textwidth]{myEvlautionCSPNSteps}
+\end{figure}
+\end{frame}
+
+
+
+
+
+\begin{frame}{\centerline{Problèmes des CC}}
+\begin{enumerate}	
+	\item [1)] Evaluation statique du produit (TOE fixe)
+	\item [2)] Temps d'évaluation longs par rapport à des cycles de développement de plus en plus rapides
+	\item [3)] Des correctives peuvent être livrés au cours de l'évaluation\\
+	\(\Rightarrow\) augmente la durée de l'évaluation
+	\item [4)] Pas suffisamment connue par les développeurs commerciaux
+	\item [5)] Les vulnérabilités de codage ne sont pas pris en compte
+	\item [6)] Perçue comme n'améliorant pas la sécurité (littérature)	
+\end{enumerate}
+\end{frame}
+
+
+\begin{frame}{\centerline{Avantages des CC}}
+\begin{enumerate}	
+\item [1)] Reconnaissance internationale
+\item [2)] La maintenance assure la continuité des certificats
+\item [3)] Extensibilité des SARs
+\item [4)] Philosophie des CC: Nivellement des tâches d'évaluation
+\begin{itemize}
+	\item Périmètre de l'analyse
+	\item Profondeur d'analyse
+	\item Niveau de rigueur de l'évaluation		
+\end{itemize}	
+\item [5)] Généricité des STs via des PPs déjà approuvés
+\end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}{\centerline{Statistiques}}
+\begin{figure}[h!] 
+	\centering \includegraphics[width=0.9\textwidth]{Rplot01}
+\end{figure}
+\end{frame}
+
+
+\end{document}
+
+
